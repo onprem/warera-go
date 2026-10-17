@@ -1,0 +1,388 @@
+{
+  "__v": 0,
+  "_id": "6aa7ad06d91c79361d0b0673",
+  "availableColorSchemes": [],
+  "avatarUrl": "https://media.warera.io/avatars/6aa7ad06d91c79361d0b0673-1789397225438-8h7x3m2w.jpg",
+  "canOnboard": false,
+  "company": "6a96d02cbcc49769ca2975fb",
+  "country": "6813b6d546e731854c7ac862",
+  "createdAt": "2026-09-14T08:15:02.302Z",
+  "dates": {
+    "lastCompanyJoinedAt": "2026-09-24T12:23:43.877Z",
+    "lastConnectionAt": "2026-10-17T19:11:59.107Z",
+    "lastCountryMessageCheckAt": "2026-09-14T08:15:02.300Z",
+    "lastDailyCalendarClaimedAt": "2026-10-17T05:59:59.318Z",
+    "lastEventsCheckAt": "2026-09-14T08:15:02.300Z",
+    "lastFreeTravelHomeAt": "2026-10-17T10:48:46.671Z",
+    "lastGlobalMessageCheckAt": "2026-09-14T08:15:02.300Z",
+    "lastHelpAskedAt": "2026-10-17T08:01:38.028Z",
+    "lastHiresAt": [
+      "2026-09-25T11:47:19.126Z",
+      "2026-10-01T17:13:10.038Z",
+      "2026-10-09T00:43:13.534Z",
+      "2026-10-09T11:07:25.901Z",
+      "2026-10-12T19:32:03.823Z",
+      "2026-10-12T19:37:20.179Z",
+      "2026-10-12T20:06:48.066Z",
+      "2026-10-13T13:22:26.025Z",
+      "2026-10-13T16:26:16.845Z",
+      "2026-10-14T20:13:31.152Z",
+      "2026-10-15T15:04:58.524Z",
+      "2026-10-15T15:22:54.253Z"
+    ],
+    "lastNotificationsCheckAt": "2026-09-14T08:15:02.300Z",
+    "lastSeenAnnouncementAt": "2026-10-17T06:00:01.524Z",
+    "lastSkillsResetAt": "2026-10-12T09:32:52.597Z",
+    "lastWorkAt": "2026-10-17T19:07:13.798Z",
+    "lastWorkOfferApplications": [
+      "2026-09-24T03:38:56.683Z",
+      "2026-09-24T12:23:26.970Z",
+      "2026-09-24T12:23:43.879Z"
+    ]
+  },
+  "discord": {
+    "isVerified": true
+  },
+  "emailVerified": true,
+  "equipment": {
+    "boots": "6ad023b73524b9137020d3d6",
+    "chest": "6acfc903b2896e6d4d059921",
+    "gloves": "6acefa4d60e2c1d49236f321",
+    "helmet": "6ad1d36ec1b8c89e3600766c",
+    "pants": "6ac95c15423ddb8f0dd0c4dd",
+    "weapon": "6ad32b3d975931cc91e6e9fe"
+  },
+  "finishedTours": {
+    "onboarding": true
+  },
+  "isActive": true,
+  "leveling": {
+    "availableSkillPoints": 0,
+    "dailyXpLeft": 100,
+    "freeReset": 0,
+    "level": 24,
+    "prestige": 0,
+    "prestigeLevel": 0,
+    "spentSkillPoints": 96,
+    "totalSkillPoints": 96,
+    "totalXp": 20250,
+    "xp": 20250
+  },
+  "location": "6813b7079403bc4170a5d8af",
+  "militaryRank": 31,
+  "missions": {
+    "claimedAt": {
+      "daily": "2026-10-17T08:18:39.103Z",
+      "starting": "2026-09-21T06:43:04.571Z",
+      "weekly": "2026-10-17T08:18:50.461Z"
+    },
+    "claimedCount": 400,
+    "rerolledDailyMissions": 1,
+    "rerolledMonthlyMissions": 1,
+    "rerolledWeeklyMissions": 1,
+    "totalXpClaimed": 15540
+  },
+  "mu": "6aa9311d8af2bd246aff6189",
+  "muMaxLevelRewarded": 0,
+  "party": "698d07a0335cf9b55ccbf4c1",
+  "preferences": {
+    "appFont": "Saira",
+    "appPattern": "none",
+    "autoEquipMode": "best",
+    "autoReplaceOnBreak": false,
+    "colorblind": false,
+    "locale": "en",
+    "sfx": false,
+    "vibrations": true
+  },
+  "rankings": {
+    "userBounty": {
+      "rank": 12380,
+      "tier": "bronze",
+      "value": 2.358923
+    },
+    "userCasesOpened": {
+      "rank": 11462,
+      "tier": "bronze",
+      "value": 158
+    },
+    "userDamages": {
+      "rank": 12371,
+      "tier": "bronze",
+      "value": 162069
+    },
+    "userLevel": {
+      "rank": 11625,
+      "tier": "bronze",
+      "value": 20250
+    },
+    "userMilestoneTiers": {
+      "rank": 11135,
+      "tier": "bronze",
+      "value": 97
+    },
+    "userMissionsClaimed": {
+      "rank": 11661,
+      "tier": "bronze",
+      "value": 400
+    },
+    "userReferrals": {
+      "rank": 734,
+      "tier": "diamond",
+      "value": 2
+    },
+    "userWealth": {
+      "rank": 10754,
+      "tier": "bronze",
+      "value": 9604.123
+    },
+    "weeklyUserDamages": {
+      "rank": 11299,
+      "tier": "bronze",
+      "value": 26433
+    }
+  },
+  "region": "6813b7099403bc4170a5d9cf",
+  "shouldUpdateProfile": true,
+  "skills": {
+    "armor": {
+      "equipment": 20,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 20,
+      "totalAfterSoftCap": 33,
+      "value": null,
+      "weapon": null
+    },
+    "attack": {
+      "ammoPercent": 0,
+      "buffsPercent": 0,
+      "debuffsPercent": 0,
+      "equipment": null,
+      "level": 0,
+      "limited": null,
+      "militaryRankPercent": 9.25,
+      "overflow": null,
+      "prestige": 0,
+      "total": 149,
+      "totalAfterSoftCap": null,
+      "value": 100,
+      "weapon": 36
+    },
+    "companies": {
+      "equipment": null,
+      "level": 6,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 8,
+      "totalAfterSoftCap": null,
+      "value": 8,
+      "weapon": null
+    },
+    "criticalChance": {
+      "equipment": null,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 14,
+      "totalAfterSoftCap": null,
+      "value": 10,
+      "weapon": 4
+    },
+    "criticalDamages": {
+      "equipment": 30,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 130,
+      "totalAfterSoftCap": null,
+      "value": 100,
+      "weapon": null
+    },
+    "dodge": {
+      "equipment": 6,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 6,
+      "totalAfterSoftCap": 13,
+      "value": null,
+      "weapon": null
+    },
+    "energy": {
+      "currentBarValue": 0,
+      "equipment": null,
+      "hourlyBarRegen": 10,
+      "level": 7,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 100,
+      "totalAfterSoftCap": null,
+      "value": 100,
+      "weapon": null
+    },
+    "entrepreneurship": {
+      "currentBarValue": 9,
+      "equipment": null,
+      "hourlyBarRegen": 5,
+      "level": 4,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 50,
+      "totalAfterSoftCap": null,
+      "value": 50,
+      "weapon": null
+    },
+    "health": {
+      "currentBarValue": 25.19999999999997,
+      "equipment": null,
+      "hourlyBarRegen": 10,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 100,
+      "totalAfterSoftCap": null,
+      "value": 100,
+      "weapon": null
+    },
+    "hunger": {
+      "currentBarValue": 4,
+      "equipment": null,
+      "hourlyBarRegen": 0.4,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 4,
+      "totalAfterSoftCap": null,
+      "value": 4,
+      "weapon": null
+    },
+    "lootChance": {
+      "equipment": null,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 5,
+      "totalAfterSoftCap": null,
+      "value": 5,
+      "weapon": null
+    },
+    "management": {
+      "equipment": null,
+      "level": 1,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 6,
+      "totalAfterSoftCap": null,
+      "value": 6,
+      "weapon": null
+    },
+    "precision": {
+      "equipment": 4,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 54,
+      "totalAfterSoftCap": null,
+      "value": 50,
+      "weapon": null
+    },
+    "production": {
+      "currentBarValue": 10,
+      "equipment": null,
+      "hourlyBarRegen": 3.4,
+      "level": 8,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 34,
+      "totalAfterSoftCap": null,
+      "value": 34,
+      "weapon": null
+    },
+    "stamina": {
+      "currentBarValue": 70,
+      "equipment": null,
+      "hourlyBarRegen": 10,
+      "level": 0,
+      "limited": null,
+      "overflow": null,
+      "prestige": 0,
+      "total": 100,
+      "totalAfterSoftCap": null,
+      "value": 100,
+      "weapon": null
+    }
+  },
+  "stats": {
+    "case1": {
+      "byRarity": {
+        "common": 104,
+        "rare": 9,
+        "uncommon": 42
+      },
+      "openedCount": 155
+    },
+    "case2": {
+      "byRarity": {
+        "rare": 1,
+        "uncommon": 2
+      },
+      "openedCount": 3
+    },
+    "dailyRewardBestStreak": 34,
+    "dailyRewardStreak": 34,
+    "damagesCount": 162069,
+    "milestoneTiersClaimed": 97,
+    "milestoneXpClaimed": 4370,
+    "wealth": {
+      "companies": 8311.916,
+      "equipments": 52.148,
+      "items": 354.296,
+      "money": 865.699,
+      "total": 9604.123,
+      "weapons": 20.065
+    },
+    "woodenCase": {
+      "byItem": {
+        "ammo": 128,
+        "bread": 35,
+        "coca": 846,
+        "cocain": 3,
+        "concrete": 27,
+        "cookedFish": 1,
+        "fish": 23,
+        "grain": 584,
+        "iron": 462,
+        "lead": 814,
+        "lightAmmo": 292,
+        "limestone": 639,
+        "livestock": 39,
+        "oil": 196,
+        "paper": 317,
+        "petroleum": 638,
+        "steak": 43,
+        "steel": 29,
+        "wood": 489
+      },
+      "openedCount": 183
+    },
+    "worksCount": 1020
+  },
+  "updatedAt": "2026-10-17T19:12:09.638Z",
+  "username": "Kautilya",
+  "usernameLower": "kautilya"
+}

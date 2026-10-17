@@ -1,0 +1,1276 @@
+{
+  "__v": 0,
+  "_id": "6813b7a6d99e5787db09723d",
+  "isGlobal": false,
+  "items": [
+    {
+      "_id": "6ad3c5d15bf702e81b9ca8fa",
+      "country": "6813b6d446e731854c7ac79c",
+      "rank": 1,
+      "tier": "master",
+      "value": 38121929454
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca8fb",
+      "country": "6813b6d446e731854c7ac7a0",
+      "rank": 2,
+      "tier": "diamond",
+      "value": 25008977620
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca8fc",
+      "country": "6813b6d446e731854c7ac7aa",
+      "rank": 3,
+      "tier": "diamond",
+      "value": 21547977462
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca8fd",
+      "country": "6813b6d446e731854c7ac7a4",
+      "rank": 4,
+      "tier": "diamond",
+      "value": 20233418252
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca8fe",
+      "country": "6813b6d446e731854c7ac7b8",
+      "rank": 5,
+      "tier": "diamond",
+      "value": 20113517756
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca8ff",
+      "country": "6813b6d446e731854c7ac7f2",
+      "rank": 6,
+      "tier": "diamond",
+      "value": 18846012369
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca900",
+      "country": "6813b6d546e731854c7ac845",
+      "rank": 7,
+      "tier": "diamond",
+      "value": 15867628171
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca901",
+      "country": "6813b6d546e731854c7ac865",
+      "rank": 8,
+      "tier": "diamond",
+      "value": 15135077441
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca902",
+      "country": "6813b6d446e731854c7ac7ba",
+      "rank": 9,
+      "tier": "diamond",
+      "value": 14668694877
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca903",
+      "country": "6813b6d546e731854c7ac858",
+      "rank": 10,
+      "tier": "platinum",
+      "value": 12825342289
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca904",
+      "country": "6813b6d446e731854c7ac7a2",
+      "rank": 11,
+      "tier": "platinum",
+      "value": 11004037714
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca905",
+      "country": "6813b6d446e731854c7ac7b6",
+      "rank": 12,
+      "tier": "platinum",
+      "value": 10591910424
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca906",
+      "country": "6813b6d446e731854c7ac79a",
+      "rank": 13,
+      "tier": "platinum",
+      "value": 9698486376
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca907",
+      "country": "6813b6d446e731854c7ac7ae",
+      "rank": 14,
+      "tier": "platinum",
+      "value": 9183606117
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca908",
+      "country": "683ddd2c24b5a2e114af15c3",
+      "rank": 15,
+      "tier": "platinum",
+      "value": 8970058990
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca909",
+      "country": "683ddd2c24b5a2e114af1612",
+      "rank": 16,
+      "tier": "platinum",
+      "value": 8750034362
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca90a",
+      "country": "6813b6d446e731854c7ac7bc",
+      "rank": 17,
+      "tier": "platinum",
+      "value": 8551421676
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca90b",
+      "country": "6813b6d446e731854c7ac7c0",
+      "rank": 18,
+      "tier": "platinum",
+      "value": 6463530378
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca90c",
+      "country": "6813b6d546e731854c7ac8c4",
+      "rank": 19,
+      "tier": "platinum",
+      "value": 6287398558
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca90d",
+      "country": "6813b6d446e731854c7ac7eb",
+      "rank": 20,
+      "tier": "platinum",
+      "value": 6073792711
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca90e",
+      "country": "6813b6d546e731854c7ac82f",
+      "rank": 21,
+      "tier": "platinum",
+      "value": 6017434482
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca90f",
+      "country": "6813b6d446e731854c7ac80e",
+      "rank": 22,
+      "tier": "platinum",
+      "value": 5909091503
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca910",
+      "country": "6813b6d446e731854c7ac7a8",
+      "rank": 23,
+      "tier": "platinum",
+      "value": 5833513632
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca911",
+      "country": "6813b6d546e731854c7ac829",
+      "rank": 24,
+      "tier": "platinum",
+      "value": 5323004836
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca912",
+      "country": "6813b6d546e731854c7ac83c",
+      "rank": 25,
+      "tier": "platinum",
+      "value": 5255145118
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca913",
+      "country": "6813b6d546e731854c7ac899",
+      "rank": 26,
+      "tier": "platinum",
+      "value": 4865602704
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca914",
+      "country": "6813b6d546e731854c7ac862",
+      "rank": 27,
+      "tier": "platinum",
+      "value": 4689233425
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca915",
+      "country": "6873d0ea1758b40e712b5f1f",
+      "rank": 28,
+      "tier": "platinum",
+      "value": 4555927777
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca916",
+      "country": "6813b6d546e731854c7ac82c",
+      "rank": 29,
+      "tier": "platinum",
+      "value": 4549309462
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca917",
+      "country": "6813b6d546e731854c7ac8a6",
+      "rank": 30,
+      "tier": "platinum",
+      "value": 4430502926
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca918",
+      "country": "6813b6d546e731854c7ac832",
+      "rank": 31,
+      "tier": "platinum",
+      "value": 4336465204
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca919",
+      "country": "6813b6d546e731854c7ac868",
+      "rank": 32,
+      "tier": "platinum",
+      "value": 4311487306
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca91a",
+      "country": "6813b6d546e731854c7ac8c1",
+      "rank": 33,
+      "tier": "platinum",
+      "value": 4099605226
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca91b",
+      "country": "6813b6d546e731854c7ac8a3",
+      "rank": 34,
+      "tier": "platinum",
+      "value": 4033549526
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca91c",
+      "country": "683ddd2c24b5a2e114af160f",
+      "rank": 35,
+      "tier": "platinum",
+      "value": 3910411468
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca91d",
+      "country": "683ddd2c24b5a2e114af15fa",
+      "rank": 36,
+      "tier": "platinum",
+      "value": 3833013688
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca91e",
+      "country": "6813b6d446e731854c7ac7fe",
+      "rank": 37,
+      "tier": "gold",
+      "value": 3785694465
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca91f",
+      "country": "6813b6d546e731854c7ac8d4",
+      "rank": 38,
+      "tier": "gold",
+      "value": 3699954170
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca920",
+      "country": "6813b6d446e731854c7ac7fb",
+      "rank": 39,
+      "tier": "gold",
+      "value": 3644057409
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca921",
+      "country": "6813b6d546e731854c7ac85c",
+      "rank": 40,
+      "tier": "gold",
+      "value": 3527502318
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca922",
+      "country": "6813b6d546e731854c7ac81d",
+      "rank": 41,
+      "tier": "gold",
+      "value": 3425028039
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca923",
+      "country": "6813b6d446e731854c7ac7b2",
+      "rank": 42,
+      "tier": "gold",
+      "value": 3393598341
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca924",
+      "country": "6813b6d446e731854c7ac80b",
+      "rank": 43,
+      "tier": "gold",
+      "value": 3329186188
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca925",
+      "country": "6873d0ea1758b40e712b5ee9",
+      "rank": 44,
+      "tier": "gold",
+      "value": 3307327670
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca926",
+      "country": "6813b6d446e731854c7ac7ac",
+      "rank": 45,
+      "tier": "gold",
+      "value": 3252885729
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca927",
+      "country": "6813b6d446e731854c7ac79e",
+      "rank": 46,
+      "tier": "gold",
+      "value": 3204561486
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca928",
+      "country": "6813b6d546e731854c7ac8cb",
+      "rank": 47,
+      "tier": "gold",
+      "value": 3136994467
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca929",
+      "country": "6813b6d546e731854c7ac85f",
+      "rank": 48,
+      "tier": "gold",
+      "value": 3033540564
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca92a",
+      "country": "6813b6d446e731854c7ac7e5",
+      "rank": 49,
+      "tier": "gold",
+      "value": 3013341764
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca92b",
+      "country": "6813b6d546e731854c7ac889",
+      "rank": 50,
+      "tier": "gold",
+      "value": 2974363282
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca92c",
+      "country": "6813b6d446e731854c7ac7e8",
+      "rank": 51,
+      "tier": "gold",
+      "value": 2875742473
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca92d",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "rank": 52,
+      "tier": "gold",
+      "value": 2621511392
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca92e",
+      "country": "6873d0ea1758b40e712b5f3d",
+      "rank": 53,
+      "tier": "gold",
+      "value": 2594062673
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca92f",
+      "country": "6813b6d546e731854c7ac886",
+      "rank": 54,
+      "tier": "gold",
+      "value": 2570365981
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca930",
+      "country": "6813b6d446e731854c7ac802",
+      "rank": 55,
+      "tier": "gold",
+      "value": 2368059394
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca931",
+      "country": "6813b6d446e731854c7ac7f5",
+      "rank": 56,
+      "tier": "gold",
+      "value": 2327500022
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca932",
+      "country": "6873d0ea1758b40e712b5f67",
+      "rank": 57,
+      "tier": "gold",
+      "value": 2283211027
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca933",
+      "country": "6813b6d546e731854c7ac87d",
+      "rank": 58,
+      "tier": "gold",
+      "value": 2261015151
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca934",
+      "country": "6813b6d546e731854c7ac877",
+      "rank": 59,
+      "tier": "gold",
+      "value": 2200026259
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca935",
+      "country": "6873d0ea1758b40e712b5f4c",
+      "rank": 60,
+      "tier": "gold",
+      "value": 2007399208
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca936",
+      "country": "6813b6d546e731854c7ac8da",
+      "rank": 61,
+      "tier": "gold",
+      "value": 1960970898
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca937",
+      "country": "6873d0ea1758b40e712b5f7c",
+      "rank": 62,
+      "tier": "gold",
+      "value": 1908843043
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca938",
+      "country": "6873d0ea1758b40e712b5eef",
+      "rank": 63,
+      "tier": "gold",
+      "value": 1795519928
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca939",
+      "country": "6813b6d546e731854c7ac8a0",
+      "rank": 64,
+      "tier": "gold",
+      "value": 1781942634
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca93a",
+      "country": "683ddd2c24b5a2e114af1609",
+      "rank": 65,
+      "tier": "gold",
+      "value": 1737579585
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca93b",
+      "country": "6813b6d546e731854c7ac852",
+      "rank": 66,
+      "tier": "gold",
+      "value": 1678226167
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca93c",
+      "country": "6873d0ea1758b40e712b5ef5",
+      "rank": 67,
+      "tier": "gold",
+      "value": 1604110041
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca93d",
+      "country": "683ddd2c24b5a2e114af15d3",
+      "rank": 68,
+      "tier": "gold",
+      "value": 1587416968
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca93e",
+      "country": "6873d0ea1758b40e712b5f76",
+      "rank": 69,
+      "tier": "gold",
+      "value": 1554957901
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca93f",
+      "country": "683ddd2c24b5a2e114af15c1",
+      "rank": 70,
+      "tier": "gold",
+      "value": 1547912136
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca940",
+      "country": "6813b6d446e731854c7ac808",
+      "rank": 71,
+      "tier": "gold",
+      "value": 1501626959
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca941",
+      "country": "6813b6d546e731854c7ac8d1",
+      "rank": 72,
+      "tier": "gold",
+      "value": 1482677781
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca942",
+      "country": "6813b6d546e731854c7ac8d7",
+      "rank": 73,
+      "tier": "silver",
+      "value": 1482310132
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca943",
+      "country": "6873d0ea1758b40e712b5f3a",
+      "rank": 74,
+      "tier": "silver",
+      "value": 1464274828
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca944",
+      "country": "6873d0ea1758b40e712b5f60",
+      "rank": 75,
+      "tier": "silver",
+      "value": 1432740692
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca945",
+      "country": "6813b6d546e731854c7ac8e0",
+      "rank": 76,
+      "tier": "silver",
+      "value": 1418262312
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca946",
+      "country": "6813b6d546e731854c7ac848",
+      "rank": 77,
+      "tier": "silver",
+      "value": 1417957657
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca947",
+      "country": "6813b6d546e731854c7ac874",
+      "rank": 78,
+      "tier": "silver",
+      "value": 1404150351
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca948",
+      "country": "6813b6d546e731854c7ac8b8",
+      "rank": 79,
+      "tier": "silver",
+      "value": 1389949067
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca949",
+      "country": "6813b6d546e731854c7ac84b",
+      "rank": 80,
+      "tier": "silver",
+      "value": 1331735446
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca94a",
+      "country": "696a81da63e2489f47e5a28c",
+      "rank": 81,
+      "tier": "silver",
+      "value": 1328001930
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca94b",
+      "country": "6813b6d546e731854c7ac835",
+      "rank": 82,
+      "tier": "silver",
+      "value": 1308403301
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca94c",
+      "country": "6813b6d546e731854c7ac8ac",
+      "rank": 83,
+      "tier": "silver",
+      "value": 1307347669
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca94d",
+      "country": "6813b6d546e731854c7ac84e",
+      "rank": 84,
+      "tier": "silver",
+      "value": 1299645152
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca94e",
+      "country": "6813b6d446e731854c7ac7ef",
+      "rank": 85,
+      "tier": "silver",
+      "value": 1236938806
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca94f",
+      "country": "6873d0ea1758b40e712b5eeb",
+      "rank": 86,
+      "tier": "silver",
+      "value": 1230337377
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca950",
+      "country": "683ddd2c24b5a2e114af15fd",
+      "rank": 87,
+      "tier": "silver",
+      "value": 1227923733
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca951",
+      "country": "683ddd2c24b5a2e114af15f7",
+      "rank": 88,
+      "tier": "silver",
+      "value": 1199431863
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca952",
+      "country": "687eab339142f76907295e4e",
+      "rank": 89,
+      "tier": "silver",
+      "value": 1195834584
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca953",
+      "country": "6873d0ea1758b40e712b5f5c",
+      "rank": 90,
+      "tier": "silver",
+      "value": 1156047009
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca954",
+      "country": "683ddd2c24b5a2e114af15c7",
+      "rank": 91,
+      "tier": "silver",
+      "value": 1148072042
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca955",
+      "country": "6813b6d546e731854c7ac893",
+      "rank": 92,
+      "tier": "silver",
+      "value": 1133605317
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca956",
+      "country": "683ddd2c24b5a2e114af15b5",
+      "rank": 93,
+      "tier": "silver",
+      "value": 1131488119
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca957",
+      "country": "69614d0e5d798a861630c58e",
+      "rank": 94,
+      "tier": "silver",
+      "value": 1104819059
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca958",
+      "country": "6813b6d446e731854c7ac7b4",
+      "rank": 95,
+      "tier": "silver",
+      "value": 1102026282
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca959",
+      "country": "6873d0ea1758b40e712b5f1c",
+      "rank": 96,
+      "tier": "silver",
+      "value": 1051034503
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca95a",
+      "country": "6873d0ea1758b40e712b5f31",
+      "rank": 97,
+      "tier": "silver",
+      "value": 1049296336
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca95b",
+      "country": "683ddd2c24b5a2e114af1606",
+      "rank": 98,
+      "tier": "silver",
+      "value": 1015814275
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca95c",
+      "country": "6873d0ea1758b40e712b5f4f",
+      "rank": 99,
+      "tier": "silver",
+      "value": 1015506299
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca95d",
+      "country": "6813b6d546e731854c7ac883",
+      "rank": 100,
+      "tier": "silver",
+      "value": 992004358
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca95e",
+      "country": "6813b6d546e731854c7ac842",
+      "rank": 101,
+      "tier": "silver",
+      "value": 988932308
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca95f",
+      "country": "6873d0ea1758b40e712b5f25",
+      "rank": 102,
+      "tier": "silver",
+      "value": 964851759
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca960",
+      "country": "6873d0ea1758b40e712b5ef7",
+      "rank": 103,
+      "tier": "silver",
+      "value": 943694389
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca961",
+      "country": "683ddd2c24b5a2e114af15c9",
+      "rank": 104,
+      "tier": "silver",
+      "value": 917734153
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca962",
+      "country": "6873d0ea1758b40e712b5f22",
+      "rank": 105,
+      "tier": "silver",
+      "value": 894723801
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca963",
+      "country": "6813b6d546e731854c7ac811",
+      "rank": 106,
+      "tier": "silver",
+      "value": 882720659
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca964",
+      "country": "6813b6d446e731854c7ac7be",
+      "rank": 107,
+      "tier": "silver",
+      "value": 880183032
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca965",
+      "country": "6873d0ea1758b40e712b5f56",
+      "rank": 108,
+      "tier": "silver",
+      "value": 833949753
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca966",
+      "country": "683ddd2c24b5a2e114af15cb",
+      "rank": 109,
+      "tier": "bronze",
+      "value": 811424677
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca967",
+      "country": "6813b6d546e731854c7ac8af",
+      "rank": 110,
+      "tier": "bronze",
+      "value": 791850067
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca968",
+      "country": "696a81da63e2489f47e5a28e",
+      "rank": 111,
+      "tier": "bronze",
+      "value": 716997963
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca969",
+      "country": "6873d0ea1758b40e712b5f79",
+      "rank": 112,
+      "tier": "bronze",
+      "value": 716984914
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca96a",
+      "country": "6873d0ea1758b40e712b5ee7",
+      "rank": 113,
+      "tier": "bronze",
+      "value": 713503337
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca96b",
+      "country": "6873d0ea1758b40e712b5f19",
+      "rank": 114,
+      "tier": "bronze",
+      "value": 694884250
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca96c",
+      "country": "6813b6d546e731854c7ac814",
+      "rank": 115,
+      "tier": "bronze",
+      "value": 693416389
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca96d",
+      "country": "683ddd2c24b5a2e114af1600",
+      "rank": 116,
+      "tier": "bronze",
+      "value": 638881428
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca96e",
+      "country": "6813b6d446e731854c7ac7f8",
+      "rank": 117,
+      "tier": "bronze",
+      "value": 627719867
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca96f",
+      "country": "6813b6d546e731854c7ac86e",
+      "rank": 118,
+      "tier": "bronze",
+      "value": 610859539
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca970",
+      "country": "6873d0ea1758b40e712b5f63",
+      "rank": 119,
+      "tier": "bronze",
+      "value": 608004768
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca971",
+      "country": "6873d0ea1758b40e712b5f6a",
+      "rank": 120,
+      "tier": "bronze",
+      "value": 605018306
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca972",
+      "country": "6873d0ea1758b40e712b5eed",
+      "rank": 121,
+      "tier": "bronze",
+      "value": 603898100
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca973",
+      "country": "6813b6d546e731854c7ac820",
+      "rank": 122,
+      "tier": "bronze",
+      "value": 596194309
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca974",
+      "country": "6813b6d546e731854c7ac83f",
+      "rank": 123,
+      "tier": "bronze",
+      "value": 584049094
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca975",
+      "country": "683ddd2c24b5a2e114af15bd",
+      "rank": 124,
+      "tier": "bronze",
+      "value": 560532524
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca976",
+      "country": "6873d0ea1758b40e712b5f2b",
+      "rank": 125,
+      "tier": "bronze",
+      "value": 558612871
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca977",
+      "country": "683ddd2c24b5a2e114af15db",
+      "rank": 126,
+      "tier": "bronze",
+      "value": 554932898
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca978",
+      "country": "683ddd2c24b5a2e114af15b7",
+      "rank": 127,
+      "tier": "bronze",
+      "value": 548437005
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca979",
+      "country": "6813b6d546e731854c7ac8dd",
+      "rank": 128,
+      "tier": "bronze",
+      "value": 536821872
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca97a",
+      "country": "683ddd2c24b5a2e114af15cf",
+      "rank": 129,
+      "tier": "bronze",
+      "value": 530805767
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca97b",
+      "country": "6873d0ea1758b40e712b5f40",
+      "rank": 130,
+      "tier": "bronze",
+      "value": 528422956
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca97c",
+      "country": "6813b6d546e731854c7ac896",
+      "rank": 131,
+      "tier": "bronze",
+      "value": 514604393
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca97d",
+      "country": "6813b6d546e731854c7ac8bb",
+      "rank": 132,
+      "tier": "bronze",
+      "value": 510371804
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca97e",
+      "country": "6813b6d546e731854c7ac8b5",
+      "rank": 133,
+      "tier": "bronze",
+      "value": 508879257
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca97f",
+      "country": "6813b6d546e731854c7ac87a",
+      "rank": 134,
+      "tier": "bronze",
+      "value": 508457643
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca980",
+      "country": "6813b6d546e731854c7ac823",
+      "rank": 135,
+      "tier": "bronze",
+      "value": 498769618
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca981",
+      "country": "6813b6d546e731854c7ac890",
+      "rank": 136,
+      "tier": "bronze",
+      "value": 484589699
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca982",
+      "country": "6813b6d546e731854c7ac8ce",
+      "rank": 137,
+      "tier": "bronze",
+      "value": 475617032
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca983",
+      "country": "6813b6d546e731854c7ac880",
+      "rank": 138,
+      "tier": "bronze",
+      "value": 470635533
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca984",
+      "country": "6873d0ea1758b40e712b5f28",
+      "rank": 139,
+      "tier": "bronze",
+      "value": 433650044
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca985",
+      "country": "6813b6d546e731854c7ac855",
+      "rank": 140,
+      "tier": "bronze",
+      "value": 429129024
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca986",
+      "country": "683ddd2c24b5a2e114af15d7",
+      "rank": 141,
+      "tier": "bronze",
+      "value": 427805194
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca987",
+      "country": "6813b6d446e731854c7ac7b0",
+      "rank": 142,
+      "tier": "bronze",
+      "value": 425172151
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca988",
+      "country": "683ddd2c24b5a2e114af1603",
+      "rank": 143,
+      "tier": "bronze",
+      "value": 417380962
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca989",
+      "country": "6813b6d446e731854c7ac7e2",
+      "rank": 144,
+      "tier": "bronze",
+      "value": 409342159
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca98a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "rank": 145,
+      "tier": "bronze",
+      "value": 407518635
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca98b",
+      "country": "6813b6d446e731854c7ac805",
+      "rank": 146,
+      "tier": "bronze",
+      "value": 406541354
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca98c",
+      "country": "687eab339142f76907295e50",
+      "rank": 147,
+      "tier": "bronze",
+      "value": 399185189
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca98d",
+      "country": "6813b6d546e731854c7ac8a9",
+      "rank": 148,
+      "tier": "bronze",
+      "value": 391304725
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca98e",
+      "country": "6813b6d546e731854c7ac826",
+      "rank": 149,
+      "tier": "bronze",
+      "value": 389001192
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca98f",
+      "country": "6873d0ea1758b40e712b5f34",
+      "rank": 150,
+      "tier": "bronze",
+      "value": 385419338
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca990",
+      "country": "6873d0ea1758b40e712b5f37",
+      "rank": 151,
+      "tier": "bronze",
+      "value": 377310099
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca991",
+      "country": "6813b6d546e731854c7ac86b",
+      "rank": 152,
+      "tier": "bronze",
+      "value": 369730873
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca992",
+      "country": "683ddd2c24b5a2e114af15d1",
+      "rank": 153,
+      "tier": "bronze",
+      "value": 338141331
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca993",
+      "country": "6813b6d546e731854c7ac89c",
+      "rank": 154,
+      "tier": "bronze",
+      "value": 326709245
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca994",
+      "country": "683ddd2c24b5a2e114af160c",
+      "rank": 155,
+      "tier": "bronze",
+      "value": 319576433
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca995",
+      "country": "683ddd2c24b5a2e114af15bf",
+      "rank": 156,
+      "tier": "bronze",
+      "value": 292836623
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca996",
+      "country": "6873d0ea1758b40e712b5f73",
+      "rank": 157,
+      "tier": "bronze",
+      "value": 292567430
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca997",
+      "country": "683ddd2c24b5a2e114af15b9",
+      "rank": 158,
+      "tier": "bronze",
+      "value": 291621409
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca998",
+      "country": "683ddd2c24b5a2e114af15cd",
+      "rank": 159,
+      "tier": "bronze",
+      "value": 288532853
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca999",
+      "country": "6813b6d546e731854c7ac8c8",
+      "rank": 160,
+      "tier": "bronze",
+      "value": 288327648
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca99a",
+      "country": "6873d0ea1758b40e712b5f6d",
+      "rank": 161,
+      "tier": "bronze",
+      "value": 275141026
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca99b",
+      "country": "6813b6d546e731854c7ac817",
+      "rank": 162,
+      "tier": "bronze",
+      "value": 269661299
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca99c",
+      "country": "6873d0ea1758b40e712b5f46",
+      "rank": 163,
+      "tier": "bronze",
+      "value": 261928671
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca99d",
+      "country": "6813b6d546e731854c7ac8b2",
+      "rank": 164,
+      "tier": "bronze",
+      "value": 250234851
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca99e",
+      "country": "6873d0ea1758b40e712b5f59",
+      "rank": 165,
+      "tier": "bronze",
+      "value": 243744705
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca99f",
+      "country": "683ddd2c24b5a2e114af15c5",
+      "rank": 166,
+      "tier": "bronze",
+      "value": 233796089
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a0",
+      "country": "6873d0ea1758b40e712b5ef1",
+      "rank": 167,
+      "tier": "bronze",
+      "value": 232994718
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a1",
+      "country": "6873d0ea1758b40e712b5f49",
+      "rank": 168,
+      "tier": "bronze",
+      "value": 226601488
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a2",
+      "country": "683ddd2c24b5a2e114af15d5",
+      "rank": 169,
+      "tier": "bronze",
+      "value": 200972455
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a3",
+      "country": "6813b6d546e731854c7ac871",
+      "rank": 170,
+      "tier": "bronze",
+      "value": 183585214
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a4",
+      "country": "683ddd2c24b5a2e114af15bb",
+      "rank": 171,
+      "tier": "bronze",
+      "value": 171986634
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a5",
+      "country": "6873d0ea1758b40e712b5f70",
+      "rank": 172,
+      "tier": "bronze",
+      "value": 168925556
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a6",
+      "country": "6873d0ea1758b40e712b5f2e",
+      "rank": 173,
+      "tier": "bronze",
+      "value": 161911624
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a7",
+      "country": "6873d0ea1758b40e712b5ef3",
+      "rank": 174,
+      "tier": "bronze",
+      "value": 161134683
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a8",
+      "country": "6813b6d546e731854c7ac88d",
+      "rank": 175,
+      "tier": "bronze",
+      "value": 154030062
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9a9",
+      "country": "696a81da63e2489f47e5a28a",
+      "rank": 176,
+      "tier": "bronze",
+      "value": 129107238
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9aa",
+      "country": "6813b6d546e731854c7ac8be",
+      "rank": 177,
+      "tier": "bronze",
+      "value": 112356651
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9ab",
+      "country": "6813b6d546e731854c7ac838",
+      "rank": 178,
+      "tier": "bronze",
+      "value": 95380649
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9ac",
+      "country": "6873d0ea1758b40e712b5f43",
+      "rank": 179,
+      "tier": "bronze",
+      "value": 85651334
+    },
+    {
+      "_id": "6ad3c5d15bf702e81b9ca9ad",
+      "country": "6873d0ea1758b40e712b5f16",
+      "rank": 180,
+      "tier": "bronze",
+      "value": 82117630
+    }
+  ],
+  "tierValues": {
+    "bronze": 82117630,
+    "diamond": 14668694877,
+    "gold": 1482677781,
+    "master": 38121929454,
+    "platinum": 3833013688,
+    "silver": 833949753
+  },
+  "type": "countryDamages"
+}

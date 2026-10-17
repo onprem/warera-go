@@ -1,0 +1,108 @@
+{
+  "buyOrders": [
+    {
+      "__v": 0,
+      "_id": "6ad3c872c633094e408b4021",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T19:11:46.931Z",
+      "price": 0.833,
+      "quantity": 403,
+      "type": "buy",
+      "user": "682774c2a3cf9ba485ecc30a"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3c8031e6475bab8f6c5fd",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T19:09:55.826Z",
+      "price": 0.829,
+      "quantity": 6,
+      "type": "buy",
+      "user": "6a0efb27134db94a6be9973c"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3bcdcd3a90d37890738de",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T18:22:20.167Z",
+      "price": 0.828,
+      "quantity": 3071,
+      "type": "buy",
+      "user": "6980baba164c1577a1bc18a1"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3b16751487281cd8424bb",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T17:33:27.910Z",
+      "price": 0.827,
+      "quantity": 843,
+      "type": "buy",
+      "user": "686c1ddac6f1851a70f9f584"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3b7b487fc81b9022946f4",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T18:00:20.048Z",
+      "price": 0.827,
+      "quantity": 500,
+      "type": "buy",
+      "user": "69ce4a7d85233a99bf7b8a0f"
+    }
+  ],
+  "sellOrders": [
+    {
+      "__v": 0,
+      "_id": "6ad3c7239a51a815215a6c24",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T19:06:11.087Z",
+      "price": 0.835,
+      "quantity": 85,
+      "type": "sell",
+      "user": "6980baba164c1577a1bc18a1"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3bb124a213fe6dfc47a2c",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T18:14:42.959Z",
+      "price": 0.836,
+      "quantity": 411,
+      "type": "sell",
+      "user": "69978f5828fbe8db7cb236c6"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3be31c7ba152ad8526d1f",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T18:28:01.871Z",
+      "price": 0.836,
+      "quantity": 58,
+      "type": "sell",
+      "user": "6aa7ad06d91c79361d0b0673"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3c039c633094e40856964",
+      "country": "6813b6d446e731854c7ac80b",
+      "itemCode": "ammo",
+      "offerAt": "2026-10-17T18:36:41.129Z",
+      "price": 0.836,
+      "quantity": 1345,
+      "type": "sell",
+      "user": "69cf604f3bc080a6e86016ef"
+    },
+    {
+      "__v": 0,
+      "_id": "6ad3c0436a2a592a9ba273eb",
+      "itemCode": "ammo",
+      "mu": "6a3a1b2f2dd2d5a978a3859c",
+      "offerAt": "2026-10-17T18:36:51.761Z",
+      "price": 0.836,
+      "quantity": 2000,
+      "type": "sell",
+      "user": "69cf604f3bc080a6e86016ef"
+    }
+  ]
+}

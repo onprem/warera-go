@@ -9,53 +9,316 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"sort"
+	"strings"
 	"time"
 )
 
-var defaultFixtures = []struct {
-	method string
-	input  string
-}{
-	{"gameConfig.getDates", ""},
-	{"search.searchAnything", `{"searchText":"Kautilya"}`},
-	{"country.getCountryById", `{"countryId":"6813b6d446e731854c7ac7a6"}`},
-	{"user.getUserLite", `{"userId":"6aa7ad06d91c79361d0b0673"}`},
-	{"itemTrading.getPrices", ""},
-	{"article.getArticlesPaginated", `{"type":"last","limit":5}`},
-	{"battle.getBattles", `{"limit":5}`},
+// OpenAPISpec represents the minimal OpenAPI paths structure for endpoint discovery.
+type OpenAPISpec struct {
+	Paths map[string]struct {
+		Post struct {
+			OperationID string `json:"operationId"`
+			Description string `json:"description"`
+			RequestBody *struct {
+				Content struct {
+					JSON struct {
+						Schema struct {
+							Type       string                    `json:"type"`
+							Properties map[string]OpenAPIProperty `json:"properties"`
+							Required   []string                  `json:"required"`
+						} `json:"schema"`
+					} `json:"application/json"`
+				} `json:"content"`
+			} `json:"requestBody"`
+		} `json:"post"`
+	} `json:"paths"`
+}
+
+type OpenAPIProperty struct {
+	Type        string           `json:"type"`
+	Description string           `json:"description"`
+	Enum        []string         `json:"enum"`
+	Items       *OpenAPIProperty `json:"items"`
 }
 
 func main() {
-	methodFlag := flag.String("method", "", "tRPC method to record (e.g. country.getCountryById)")
-	inputFlag := flag.String("input", "", "JSON input for the method")
-	allFlag := flag.Bool("all", false, "Record all standard public test fixtures")
-	outDirFlag := flag.String("out", "spec/fixtures", "Output directory for fixtures")
+	methodFlag := flag.String("method", "", "Targeted tRPC method to record (e.g. country.getCountryById). Overwrites local fixture by default.")
+	inputFlag := flag.String("input", "", "Optional custom JSON input for the targeted method")
+	forceFlag := flag.Bool("force", false, "Re-record all fixtures cleanly, overwriting existing files on disk")
+	outDirFlag := flag.String("out", "spec/fixtures", "Output directory for fixture files")
+	specFlag := flag.String("spec", "spec/openapi.json", "Path to WarEra OpenAPI specification")
 	flag.Parse()
 
 	apiKey := os.Getenv("WARERA_API_KEY")
 
-	if *allFlag {
-		for _, f := range defaultFixtures {
-			if err := recordEndpoint(f.method, f.input, apiKey, *outDirFlag); err != nil {
-				fmt.Printf("Error recording %s: %v\n", f.method, err)
-			}
+	// Ensure output directory exists
+	if err := os.MkdirAll(*outDirFlag, 0755); err != nil {
+		fmt.Printf("Error creating output directory: %v\n", err)
+		os.Exit(1)
+	}
+
+	// 1. Load OpenAPI spec to infer available endpoints and request schemas
+	spec, err := loadOpenAPISpec(*specFlag)
+	if err != nil {
+		fmt.Printf("Error loading OpenAPI spec from %s: %v\n", *specFlag, err)
+		os.Exit(1)
+	}
+
+	// 2. Discover seed parameters from disk and fallback defaults
+	seeds := loadSeedValues(*outDirFlag)
+
+	// Mode A: Targeted single-endpoint recording (replaces local fixture by default)
+	if *methodFlag != "" {
+		method := *methodFlag
+		input := *inputFlag
+		if input == "" {
+			// Auto-construct input using OpenAPI property schema and seeds
+			props := getEndpointProperties(spec, method)
+			input = buildInputPayload(props, seeds)
 		}
+
+		fmt.Printf("Recording targeted endpoint: %s (input: %s)\n", method, input)
+		size, err := recordEndpoint(method, input, apiKey, *outDirFlag)
+		if err != nil {
+			fmt.Printf("Error recording %s: %v\n", method, err)
+			os.Exit(1)
+		}
+		fmt.Printf("Successfully recorded %s (%d bytes) to %s\n", method, size, filepath.Join(*outDirFlag, method+".json"))
 		return
 	}
 
-	if *methodFlag == "" {
-		fmt.Println("Usage: go run ./cmd/record -method <method> [-input '<json>'] [-out <dir>]")
-		fmt.Println("   or: go run ./cmd/record -all")
-		os.Exit(1)
+	// Mode B: Bulk discovery mode across all OpenAPI endpoints
+	// By default: records only missing fixtures. Use --force to re-record existing ones.
+	endpoints := discoverEndpoints(spec)
+	fmt.Printf("Discovered %d endpoints from %s\n", len(endpoints), *specFlag)
+	if *forceFlag {
+		fmt.Println("Running in --force mode: all fixtures will be re-recorded cleanly.")
+	} else {
+		fmt.Println("Default mode: skipping fixtures that already exist on disk (use --force to overwrite).")
+	}
+	fmt.Println()
+
+	var recordedCount, skippedCount, failedCount int
+
+	for _, ep := range endpoints {
+		fixturePath := filepath.Join(*outDirFlag, ep.method+".json")
+		exists := fileExists(fixturePath)
+
+		if exists && !*forceFlag {
+			skippedCount++
+			fmt.Printf("  [Skip] %s (fixture already exists)\n", ep.method)
+			continue
+		}
+
+		input := buildInputPayload(ep.properties, seeds)
+		if hasUnresolvedRequiredProps(ep.properties, ep.required, seeds) {
+			failedCount++
+			fmt.Printf("  [Skip] %s (missing required seed parameters)\n", ep.method)
+			continue
+		}
+
+		size, err := recordEndpoint(ep.method, input, apiKey, *outDirFlag)
+		if err != nil {
+			failedCount++
+			fmt.Printf("  [Fail] %s: %v\n", ep.method, err)
+			continue
+		}
+
+		recordedCount++
+		action := "Recorded"
+		if exists && *forceFlag {
+			action = "Re-recorded"
+		}
+		fmt.Printf("  [%s] %s (%d bytes)\n", action, ep.method, size)
 	}
 
-	if err := recordEndpoint(*methodFlag, *inputFlag, apiKey, *outDirFlag); err != nil {
-		fmt.Printf("Error: %v\n", err)
-		os.Exit(1)
-	}
+	fmt.Println()
+	fmt.Printf("Summary: %d recorded, %d skipped, %d failed/unresolved.\n", recordedCount, skippedCount, failedCount)
 }
 
-func recordEndpoint(method, input, apiKey, outDir string) error {
+type endpointInfo struct {
+	method     string
+	properties map[string]OpenAPIProperty
+	required   []string
+}
+
+func discoverEndpoints(spec *OpenAPISpec) []endpointInfo {
+	var list []endpointInfo
+	for pathKey, pathItem := range spec.Paths {
+		method := strings.TrimPrefix(pathKey, "/")
+		var props map[string]OpenAPIProperty
+		var req []string
+		if rb := pathItem.Post.RequestBody; rb != nil {
+			props = rb.Content.JSON.Schema.Properties
+			req = rb.Content.JSON.Schema.Required
+		}
+		list = append(list, endpointInfo{
+			method:     method,
+			properties: props,
+			required:   req,
+		})
+	}
+	sort.Slice(list, func(i, j int) bool {
+		return list[i].method < list[j].method
+	})
+	return list
+}
+
+func getEndpointProperties(spec *OpenAPISpec, method string) map[string]OpenAPIProperty {
+	pathKey := "/" + method
+	if item, ok := spec.Paths[pathKey]; ok {
+		if rb := item.Post.RequestBody; rb != nil {
+			return rb.Content.JSON.Schema.Properties
+		}
+	}
+	return nil
+}
+
+func loadOpenAPISpec(specPath string) (*OpenAPISpec, error) {
+	data, err := os.ReadFile(specPath)
+	if err != nil {
+		return nil, err
+	}
+	var spec OpenAPISpec
+	if err := json.Unmarshal(data, &spec); err != nil {
+		return nil, err
+	}
+	return &spec, nil
+}
+
+// loadSeedValues returns sample domain parameters, augmenting defaults with local fixtures.
+func loadSeedValues(fixturesDir string) map[string]any {
+	seeds := map[string]any{
+		"countryId":         "6813b6d446e731854c7ac7a6",
+		"userId":            "6aa7ad06d91c79361d0b0673",
+		"muId":              "6aa9311d8af2bd246aff6189",
+		"battleId":          "6ad3b89d7b158f464a343664",
+		"roundId":           "6ad3b89d7b158f464a343666",
+		"warId":             "6ad3b89d7b158f464a343661",
+		"regionId":          "6813b7059403bc4170a5d79b",
+		"defenderRegionId":  "6813b7059403bc4170a5d79b",
+		"articleId":         "6ad3b816bf1676fa11bff564",
+		"itemCode":          "ammo",
+		"searchText":        "Kautilya",
+		"limit":             5,
+		"perPage":           10,
+		"type":              "last",
+		"rankingType":       "countryDamages",
+	}
+
+	// Refine IDs from existing local fixtures if available
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "country.getCountryById.json")); err == nil {
+		var c struct{ ID string `json:"_id"` }
+		if json.Unmarshal(data, &c) == nil && c.ID != "" {
+			seeds["countryId"] = c.ID
+		}
+	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "user.getUserLite.json")); err == nil {
+		var u struct {
+			ID string `json:"_id"`
+			MU string `json:"mu"`
+		}
+		if json.Unmarshal(data, &u) == nil {
+			if u.ID != "" {
+				seeds["userId"] = u.ID
+			}
+			if u.MU != "" {
+				seeds["muId"] = u.MU
+			}
+		}
+	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "battle.getBattles.json")); err == nil {
+		var b struct {
+			Items []struct {
+				ID           string `json:"_id"`
+				War          string `json:"war"`
+				CurrentRound struct {
+					ID string `json:"_id"`
+				} `json:"currentRound"`
+				Defender struct {
+					Region string `json:"region"`
+				} `json:"defender"`
+			} `json:"items"`
+		}
+		if json.Unmarshal(data, &b) == nil && len(b.Items) > 0 {
+			if b.Items[0].ID != "" {
+				seeds["battleId"] = b.Items[0].ID
+			}
+			if b.Items[0].War != "" {
+				seeds["warId"] = b.Items[0].War
+			}
+			if b.Items[0].CurrentRound.ID != "" {
+				seeds["roundId"] = b.Items[0].CurrentRound.ID
+			}
+			if b.Items[0].Defender.Region != "" {
+				seeds["regionId"] = b.Items[0].Defender.Region
+				seeds["defenderRegionId"] = b.Items[0].Defender.Region
+			}
+		}
+	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "article.getArticlesPaginated.json")); err == nil {
+		var a struct {
+			Items []struct {
+				ID string `json:"_id"`
+			} `json:"items"`
+		}
+		if json.Unmarshal(data, &a) == nil && len(a.Items) > 0 && a.Items[0].ID != "" {
+			seeds["articleId"] = a.Items[0].ID
+		}
+	}
+
+	return seeds
+}
+
+func buildInputPayload(props map[string]OpenAPIProperty, seeds map[string]any) string {
+	if len(props) == 0 {
+		return ""
+	}
+	payload := make(map[string]any)
+	for propName, prop := range props {
+		if propName == "cursor" {
+			continue // Omit cursor to get first page
+		}
+		if val, ok := seeds[propName]; ok {
+			payload[propName] = val
+			continue
+		}
+		if len(prop.Enum) > 0 {
+			payload[propName] = prop.Enum[0]
+			continue
+		}
+		if prop.Type == "number" || prop.Type == "integer" {
+			if propName == "limit" || propName == "perPage" {
+				payload[propName] = 5
+			}
+		}
+	}
+	if len(payload) == 0 {
+		return "{}"
+	}
+	b, _ := json.Marshal(payload)
+	return string(b)
+}
+
+func hasUnresolvedRequiredProps(props map[string]OpenAPIProperty, required []string, seeds map[string]any) bool {
+	for _, req := range required {
+		if req == "cursor" {
+			continue
+		}
+		if _, hasSeed := seeds[req]; hasSeed {
+			continue
+		}
+		prop, exists := props[req]
+		if exists && len(prop.Enum) > 0 {
+			continue
+		}
+		return true
+	}
+	return false
+}
+
+func recordEndpoint(method, input, apiKey, outDir string) (int, error) {
 	baseURL := "https://api2.warera.io/trpc"
 	endpointURL := fmt.Sprintf("%s/%s", baseURL, method)
 
@@ -67,7 +330,7 @@ func recordEndpoint(method, input, apiKey, outDir string) error {
 
 	req, err := http.NewRequest("GET", endpointURL, nil)
 	if err != nil {
-		return err
+		return 0, err
 	}
 	req.Header.Set("Accept", "application/json")
 	if apiKey != "" {
@@ -77,17 +340,17 @@ func recordEndpoint(method, input, apiKey, outDir string) error {
 	client := &http.Client{Timeout: 15 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
-		return fmt.Errorf("http request failed: %w", err)
+		return 0, fmt.Errorf("http request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return fmt.Errorf("failed to read response body: %w", err)
+		return 0, fmt.Errorf("failed to read response body: %w", err)
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("unexpected status code %d: %s", resp.StatusCode, string(body))
+		return 0, fmt.Errorf("unexpected status code %d: %s", resp.StatusCode, string(body))
 	}
 
 	var envelope struct {
@@ -100,33 +363,33 @@ func recordEndpoint(method, input, apiKey, outDir string) error {
 	}
 
 	if err := json.Unmarshal(body, &envelope); err != nil {
-		return fmt.Errorf("failed to decode tRPC envelope: %w", err)
+		return 0, fmt.Errorf("failed to decode tRPC envelope: %w", err)
 	}
 
 	if envelope.Error != nil {
-		return fmt.Errorf("tRPC server returned error: %s", envelope.Error.Message)
+		return 0, fmt.Errorf("tRPC server returned error: %s", envelope.Error.Message)
 	}
 
 	// Indent the data JSON for clean reading
 	var formatted any
 	if err := json.Unmarshal(envelope.Result.Data, &formatted); err != nil {
-		return fmt.Errorf("failed to re-parse data: %w", err)
+		return 0, fmt.Errorf("failed to re-parse data: %w", err)
 	}
 
 	indented, err := json.MarshalIndent(formatted, "", "  ")
 	if err != nil {
-		return fmt.Errorf("failed to format JSON: %w", err)
-	}
-
-	if err := os.MkdirAll(outDir, 0755); err != nil {
-		return err
+		return 0, fmt.Errorf("failed to format JSON: %w", err)
 	}
 
 	outPath := filepath.Join(outDir, method+".json")
 	if err := os.WriteFile(outPath, indented, 0644); err != nil {
-		return fmt.Errorf("failed to write fixture file: %w", err)
+		return 0, fmt.Errorf("failed to write fixture file: %w", err)
 	}
 
-	fmt.Printf("Recorded fixture: %s (%d bytes)\n", outPath, len(indented))
-	return nil
+	return len(indented), nil
+}
+
+func fileExists(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
 }

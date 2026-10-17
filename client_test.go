@@ -580,3 +580,364 @@ func TestClient_GameConfig_GetDates_Fixture(t *testing.T) {
 		t.Errorf("expected valid non-zero time")
 	}
 }
+
+func TestClient_Companies_GetByID_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "company.getById.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/company.getById") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	company, err := client.Companies.GetByID(context.Background(), "6aca978b6164cfde0f131b17")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if company.ID != "6aca978b6164cfde0f131b17" {
+		t.Errorf("expected ID 6aca978b6164cfde0f131b17, got %s", company.ID)
+	}
+	if company.Name != "Asle ka Masla" {
+		t.Errorf("expected Name 'Asle ka Masla', got %s", company.Name)
+	}
+	if company.ItemCode != "lead" {
+		t.Errorf("expected ItemCode lead, got %s", company.ItemCode)
+	}
+	if company.ConcreteInvested != 400 {
+		t.Errorf("expected ConcreteInvested 400, got %d", company.ConcreteInvested)
+	}
+	if company.Production <= 0 {
+		t.Errorf("expected Production > 0, got %f", company.Production)
+	}
+	if company.UserID != "6aa7ad06d91c79361d0b0673" {
+		t.Errorf("expected UserID 6aa7ad06d91c79361d0b0673, got %s", company.UserID)
+	}
+}
+
+func TestClient_Regions_GetByID_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "region.getById.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/region.getById") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	region, err := client.Regions.GetByID(context.Background(), "6813b7059403bc4170a5d79b")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if region.ID != "6813b7059403bc4170a5d79b" {
+		t.Errorf("expected ID 6813b7059403bc4170a5d79b, got %s", region.ID)
+	}
+	if region.Name != "Vojvodina" {
+		t.Errorf("expected Name Vojvodina, got %s", region.Name)
+	}
+	if region.CountryID != "6813b6d446e731854c7ac7bc" {
+		t.Errorf("expected CountryID 6813b6d446e731854c7ac7bc, got %s", region.CountryID)
+	}
+	if region.Biome != "plains" {
+		t.Errorf("expected Biome plains, got %s", region.Biome)
+	}
+	if len(region.Position) != 2 {
+		t.Errorf("expected 2 coordinates in Position, got %d", len(region.Position))
+	}
+}
+
+func TestClient_Regions_GetAll_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "region.getRegionsObject.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/region.getRegionsObject") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	regions, err := client.Regions.GetAll(context.Background())
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if len(regions) != 726 {
+		t.Errorf("expected 726 regions, got %d", len(regions))
+	}
+
+	r, ok := regions["6813b7039403bc4170a5d671"]
+	if !ok {
+		t.Fatalf("expected region 6813b7039403bc4170a5d671 to be present")
+	}
+	if r.MainCity != "Apeldoorn" {
+		t.Errorf("expected MainCity Apeldoorn, got %s", r.MainCity)
+	}
+	if r.CountryCode != "nl" {
+		t.Errorf("expected CountryCode nl, got %s", r.CountryCode)
+	}
+}
+
+func TestClient_Government_GetByCountryID_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "government.getByCountryId.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/government.getByCountryId") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	gov, err := client.Government.GetByCountryID(context.Background(), "6813b6d446e731854c7ac7a6")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if gov.CountryID != "6813b6d446e731854c7ac7a6" {
+		t.Errorf("expected CountryID 6813b6d446e731854c7ac7a6, got %s", gov.CountryID)
+	}
+	if gov.President != "69dca497f8d47c04e5846f8f" {
+		t.Errorf("expected President 69dca497f8d47c04e5846f8f, got %s", gov.President)
+	}
+	if gov.VicePresident != "69b9b6302ebd7a671ed79c31" {
+		t.Errorf("expected VicePresident 69b9b6302ebd7a671ed79c31, got %s", gov.VicePresident)
+	}
+	if gov.MinOfDefense != "69d6d158a00c0386d7b71547" {
+		t.Errorf("expected MinOfDefense 69d6d158a00c0386d7b71547, got %s", gov.MinOfDefense)
+	}
+	if len(gov.CongressMembers) != 5 {
+		t.Errorf("expected 5 congress members, got %d", len(gov.CongressMembers))
+	}
+}
+
+func TestClient_Trading_GetTopOrders_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "tradingOrder.getTopOrders.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/tradingOrder.getTopOrders") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	orders, err := client.Trading.GetTopOrders(context.Background(), "ammo", 10)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if len(orders.BuyOrders) != 5 {
+		t.Errorf("expected 5 buy orders, got %d", len(orders.BuyOrders))
+	}
+	if len(orders.SellOrders) != 5 {
+		t.Errorf("expected 5 sell orders, got %d", len(orders.SellOrders))
+	}
+
+	bestBuy := orders.BestBuy()
+	if bestBuy == nil || bestBuy.Price != 0.833 {
+		t.Errorf("expected best buy price 0.833, got %+v", bestBuy)
+	}
+	if bestBuy.ItemCode != "ammo" {
+		t.Errorf("expected best buy itemCode ammo, got %s", bestBuy.ItemCode)
+	}
+
+	bestSell := orders.BestSell()
+	if bestSell == nil || bestSell.Price != 0.835 {
+		t.Errorf("expected best sell price 0.835, got %+v", bestSell)
+	}
+}
+
+func TestClient_Battles_GetLiveBattleData_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "battle.getLiveBattleData.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/battle.getLiveBattleData") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	live, err := client.Battles.GetLiveBattleData(context.Background(), "6ad3b89d7b158f464a343664", 1)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if !live.Battle.IsActive {
+		t.Errorf("expected battle to be active")
+	}
+	if len(live.Battle.AttackerCountryOrders) != 3 {
+		t.Errorf("expected 3 attacker orders, got %d", len(live.Battle.AttackerCountryOrders))
+	}
+	if live.Round.AttackerDamages != 5063172 {
+		t.Errorf("expected AttackerDamages 5063172, got %d", live.Round.AttackerDamages)
+	}
+	if live.Round.DefenderDamages != 143523 {
+		t.Errorf("expected DefenderDamages 143523, got %d", live.Round.DefenderDamages)
+	}
+	if live.Round.ActualTickPoints != 1 {
+		t.Errorf("expected ActualTickPoints 1, got %d", live.Round.ActualTickPoints)
+	}
+}
+
+func TestClient_Battles_GetByID_Fixture(t *testing.T) {
+	fixtureData := loadFixture(t, "battle.getById.json")
+
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/battle.getById") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: fixtureData,
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	b, err := client.Battles.GetByID(context.Background(), "6ad3b89d7b158f464a343664")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if b.ID != "6ad3b89d7b158f464a343664" {
+		t.Errorf("expected ID 6ad3b89d7b158f464a343664, got %s", b.ID)
+	}
+	if b.AttackerCountry() != "6813b6d446e731854c7ac7ba" {
+		t.Errorf("expected attacker country 6813b6d446e731854c7ac7ba, got %s", b.AttackerCountry())
+	}
+	if b.DefenderCountry() != "6813b6d446e731854c7ac7bc" {
+		t.Errorf("expected defender country 6813b6d446e731854c7ac7bc, got %s", b.DefenderCountry())
+	}
+	// Verify currentRound was unmarshaled into *BattleRound with ID populated from string
+	if b.CurrentRound == nil || b.CurrentRound.ID != "6ad3b89d7b158f464a343666" {
+		t.Errorf("expected CurrentRound with ID 6ad3b89d7b158f464a343666, got %+v", b.CurrentRound)
+	}
+}

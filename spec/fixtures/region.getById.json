@@ -1,0 +1,56 @@
+{
+  "__v": 32,
+  "_id": "6813b7059403bc4170a5d79b",
+  "activeBattle": "6ad3b89d7b158f464a343664",
+  "activeUpgradeLevels": {},
+  "baseDevelopment": 95.77,
+  "biome": "plains",
+  "climate": "moderate",
+  "code": "rs-vojvodina",
+  "country": "6813b6d446e731854c7ac7bc",
+  "countryCode": "rs",
+  "currentPopulation": 118,
+  "dates": {
+    "lastOwnershipChangeAt": "2026-10-13T03:57:05.702Z"
+  },
+  "deposit": {
+    "bonusPercent": 27,
+    "endsAt": "2026-10-20T18:04:03.284Z",
+    "startsAt": "2026-10-15T18:04:03.283Z",
+    "type": "grain"
+  },
+  "development": 95.77,
+  "initialCountry": "6813b6d446e731854c7ac7ba",
+  "isCapital": false,
+  "isLinkedToCapital": true,
+  "lastBattleEndedAt": "2026-10-13T03:57:05.713Z",
+  "lastResistanceContributionAt": "2026-10-17T17:44:11.544Z",
+  "lastRevoltEndedAt": "2026-10-03T00:04:04.380Z",
+  "mainCity": "Subotica",
+  "name": "Vojvodina",
+  "neighbors": [
+    "6813b7049403bc4170a5d726",
+    "6813b7059403bc4170a5d753",
+    "6813b7059403bc4170a5d79e",
+    "6813b7059403bc4170a5d798",
+    "6813b7059403bc4170a5d795",
+    "6813b7059403bc4170a5d78f",
+    "6813b7079403bc4170a5d86d",
+    "6813b7049403bc4170a5d729"
+  ],
+  "population": 59,
+  "position": [
+    19.6676,
+    46.1004
+  ],
+  "residents": 93,
+  "resistance": 9577,
+  "resistanceMax": 9577,
+  "stats": {
+    "investedMoney": 0
+  },
+  "strategicResource": "uranium",
+  "upgradesV2": {
+    "upgrades": {}
+  }
+}

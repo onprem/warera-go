@@ -1,0 +1,106 @@
+{
+  "items": [
+    {
+      "__v": 0,
+      "_id": "6ad2ba89ff8f1a06367494c9",
+      "countries": [
+        "6813b6d446e731854c7ac7e5",
+        "6813b6d446e731854c7ac7a6"
+      ],
+      "createdAt": "2026-10-17T00:00:09.631Z",
+      "data": {
+        "countries": [
+          "6813b6d446e731854c7ac7e5",
+          "6813b6d446e731854c7ac7a6"
+        ],
+        "type": "defensivePactBroken"
+      },
+      "priority": "2",
+      "updatedAt": "2026-10-17T00:00:09.631Z"
+    },
+    {
+      "__v": 0,
+      "_id": "6acf70a1080c3649aa48e673",
+      "countries": [
+        "6813b6d446e731854c7ac79c",
+        "6813b6d446e731854c7ac7a6"
+      ],
+      "createdAt": "2026-10-14T12:08:01.493Z",
+      "data": {
+        "countries": [
+          "6813b6d446e731854c7ac79c",
+          "6813b6d446e731854c7ac7a6"
+        ],
+        "type": "peaceMade",
+        "wars": [
+          "6aca3171960477bdbeb111f5"
+        ]
+      },
+      "priority": "2",
+      "updatedAt": "2026-10-14T12:08:01.493Z"
+    },
+    {
+      "__v": 0,
+      "_id": "6acf5395d375ea522d2265d6",
+      "countries": [
+        "6813b6d446e731854c7ac7a6",
+        "6813b6d446e731854c7ac7a6"
+      ],
+      "createdAt": "2026-10-14T10:04:05.143Z",
+      "data": {
+        "bonusPercent": 20,
+        "durationDays": 4,
+        "itemCode": "grain",
+        "region": "6813b7039403bc4170a5d68a",
+        "type": "depositDiscovered"
+      },
+      "priority": "2",
+      "updatedAt": "2026-10-14T10:04:05.143Z"
+    },
+    {
+      "__v": 0,
+      "_id": "6acef160d734cc34e8f7e2d3",
+      "countries": [
+        "6813b6d446e731854c7ac7a6",
+        "6813b6d446e731854c7ac79c"
+      ],
+      "createdAt": "2026-10-14T03:05:04.946Z",
+      "data": {
+        "attackerCountry": "6813b6d446e731854c7ac7a6",
+        "attackerRegion": "6813b7039403bc4170a5d68d",
+        "battle": "6acdd804bf1676fa1188e2bf",
+        "defenderCountry": "6813b6d446e731854c7ac79c",
+        "defenderRegion": "6813b7039403bc4170a5d68a",
+        "type": "battleEnded",
+        "wonBy": "attacker"
+      },
+      "priority": "2",
+      "updatedAt": "2026-10-14T03:05:04.946Z"
+    },
+    {
+      "__v": 0,
+      "_id": "6acea1a11e6475bab80dfe7d",
+      "countries": [
+        "6813b6d446e731854c7ac7fe",
+        "683ddd2c24b5a2e114af15d5",
+        "6813b6d546e731854c7ac871",
+        "6813b6d446e731854c7ac808",
+        "6873d0ea1758b40e712b5eed",
+        "6813b6d446e731854c7ac7e5",
+        "6813b6d446e731854c7ac7a6",
+        "683ddd2c24b5a2e114af15b7",
+        "6813b6d446e731854c7ac7f8"
+      ],
+      "createdAt": "2026-10-13T21:24:49.340Z",
+      "data": {
+        "allianceId": "6a935ce802f2f04bc1213e54",
+        "allianceName": "The Emerald Accord",
+        "country": "6873d0ea1758b40e712b5eed",
+        "type": "allianceMemberLeft"
+      },
+      "priority": "2",
+      "updatedAt": "2026-10-13T21:24:49.340Z"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0xMC0xM1QyMToyNDo0OS4zNDBaIn0seyJ0Ijoic3RyIiwidiI6IjZhY2VhMWExMWU2NDc1YmFiODBkZmU3ZCJ9XQ"
+}

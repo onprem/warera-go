@@ -53,14 +53,19 @@ go build ./examples/...
 ### 2. Recording Fixtures & Generating Models
 
 When adding or updating endpoints:
-1. **Record a Live Response Fixture:**
-   ```bash
-   go run ./cmd/record -method <method.name> [-input '<json>']
-   ```
-   Or record all standard public endpoints:
-   ```bash
-   go run ./cmd/record -all
-   ```
+1. **Record Live Response Fixtures:**
+   - **Discover & record missing fixtures** (skips existing files on disk):
+     ```bash
+     go run ./cmd/record
+     ```
+   - **Re-record all fixtures cleanly** (overwriting disk):
+     ```bash
+     go run ./cmd/record --force
+     ```
+   - **Target a specific endpoint** (replaces local fixture by default):
+     ```bash
+     go run ./cmd/record -method <method.name> [-input '<json>']
+     ```
 2. **Regenerate Models:**
    ```bash
    go generate ./...

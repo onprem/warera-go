@@ -1,0 +1,49 @@
+{
+  "__v": 1,
+  "_id": "6ad3b89d7b158f464a343664",
+  "attacker": {
+    "country": "6813b6d446e731854c7ac7ba",
+    "countryOrders": [
+      "6813b6d446e731854c7ac7ba",
+      "6813b6d546e731854c7ac811",
+      "6813b6d546e731854c7ac814"
+    ],
+    "damages": 0,
+    "hitCount": 1072,
+    "moneyPer1kDamages": 0.03,
+    "muOrders": [
+      "6898771106abe90849bebc28",
+      "697b4103e8e4d9fac4a56809",
+      "689c3cb9053f8fbb3fe92cdd",
+      "69b7a3a580a8729c4de0be40",
+      "6a6dbbf2c35eb65da79f4c59",
+      "698b0d1bc0b91cffeddfbc55"
+    ],
+    "wonRoundsCount": 0
+  },
+  "createdAt": "2026-10-17T18:04:13.643Z",
+  "currentRound": "6ad3b89d7b158f464a343666",
+  "defender": {
+    "country": "6813b6d446e731854c7ac7bc",
+    "countryOrders": [],
+    "damages": 0,
+    "hitCount": 73,
+    "muOrders": [
+      "6a04778ceefe7213e8cdc4b7"
+    ],
+    "region": "6813b7059403bc4170a5d79b",
+    "wonRoundsCount": 0
+  },
+  "isActive": true,
+  "rounds": [
+    "6ad3b89d7b158f464a343666"
+  ],
+  "roundsHistory": [],
+  "roundsToWin": 2,
+  "stats": {
+    "hitCount": 0
+  },
+  "type": "resistance",
+  "updatedAt": "2026-10-17T19:09:28.985Z",
+  "war": "69aa0c0d16841b4ce1ed73ae"
+}

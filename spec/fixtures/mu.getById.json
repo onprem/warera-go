@@ -1,0 +1,65 @@
+{
+  "__v": 0,
+  "_id": "6aa9311d8af2bd246aff6189",
+  "activeUpgradeLevels": {
+    "dormitories": 2
+  },
+  "avatarUrl": "https://media.warera.io/avatars/mu/mu-6aa9311d8af2bd246aff6189-1789473203589-6kynr95i.jpg",
+  "country": "6813b6d546e731854c7ac862",
+  "createdAt": "2026-09-15T11:50:53.609Z",
+  "leveling": {
+    "level": 1,
+    "monthlyDamages": 0
+  },
+  "members": [
+    "6aa7ad06d91c79361d0b0673",
+    "6a756d8eff1e4b45d522e300",
+    "6aa6bbdce98e26c85d341713",
+    "6ab1b2e13d409d5862f6cc3c",
+    "6ab3b004c0d3cab702e56d23",
+    "69505177fca4396ce4ec2092",
+    "6acd24cd7b158f464a7e2eab"
+  ],
+  "mercenaryReputation": 0,
+  "name": "Catastrophe",
+  "rankings": {
+    "muBounty": {
+      "rank": 1245,
+      "tier": "bronze",
+      "value": 21.600472
+    },
+    "muDamages": {
+      "rank": 1208,
+      "tier": "bronze",
+      "value": 1360458
+    },
+    "muTerrain": {
+      "rank": 1235,
+      "tier": "bronze",
+      "value": 71
+    },
+    "muWealth": {
+      "rank": 1150,
+      "tier": "bronze",
+      "value": 125.54999999999995
+    },
+    "muWeeklyDamages": {
+      "rank": 887,
+      "tier": "bronze",
+      "value": 139167
+    }
+  },
+  "region": "6813b70a9403bc4170a5d9e7",
+  "roles": {
+    "commanders": [
+      "6aa7ad06d91c79361d0b0673",
+      "6a756d8eff1e4b45d522e300",
+      "69505177fca4396ce4ec2092"
+    ],
+    "managers": [
+      "69505177fca4396ce4ec2092"
+    ]
+  },
+  "updatedAt": "2026-10-17T19:01:37.147Z",
+  "user": "69505177fca4396ce4ec2092"
+}

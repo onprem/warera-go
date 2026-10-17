@@ -1,0 +1,26 @@
+{
+  "battle": {
+    "attackerCountryOrders": [
+      "6813b6d446e731854c7ac7ba",
+      "6813b6d546e731854c7ac811",
+      "6813b6d546e731854c7ac814"
+    ],
+    "attackerMoneyPer1kDamages": 0.03,
+    "defenderCountryOrders": [],
+    "isActive": true,
+    "roundHistory": [],
+    "roundIds": [
+      "6ad3b89d7b158f464a343666"
+    ]
+  },
+  "round": {
+    "actualTickPoints": 1,
+    "attackerDamages": 5063172,
+    "attackerPoints": 34,
+    "defenderDamages": 143523,
+    "defenderPoints": 0,
+    "isActive": true,
+    "nextTickAt": "2026-10-17T19:15:00.968Z",
+    "roundId": "6ad3b89d7b158f464a343666"
+  }
+}

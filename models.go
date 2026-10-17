@@ -3,6 +3,7 @@
 package warera
 
 import (
+	"encoding/json"
 	"sort"
 	"time"
 )
@@ -55,4 +56,42 @@ func (p ItemPrices) List() []ItemPrice {
 	}
 	sort.Slice(list, func(i, j int) bool { return list[i].ItemCode < list[j].ItemCode })
 	return list
+}
+
+// BestBuy returns the highest buy order, or nil if no buy orders exist.
+func (t *TopOrders) BestBuy() *TopOrder {
+	if t == nil || len(t.BuyOrders) == 0 {
+		return nil
+	}
+	return &t.BuyOrders[0]
+}
+
+// BestSell returns the lowest sell order, or nil if no sell orders exist.
+func (t *TopOrders) BestSell() *TopOrder {
+	if t == nil || len(t.SellOrders) == 0 {
+		return nil
+	}
+	return &t.SellOrders[0]
+}
+
+// UnmarshalJSON handles both populated BattleRound objects and unpopulated round ID strings.
+func (r *BattleRound) UnmarshalJSON(data []byte) error {
+	if len(data) == 0 || string(data) == "null" {
+		return nil
+	}
+	if data[0] == '"' {
+		var id string
+		if err := json.Unmarshal(data, &id); err != nil {
+			return err
+		}
+		r.ID = id
+		return nil
+	}
+	type Alias BattleRound
+	var a Alias
+	if err := json.Unmarshal(data, &a); err != nil {
+		return err
+	}
+	*r = BattleRound(a)
+	return nil
 }

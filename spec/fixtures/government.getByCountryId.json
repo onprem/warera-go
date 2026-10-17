@@ -1,0 +1,23 @@
+{
+  "__v": 0,
+  "_id": "6813b6e83e57e0601e792b03",
+  "congressMembers": [
+    "6a66539265620c6b4a736492",
+    "69a83f1befcbb35899902a9b",
+    "69d6d158a00c0386d7b71547",
+    "6a870dee9d715a83e07033ce",
+    "69f2390512b625e04067ba0b"
+  ],
+  "country": "6813b6d446e731854c7ac7a6",
+  "dates": {
+    "announcementCreatedAts": [
+      "2026-08-17T05:21:28.539Z"
+    ],
+    "lastAnnouncementAt": "2026-10-10T11:40:26.106Z"
+  },
+  "minOfDefense": "69d6d158a00c0386d7b71547",
+  "minOfEconomy": "69a44c4c9167d51bf91ddb6c",
+  "minOfForeignAffairs": "6a1308904b3dcd65ea510ac0",
+  "president": "69dca497f8d47c04e5846f8f",
+  "vicePresident": "69b9b6302ebd7a671ed79c31"
+}

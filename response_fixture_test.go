@@ -36,6 +36,7 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"item prices", "itemTrading.getPrices.json", decodeFixtureAs[ItemPrices]},
 		{"military unit detail", "mu.getById.json", decodeFixtureAs[MilitaryUnit]},
 		{"military unit list", "mu.getManyPaginated.json", decodeFixtureAs[CursorPage[MilitaryUnit]]},
+		{"mercenary auction envelope", "mercenaryContractAuction.getPaginatedAuctions.json", decodeFixtureAs[CursorPage[json.RawMessage]]},
 		{"ranking", "ranking.getRanking.json", decodeFixtureAs[Ranking]},
 		{"region detail", "region.getById.json", decodeFixtureAs[Region]},
 		{"region map", "region.getRegionsObject.json", decodeFixtureAs[map[string]Region]},

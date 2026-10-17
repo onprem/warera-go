@@ -147,7 +147,7 @@ client := warera.NewClient(
 | Service | Methods | Description |
 |---|---|---|
 | `client.Countries` | `GetAll`, `GetByID` | Country stats, taxes, unrest, allies, wars |
-| `client.Companies` | `GetByID`, `GetCompanies`, `All` | Company assets, levels, production |
+| `client.Companies` | `GetByID`, `GetCompanies`, `All` | Company details; listing methods return company IDs |
 | `client.Battles` | `GetByID`, `GetBattles`, `All`, `GetLiveBattleData` | War campaigns, active rounds, live combat |
 | `client.Articles` | `GetByID`, `GetLiteByID`, `GetArticlesPaginated`, `All` | In-game newspaper articles and comments |
 | `client.Users` | `GetByID`, `GetLite`, `GetUsersByCountry`, `AllByCountry` | Player profiles, level, wealth, damage |
@@ -157,6 +157,10 @@ client := warera.NewClient(
 | `client.Trading` | `GetPrices`, `GetTopOrders` | Item exchange prices and orderbook |
 | `client.Search` | `SearchAnything` | Universal search across players, companies, countries |
 | `client.RawCall` | `RawCall(ctx, method, input, output)` | Call any unmapped or custom tRPC procedure |
+
+## Model generation and fixtures
+
+Run `go generate ./...` to regenerate request and filter types from `spec/openapi.json`. Response models in `models_response.go` are maintained explicitly because the OpenAPI document does not define response schemas. Recorded JSON under `spec/fixtures` is sample data for inspection and recording seeds; it does not generate Go response types.
 
 ---
 

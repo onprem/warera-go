@@ -8,6 +8,16 @@ import (
 	"time"
 )
 
+// MU is a convenient alias for MilitaryUnit.
+type MU = MilitaryUnit
+
+// ItemPrice represents a specific item code and its price.
+type ItemPrice struct {
+	ItemCode string  `json:"itemCode"`
+	Price    float64 `json:"price"`
+	Currency string  `json:"currency,omitempty"`
+}
+
 // HasNext reports whether there is a subsequent page.
 func (p *CursorPage[T]) HasNext() bool {
 	return p != nil && p.NextCursor != "" && p.NextCursor != "undefined"

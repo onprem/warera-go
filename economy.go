@@ -26,9 +26,9 @@ func (s *CompanyService) GetByID(ctx context.Context, companyID string) (*Compan
 	return &company, nil
 }
 
-// GetCompanies returns a paginated list of companies.
-func (s *CompanyService) GetCompanies(ctx context.Context, filter CompanyFilter) (*CursorPage[Company], error) {
-	var page CursorPage[Company]
+// GetCompanies returns a paginated list of company IDs.
+func (s *CompanyService) GetCompanies(ctx context.Context, filter CompanyFilter) (*CursorPage[string], error) {
+	var page CursorPage[string]
 	err := s.client.trpc.Call(ctx, "company.getCompanies", filter, &page)
 	if err != nil {
 		return nil, err
@@ -36,9 +36,9 @@ func (s *CompanyService) GetCompanies(ctx context.Context, filter CompanyFilter)
 	return &page, nil
 }
 
-// All returns an iterator over all companies matching the filter across pages.
-func (s *CompanyService) All(ctx context.Context, filter CompanyFilter) iter.Seq2[Company, error] {
-	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[Company], error) {
+// All returns an iterator over all company IDs matching the filter across pages.
+func (s *CompanyService) All(ctx context.Context, filter CompanyFilter) iter.Seq2[string, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[string], error) {
 		f := filter
 		f.Cursor = cur
 		return s.GetCompanies(c, f)

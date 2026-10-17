@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -24,9 +25,9 @@ type OpenAPISpec struct {
 				Content struct {
 					JSON struct {
 						Schema struct {
-							Type       string                    `json:"type"`
+							Type       string                     `json:"type"`
 							Properties map[string]OpenAPIProperty `json:"properties"`
-							Required   []string                  `json:"required"`
+							Required   []string                   `json:"required"`
 						} `json:"schema"`
 					} `json:"application/json"`
 				} `json:"content"`
@@ -135,6 +136,9 @@ func main() {
 
 	fmt.Println()
 	fmt.Printf("Summary: %d recorded, %d skipped, %d failed/unresolved.\n", recordedCount, skippedCount, failedCount)
+	if failedCount > 0 {
+		os.Exit(1)
+	}
 }
 
 type endpointInfo struct {
@@ -190,26 +194,28 @@ func loadOpenAPISpec(specPath string) (*OpenAPISpec, error) {
 // loadSeedValues returns sample domain parameters, augmenting defaults with local fixtures.
 func loadSeedValues(fixturesDir string) map[string]any {
 	seeds := map[string]any{
-		"countryId":         "6813b6d446e731854c7ac7a6",
-		"userId":            "6aa7ad06d91c79361d0b0673",
-		"muId":              "6aa9311d8af2bd246aff6189",
-		"battleId":          "6ad3b89d7b158f464a343664",
-		"roundId":           "6ad3b89d7b158f464a343666",
-		"warId":             "6ad3b89d7b158f464a343661",
-		"regionId":          "6813b7059403bc4170a5d79b",
-		"defenderRegionId":  "6813b7059403bc4170a5d79b",
-		"articleId":         "6ad3b816bf1676fa11bff564",
-		"itemCode":          "ammo",
-		"searchText":        "Kautilya",
-		"limit":             5,
-		"perPage":           10,
-		"type":              "last",
-		"rankingType":       "countryDamages",
+		"countryId":        "6813b6d446e731854c7ac7a6",
+		"userId":           "6aa7ad06d91c79361d0b0673",
+		"muId":             "6aa9311d8af2bd246aff6189",
+		"battleId":         "6ad3b89d7b158f464a343664",
+		"roundId":          "6ad3b89d7b158f464a343666",
+		"warId":            "6ad3b89d7b158f464a343661",
+		"regionId":         "6813b7059403bc4170a5d79b",
+		"defenderRegionId": "6813b7059403bc4170a5d79b",
+		"articleId":        "6ad3b816bf1676fa11bff564",
+		"itemCode":         "ammo",
+		"searchText":       "Kautilya",
+		"limit":            5,
+		"perPage":          10,
+		"type":             "last",
+		"rankingType":      "countryDamages",
 	}
 
 	// Refine IDs from existing local fixtures if available
 	if data, err := os.ReadFile(filepath.Join(fixturesDir, "country.getCountryById.json")); err == nil {
-		var c struct{ ID string `json:"_id"` }
+		var c struct {
+			ID string `json:"_id"`
+		}
 		if json.Unmarshal(data, &c) == nil && c.ID != "" {
 			seeds["countryId"] = c.ID
 		}
@@ -370,16 +376,12 @@ func recordEndpoint(method, input, apiKey, outDir string) (int, error) {
 		return 0, fmt.Errorf("tRPC server returned error: %s", envelope.Error.Message)
 	}
 
-	// Indent the data JSON for clean reading
-	var formatted any
-	if err := json.Unmarshal(envelope.Result.Data, &formatted); err != nil {
-		return 0, fmt.Errorf("failed to re-parse data: %w", err)
-	}
-
-	indented, err := json.MarshalIndent(formatted, "", "  ")
-	if err != nil {
+	// Indent the original JSON bytes so large integers retain their exact value.
+	var formatted bytes.Buffer
+	if err := json.Indent(&formatted, envelope.Result.Data, "", "  "); err != nil {
 		return 0, fmt.Errorf("failed to format JSON: %w", err)
 	}
+	indented := formatted.Bytes()
 
 	outPath := filepath.Join(outDir, method+".json")
 	if err := os.WriteFile(outPath, indented, 0644); err != nil {

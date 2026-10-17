@@ -325,7 +325,11 @@ func hasUnresolvedRequiredProps(props map[string]OpenAPIProperty, required []str
 }
 
 func recordEndpoint(method, input, apiKey, outDir string) (int, error) {
-	baseURL := "https://api2.warera.io/trpc"
+	client := &http.Client{Timeout: 15 * time.Second}
+	return recordEndpointWithClient(method, input, apiKey, outDir, "https://api2.warera.io/trpc", client)
+}
+
+func recordEndpointWithClient(method, input, apiKey, outDir, baseURL string, client *http.Client) (int, error) {
 	endpointURL := fmt.Sprintf("%s/%s", baseURL, method)
 
 	if input != "" {
@@ -343,7 +347,6 @@ func recordEndpoint(method, input, apiKey, outDir string) (int, error) {
 		req.Header.Set("x-api-key", apiKey)
 	}
 
-	client := &http.Client{Timeout: 15 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
 		return 0, fmt.Errorf("http request failed: %w", err)

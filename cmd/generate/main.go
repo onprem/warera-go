@@ -52,8 +52,19 @@ func generate() error {
 	if err := json.Unmarshal(data, &spec); err != nil {
 		return fmt.Errorf("decode OpenAPI spec: %w", err)
 	}
+	generated, err := generateSource(spec)
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile("models_gen.go", generated, 0644); err != nil {
+		return fmt.Errorf("write models_gen.go: %w", err)
+	}
+	return nil
+}
+
+func generateSource(spec OpenAPISpec) ([]byte, error) {
 	if len(spec.Paths) == 0 {
-		return fmt.Errorf("OpenAPI spec has no paths")
+		return nil, fmt.Errorf("OpenAPI spec has no paths")
 	}
 
 	var b strings.Builder
@@ -106,7 +117,7 @@ func generate() error {
 			structName = deriveFilterName(opID)
 		}
 		if previous, exists := generatedNames[structName]; exists {
-			return fmt.Errorf("operation %s and %s both generate %s", previous, opID, structName)
+			return nil, fmt.Errorf("operation %s and %s both generate %s", previous, opID, structName)
 		}
 		generatedNames[structName] = opID
 
@@ -127,12 +138,12 @@ func generate() error {
 			property := props[name]
 			fieldName := toGoFieldName(name)
 			if previous, exists := fieldNames[fieldName]; exists {
-				return fmt.Errorf("operation %s properties %q and %q both map to Go field %s", opID, previous, name, fieldName)
+				return nil, fmt.Errorf("operation %s properties %q and %q both map to Go field %s", opID, previous, name, fieldName)
 			}
 			fieldNames[fieldName] = name
 			goType, err := goTypeFromOpenAPI(property)
 			if err != nil {
-				return fmt.Errorf("operation %s property %s: %w", opID, name, err)
+				return nil, fmt.Errorf("operation %s property %s: %w", opID, name, err)
 			}
 			if property.Type == "boolean" && !required[name] {
 				goType = "*bool" // Preserve the distinction between omitted and false.
@@ -152,12 +163,9 @@ func generate() error {
 
 	formatted, err := format.Source([]byte(b.String()))
 	if err != nil {
-		return fmt.Errorf("format generated source: %w", err)
+		return nil, fmt.Errorf("format generated source: %w", err)
 	}
-	if err := os.WriteFile("models_gen.go", formatted, 0644); err != nil {
-		return fmt.Errorf("write models_gen.go: %w", err)
-	}
-	return nil
+	return formatted, nil
 }
 
 func deriveFilterName(opID string) string {

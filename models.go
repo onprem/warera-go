@@ -34,12 +34,12 @@ func (d *GameDates) NextRegenTime() (time.Time, error) {
 
 // AttackerCountry returns the attacker's country ID.
 func (b *Battle) AttackerCountry() string {
-	return b.Attacker.Country
+	return b.Attacker.CountryID
 }
 
 // DefenderCountry returns the defender's country ID.
 func (b *Battle) DefenderCountry() string {
-	return b.Defender.Country
+	return b.Defender.CountryID
 }
 
 // DefenderRegion returns the defender's region ID.

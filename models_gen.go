@@ -35,6 +35,36 @@ type BattleFilter struct {
 	WarID            string `json:"warId,omitempty"`            // Filter battles by war ID
 }
 
+// BattleLiveBattleDataFilter specifies query and filter options for battle.getLiveBattleData.
+type BattleLiveBattleDataFilter struct {
+	BattleID    string `json:"battleId,omitempty"`    // The unique identifier of the battle
+	RoundNumber int    `json:"roundNumber,omitempty"` // Optional specific round number to retrieve
+}
+
+// BattleLootSummaryByBattleAndUserFilter specifies query and filter options for battleLootSummary.getByBattleAndUser.
+type BattleLootSummaryByBattleAndUserFilter struct {
+	BattleID string `json:"battleId,omitempty"`
+	UserID   string `json:"userId,omitempty"`
+}
+
+// BattleOrderByBattleFilter specifies query and filter options for battleOrder.getByBattle.
+type BattleOrderByBattleFilter struct {
+	BattleID string `json:"battleId,omitempty"`
+	Side     string `json:"side,omitempty"`
+}
+
+// BattleRankingRankingFilter specifies query and filter options for battleRanking.getRanking.
+type BattleRankingRankingFilter struct {
+	BattleID string `json:"battleId,omitempty"` // Optional battle ID to filter rankings
+	Cursor   string `json:"cursor,omitempty"`   // Cursor to fetch the next page of entries
+	DataType string `json:"dataType,omitempty"` // Type of ranking data to retrieve (damage, ground points, or money)
+	Limit    int    `json:"limit,omitempty"`    // Number of ranking entries per page
+	RoundID  string `json:"roundId,omitempty"`  // Optional round ID to filter rankings
+	Side     string `json:"side,omitempty"`     // Which side of the battle to rank
+	Type     string `json:"type,omitempty"`     // Whether to rank by user or country
+	WarID    string `json:"warId,omitempty"`    // Optional war ID to filter rankings
+}
+
 // CompanyFilter specifies query and filter options for company.getCompanies.
 type CompanyFilter struct {
 	Cursor  string `json:"cursor,omitempty"`  // Pagination cursor for next page
@@ -52,7 +82,7 @@ type EventFilter struct {
 
 // AuctionFilter specifies query and filter options for mercenaryContractAuction.getPaginatedAuctions.
 type AuctionFilter struct {
-	BattleId  string `json:"battleId,omitempty"`
+	BattleID  string `json:"battleId,omitempty"`
 	CountryID string `json:"countryId,omitempty"`
 	Cursor    string `json:"cursor,omitempty"`
 	Limit     int    `json:"limit,omitempty"`
@@ -68,6 +98,12 @@ type MUFilter struct {
 	UserID   string `json:"userId,omitempty"`
 }
 
+// TradingOrderTopOrdersFilter specifies query and filter options for tradingOrder.getTopOrders.
+type TradingOrderTopOrdersFilter struct {
+	ItemCode string `json:"itemCode,omitempty"` // The item code to get orders for
+	Limit    int    `json:"limit,omitempty"`    // The limit of orders to get
+}
+
 // TransactionFilter specifies query and filter options for transaction.getPaginatedTransactions.
 type TransactionFilter struct {
 	CountryID       string `json:"countryId,omitempty"`       // The country ID to get transactions for
@@ -78,6 +114,14 @@ type TransactionFilter struct {
 	PartyID         string `json:"partyId,omitempty"`         // The party ID to get transactions for
 	TransactionType string `json:"transactionType,omitempty"` // The type of transactions to get
 	UserID          string `json:"userId,omitempty"`          // The user ID to get transactions for
+}
+
+// UpgradeUpgradeByTypeAndEntityFilter specifies query and filter options for upgrade.getUpgradeByTypeAndEntity.
+type UpgradeUpgradeByTypeAndEntityFilter struct {
+	CompanyID   string `json:"companyId,omitempty"`   // The company ID to get upgrade for
+	MUID        string `json:"muId,omitempty"`        // The military unit ID to get upgrade for
+	RegionID    string `json:"regionId,omitempty"`    // The region ID to get upgrade for
+	UpgradeType string `json:"upgradeType,omitempty"` // The upgrade type to get
 }
 
 // UserFilter specifies query and filter options for user.getUsersByCountry.
@@ -97,6 +141,12 @@ type WorkOfferFilter struct {
 	Production  int    `json:"production,omitempty"`
 	RegionID    string `json:"regionId,omitempty"`
 	UserID      string `json:"userId,omitempty"`
+}
+
+// WorkerWorkersFilter specifies query and filter options for worker.getWorkers.
+type WorkerWorkersFilter struct {
+	CompanyID string `json:"companyId,omitempty"`
+	UserID    string `json:"userId,omitempty"`
 }
 
 // --- Generated Response Models (inferred from spec/fixtures/*.json) ---
@@ -232,6 +282,14 @@ type CountryUnrest struct {
 	LastContributionAt string `json:"lastContributionAt,omitempty"`
 }
 
+// EquipmentSkills is a nested component of RoundEquipment.
+type EquipmentSkills struct {
+	Armor           int `json:"armor,omitempty"`
+	CriticalDamages int `json:"criticalDamages,omitempty"`
+	Dodge           int `json:"dodge,omitempty"`
+	Precision       int `json:"precision,omitempty"`
+}
+
 // GameDates is inferred from gameConfig.getDates.json.
 type GameDates struct {
 	DailyMissionRegenAt         string `json:"dailyMissionRegenAt,omitempty"`
@@ -252,6 +310,32 @@ type RankingItem struct {
 	Value any    `json:"value,omitempty"`
 }
 
+// RoundEquipment is a nested component of RoundLastHit.
+type RoundEquipment struct {
+	ID                string          `json:"_id,omitempty"`
+	Code              string          `json:"code,omitempty"`
+	LastAcquisitionAt string          `json:"lastAcquisitionAt,omitempty"`
+	MaxState          int             `json:"maxState,omitempty"`
+	Quantity          int             `json:"quantity,omitempty"`
+	Skills            EquipmentSkills `json:"skills,omitempty"`
+	State             int             `json:"state,omitempty"`
+	Type              string          `json:"type,omitempty"`
+}
+
+// RoundLastHit is a nested component of RoundSideCombatStats.
+type RoundLastHit struct {
+	ID            string           `json:"_id,omitempty"`
+	Ammo          string           `json:"ammo,omitempty"`
+	Damages       int              `json:"damages,omitempty"`
+	Equipments    []RoundEquipment `json:"equipments,omitempty"`
+	HitAt         string           `json:"hitAt,omitempty"`
+	IsCriticalHit bool             `json:"isCriticalHit,omitempty"`
+	IsMissed      bool             `json:"isMissed,omitempty"`
+	MUID          string           `json:"mu,omitempty"`
+	UserID        string           `json:"user,omitempty"`
+	Weapon        *RoundWeapon     `json:"weapon,omitempty"`
+}
+
 // RoundLiveState is a nested component of BattleRound.
 type RoundLiveState struct {
 	ActualTickPoints int    `json:"actualTickPoints,omitempty"`
@@ -261,59 +345,22 @@ type RoundLiveState struct {
 
 // RoundSideCombatStats is a nested component of BattleRound.
 type RoundSideCombatStats struct {
-	CountryID string `json:"country,omitempty"`
-	Damages   int    `json:"damages,omitempty"`
-	HitCount  int    `json:"hitCount,omitempty"`
-	LastHits  any    `json:"lastHits,omitempty"`
-	Points    int    `json:"points,omitempty"`
+	CountryID string         `json:"country,omitempty"`
+	Damages   int            `json:"damages,omitempty"`
+	HitCount  int            `json:"hitCount,omitempty"`
+	LastHits  []RoundLastHit `json:"lastHits,omitempty"`
+	Points    int            `json:"points,omitempty"`
 }
 
-// RoundSideCombatStatsLastHitsItem is a nested component of RoundSideCombatStats.
-type RoundSideCombatStatsLastHitsItem struct {
-	ID            string                                 `json:"_id,omitempty"`
-	Ammo          any                                    `json:"ammo,omitempty"`
-	Damages       int                                    `json:"damages,omitempty"`
-	Equipments    any                                    `json:"equipments,omitempty"`
-	HitAt         string                                 `json:"hitAt,omitempty"`
-	IsCriticalHit bool                                   `json:"isCriticalHit,omitempty"`
-	IsMissed      bool                                   `json:"isMissed,omitempty"`
-	MUID          string                                 `json:"mu,omitempty"`
-	UserID        string                                 `json:"user,omitempty"`
-	Weapon        RoundSideCombatStatsLastHitsItemWeapon `json:"weapon,omitempty"`
-}
-
-// RoundSideCombatStatsLastHitsItemEquipmentsItem is a nested component of RoundSideCombatStatsLastHitsItem.
-type RoundSideCombatStatsLastHitsItemEquipmentsItem struct {
-	ID                string                                               `json:"_id,omitempty"`
-	Code              string                                               `json:"code,omitempty"`
-	LastAcquisitionAt string                                               `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int                                                  `json:"maxState,omitempty"`
-	Quantity          int                                                  `json:"quantity,omitempty"`
-	Skills            RoundSideCombatStatsLastHitsItemEquipmentsItemSkills `json:"skills,omitempty"`
-	State             int                                                  `json:"state,omitempty"`
-	Type              string                                               `json:"type,omitempty"`
-}
-
-// RoundSideCombatStatsLastHitsItemEquipmentsItemSkills is a nested component of RoundSideCombatStatsLastHitsItemEquipmentsItem.
-type RoundSideCombatStatsLastHitsItemEquipmentsItemSkills struct {
-	CriticalDamages int `json:"criticalDamages,omitempty"`
-}
-
-// RoundSideCombatStatsLastHitsItemWeapon is a nested component of RoundSideCombatStatsLastHitsItem.
-type RoundSideCombatStatsLastHitsItemWeapon struct {
-	ID                string                                       `json:"_id,omitempty"`
-	Code              string                                       `json:"code,omitempty"`
-	LastAcquisitionAt string                                       `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int                                          `json:"maxState,omitempty"`
-	Quantity          int                                          `json:"quantity,omitempty"`
-	Skills            RoundSideCombatStatsLastHitsItemWeaponSkills `json:"skills,omitempty"`
-	State             int                                          `json:"state,omitempty"`
-}
-
-// RoundSideCombatStatsLastHitsItemWeaponSkills is a nested component of RoundSideCombatStatsLastHitsItemWeapon.
-type RoundSideCombatStatsLastHitsItemWeaponSkills struct {
-	Attack         int `json:"attack,omitempty"`
-	CriticalChance int `json:"criticalChance,omitempty"`
+// RoundWeapon is a nested component of RoundLastHit.
+type RoundWeapon struct {
+	ID                string       `json:"_id,omitempty"`
+	Code              string       `json:"code,omitempty"`
+	LastAcquisitionAt string       `json:"lastAcquisitionAt,omitempty"`
+	MaxState          int          `json:"maxState,omitempty"`
+	Quantity          int          `json:"quantity,omitempty"`
+	Skills            WeaponSkills `json:"skills,omitempty"`
+	State             int          `json:"state,omitempty"`
 }
 
 // SearchResult is inferred from search.searchAnything.json.
@@ -609,6 +656,12 @@ type UserSkillsStamina struct {
 // UserStats is a nested component of UserLite.
 type UserStats struct {
 	DamagesCount int `json:"damagesCount,omitempty"`
+}
+
+// WeaponSkills is a nested component of RoundWeapon.
+type WeaponSkills struct {
+	Attack         int `json:"attack,omitempty"`
+	CriticalChance int `json:"criticalChance,omitempty"`
 }
 
 // --- Supplemental Domain Models ---

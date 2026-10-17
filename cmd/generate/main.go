@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"unicode"
 )
 
 // --- OpenAPI Spec Structures ---
@@ -140,7 +141,7 @@ func (g *Generator) parseOpenAPI(specPath string) (string, error) {
 		return "", fmt.Errorf("unmarshaling openapi spec: %w", err)
 	}
 
-	// Operation to Struct Name mapping
+	// Known operation name overrides
 	filterNames := map[string]string{
 		"company.getCompanies":                          "CompanyFilter",
 		"article.getArticlesPaginated":                  "ArticleFilter",
@@ -153,23 +154,17 @@ func (g *Generator) parseOpenAPI(specPath string) (string, error) {
 		"mercenaryContractAuction.getPaginatedAuctions": "AuctionFilter",
 	}
 
-	var opIDs []string
-	for opID := range filterNames {
-		opIDs = append(opIDs, opID)
+	var paths []string
+	for p := range spec.Paths {
+		paths = append(paths, p)
 	}
-	sort.Strings(opIDs)
+	sort.Strings(paths)
 
 	var sb strings.Builder
 
-	for _, opID := range opIDs {
-		structName := filterNames[opID]
-		pathKey := "/" + opID
-
-		pathItem, exists := spec.Paths[pathKey]
-		if !exists {
-			continue
-		}
-
+	for _, pathKey := range paths {
+		pathItem := spec.Paths[pathKey]
+		opID := pathItem.Post.OperationID
 		rb := pathItem.Post.RequestBody
 		if rb == nil {
 			continue
@@ -179,6 +174,20 @@ func (g *Generator) parseOpenAPI(specPath string) (string, error) {
 		props := schema.Properties
 		if len(props) == 0 {
 			continue
+		}
+
+		// Check if it's in known filter names or is a query/filter operation
+		structName, isKnown := filterNames[opID]
+		if !isKnown {
+			// Auto-derive if >= 2 parameters or contains limit/cursor
+			_, hasLimit := props["limit"]
+			_, hasPerPage := props["perPage"]
+			_, hasCursor := props["cursor"]
+			if len(props) >= 2 || hasLimit || hasPerPage || hasCursor {
+				structName = deriveFilterName(opID)
+			} else {
+				continue
+			}
 		}
 
 		sb.WriteString(fmt.Sprintf("// %s specifies query and filter options for %s.\n", structName, opID))
@@ -210,6 +219,22 @@ func (g *Generator) parseOpenAPI(specPath string) (string, error) {
 	return sb.String(), nil
 }
 
+func deriveFilterName(opID string) string {
+	parts := strings.Split(opID, ".")
+	if len(parts) >= 2 {
+		service := capitalize(parts[0])
+		method := parts[1]
+		if strings.HasPrefix(method, "get") {
+			method = strings.TrimPrefix(method, "get")
+		}
+		if strings.HasSuffix(method, "Paginated") {
+			method = strings.TrimSuffix(method, "Paginated")
+		}
+		return service + capitalize(method) + "Filter"
+	}
+	return capitalize(opID) + "Filter"
+}
+
 // parseFixtures reads all JSON fixtures in spec/fixtures/ and infers Go structs.
 func (g *Generator) parseFixtures(fixturesDir string) (string, error) {
 	files, err := filepath.Glob(filepath.Join(fixturesDir, "*.json"))
@@ -232,7 +257,7 @@ func (g *Generator) parseFixtures(fixturesDir string) (string, error) {
 			return "", fmt.Errorf("decoding fixture JSON %s: %w", file, err)
 		}
 
-		rootName, isPaginated, isMap := determineFixtureModel(base)
+		rootName, isPaginated, isMap := determineFixtureModel(base, raw)
 		fmt.Printf("  [Fixture] Processing %s -> Model: %s (paginated: %v, map: %v)\n", base, rootName, isPaginated, isMap)
 
 		if isMap {
@@ -242,17 +267,15 @@ func (g *Generator) parseFixtures(fixturesDir string) (string, error) {
 		}
 
 		if isPaginated {
-			// Extract items array
-			obj, ok := raw.(map[string]any)
-			if ok {
+			// Extract items array and infer item struct across all array elements
+			if obj, ok := raw.(map[string]any); ok {
 				if items, ok := obj["items"].([]any); ok && len(items) > 0 {
 					g.inferStructFromItems(rootName, fmt.Sprintf("// %s represents a domain item inferred from %s.", rootName, base), items)
 					outputOrder = append(outputOrder, rootName)
 				}
 			}
 		} else {
-			obj, ok := raw.(map[string]any)
-			if ok {
+			if obj, ok := raw.(map[string]any); ok {
 				g.inferStructFromObject(rootName, fmt.Sprintf("// %s is inferred from %s.", rootName, base), obj)
 				outputOrder = append(outputOrder, rootName)
 			}
@@ -308,32 +331,51 @@ func (g *Generator) parseFixtures(fixturesDir string) (string, error) {
 	return sb.String(), nil
 }
 
-func determineFixtureModel(filename string) (name string, isPaginated bool, isMap bool) {
+func determineFixtureModel(filename string, raw any) (name string, isPaginated bool, isMap bool) {
+	// 1. Inspect raw JSON to detect pagination and map structures dynamically
+	if obj, ok := raw.(map[string]any); ok {
+		if _, hasItems := obj["items"].([]any); hasItems {
+			if _, hasCursor := obj["nextCursor"]; hasCursor {
+				isPaginated = true
+			}
+		}
+		if !isPaginated && isUniformFloatMap(obj) {
+			isMap = true
+		}
+	}
+
+	// 2. Derive canonical struct name
 	switch filename {
 	case "article.getArticlesPaginated.json":
-		return "Article", true, false
+		return "Article", isPaginated, isMap
 	case "battle.getBattles.json":
-		return "Battle", true, false
+		return "Battle", isPaginated, isMap
 	case "country.getCountryById.json":
-		return "Country", false, false
+		return "Country", isPaginated, isMap
 	case "gameConfig.getDates.json":
-		return "GameDates", false, false
+		return "GameDates", isPaginated, isMap
 	case "itemTrading.getPrices.json":
-		return "ItemPrices", false, true
+		return "ItemPrices", isPaginated, isMap
 	case "search.searchAnything.json":
-		return "SearchResult", false, false
+		return "SearchResult", isPaginated, isMap
 	case "user.getUserLite.json":
-		return "UserLite", false, false
+		return "UserLite", isPaginated, isMap
+	case "user.getUserById.json":
+		return "User", isPaginated, isMap
 	default:
 		parts := strings.Split(filename, ".")
 		if len(parts) >= 2 {
+			service := capitalize(parts[0])
+			if isPaginated {
+				return service, isPaginated, isMap
+			}
 			method := parts[1]
 			method = strings.TrimPrefix(method, "get")
 			method = strings.TrimSuffix(method, "ById")
 			method = strings.TrimSuffix(method, "Paginated")
-			return strings.Title(method), false, false
+			return capitalize(method), isPaginated, isMap
 		}
-		return "FixtureModel", false, false
+		return "FixtureModel", isPaginated, isMap
 	}
 }
 
@@ -371,20 +413,8 @@ func (g *Generator) inferStructFromObject(name, comment string, obj map[string]a
 				OmitEmpty: omitEmpty,
 			}
 		} else {
-			// Resolve type conflicts between int and float or multiple types
-			if existingField.GoType != goType {
-				if (existingField.GoType == "int" || existingField.GoType == "int64") && goType == "float64" {
-					existingField.GoType = "float64"
-				} else if existingField.GoType == "float64" && (goType == "int" || goType == "int64") {
-					// keep float64
-				} else if (existingField.GoType == "int" && goType == "int64") || (existingField.GoType == "int64" && goType == "int") {
-					existingField.GoType = "int64"
-				} else if existingField.GoType == "[]string" && strings.HasPrefix(goType, "[]") && goType != "[]string" {
-					existingField.GoType = goType
-				} else {
-					existingField.GoType = "any"
-				}
-			}
+			// Resolve types across instances (e.g. integer vs float, concrete slice vs empty slice fallback)
+			existingField.GoType = resolveTypes(existingField.GoType, goType)
 			if omitEmpty {
 				existingField.OmitEmpty = true
 			}
@@ -441,7 +471,13 @@ func (g *Generator) inferType(parentStruct, fieldName string, v any) (goType str
 		if len(val) == 0 {
 			return "[]string", true
 		}
-		// Inspect first non-nil element
+		// If slice contains objects, infer element struct by merging all objects
+		if _, isObj := val[0].(map[string]any); isObj {
+			elemStructName := deriveNestedStructName(parentStruct, fieldName)
+			g.inferStructFromItems(elemStructName, fmt.Sprintf("// %s is a nested component of %s.", elemStructName, parentStruct), val)
+			return "[]" + elemStructName, true
+		}
+		// Otherwise primitive slice (e.g. []string)
 		elemType, _ := g.inferType(parentStruct, fieldName+"Item", val[0])
 		return "[]" + elemType, true
 
@@ -463,8 +499,8 @@ func (g *Generator) inferType(parentStruct, fieldName string, v any) (goType str
 		nestedName := deriveNestedStructName(parentStruct, fieldName)
 		g.inferStructFromObject(nestedName, fmt.Sprintf("// %s is a nested component of %s.", nestedName, parentStruct), val)
 
-		// Use pointer for optional or recursive nested structs
-		if fieldName == "currentRound" || fieldName == "strategicResources" || fieldName == "attackerSummary" || fieldName == "defenderSummary" {
+		// Use pointer for optional nested objects
+		if fieldName == "currentRound" || fieldName == "strategicResources" || fieldName == "weapon" {
 			return "*" + nestedName, true
 		}
 		return nestedName, true
@@ -472,6 +508,44 @@ func (g *Generator) inferType(parentStruct, fieldName string, v any) (goType str
 	default:
 		return "any", true
 	}
+}
+
+// resolveTypes cleanly merges types across records without accidental downgrades to any.
+func resolveTypes(existing, incoming string) string {
+	if existing == incoming {
+		return existing
+	}
+	// If one is "any" (derived from nil), prefer the concrete type
+	if existing == "any" {
+		return incoming
+	}
+	if incoming == "any" {
+		return existing
+	}
+
+	// Number hierarchy: float64 > int64 > int
+	isNum := func(t string) bool { return t == "int" || t == "int64" || t == "float64" }
+	if isNum(existing) && isNum(incoming) {
+		if existing == "float64" || incoming == "float64" {
+			return "float64"
+		}
+		if existing == "int64" || incoming == "int64" {
+			return "int64"
+		}
+		return "int"
+	}
+
+	// Slices: if one was empty slice fallback ([]string or []any), prefer the concrete struct slice
+	if strings.HasPrefix(existing, "[]") && strings.HasPrefix(incoming, "[]") {
+		if existing == "[]string" || existing == "[]any" {
+			return incoming
+		}
+		if incoming == "[]string" || incoming == "[]any" {
+			return existing
+		}
+	}
+
+	return "any"
 }
 
 func deriveNestedStructName(parent, field string) string {
@@ -498,8 +572,22 @@ func deriveNestedStructName(parent, field string) string {
 		return "RoundLiveState"
 	case "dates":
 		return cleanParent + "Dates"
+	case "lastHits":
+		return "RoundLastHit"
+	case "equipments":
+		return "RoundEquipment"
+	case "weapon":
+		return "RoundWeapon"
+	case "skills":
+		if cleanParent == "RoundEquipment" {
+			return "EquipmentSkills"
+		}
+		if cleanParent == "RoundWeapon" {
+			return "WeaponSkills"
+		}
+		return cleanParent + "Skills"
 	default:
-		return cleanParent + strings.Title(field)
+		return cleanParent + capitalize(field)
 	}
 }
 
@@ -513,6 +601,18 @@ func isUniformStringMap(m map[string]any) bool {
 			return false
 		}
 		if _, ok := v.(string); !ok {
+			return false
+		}
+	}
+	return true
+}
+
+func isUniformFloatMap(m map[string]any) bool {
+	if len(m) < 3 {
+		return false
+	}
+	for _, v := range m {
+		if _, ok := v.(float64); !ok {
 			return false
 		}
 	}
@@ -538,6 +638,22 @@ func isRankingMap(m map[string]any) bool {
 func isString(v any) bool {
 	_, ok := v.(string)
 	return ok
+}
+
+func capitalize(s string) string {
+	if s == "" {
+		return ""
+	}
+	r := []rune(s)
+	r[0] = unicode.ToUpper(r[0])
+	res := string(r)
+	if strings.HasSuffix(res, "Id") && len(res) > 2 {
+		res = strings.TrimSuffix(res, "Id") + "ID"
+	}
+	if strings.HasSuffix(res, "Url") && len(res) > 3 {
+		res = strings.TrimSuffix(res, "Url") + "URL"
+	}
+	return res
 }
 
 // toGoFieldName converts wire JSON keys to idiomatic Go field names.
@@ -616,10 +732,7 @@ func toGoFieldName(k string, isStr bool) string {
 	case "currentRound":
 		return "CurrentRound"
 	default:
-		if len(k) == 0 {
-			return ""
-		}
-		return strings.Title(k)
+		return capitalize(k)
 	}
 }
 
@@ -644,7 +757,10 @@ func toGoTypeFromOpenAPI(prop OpenAPIProperty) string {
 
 // supplementalModels provides domains that do not yet have fixtures recorded.
 func (g *Generator) supplementalModels() string {
-	return `// User represents a player account.
+	var sb strings.Builder
+
+	if _, exists := g.structs["User"]; !exists {
+		sb.WriteString(`// User represents a player account.
 type User struct {
 	ID        string       ` + "`" + `json:"_id"` + "`" + `
 	Username  string       ` + "`" + `json:"username"` + "`" + `
@@ -654,7 +770,11 @@ type User struct {
 	IsActive  bool         ` + "`" + `json:"isActive,omitempty"` + "`" + `
 	CreatedAt string       ` + "`" + `json:"createdAt,omitempty"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["Company"]; !exists {
+		sb.WriteString(`
 // Company represents a production company in WarEra.
 type Company struct {
 	ID           string  ` + "`" + `json:"_id"` + "`" + `
@@ -671,7 +791,11 @@ type Company struct {
 	CreatedAt    string  ` + "`" + `json:"createdAt,omitempty"` + "`" + `
 	UpdatedAt    string  ` + "`" + `json:"updatedAt,omitempty"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["Region"]; !exists {
+		sb.WriteString(`
 // Region represents a geographical province in WarEra.
 type Region struct {
 	ID          string   ` + "`" + `json:"_id"` + "`" + `
@@ -682,7 +806,11 @@ type Region struct {
 	Resource    string   ` + "`" + `json:"resource,omitempty"` + "`" + `
 	Neighbors   []string ` + "`" + `json:"neighbors,omitempty"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["Government"]; !exists {
+		sb.WriteString(`
 // Government represents national leadership structure.
 type Government struct {
 	CountryID string           ` + "`" + `json:"countryId,omitempty"` + "`" + `
@@ -697,7 +825,11 @@ type GovernmentRole struct {
 	PartyID   string ` + "`" + `json:"partyId,omitempty"` + "`" + `
 	RoleTitle string ` + "`" + `json:"roleTitle,omitempty"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["MilitaryUnit"]; !exists {
+		sb.WriteString(`
 // MilitaryUnit represents a combat division or regiment.
 type MilitaryUnit struct {
 	ID        string ` + "`" + `json:"_id"` + "`" + `
@@ -707,14 +839,22 @@ type MilitaryUnit struct {
 	Level     int    ` + "`" + `json:"level,omitempty"` + "`" + `
 	Members   int    ` + "`" + `json:"membersCount,omitempty"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["ItemPrice"]; !exists {
+		sb.WriteString(`
 // ItemPrice represents a specific item code and its price.
 type ItemPrice struct {
 	ItemCode string  ` + "`" + `json:"itemCode"` + "`" + `
 	Price    float64 ` + "`" + `json:"price"` + "`" + `
 	Currency string  ` + "`" + `json:"currency,omitempty"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["TopOrder"]; !exists {
+		sb.WriteString(`
 type TopOrder struct {
 	ID       string  ` + "`" + `json:"_id"` + "`" + `
 	ItemCode string  ` + "`" + `json:"itemCode"` + "`" + `
@@ -723,7 +863,11 @@ type TopOrder struct {
 	UserID   string  ` + "`" + `json:"user"` + "`" + `
 	Type     string  ` + "`" + `json:"type"` + "`" + `
 }
+`)
+	}
 
+	if _, exists := g.structs["LiveBattleData"]; !exists {
+		sb.WriteString(`
 type LiveBattleData struct {
 	BattleID string         ` + "`" + `json:"battleId"` + "`" + `
 	Round    int            ` + "`" + `json:"round"` + "`" + `
@@ -736,5 +880,8 @@ type LiveSideCombat struct {
 	Damages  int64  ` + "`" + `json:"damages"` + "`" + `
 	HitCount int    ` + "`" + `json:"hitCount"` + "`" + `
 }
-`
+`)
+	}
+
+	return sb.String()
 }

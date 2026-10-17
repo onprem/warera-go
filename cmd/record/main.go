@@ -21,6 +21,8 @@ var defaultFixtures = []struct {
 	{"country.getCountryById", `{"countryId":"6813b6d446e731854c7ac7a6"}`},
 	{"user.getUserLite", `{"userId":"6aa7ad06d91c79361d0b0673"}`},
 	{"itemTrading.getPrices", ""},
+	{"article.getArticlesPaginated", `{"type":"last","limit":5}`},
+	{"battle.getBattles", `{"limit":5}`},
 }
 
 func main() {

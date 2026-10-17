@@ -3,6 +3,7 @@ package warera
 import (
 	"context"
 	"iter"
+	"sync"
 )
 
 // --- Article Service ---
@@ -116,7 +117,8 @@ type searchAnythingInput struct {
 	SearchText string `json:"searchText"`
 }
 
-// SearchAnything searches for players, companies, countries, regions, and military units.
+// SearchAnything searches for players, companies, countries, regions, and military units,
+// returning the IDs of matching entities.
 func (s *SearchService) SearchAnything(ctx context.Context, searchText string) (*SearchResult, error) {
 	var result SearchResult
 	err := s.client.trpc.Call(ctx, "search.searchAnything", searchAnythingInput{SearchText: searchText}, &result)
@@ -124,4 +126,40 @@ func (s *SearchService) SearchAnything(ctx context.Context, searchText string) (
 		return nil, err
 	}
 	return &result, nil
+}
+
+// SearchUsers searches for users matching the query and fetches their profiles.
+func (s *SearchService) SearchUsers(ctx context.Context, searchText string) ([]UserLite, error) {
+	result, err := s.SearchAnything(ctx, searchText)
+	if err != nil {
+		return nil, err
+	}
+	if len(result.UserIDs) == 0 {
+		return nil, nil
+	}
+
+	users := make([]UserLite, len(result.UserIDs))
+	var wg sync.WaitGroup
+	errCh := make(chan error, len(result.UserIDs))
+
+	for i, id := range result.UserIDs {
+		wg.Add(1)
+		go func(idx int, uid string) {
+			defer wg.Done()
+			u, err := s.client.Users.GetLite(ctx, uid)
+			if err != nil {
+				errCh <- err
+				return
+			}
+			users[idx] = *u
+		}(i, id)
+	}
+
+	wg.Wait()
+	close(errCh)
+	if len(errCh) > 0 {
+		return nil, <-errCh
+	}
+
+	return users, nil
 }

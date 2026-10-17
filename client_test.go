@@ -259,3 +259,111 @@ func TestClient_Articles_Iterator(t *testing.T) {
 		t.Errorf("unexpected titles: %v", titles)
 	}
 }
+
+func TestClient_SearchAnything(t *testing.T) {
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if !strings.HasSuffix(r.URL.Path, "/search.searchAnything") {
+			t.Errorf("unexpected path: %s", r.URL.Path)
+		}
+
+		resp := trpc.ResponseEnvelope{
+			Result: &trpc.ResultEnvelope{
+				Data: json.RawMessage(`{
+					"userIds": ["u123"],
+					"muIds": [],
+					"countryIds": [],
+					"regionIds": [],
+					"hasData": true
+				}`),
+			},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	res, err := client.Search.SearchAnything(context.Background(), "Kautilya")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if len(res.UserIDs) != 1 || res.UserIDs[0] != "u123" {
+		t.Errorf("expected [u123], got %v", res.UserIDs)
+	}
+	if !res.HasData {
+		t.Errorf("expected hasData true")
+	}
+}
+
+func TestClient_SearchUsers(t *testing.T) {
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		if strings.HasSuffix(r.URL.Path, "/search.searchAnything") {
+			resp := trpc.ResponseEnvelope{
+				Result: &trpc.ResultEnvelope{
+					Data: json.RawMessage(`{"userIds":["u123"],"hasData":true}`),
+				},
+			}
+			data, _ := json.Marshal(resp)
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Status:     "200 OK",
+				Header:     http.Header{"Content-Type": []string{"application/json"}},
+				Body:       io.NopCloser(bytes.NewReader(data)),
+			}, nil
+		}
+
+		if strings.HasSuffix(r.URL.Path, "/user.getUserLite") {
+			resp := trpc.ResponseEnvelope{
+				Result: &trpc.ResultEnvelope{
+					Data: json.RawMessage(`{
+						"_id": "u123",
+						"username": "Kautilya",
+						"country": "c1",
+						"avatarUrl": "https://media.warera.io/avatar.jpg",
+						"leveling": {"level": 24, "xp": 20100}
+					}`),
+				},
+			}
+			data, _ := json.Marshal(resp)
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Status:     "200 OK",
+				Header:     http.Header{"Content-Type": []string{"application/json"}},
+				Body:       io.NopCloser(bytes.NewReader(data)),
+			}, nil
+		}
+
+		return nil, nil
+	})
+
+	client := NewClient(
+		WithHTTPClient(&http.Client{Transport: mockTransport}),
+		WithBatchWindow(0),
+		WithRateLimit(0),
+	)
+	defer client.Close()
+
+	users, err := client.Search.SearchUsers(context.Background(), "Kautilya")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	if len(users) != 1 {
+		t.Fatalf("expected 1 user, got %d", len(users))
+	}
+
+	if users[0].Username != "Kautilya" || users[0].Level() != 24 {
+		t.Errorf("unexpected user data: %+v", users[0])
+	}
+}

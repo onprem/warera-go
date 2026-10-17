@@ -208,22 +208,41 @@ type ArticleFilter struct {
 // --- User Models ---
 
 type User struct {
-	ID        string `json:"_id"`
-	Username  string `json:"username"`
-	CountryID string `json:"country,omitempty"`
-	Level     int    `json:"level,omitempty"`
-	Avatar    string `json:"avatar,omitempty"`
-	Wealth    float64 `json:"wealth,omitempty"`
-	Damage    int64  `json:"damage,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
+	ID        string       `json:"_id"`
+	Username  string       `json:"username"`
+	CountryID string       `json:"country,omitempty"`
+	AvatarURL string       `json:"avatarUrl,omitempty"`
+	Leveling  UserLeveling `json:"leveling,omitempty"`
+	IsActive  bool         `json:"isActive,omitempty"`
+	CreatedAt string       `json:"createdAt,omitempty"`
+}
+
+type UserLeveling struct {
+	Level               int   `json:"level"`
+	XP                  int64 `json:"xp"`
+	TotalXP             int64 `json:"totalXp"`
+	DailyXPLeft         int64 `json:"dailyXpLeft"`
+	AvailableSkillPoints int  `json:"availableSkillPoints"`
+	SpentSkillPoints    int   `json:"spentSkillPoints"`
+	TotalSkillPoints    int   `json:"totalSkillPoints"`
 }
 
 type UserLite struct {
-	ID       string `json:"_id"`
-	Username string `json:"username"`
-	Country  string `json:"country,omitempty"`
-	Level    int    `json:"level,omitempty"`
-	Avatar   string `json:"avatar,omitempty"`
+	ID        string       `json:"_id"`
+	Username  string       `json:"username"`
+	CountryID string       `json:"country,omitempty"`
+	AvatarURL string       `json:"avatarUrl,omitempty"`
+	Leveling  UserLeveling `json:"leveling,omitempty"`
+}
+
+// Level returns the player's level from Leveling.
+func (u *User) Level() int {
+	return u.Leveling.Level
+}
+
+// Level returns the player's level from Leveling.
+func (u *UserLite) Level() int {
+	return u.Leveling.Level
 }
 
 type UserFilter struct {
@@ -259,19 +278,13 @@ func (d *GameDates) NextRegenTime() (time.Time, error) {
 // --- Search Models ---
 
 type SearchResult struct {
-	Users     []SearchEntity `json:"users,omitempty"`
-	Companies []SearchEntity `json:"companies,omitempty"`
-	Countries []SearchEntity `json:"countries,omitempty"`
-	Regions   []SearchEntity `json:"regions,omitempty"`
-	MUs       []SearchEntity `json:"mus,omitempty"`
-}
-
-type SearchEntity struct {
-	ID       string `json:"_id"`
-	Name     string `json:"name,omitempty"`
-	Username string `json:"username,omitempty"`
-	Code     string `json:"code,omitempty"`
-	Type     string `json:"type,omitempty"`
+	UserIDs     []string `json:"userIds,omitempty"`
+	MUIDs       []string `json:"muIds,omitempty"`
+	CountryIDs  []string `json:"countryIds,omitempty"`
+	RegionIDs   []string `json:"regionIds,omitempty"`
+	PartyIDs    []string `json:"partyIds,omitempty"`
+	AllianceIDs []string `json:"allianceIds,omitempty"`
+	HasData     bool     `json:"hasData"`
 }
 
 // --- Market & Trading Models ---

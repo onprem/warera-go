@@ -43,9 +43,19 @@ func main() {
 	}
 
 	// 3. Search the universe
-	results, err := client.Search.SearchAnything(ctx, "Dog")
+	results, err := client.Search.SearchAnything(ctx, "Kautilya")
 	if err != nil {
 		log.Fatalf("failed to search: %v", err)
 	}
-	fmt.Printf("Search Results for 'Dog': %d players found\n", len(results.Users))
+	fmt.Printf("Search Results for 'Kautilya': %d user IDs found (%v)\n", len(results.UserIDs), results.UserIDs)
+
+	// Fetch full profile for matching user(s)
+	if len(results.UserIDs) > 0 {
+		user, err := client.Users.GetLite(ctx, results.UserIDs[0])
+		if err != nil {
+			log.Fatalf("failed to get user profile: %v", err)
+		}
+		fmt.Printf("Player Found: %s | Level: %d | Avatar: %s\n",
+			user.Username, user.Level(), user.AvatarURL)
+	}
 }

@@ -16,11 +16,11 @@ type batchEntry struct {
 
 // Batcher coalesces concurrent procedure calls into single HTTP tRPC batches.
 type Batcher struct {
-	client   *Client
-	window   time.Duration
-	maxSize  int
-	inCh     chan *batchEntry
-	closeCh  chan struct{}
+	client    *Client
+	window    time.Duration
+	maxSize   int
+	inCh      chan *batchEntry
+	closeCh   chan struct{}
 	closeOnce sync.Once
 }
 

@@ -391,13 +391,13 @@ func (c *Client) doWithRetry(req *http.Request) ([]byte, error) {
 func isRetryableStatusCode(code int) bool {
 	switch code {
 	case http.StatusRequestTimeout, // 408
-		http.StatusConflict,       // 409
-		http.StatusTooEarly,       // 425
-		http.StatusTooManyRequests, // 429
+		http.StatusConflict,            // 409
+		http.StatusTooEarly,            // 425
+		http.StatusTooManyRequests,     // 429
 		http.StatusInternalServerError, // 500
 		http.StatusBadGateway,          // 502
 		http.StatusServiceUnavailable,  // 503
-		http.StatusGatewayTimeout:       // 504
+		http.StatusGatewayTimeout:      // 504
 		return true
 	default:
 		return false

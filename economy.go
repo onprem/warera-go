@@ -58,8 +58,8 @@ type getTopOrdersInput struct {
 }
 
 // GetPrices returns reference/current prices for tradeable items.
-func (s *TradingService) GetPrices(ctx context.Context) ([]ItemPrice, error) {
-	var prices []ItemPrice
+func (s *TradingService) GetPrices(ctx context.Context) (ItemPrices, error) {
+	var prices ItemPrices
 	err := s.client.trpc.Call(ctx, "itemTrading.getPrices", struct{}{}, &prices)
 	if err != nil {
 		return nil, err

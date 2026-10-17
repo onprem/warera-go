@@ -1,0 +1,110 @@
+{
+  "__v": 60,
+  "_id": "6813b6d446e731854c7ac7a6",
+  "allianceId": "6a935ce802f2f04bc1213e54",
+  "allies": [],
+  "averageDevelopment": 31.68,
+  "code": "ch",
+  "coreDevelopment": 38.024906322519854,
+  "currentBattleOrder": "68483964923f714ccb673b0f",
+  "currentDevelopment": 25.34,
+  "currentPopulation": 34,
+  "dates": {
+    "lastAllianceLeftAt": "2026-09-21T19:32:40.811Z"
+  },
+  "defensivePacts": [
+    "6813b6d446e731854c7ac7fe",
+    "6813b6d546e731854c7ac871",
+    "6813b6d446e731854c7ac808",
+    "683ddd2c24b5a2e114af15d5",
+    "6813b6d446e731854c7ac7f8",
+    "683ddd2c24b5a2e114af15b7"
+  ],
+  "discordUrl": "https://discord.gg/hbu989ZY6M",
+  "mapAccent": "normal",
+  "money": 3.3300000000000294,
+  "name": "Switzerland",
+  "nonAggressionUntil": {
+    "6813b6d446e731854c7ac79a": "2026-08-08T05:03:34.307Z",
+    "6813b6d446e731854c7ac79c": "2026-10-17T12:08:01.499Z",
+    "6813b6d446e731854c7ac79e": "2026-06-05T20:02:13.806Z",
+    "6813b6d446e731854c7ac7a2": "2026-10-02T07:55:30.739Z",
+    "6813b6d446e731854c7ac7a4": "2026-08-08T11:27:23.811Z",
+    "6813b6d446e731854c7ac7ac": "2026-06-08T08:20:41.391Z",
+    "6813b6d446e731854c7ac7ba": "2026-08-26T15:52:59.318Z",
+    "6813b6d446e731854c7ac7fe": "2026-06-02T16:42:53.999Z",
+    "6813b6d546e731854c7ac817": "2026-08-28T08:33:16.267Z",
+    "6813b6d546e731854c7ac85f": "2026-07-12T16:38:23.911Z",
+    "6813b6d546e731854c7ac8a6": "2026-07-12T18:06:09.167Z",
+    "6873d0ea1758b40e712b5ee9": "2026-07-05T12:31:37.851Z",
+    "696a81da63e2489f47e5a28c": "2026-08-07T05:15:02.009Z"
+  },
+  "orgs": [
+    "6813b6e83e57e0601e792b05"
+  ],
+  "pinnedArticle": "69dd4e9aa03070cad5196c55",
+  "rankings": {
+    "countryActivePopulation": {
+      "rank": 91,
+      "tier": "silver",
+      "value": 26
+    },
+    "countryBounty": {
+      "rank": 158,
+      "tier": "bronze",
+      "value": 7542.297191644085
+    },
+    "countryDamages": {
+      "rank": 145,
+      "tier": "bronze",
+      "value": 407465608
+    },
+    "countryDevelopment": {
+      "rank": 89,
+      "tier": "silver",
+      "value": 25.34
+    },
+    "countryProductionBonus": {
+      "rank": 93,
+      "tier": "silver",
+      "value": 0
+    },
+    "countryRegionDiff": {
+      "rank": 83,
+      "tier": "silver",
+      "value": -1
+    },
+    "countryWealth": {
+      "rank": 26,
+      "tier": "platinum",
+      "value": 33026.179616281865
+    },
+    "weeklyCountryDamages": {
+      "rank": 150,
+      "tier": "bronze",
+      "value": 8428986
+    },
+    "weeklyCountryDamagesPerCitizen": {
+      "rank": 141,
+      "tier": "bronze",
+      "value": 324191.76923076925
+    }
+  },
+  "rulingParty": "6a1a2ca8c80c51f511a77166",
+  "scheme": "red",
+  "specializedItem": "livestock",
+  "taxes": {
+    "income": 1,
+    "market": 1,
+    "selfWork": 1
+  },
+  "unrest": {
+    "bar": 100,
+    "barMax": 1901,
+    "lastContributionAt": "2026-10-06T11:16:54.543Z"
+  },
+  "updatedAt": "2026-10-17T17:30:07.585Z",
+  "warsWith": [
+    "6813b6d546e731854c7ac8a6"
+  ]
+}

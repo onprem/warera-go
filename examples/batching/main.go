@@ -27,7 +27,7 @@ func main() {
 	var wg sync.WaitGroup
 	var countries []warera.Country
 	var dates *warera.GameDates
-	var prices []warera.ItemPrice
+	var prices warera.ItemPrices
 
 	wg.Add(3)
 	go func() {

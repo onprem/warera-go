@@ -5,7 +5,7 @@ Thank you for your interest in contributing to `warera-go`! This guide provides 
 ## Prerequisites
 
 - **Go 1.23+**: The library utilizes Go 1.23+ range iterators (`iter.Seq2`).
-- **WarEra API Key (Optional)**: Needed only if you wish to run manual live tests against `https://api2.warera.io/trpc`. Unit tests use in-memory mock transports and require no credentials or network access.
+- **WarEra API Key (Optional)**: Needed only if you wish to run manual live tests against `https://api2.warera.io/trpc` or record new fixtures via `cmd/record`. Unit tests use recorded fixtures and in-memory mock transports with zero credentials or network access.
 
 ---
 
@@ -13,10 +13,17 @@ Thank you for your interest in contributing to `warera-go`! This guide provides 
 
 ```
 warera-go/
+├── cmd/
+│   ├── generate/     # Model generator from OpenAPI spec and production fixtures
+│   └── record/       # Utility to record real live WarEra tRPC responses
 ├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
-├── spec/             # Upstream WarEra OpenAPI 3.0 spec and response definitions
-├── models.go         # Strongly typed request/response structs
-├── iterator.go       # Generic cursor pagination iterator
+├── spec/
+│   ├── fixtures/     # Production JSON response fixtures for tests and codegen
+│   ├── Responses.d.ts # WarEra frontend TypeScript interface reference
+│   └── openapi.json  # Upstream WarEra OpenAPI 3.0 specification
+├── models_gen.go     # Generated domain models (CursorPage, Country, User, Battle, etc.)
+├── models.go         # Custom domain helper methods & //go:generate directive
+├── iterator.go       # Generic cursor pagination iterator (iter.Seq2)
 ├── client.go         # Top-level Client and service wiring
 ├── client_options.go # Functional options (WithAPIKey, WithBatchWindow, etc.)
 ├── world.go          # Countries, Regions, and Government services
@@ -36,26 +43,30 @@ warera-go/
 Make sure all tests pass and examples build:
 
 ```bash
-# Run unit and integration tests
+# Run unit and fixture integration tests
 go test -v ./...
 
 # Verify example builds
 go build ./examples/...
 ```
 
-### 2. Adding a New Endpoint or Service
+### 2. Recording Fixtures & Generating Models
 
-1. **Check the Specification:** Inspect `spec/openapi.json` or `spec/Responses.d.ts` for parameter names and types.
-2. **Define Models:** Add request and response structs in `models.go` with appropriate `json:"..."` tags.
-3. **Implement Service Method:** Add the method in the respective service file (or create a new one if it's a new domain).
-   ```go
-   func (s *CountryService) GetCustom(ctx context.Context, id string) (*CustomResult, error) {
-       var res CustomResult
-       err := s.client.trpc.Call(ctx, "country.getCustom", customInput{ID: id}, &res)
-       return &res, err
-   }
+When adding or updating endpoints:
+1. **Record a Live Response Fixture:**
+   ```bash
+   go run ./cmd/record -method <method.name> [-input '<json>']
    ```
-4. **Write Unit Tests:** Add test cases in `client_test.go` or `internal/trpc/client_test.go` using the in-memory `roundTripFunc` pattern (no real network ports needed).
+   Or record all standard public endpoints:
+   ```bash
+   go run ./cmd/record -all
+   ```
+2. **Regenerate Models:**
+   ```bash
+   go generate ./...
+   ```
+3. **Implement Service Method:** Add the method in the respective domain service file (e.g. `world.go`, `community.go`, etc.).
+4. **Write Unit Tests:** Add test cases in `client_test.go` loading the recorded fixture with `loadFixture(t, "<method>.json")`.
 
 ---
 

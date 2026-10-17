@@ -83,7 +83,7 @@ defer client.Close()
 var wg sync.WaitGroup
 var country *warera.Country
 var dates *warera.GameDates
-var prices []warera.ItemPrice
+var prices warera.ItemPrices
 
 wg.Add(3)
 go func() { defer wg.Done(); country, _ = client.Countries.GetByID(ctx, "6813b6d446e731854c7ac7a6") }()

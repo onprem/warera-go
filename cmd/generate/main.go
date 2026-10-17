@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"go/format"
 	"os"
@@ -37,22 +39,23 @@ type OpenAPIProperty struct {
 }
 
 func main() {
-	if err := generate(); err != nil {
+	check := flag.Bool("check", false, "fail if models_gen.go differs from generated output")
+	flag.Parse()
+
+	var err error
+	if *check {
+		err = checkGenerated()
+	} else {
+		err = generate()
+	}
+	if err != nil {
 		fmt.Fprintln(os.Stderr, "model generation failed:", err)
 		os.Exit(1)
 	}
 }
 
 func generate() error {
-	data, err := os.ReadFile("spec/openapi.json")
-	if err != nil {
-		return fmt.Errorf("read OpenAPI spec: %w", err)
-	}
-	var spec OpenAPISpec
-	if err := json.Unmarshal(data, &spec); err != nil {
-		return fmt.Errorf("decode OpenAPI spec: %w", err)
-	}
-	generated, err := generateSource(spec)
+	generated, err := generateFromSpec()
 	if err != nil {
 		return err
 	}
@@ -60,6 +63,37 @@ func generate() error {
 		return fmt.Errorf("write models_gen.go: %w", err)
 	}
 	return nil
+}
+
+func checkGenerated() error {
+	generated, err := generateFromSpec()
+	if err != nil {
+		return err
+	}
+	current, err := os.ReadFile("models_gen.go")
+	if err != nil {
+		return fmt.Errorf("read models_gen.go: %w", err)
+	}
+	if !bytes.Equal(current, generated) {
+		return fmt.Errorf("models_gen.go is out of date; run make generate")
+	}
+	return nil
+}
+
+func generateFromSpec() ([]byte, error) {
+	data, err := os.ReadFile("spec/openapi.json")
+	if err != nil {
+		return nil, fmt.Errorf("read OpenAPI spec: %w", err)
+	}
+	var spec OpenAPISpec
+	if err := json.Unmarshal(data, &spec); err != nil {
+		return nil, fmt.Errorf("decode OpenAPI spec: %w", err)
+	}
+	generated, err := generateSource(spec)
+	if err != nil {
+		return nil, err
+	}
+	return generated, nil
 }
 
 func generateSource(spec OpenAPISpec) ([]byte, error) {

@@ -27,17 +27,28 @@ type BattleLootPoolItem struct {
 	Round string      `json:"round,omitempty"`
 }
 
-// BattleRanking contains ranking entries for a battle or war.
+// BattleRanking is the current paginated response for a battle. The upstream
+// Responses.d.ts snapshot still describes the older rankings-array shape.
 type BattleRanking struct {
-	Rankings []BattleRankingEntry `json:"rankings,omitempty"`
+	Items      []BattleRankingEntry `json:"items,omitempty"`
+	NextCursor string               `json:"nextCursor,omitempty"`
+	ItemCount  int                  `json:"itemCount,omitempty"`
 }
 
 // BattleRankingEntry is one battle ranking result.
 type BattleRankingEntry struct {
-	CountryID string  `json:"country,omitempty"`
-	Value     float64 `json:"value,omitempty"`
-	Rank      int     `json:"rank,omitempty"`
-	ID        string  `json:"_id,omitempty"`
+	ID        string       `json:"_id,omitempty"`
+	Ranking   string       `json:"ranking,omitempty"`
+	UserID    string       `json:"user,omitempty"`
+	CountryID string       `json:"country,omitempty"`
+	MUID      string       `json:"mu,omitempty"`
+	Value     float64      `json:"value,omitempty"`
+	Rank      int          `json:"rank,omitempty"`
+	Badge     string       `json:"badge,omitempty"`
+	Version   int          `json:"__v,omitempty"`
+	CreatedAt string       `json:"createdAt,omitempty"`
+	UpdatedAt string       `json:"updatedAt,omitempty"`
+	LootItem  *RoundWeapon `json:"lootItem,omitempty"`
 }
 
 // ItemOffer is a market offer for an item.
@@ -126,7 +137,8 @@ type TransactionItemSkills struct {
 	Precision       int `json:"precision,omitempty"`
 }
 
-// WorkOffer is an offer to work for a company.
+// WorkOffer is an offer to work for a company. It includes wageAfterTax and
+// minLevel fields present in current live responses but absent upstream.
 type WorkOffer struct {
 	ID              string  `json:"_id,omitempty"`
 	Citizenship     string  `json:"citizenship,omitempty"`
@@ -134,6 +146,7 @@ type WorkOffer struct {
 	CreatedAt       string  `json:"createdAt,omitempty"`
 	InitialQuantity int     `json:"initialQuantity,omitempty"`
 	MinEnergy       int     `json:"minEnergy,omitempty"`
+	MinLevel        int     `json:"minLevel,omitempty"`
 	MinProduction   int     `json:"minProduction,omitempty"`
 	Quantity        int     `json:"quantity,omitempty"`
 	RegionID        string  `json:"region,omitempty"`
@@ -141,6 +154,7 @@ type WorkOffer struct {
 	UpdatedAt       string  `json:"updatedAt,omitempty"`
 	UserID          string  `json:"user,omitempty"`
 	Wage            float64 `json:"wage,omitempty"`
+	WageAfterTax    float64 `json:"wageAfterTax,omitempty"`
 }
 
 // WorkOfferListItem is a work offer returned in a paginated list.

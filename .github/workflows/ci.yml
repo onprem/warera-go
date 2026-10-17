@@ -1,0 +1,34 @@
+name: Go CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Go ${{ matrix.go-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: ['1.23.x', 'stable']
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Run tests
+        run: make test
+
+      - name: Build SDK and examples
+        run: make build
+
+      - name: Check generated request models
+        run: make check-generated

@@ -1,4 +1,4 @@
-.PHONY: help test build generate fmt update-specs record record-force
+.PHONY: help test build generate check-generated fmt update-specs record record-force
 
 ## Show available development targets.
 help:
@@ -17,6 +17,10 @@ build:
 generate:
 	go generate ./...
 
+## Check generated request models against the OpenAPI spec.
+check-generated:
+	go run ./cmd/generate -check
+
 ## Format Go source files.
 fmt:
 	gofmt -s -w .
@@ -25,7 +29,7 @@ fmt:
 update-specs:
 	go run ./cmd/update-specs
 
-## Record missing live API fixtures (requires WARERA_API_KEY).
+## Record missing live API fixtures (uses WARERA_API_KEY when provided).
 record:
 	go run ./cmd/record
 

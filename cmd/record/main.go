@@ -46,6 +46,7 @@ type OpenAPIProperty struct {
 func main() {
 	methodFlag := flag.String("method", "", "Targeted tRPC method to record (e.g. country.getCountryById). Overwrites local fixture by default.")
 	inputFlag := flag.String("input", "", "Optional custom JSON input for the targeted method")
+	seedsFlag := flag.String("seeds", "", "Optional JSON object of seed values used to construct bulk request inputs")
 	forceFlag := flag.Bool("force", false, "Re-record all fixtures cleanly, overwriting existing files on disk")
 	outDirFlag := flag.String("out", "spec/fixtures", "Output directory for fixture files")
 	specFlag := flag.String("spec", "spec/openapi.json", "Path to WarEra OpenAPI specification")
@@ -68,6 +69,16 @@ func main() {
 
 	// 2. Discover seed parameters from disk and fallback defaults
 	seeds := loadSeedValues(*outDirFlag)
+	if *seedsFlag != "" {
+		var overrides map[string]any
+		if err := json.Unmarshal([]byte(*seedsFlag), &overrides); err != nil || overrides == nil {
+			fmt.Fprintln(os.Stderr, "-seeds must be a JSON object")
+			os.Exit(2)
+		}
+		for name, value := range overrides {
+			seeds[name] = value
+		}
+	}
 
 	// Mode A: Targeted single-endpoint recording (replaces local fixture by default)
 	if *methodFlag != "" {
@@ -75,8 +86,8 @@ func main() {
 		input := *inputFlag
 		if input == "" {
 			// Auto-construct input using OpenAPI property schema and seeds
-			props := getEndpointProperties(spec, method)
-			input = buildInputPayload(props, seeds)
+			props, required := getEndpointInputSchema(spec, method)
+			input = buildInputPayload(props, required, seeds)
 		}
 
 		fmt.Printf("Recording targeted endpoint: %s (input: %s)\n", method, input)
@@ -112,7 +123,7 @@ func main() {
 			continue
 		}
 
-		input := buildInputPayload(ep.properties, seeds)
+		input := buildInputPayload(ep.properties, ep.required, seeds)
 		if hasUnresolvedRequiredProps(ep.properties, ep.required, seeds) {
 			failedCount++
 			fmt.Printf("  [Skip] %s (missing required seed parameters)\n", ep.method)
@@ -169,14 +180,14 @@ func discoverEndpoints(spec *OpenAPISpec) []endpointInfo {
 	return list
 }
 
-func getEndpointProperties(spec *OpenAPISpec, method string) map[string]OpenAPIProperty {
+func getEndpointInputSchema(spec *OpenAPISpec, method string) (map[string]OpenAPIProperty, []string) {
 	pathKey := "/" + method
 	if item, ok := spec.Paths[pathKey]; ok {
 		if rb := item.Post.RequestBody; rb != nil {
-			return rb.Content.JSON.Schema.Properties
+			return rb.Content.JSON.Schema.Properties, rb.Content.JSON.Schema.Required
 		}
 	}
-	return nil
+	return nil, nil
 }
 
 func loadOpenAPISpec(specPath string) (*OpenAPISpec, error) {
@@ -263,6 +274,20 @@ func loadSeedValues(fixturesDir string) map[string]any {
 			}
 		}
 	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "battleLootSummary.getByBattleAndUser.json")); err == nil {
+		var summary struct {
+			Battle string `json:"battle"`
+			User   string `json:"user"`
+		}
+		if json.Unmarshal(data, &summary) == nil {
+			if summary.Battle != "" {
+				seeds["battleId"] = summary.Battle
+			}
+			if summary.User != "" {
+				seeds["userId"] = summary.User
+			}
+		}
+	}
 	if data, err := os.ReadFile(filepath.Join(fixturesDir, "article.getArticlesPaginated.json")); err == nil {
 		var a struct {
 			Items []struct {
@@ -273,29 +298,71 @@ func loadSeedValues(fixturesDir string) map[string]any {
 			seeds["articleId"] = a.Items[0].ID
 		}
 	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "article.getArticleLiteById.json")); err == nil {
+		var article struct {
+			ID string `json:"_id"`
+		}
+		if json.Unmarshal(data, &article) == nil && article.ID != "" {
+			seeds["articleId"] = article.ID
+		}
+	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "company.getById.json")); err == nil {
+		var company struct {
+			ID string `json:"_id"`
+		}
+		if json.Unmarshal(data, &company) == nil && company.ID != "" {
+			seeds["companyId"] = company.ID
+		}
+	}
+	if data, err := os.ReadFile(filepath.Join(fixturesDir, "workOffer.getWorkOffersPaginated.json")); err == nil {
+		var offers struct {
+			Items []struct {
+				ID      string `json:"_id"`
+				Company string `json:"company"`
+			} `json:"items"`
+		}
+		if json.Unmarshal(data, &offers) == nil && len(offers.Items) > 0 && offers.Items[0].ID != "" {
+			seeds["workOfferId"] = offers.Items[0].ID
+			if offers.Items[0].Company != "" {
+				seeds["companyId"] = offers.Items[0].Company
+			}
+		}
+	}
 
 	return seeds
 }
 
-func buildInputPayload(props map[string]OpenAPIProperty, seeds map[string]any) string {
+func buildInputPayload(props map[string]OpenAPIProperty, required []string, seeds map[string]any) string {
 	if len(props) == 0 {
 		return ""
 	}
 	payload := make(map[string]any)
+	requiredProps := make(map[string]struct{}, len(required))
+	for _, name := range required {
+		requiredProps[name] = struct{}{}
+	}
 	for propName, prop := range props {
 		if propName == "cursor" {
 			continue // Omit cursor to get first page
 		}
-		if val, ok := seeds[propName]; ok {
-			payload[propName] = val
-			continue
+		_, isRequired := requiredProps[propName]
+		if !isRequired && propName != "limit" && propName != "perPage" {
+			continue // Avoid combining unrelated optional filters from global seeds.
 		}
-		if len(prop.Enum) > 0 {
-			payload[propName] = prop.Enum[0]
-			continue
+		if isRequired {
+			if len(prop.Enum) > 0 {
+				payload[propName] = prop.Enum[0]
+				continue
+			}
+			if val, ok := seeds[propName]; ok {
+				payload[propName] = val
+				continue
+			}
 		}
-		if prop.Type == "number" || prop.Type == "integer" {
-			if propName == "limit" || propName == "perPage" {
+		if propName == "limit" || propName == "perPage" {
+			if val, ok := seeds[propName]; ok {
+				payload[propName] = val
+			} else if prop.Type == "number" || prop.Type == "integer" {
 				payload[propName] = 5
 			}
 		}

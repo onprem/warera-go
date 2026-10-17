@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "likes": 0,
+    "dislikes": 1,
+    "score": -1,
+    "views": 8,
+    "comments": 0,
+    "subs": 0,
+    "tips": 0,
+    "gemTips": 0
+  },
+  "_id": "6ad3e2894a714cc8835549e2",
+  "title": "لله يا محسنين لله يا أهل الخير  أعطوني مما رزقكم الله من أموالكم ذات المنبع الحلال",
+  "content": "<p class=\"tiptap-block\" style=\"text-align: left;\">.</p>",
+  "language": "ar",
+  "category": "begging",
+  "author": "6aceb2a8068836e98f243aaa",
+  "isPublished": true,
+  "isDeleted": false,
+  "isPublic": true,
+  "createdAt": "2026-10-17T21:03:05.272Z",
+  "updatedAt": "2026-10-17T21:04:17.740Z",
+  "__v": 0,
+  "publishedAt": "2026-10-17T21:03:06.617Z",
+  "slug": "-5549e2"
+}

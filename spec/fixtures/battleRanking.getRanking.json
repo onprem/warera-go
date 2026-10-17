@@ -1,0 +1,308 @@
+{
+  "items": [
+    {
+      "_id": "6ad3e1973c784ff8f311d627",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6893b2becf6838456223570c",
+      "value": 1665628,
+      "rank": 1,
+      "badge": "battleTop1",
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3954f7ba57e500c913204",
+        "type": "equipment",
+        "code": "boots5",
+        "skills": {
+          "dodge": 40
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d628",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69ac59cce9991777906515c0",
+      "value": 712486,
+      "rank": 2,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3a2e6ca2ce961ee1eb49b",
+        "code": "sniper",
+        "skills": {
+          "attack": 125,
+          "criticalChance": 17
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1,
+        "lastAcquisitionAt": "2026-10-17T16:31:34.710Z"
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d629",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69ca529db37e0eb78fa10ce4",
+      "value": 347588,
+      "rank": 3,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3afefbd66c1c260a05917",
+        "type": "equipment",
+        "code": "pants3",
+        "skills": {
+          "armor": 12
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d62a",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6aa84e5b26c29f31986b9b6c",
+      "value": 345630,
+      "rank": 4,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3bd96c389e611ede596c5",
+        "type": "equipment",
+        "code": "gloves3",
+        "skills": {
+          "precision": 11
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d62b",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a849cd9653f3e9d23cd0fd9",
+      "value": 309662,
+      "rank": 5,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3908fdab0c6ec4e08a45f",
+        "type": "equipment",
+        "code": "pants3",
+        "skills": {
+          "armor": 11
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d62c",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69c941a000ebd79f4d73cc4e",
+      "value": 300699,
+      "rank": 6,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3c5e5db6875d36c9042fc",
+        "type": "equipment",
+        "code": "chest3",
+        "skills": {
+          "armor": 11
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d62d",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a56c50639361694332f5696",
+      "value": 214906,
+      "rank": 7,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad35994c633094e400fa23f",
+        "code": "gun",
+        "skills": {
+          "attack": 59,
+          "criticalChance": 8
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1,
+        "lastAcquisitionAt": "2026-10-17T11:18:44.936Z"
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d62e",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a744f811f29927d64972fd2",
+      "value": 168374,
+      "rank": 8,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3aa9c12e65597841bb274",
+        "type": "equipment",
+        "code": "chest2",
+        "skills": {
+          "armor": 8
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d62f",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "68ed8539c54cba26abe2bd7d",
+      "value": 89342,
+      "rank": 9,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:04.945Z",
+      "lootItem": {
+        "_id": "6ad3864a9a51a8152137671e",
+        "type": "equipment",
+        "code": "chest2",
+        "skills": {
+          "armor": 6
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      }
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d630",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a53c7b2f45b94d305767fe1",
+      "value": 65783,
+      "rank": 10,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:03.941Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d631",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69f5fae0b6d14ffb3b24b3e8",
+      "value": 61325,
+      "rank": 11,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:03.941Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d632",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "699088fd7d720756a93616b3",
+      "value": 25163,
+      "rank": 12,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:03.941Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d633",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69d25f89a1251c69ef6892d7",
+      "value": 18105,
+      "rank": 13,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.941Z",
+      "updatedAt": "2026-10-17T20:59:03.941Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d634",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "699c3ebd2799c5001311c0bb",
+      "value": 17726,
+      "rank": 14,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d635",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69d266a0897e35a3e8f31e58",
+      "value": 15636,
+      "rank": 15,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d636",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "684f40bf62731210c8bcbed0",
+      "value": 13659,
+      "rank": 16,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d637",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "69884eece0037f22c72af506",
+      "value": 13081,
+      "rank": 17,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d638",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a6a411bbb3c4979a45ccdb6",
+      "value": 12171,
+      "rank": 18,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d639",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a53a376251b62da6127a42c",
+      "value": 12007,
+      "rank": 19,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    },
+    {
+      "_id": "6ad3e1973c784ff8f311d63a",
+      "ranking": "6ad3302b210e1f6adeaf3f04",
+      "user": "6a1b1150c431d265e5f92208",
+      "value": 9855,
+      "rank": 20,
+      "__v": 0,
+      "createdAt": "2026-10-17T20:59:03.942Z",
+      "updatedAt": "2026-10-17T20:59:03.942Z"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6Im51bSIsInYiOjIwfSx7InQiOiJzdHIiLCJ2IjoiNmFkM2UxOTczYzc4NGZmOGYzMTFkNjNhIn1d",
+  "itemCount": 78
+}

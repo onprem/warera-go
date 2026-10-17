@@ -19,11 +19,11 @@ warera-go/
 │   └── update-specs/ # Refreshes upstream contract snapshots
 ├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
 ├── spec/
-│   ├── fixtures/     # Production JSON response fixtures for tests and codegen
+│   ├── fixtures/     # Recorded JSON responses used by tests and recorder seeds
 │   ├── Responses.d.ts # Generated response declarations from WarEraProjects/TRPC
 │   ├── openapi.json  # WarEra's published OpenAPI 3 specification
 │   └── SOURCES.md    # Source attribution and refresh instructions
-├── models_gen.go     # Generated domain models (CursorPage, Country, User, Battle, etc.)
+├── models_gen.go     # Generated request/filter types and CursorPage
 ├── models.go         # Custom domain helper methods & //go:generate directive
 ├── models_response.go # Maintained response models
 ├── models_additional.go # Response models based on upstream Responses.d.ts
@@ -81,10 +81,16 @@ When adding or updating endpoints:
      ```bash
      go run ./cmd/record -method <method.name> [-input '<json>']
      ```
+   - **Supply IDs for bulk endpoints without a local fixture seed**:
+     ```bash
+     go run ./cmd/record -seeds '{"itemOfferId":"...","workOfferId":"..."}'
+     ```
+     The recorder derives `companyId` from `company.getById.json` and `workOfferId` from a non-empty work-offer list fixture when available.
 2. **Regenerate Request Models:**
    ```bash
    make generate
    ```
+   Run `make check-generated` to confirm checked-in generated code matches the OpenAPI spec.
 3. **Implement Service Method:** Add the method in the respective domain service file (e.g. `world.go`, `community.go`, etc.).
 4. **Write Unit Tests:** Add test cases in `client_test.go` loading the recorded fixture with `loadFixture(t, "<method>.json")`.
 

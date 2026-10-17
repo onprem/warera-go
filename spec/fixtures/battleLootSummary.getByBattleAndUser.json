@@ -1,0 +1,64 @@
+{
+  "_id": "6ad36e5a210e1f6adeaf69cc",
+  "battle": "6ad32f78f6dfbfc06adbb239",
+  "user": "6aa84e5b26c29f31986b9b6c",
+  "__v": 0,
+  "case1Count": 17,
+  "case2Count": 0,
+  "createdAt": "2026-10-17T12:47:22.097Z",
+  "hits": 178,
+  "poolLoot": [
+    {
+      "item": {
+        "_id": "6ad389bd0987f6275a0ef7d7",
+        "type": "equipment",
+        "code": "boots2",
+        "skills": {
+          "dodge": 9
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      },
+      "rank": 21,
+      "round": "6ad32f78f6dfbfc06adbb23b",
+      "pool": "round"
+    },
+    {
+      "item": {
+        "_id": "6ad3c604ca2ce961ee323bfe",
+        "type": "equipment",
+        "code": "helmet4",
+        "skills": {
+          "criticalDamages": 74
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      },
+      "rank": 8,
+      "round": "6ad38aa5b45be57841a8f974",
+      "pool": "round"
+    },
+    {
+      "item": {
+        "_id": "6ad3bd96c389e611ede596c5",
+        "type": "equipment",
+        "code": "gloves3",
+        "skills": {
+          "precision": 11
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1
+      },
+      "rank": 13,
+      "round": null,
+      "pool": "battle"
+    }
+  ],
+  "totalDmg": 345630,
+  "totalMoneyFromBounty": 0,
+  "totalMoneyFromContract": 0,
+  "updatedAt": "2026-10-17T20:59:05.806Z"
+}

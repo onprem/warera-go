@@ -52,11 +52,6 @@ type TradingService struct {
 	client *Client
 }
 
-type getTopOrdersInput struct {
-	ItemCode string `json:"itemCode"`
-	Limit    int    `json:"limit,omitempty"`
-}
-
 // GetPrices returns reference/current prices for tradeable items.
 func (s *TradingService) GetPrices(ctx context.Context) (ItemPrices, error) {
 	var prices ItemPrices
@@ -70,7 +65,7 @@ func (s *TradingService) GetPrices(ctx context.Context) (ItemPrices, error) {
 // GetTopOrders returns best buy/sell market orders for a given item code.
 func (s *TradingService) GetTopOrders(ctx context.Context, itemCode string, limit int) (*TopOrders, error) {
 	var orders TopOrders
-	err := s.client.trpc.Call(ctx, "tradingOrder.getTopOrders", getTopOrdersInput{
+	err := s.client.trpc.Call(ctx, "tradingOrder.getTopOrders", TradingOrderTopOrdersFilter{
 		ItemCode: itemCode,
 		Limit:    limit,
 	}, &orders)
@@ -78,4 +73,68 @@ func (s *TradingService) GetTopOrders(ctx context.Context, itemCode string, limi
 		return nil, err
 	}
 	return &orders, nil
+}
+
+// ItemOfferService handles individual marketplace offers.
+type ItemOfferService struct {
+	client *Client
+}
+
+type getItemOfferByIDInput struct {
+	ItemOfferID string `json:"itemOfferId"`
+}
+
+// GetByID returns an item offer by ID.
+func (s *ItemOfferService) GetByID(ctx context.Context, itemOfferID string) (*ItemOffer, error) {
+	var offer ItemOffer
+	if err := s.client.trpc.Call(ctx, "itemOffer.getById", getItemOfferByIDInput{ItemOfferID: itemOfferID}, &offer); err != nil {
+		return nil, err
+	}
+	return &offer, nil
+}
+
+// MercenaryAuctionService handles paginated mercenary contract auctions.
+type MercenaryAuctionService struct {
+	client *Client
+}
+
+// GetPaginatedAuctions returns one page of auctions matching the filter.
+func (s *MercenaryAuctionService) GetPaginatedAuctions(ctx context.Context, filter AuctionFilter) (*CursorPage[MercenaryContractAuction], error) {
+	var page CursorPage[MercenaryContractAuction]
+	if err := s.client.trpc.Call(ctx, "mercenaryContractAuction.getPaginatedAuctions", filter, &page); err != nil {
+		return nil, err
+	}
+	return &page, nil
+}
+
+// All returns an iterator over all auctions matching the filter.
+func (s *MercenaryAuctionService) All(ctx context.Context, filter AuctionFilter) iter.Seq2[MercenaryContractAuction, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[MercenaryContractAuction], error) {
+		f := filter
+		f.Cursor = cursor
+		return s.GetPaginatedAuctions(c, f)
+	})
+}
+
+// TransactionService handles paginated transaction history.
+type TransactionService struct {
+	client *Client
+}
+
+// GetPaginatedTransactions returns one page of transactions matching the filter.
+func (s *TransactionService) GetPaginatedTransactions(ctx context.Context, filter TransactionFilter) (*CursorPage[TransactionListItem], error) {
+	var page CursorPage[TransactionListItem]
+	if err := s.client.trpc.Call(ctx, "transaction.getPaginatedTransactions", filter, &page); err != nil {
+		return nil, err
+	}
+	return &page, nil
+}
+
+// All returns an iterator over all transactions matching the filter.
+func (s *TransactionService) All(ctx context.Context, filter TransactionFilter) iter.Seq2[TransactionListItem, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[TransactionListItem], error) {
+		f := filter
+		f.Cursor = cursor
+		return s.GetPaginatedTransactions(c, f)
+	})
 }

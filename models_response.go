@@ -204,6 +204,7 @@ type CountryUnrest struct {
 
 // CurrentEquipment represents data returned by the WarEra API.
 type CurrentEquipment struct {
+	Ammo   string        `json:"ammo,omitempty"`
 	Boots  EquipmentItem `json:"boots,omitempty"`
 	Chest  EquipmentItem `json:"chest,omitempty"`
 	Gloves EquipmentItem `json:"gloves,omitempty"`

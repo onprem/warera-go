@@ -42,7 +42,7 @@ import (
 )
 
 func main() {
-	// Initialize client (reads optional WARERA_API_KEY)
+	// Initialize client with an optional API key.
 	client := warera.NewClient(
 		warera.WithAPIKey("your-api-key"),
 	)
@@ -155,11 +155,25 @@ client := warera.NewClient(
 | `client.GameConfig` | `GetDates`, `GetGameConfig` | Game clock, rollover times, configs |
 | `client.Trading` | `GetPrices`, `GetTopOrders` | Item exchange prices and orderbook |
 | `client.Search` | `SearchAnything` | Universal search across players, companies, countries |
+| `client.Events` | `GetEventsPaginated`, `All` | Paginated world events |
+| `client.BattleOrders` | `GetByBattle` | Battle side orders |
+| `client.BattleRankings` | `GetRanking` | Battle and war rankings |
+| `client.LootSummaries` | `GetByBattleAndUser` | Player battle loot summaries |
+| `client.MilitaryUnits` | `GetByID`, `GetManyPaginated`, `All` | Military unit profiles and listings |
+| `client.Rounds` | `GetByID`, `GetLastHits` | Battle round details and hit histories |
+| `client.Inventory` | `GetCurrentEquipment` | User equipment |
+| `client.Rankings` | `GetRanking` | Global game rankings |
+| `client.Upgrades` | `GetByTypeAndEntity` | Region, company, and unit upgrades |
+| `client.ItemOffers` | `GetByID` | Marketplace item offers |
+| `client.MercenaryAuctions` | `GetPaginatedAuctions`, `All` | Mercenary contract auctions |
+| `client.Transactions` | `GetPaginatedTransactions`, `All` | Transaction history |
+| `client.WorkOffers` | `GetByID`, `GetByCompanyID`, `GetWorkOffersPaginated`, `All` | Company work offers |
+| `client.Workers` | `GetTotalWorkersCount`, `GetWorkers` | Worker counts and company groupings |
 | `client.RawCall` | `RawCall(ctx, method, input, output)` | Call any unmapped or custom tRPC procedure |
 
 ## Model generation and fixtures
 
-Run `make update-specs` to refresh the upstream OpenAPI document and WarEraProjects response declarations. The command pretty-prints the OpenAPI JSON and pins the TRPC source commit and license in the response declaration header; see [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review the refreshed contract files, then run `make generate` to regenerate request and filter types from `spec/openapi.json`. Go response models in `models_response.go` are maintained explicitly because the OpenAPI document does not define response schemas. Recorded JSON under `spec/fixtures` is sample data for inspection and recording seeds; it does not generate Go response types.
+Run `make update-specs` to refresh the upstream OpenAPI document and WarEraProjects response declarations. The command pretty-prints the OpenAPI JSON and pins the TRPC source commit and license in the response declaration header; see [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review the refreshed contract files, then run `make generate` to regenerate request and filter types from `spec/openapi.json`. Response models in `models_response.go` and `models_additional.go` are maintained explicitly from the upstream response declarations, using recorded fixtures as examples where available. Fixtures are recorder seeds and decode samples; they do not generate Go response types.
 
 Common development commands are available through `make help`, including `make test`, `make build`, `make fmt`, and the fixture recording targets. Live fixture recording requires `WARERA_API_KEY`.
 

@@ -3,8 +3,30 @@ package warera
 import (
 	"context"
 	"iter"
-	"sync"
 )
+
+// EventService handles paginated world and country events.
+type EventService struct {
+	client *Client
+}
+
+// GetEventsPaginated returns one page of events matching the filter.
+func (s *EventService) GetEventsPaginated(ctx context.Context, filter EventFilter) (*CursorPage[Event], error) {
+	var page CursorPage[Event]
+	if err := s.client.trpc.Call(ctx, "event.getEventsPaginated", filter, &page); err != nil {
+		return nil, err
+	}
+	return &page, nil
+}
+
+// All returns an iterator over all events matching the filter.
+func (s *EventService) All(ctx context.Context, filter EventFilter) iter.Seq2[Event, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Event], error) {
+		f := filter
+		f.Cursor = cursor
+		return s.GetEventsPaginated(c, f)
+	})
+}
 
 // --- Article Service ---
 
@@ -139,26 +161,16 @@ func (s *SearchService) SearchUsers(ctx context.Context, searchText string) ([]U
 	}
 
 	users := make([]UserLite, len(result.UserIDs))
-	var wg sync.WaitGroup
-	errCh := make(chan error, len(result.UserIDs))
-
+	calls := make([]BatchCall, len(result.UserIDs))
 	for i, id := range result.UserIDs {
-		wg.Add(1)
-		go func(idx int, uid string) {
-			defer wg.Done()
-			u, err := s.client.Users.GetLite(ctx, uid)
-			if err != nil {
-				errCh <- err
-				return
-			}
-			users[idx] = *u
-		}(i, id)
+		calls[i] = BatchCall{
+			Method: "user.getUserLite",
+			Input:  getUserByIdInput{UserID: id},
+			Output: &users[i],
+		}
 	}
-
-	wg.Wait()
-	close(errCh)
-	if len(errCh) > 0 {
-		return nil, <-errCh
+	if err := s.client.Batch(ctx, calls); err != nil {
+		return nil, err
 	}
 
 	return users, nil

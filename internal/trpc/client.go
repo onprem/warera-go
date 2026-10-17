@@ -34,7 +34,7 @@ type ClientConfig struct {
 	BaseURL             string
 	APIKey              string
 	HTTPClient          *http.Client
-	RateLimitPerMinute  int           // e.g. 100 or 200
+	RateLimitPerMinute  int           // negative auto-detects, zero disables, positive sets a limit
 	BatchWindow         time.Duration // 0 disables transparent batching
 	MaxBatchSize        int           // max items per batch, default 50
 	MaxRetries          int
@@ -50,6 +50,7 @@ type Client struct {
 	limiter             *RateLimiter
 	batcher             *Batcher
 	maxRetries          int
+	maxBatchSize        int
 	maxURLLength        int
 	voidInputProcedures map[string]bool
 	mu                  sync.RWMutex
@@ -78,7 +79,7 @@ func NewClient(cfg ClientConfig) *Client {
 	}
 
 	rateLimit := cfg.RateLimitPerMinute
-	if rateLimit <= 0 {
+	if rateLimit < 0 {
 		if cfg.APIKey != "" {
 			rateLimit = 200
 		} else {
@@ -115,6 +116,7 @@ func NewClient(cfg ClientConfig) *Client {
 		httpClient:          httpClient,
 		limiter:             NewRateLimiter(rateLimit),
 		maxRetries:          maxRetries,
+		maxBatchSize:        maxBatchSize,
 		maxURLLength:        maxURLLength,
 		voidInputProcedures: voidProcs,
 	}
@@ -186,23 +188,26 @@ func (c *Client) CallDirect(ctx context.Context, method string, input any, outpu
 		return fmt.Errorf("failed to decode response envelope: %w (body: %s)", err, string(body))
 	}
 
-	if env.Error != nil {
-		return env.Error
-	}
-
-	if output != nil && len(env.Result.Data) > 0 {
-		if err := json.Unmarshal(env.Result.Data, output); err != nil {
-			return fmt.Errorf("failed to decode response data: %w", err)
-		}
-	}
-
-	return nil
+	return decodeResult(env, output)
 }
 
 // CallBatch executes a slice of calls as a single tRPC batch request.
 func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 	if len(calls) == 0 {
 		return nil
+	}
+	if len(calls) > c.maxBatchSize {
+		var firstErr error
+		for start := 0; start < len(calls); start += c.maxBatchSize {
+			end := start + c.maxBatchSize
+			if end > len(calls) {
+				end = len(calls)
+			}
+			if err := c.CallBatch(ctx, calls[start:end]); err != nil && firstErr == nil {
+				firstErr = err
+			}
+		}
+		return firstErr
 	}
 
 	if len(calls) == 1 {
@@ -229,7 +234,7 @@ func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 	methodsJoined := strings.Join(methods, ",")
 	inputJSON, err := json.Marshal(inputsMap)
 	if err != nil {
-		return fmt.Errorf("failed to marshal batch inputs: %w", err)
+		return setBatchError(calls, fmt.Errorf("failed to marshal batch inputs: %w", err))
 	}
 
 	getURL := fmt.Sprintf("%s/%s?batch=1&input=%s", c.baseURL, methodsJoined, url.QueryEscape(string(inputJSON)))
@@ -246,7 +251,7 @@ func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 	}
 
 	if err != nil {
-		return fmt.Errorf("failed to create batch request: %w", err)
+		return setBatchError(calls, fmt.Errorf("failed to create batch request: %w", err))
 	}
 
 	c.setHeaders(req)
@@ -268,7 +273,7 @@ func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 			}
 			return single.Error
 		}
-		return fmt.Errorf("failed to decode batch response envelopes: %w (body: %s)", err, string(body))
+		return setBatchError(calls, fmt.Errorf("failed to decode batch response envelopes: %w (body: %s)", err, string(body)))
 	}
 
 	if len(envelopes) != len(calls) {
@@ -281,26 +286,40 @@ func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 
 	var firstErr error
 	for i, env := range envelopes {
-		if env.Error != nil {
-			calls[i].Err = env.Error
+		if err := decodeResult(env, calls[i].Output); err != nil {
+			calls[i].Err = err
 			if firstErr == nil {
-				firstErr = env.Error
-			}
-			continue
-		}
-
-		if calls[i].Output != nil && len(env.Result.Data) > 0 {
-			if err := json.Unmarshal(env.Result.Data, calls[i].Output); err != nil {
-				calls[i].Err = err
-				if firstErr == nil {
-					firstErr = err
-				}
-				continue
+				firstErr = err
 			}
 		}
 	}
 
 	return firstErr
+}
+
+func setBatchError(calls []BatchCall, err error) error {
+	for i := range calls {
+		calls[i].Err = err
+	}
+	return err
+}
+
+func decodeResult(env ResponseEnvelope, output any) error {
+	if env.Error != nil {
+		return env.Error
+	}
+	if env.Result == nil {
+		return fmt.Errorf("invalid tRPC response: missing result and error")
+	}
+	if len(env.Result.Data) == 0 {
+		return fmt.Errorf("invalid tRPC response: missing result data")
+	}
+	if output != nil {
+		if err := json.Unmarshal(env.Result.Data, output); err != nil {
+			return fmt.Errorf("failed to decode response data: %w", err)
+		}
+	}
+	return nil
 }
 
 func (c *Client) setHeaders(req *http.Request) {

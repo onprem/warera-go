@@ -8,6 +8,8 @@ import (
 // Option configures a WarEra Client.
 type Option func(*options)
 
+const autoRateLimit = -1
+
 type options struct {
 	baseURL            string
 	apiKey             string
@@ -21,7 +23,7 @@ type options struct {
 func defaultOptions() *options {
 	return &options{
 		baseURL:            "https://api2.warera.io/trpc",
-		rateLimitPerMinute: 0, // auto-detect: 200 with apiKey, 100 without
+		rateLimitPerMinute: autoRateLimit,
 		batchWindow:        25 * time.Millisecond,
 		maxBatchSize:       50,
 		maxRetries:         3,
@@ -50,7 +52,7 @@ func WithHTTPClient(client *http.Client) Option {
 }
 
 // WithRateLimit sets an explicit request rate limit (requests per minute).
-// If set to 0, rate limiting is disabled.
+// Set it to 0 to disable rate limiting or to a negative value to restore automatic detection.
 func WithRateLimit(requestsPerMinute int) Option {
 	return func(o *options) {
 		o.rateLimitPerMinute = requestsPerMinute

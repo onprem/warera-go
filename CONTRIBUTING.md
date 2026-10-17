@@ -14,7 +14,7 @@ Thank you for your interest in contributing to `warera-go`! This guide provides 
 ```
 warera-go/
 ├── cmd/
-│   ├── generate/     # Model generator from OpenAPI spec and production fixtures
+│   ├── generate/     # Request model generator from the OpenAPI spec
 │   ├── record/       # Utility to record real live WarEra tRPC responses
 │   └── update-specs/ # Refreshes upstream contract snapshots
 ├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
@@ -25,12 +25,18 @@ warera-go/
 │   └── SOURCES.md    # Source attribution and refresh instructions
 ├── models_gen.go     # Generated domain models (CursorPage, Country, User, Battle, etc.)
 ├── models.go         # Custom domain helper methods & //go:generate directive
+├── models_response.go # Maintained response models
+├── models_additional.go # Response models based on upstream Responses.d.ts
 ├── iterator.go       # Generic cursor pagination iterator (iter.Seq2)
 ├── client.go         # Top-level Client and service wiring
 ├── client_options.go # Functional options (WithAPIKey, WithBatchWindow, etc.)
 ├── world.go          # Countries, Regions, and Government services
 ├── military.go       # Battles and Combat services
 ├── economy.go        # Companies and Market/Trading services
+├── inventory.go      # User equipment service
+├── ranking.go        # Global ranking service
+├── upgrades.go       # Upgrade service
+├── work.go           # Work offers and workers services
 ├── community.go      # Articles, Users, and Search services
 ├── game_config.go    # Game clock & server parameters
 └── examples/         # Runnable sample programs
@@ -75,7 +81,7 @@ When adding or updating endpoints:
      ```bash
      go run ./cmd/record -method <method.name> [-input '<json>']
      ```
-2. **Regenerate Models:**
+2. **Regenerate Request Models:**
    ```bash
    make generate
    ```

@@ -16,21 +16,31 @@ type batchEntry struct {
 
 // Batcher coalesces concurrent procedure calls into single HTTP tRPC batches.
 type Batcher struct {
-	client    *Client
-	window    time.Duration
-	maxSize   int
-	inCh      chan *batchEntry
-	closeCh   chan struct{}
-	closeOnce sync.Once
+	client     *Client
+	ctx        context.Context
+	cancel     context.CancelFunc
+	window     time.Duration
+	maxSize    int
+	inCh       chan *batchEntry
+	closeCh    chan struct{}
+	closeOnce  sync.Once
+	stateMu    sync.Mutex
+	closed     bool
+	loopDone   chan struct{}
+	dispatchWG sync.WaitGroup
 }
 
 func newBatcher(client *Client, window time.Duration, maxSize int) *Batcher {
+	ctx, cancel := context.WithCancel(context.Background())
 	b := &Batcher{
-		client:  client,
-		window:  window,
-		maxSize: maxSize,
-		inCh:    make(chan *batchEntry, 256),
-		closeCh: make(chan struct{}),
+		client:   client,
+		ctx:      ctx,
+		cancel:   cancel,
+		window:   window,
+		maxSize:  maxSize,
+		inCh:     make(chan *batchEntry, 256),
+		closeCh:  make(chan struct{}),
+		loopDone: make(chan struct{}),
 	}
 	go b.loop()
 	return b
@@ -38,7 +48,13 @@ func newBatcher(client *Client, window time.Duration, maxSize int) *Batcher {
 
 func (b *Batcher) close() {
 	b.closeOnce.Do(func() {
+		b.stateMu.Lock()
+		b.closed = true
 		close(b.closeCh)
+		b.stateMu.Unlock()
+		<-b.loopDone
+		b.cancel()
+		b.dispatchWG.Wait()
 	})
 }
 
@@ -51,13 +67,17 @@ func (b *Batcher) submit(ctx context.Context, method string, input any, output a
 		doneCh: make(chan error, 1),
 	}
 
+	b.stateMu.Lock()
+	if b.closed {
+		b.stateMu.Unlock()
+		return b.client.CallDirect(ctx, method, input, output)
+	}
 	select {
 	case <-ctx.Done():
+		b.stateMu.Unlock()
 		return ctx.Err()
-	case <-b.closeCh:
-		// Fallback to direct call if batcher has closed
-		return b.client.CallDirect(ctx, method, input, output)
 	case b.inCh <- entry:
+		b.stateMu.Unlock()
 	}
 
 	select {
@@ -69,6 +89,7 @@ func (b *Batcher) submit(ctx context.Context, method string, input any, output a
 }
 
 func (b *Batcher) loop() {
+	defer close(b.loopDone)
 	var (
 		pending []*batchEntry
 		timer   *time.Timer
@@ -86,14 +107,30 @@ func (b *Batcher) loop() {
 			timerCh = nil
 		}
 		// Run batch execution in a separate goroutine so queue collection isn't blocked by network I/O
-		go b.dispatchBatch(toFlush)
+		b.dispatchWG.Add(1)
+		go func() {
+			defer b.dispatchWG.Done()
+			b.dispatchBatch(toFlush)
+		}()
 	}
 
 	for {
 		select {
 		case <-b.closeCh:
-			flush()
-			return
+			// close marks the batcher closed while holding stateMu, so every
+			// submission accepted before shutdown is already queued here.
+			for {
+				select {
+				case entry := <-b.inCh:
+					pending = append(pending, entry)
+					if len(pending) >= b.maxSize {
+						flush()
+					}
+				default:
+					flush()
+					return
+				}
+			}
 
 		case <-timerCh:
 			flush()
@@ -134,8 +171,9 @@ func (b *Batcher) dispatchBatch(entries []*batchEntry) {
 		}
 	}
 
-	// Use background context for the batch call so one caller's cancel doesn't abort the entire batch
-	_ = b.client.CallBatch(context.Background(), calls)
+	// Use the batcher's shared context so one caller's cancellation does not
+	// abort other calls, while Client.Close can still cancel outstanding I/O.
+	_ = b.client.CallBatch(b.ctx, calls)
 
 	for i, entry := range activeEntries {
 		entry.doneCh <- calls[i].Err

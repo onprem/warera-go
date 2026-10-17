@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/onprem/warera-go/trpc"
+	"github.com/onprem/warera-go/internal/trpc"
 )
 
 type roundTripFunc func(req *http.Request) (*http.Response, error)

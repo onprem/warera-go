@@ -3,7 +3,7 @@ package warera
 import (
 	"context"
 
-	"github.com/onprem/warera-go/trpc"
+	"github.com/onprem/warera-go/internal/trpc"
 )
 
 // Client is the main client for interacting with the WarEra API.

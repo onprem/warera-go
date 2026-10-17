@@ -13,13 +13,17 @@ Thank you for your interest in contributing to `warera-go`! This guide provides 
 
 ```
 warera-go/
-├── trpc/             # Low-level tRPC HTTP batching link, retry, and rate limiter
+├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
 ├── spec/             # Upstream WarEra OpenAPI 3.0 spec and response definitions
 ├── models.go         # Strongly typed request/response structs
 ├── iterator.go       # Generic cursor pagination iterator
 ├── client.go         # Top-level Client and service wiring
 ├── client_options.go # Functional options (WithAPIKey, WithBatchWindow, etc.)
-├── <service>.go      # Domain service implementations (countries, battles, etc.)
+├── world.go          # Countries, Regions, and Government services
+├── military.go       # Battles and Combat services
+├── economy.go        # Companies and Market/Trading services
+├── community.go      # Articles, Users, and Search services
+├── game_config.go    # Game clock & server parameters
 └── examples/         # Runnable sample programs
 ```
 
@@ -51,7 +55,7 @@ go build ./examples/...
        return &res, err
    }
    ```
-4. **Write Unit Tests:** Add test cases in `client_test.go` or `trpc/client_test.go` using the in-memory `roundTripFunc` pattern (no real network ports needed).
+4. **Write Unit Tests:** Add test cases in `client_test.go` or `internal/trpc/client_test.go` using the in-memory `roundTripFunc` pattern (no real network ports needed).
 
 ---
 

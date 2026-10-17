@@ -1917,85 +1917,94 @@ type GameConfigSkills struct {
 	Stamina          GameConfigSkillsStamina          `json:"stamina,omitempty"`
 }
 
+// GameConfigSkillLevel describes a skill's cost and value at a given level.
+type GameConfigSkillLevel struct {
+	Cost          float64 `json:"cost,omitempty"`
+	IsABar        bool    `json:"isABar,omitempty"`
+	TotalCost     float64 `json:"totalCost,omitempty"`
+	UnlockAtLevel int     `json:"unlockAtLevel,omitempty"`
+	Value         float64 `json:"value,omitempty"`
+}
+
 // GameConfigSkillsArmor is a nested component of GameConfigSkills.
 type GameConfigSkillsArmor struct {
-	Levels  map[string]float64 `json:"levels,omitempty"`
-	SoftCap int                `json:"softCap,omitempty"`
+	Levels  map[string]GameConfigSkillLevel `json:"levels,omitempty"`
+	SoftCap int                             `json:"softCap,omitempty"`
 }
 
 // GameConfigSkillsAttack is a nested component of GameConfigSkills.
 type GameConfigSkillsAttack struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsCompanies is a nested component of GameConfigSkills.
 type GameConfigSkillsCompanies struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsCriticalChance is a nested component of GameConfigSkills.
 type GameConfigSkillsCriticalChance struct {
-	Levels             map[string]float64 `json:"levels,omitempty"`
-	SkillOverflow      string             `json:"skillOverflow,omitempty"`
-	SkillOverflowValue int                `json:"skillOverflowValue,omitempty"`
+	Levels             map[string]GameConfigSkillLevel `json:"levels,omitempty"`
+	SkillOverflow      string                          `json:"skillOverflow,omitempty"`
+	SkillOverflowValue int                             `json:"skillOverflowValue,omitempty"`
 }
 
 // GameConfigSkillsCriticalDamages is a nested component of GameConfigSkills.
 type GameConfigSkillsCriticalDamages struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsDodge is a nested component of GameConfigSkills.
 type GameConfigSkillsDodge struct {
-	Levels  map[string]float64 `json:"levels,omitempty"`
-	SoftCap int                `json:"softCap,omitempty"`
+	Levels  map[string]GameConfigSkillLevel `json:"levels,omitempty"`
+	SoftCap int                             `json:"softCap,omitempty"`
 }
 
 // GameConfigSkillsEnergy is a nested component of GameConfigSkills.
 type GameConfigSkillsEnergy struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsEntrepreneurship is a nested component of GameConfigSkills.
 type GameConfigSkillsEntrepreneurship struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsHealth is a nested component of GameConfigSkills.
 type GameConfigSkillsHealth struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsHunger is a nested component of GameConfigSkills.
 type GameConfigSkillsHunger struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsLootChance is a nested component of GameConfigSkills.
 type GameConfigSkillsLootChance struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsManagement is a nested component of GameConfigSkills.
 type GameConfigSkillsManagement struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsPrecision is a nested component of GameConfigSkills.
 type GameConfigSkillsPrecision struct {
-	Levels             map[string]float64 `json:"levels,omitempty"`
-	SkillOverflow      string             `json:"skillOverflow,omitempty"`
-	SkillOverflowValue int                `json:"skillOverflowValue,omitempty"`
+	Levels             map[string]GameConfigSkillLevel `json:"levels,omitempty"`
+	SkillOverflow      string                          `json:"skillOverflow,omitempty"`
+	SkillOverflowValue int                             `json:"skillOverflowValue,omitempty"`
 }
 
 // GameConfigSkillsProduction is a nested component of GameConfigSkills.
 type GameConfigSkillsProduction struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSkillsStamina is a nested component of GameConfigSkills.
 type GameConfigSkillsStamina struct {
-	Levels map[string]float64 `json:"levels,omitempty"`
+	Levels map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 }
 
 // GameConfigSubSkinReward is a nested component of GameConfig.
@@ -2038,65 +2047,77 @@ type GameConfigUpgradesConfig struct {
 	Storage            GameConfigUpgradesConfigStorage            `json:"storage,omitempty"`
 }
 
+// GameConfigUpgradeLevel describes the costs and effects of an upgrade level.
+type GameConfigUpgradeLevel struct {
+	ConstructionPointsCost         float64            `json:"constructionPointsCost,omitempty"`
+	Level                          int                `json:"level,omitempty"`
+	MaintenanceCost                float64            `json:"maintenanceCost,omitempty"`
+	MaintenanceCostCountryDevScale float64            `json:"maintenanceCostCountryDevScale,omitempty"`
+	MaintenanceCostRegionDevScale  float64            `json:"maintenanceCostRegionDevScale,omitempty"`
+	MinimumMaintenanceCost         float64            `json:"minimumMaintenanceCost,omitempty"`
+	Stats                          map[string]float64 `json:"stats,omitempty"`
+	SteelCost                      float64            `json:"steelCost,omitempty"`
+}
+
 // GameConfigUpgradesConfigAutomatedEngine is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigAutomatedEngine struct {
-	CanDowngrade         bool               `json:"canDowngrade,omitempty"`
-	Levels               map[string]float64 `json:"levels,omitempty"`
-	PendingDurationHours int                `json:"pendingDurationHours,omitempty"`
+	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
+	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
+	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigBase is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigBase struct {
-	CanBeDestroyed       bool               `json:"canBeDestroyed,omitempty"`
-	CanBeDisabled        bool               `json:"canBeDisabled,omitempty"`
-	CanDowngrade         bool               `json:"canDowngrade,omitempty"`
-	Levels               map[string]float64 `json:"levels,omitempty"`
-	PendingDurationHours int                `json:"pendingDurationHours,omitempty"`
+	CanBeDestroyed       bool                              `json:"canBeDestroyed,omitempty"`
+	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
+	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
+	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
+	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigBreakRoom is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigBreakRoom struct {
-	CanDowngrade bool               `json:"canDowngrade,omitempty"`
-	Levels       map[string]float64 `json:"levels,omitempty"`
+	CanDowngrade bool                              `json:"canDowngrade,omitempty"`
+	Levels       map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
 }
 
 // GameConfigUpgradesConfigBunker is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigBunker struct {
-	CanBeDestroyed       bool               `json:"canBeDestroyed,omitempty"`
-	CanBeDisabled        bool               `json:"canBeDisabled,omitempty"`
-	CanDowngrade         bool               `json:"canDowngrade,omitempty"`
-	Levels               map[string]float64 `json:"levels,omitempty"`
-	PendingDurationHours int                `json:"pendingDurationHours,omitempty"`
+	CanBeDestroyed       bool                              `json:"canBeDestroyed,omitempty"`
+	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
+	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
+	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
+	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigDormitories is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigDormitories struct {
-	CanDowngrade bool               `json:"canDowngrade,omitempty"`
-	Levels       map[string]float64 `json:"levels,omitempty"`
+	CanDowngrade bool                              `json:"canDowngrade,omitempty"`
+	Levels       map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
 }
 
 // GameConfigUpgradesConfigHeadquarters is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigHeadquarters struct {
-	CanBeDisabled        bool               `json:"canBeDisabled,omitempty"`
-	CanDowngrade         bool               `json:"canDowngrade,omitempty"`
-	Levels               map[string]float64 `json:"levels,omitempty"`
-	PendingDurationHours int                `json:"pendingDurationHours,omitempty"`
+	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
+	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
+	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
+	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigPacificationCenter is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigPacificationCenter struct {
-	CanBeDestroyed       bool               `json:"canBeDestroyed,omitempty"`
-	CanBeDisabled        bool               `json:"canBeDisabled,omitempty"`
-	CanDowngrade         bool               `json:"canDowngrade,omitempty"`
-	Levels               map[string]float64 `json:"levels,omitempty"`
-	PendingDurationHours int                `json:"pendingDurationHours,omitempty"`
+	CanBeDestroyed       bool                              `json:"canBeDestroyed,omitempty"`
+	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
+	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
+	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
+	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigStorage is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigStorage struct {
-	CanDowngrade         bool               `json:"canDowngrade,omitempty"`
-	Levels               map[string]float64 `json:"levels,omitempty"`
-	PendingDurationHours int                `json:"pendingDurationHours,omitempty"`
+	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
+	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
+	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUser is a nested component of GameConfig.

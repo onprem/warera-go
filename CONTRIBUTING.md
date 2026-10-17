@@ -15,12 +15,14 @@ Thank you for your interest in contributing to `warera-go`! This guide provides 
 warera-go/
 ├── cmd/
 │   ├── generate/     # Model generator from OpenAPI spec and production fixtures
-│   └── record/       # Utility to record real live WarEra tRPC responses
+│   ├── record/       # Utility to record real live WarEra tRPC responses
+│   └── update-specs/ # Refreshes upstream contract snapshots
 ├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
 ├── spec/
 │   ├── fixtures/     # Production JSON response fixtures for tests and codegen
-│   ├── Responses.d.ts # WarEra frontend TypeScript interface reference
-│   └── openapi.json  # Upstream WarEra OpenAPI 3.0 specification
+│   ├── Responses.d.ts # Generated response declarations from WarEraProjects/TRPC
+│   ├── openapi.json  # WarEra's published OpenAPI 3 specification
+│   └── SOURCES.md    # Source attribution and refresh instructions
 ├── models_gen.go     # Generated domain models (CursorPage, Country, User, Battle, etc.)
 ├── models.go         # Custom domain helper methods & //go:generate directive
 ├── iterator.go       # Generic cursor pagination iterator (iter.Seq2)
@@ -37,6 +39,16 @@ warera-go/
 ---
 
 ## Development Workflow
+
+### Refreshing upstream specifications
+
+Run this from the repository root when you want to update the checked-in contract snapshots:
+
+```bash
+make update-specs
+```
+
+This requires Go 1.23+ and network access. It refreshes and formats `spec/openapi.json` from WarEra and refreshes `spec/Responses.d.ts` from WarEraProjects/TRPC with a pinned source commit and license link in its header. See [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review these files and their diff before regenerating models.
 
 ### 1. Run Tests and Builds
 

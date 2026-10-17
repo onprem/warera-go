@@ -160,7 +160,7 @@ client := warera.NewClient(
 
 ## Model generation and fixtures
 
-Run `go generate ./...` to regenerate request and filter types from `spec/openapi.json`. Response models in `models_response.go` are maintained explicitly because the OpenAPI document does not define response schemas. Recorded JSON under `spec/fixtures` is sample data for inspection and recording seeds; it does not generate Go response types.
+Run `make update-specs` to refresh the upstream OpenAPI document and WarEraProjects response declarations. The command pretty-prints the OpenAPI JSON and pins the TRPC source commit and license in the response declaration header; see [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review the refreshed contract files, then run `go generate ./...` to regenerate request and filter types from `spec/openapi.json`. Go response models in `models_response.go` are maintained explicitly because the OpenAPI document does not define response schemas. Recorded JSON under `spec/fixtures` is sample data for inspection and recording seeds; it does not generate Go response types.
 
 ---
 

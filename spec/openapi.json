@@ -3,7 +3,7 @@
   "info": {
     "title": "WarEra API",
     "version": "0.17.4-beta",
-    "description": "WarEra tRPC API endpoints. \u26a0\ufe0f Please notice that every call is in GET and not POST."
+    "description": "WarEra tRPC API endpoints. ⚠️ Please notice that every call is in GET and not POST."
   },
   "paths": {
     "/company.getById": {

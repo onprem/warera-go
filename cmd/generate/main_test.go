@@ -26,7 +26,8 @@ func TestGenerateSourcePreservesSchemaSemantics(t *testing.T) {
 						"properties": {
 							"requiredId": {"type": "string"},
 							"enabled": {"type": "boolean"},
-							"kind": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
+							"kind": {"anyOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+							"dynamic": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
 							"tags": {"type": "array", "items": {"type": "string"}}
 						}
 					}}}}
@@ -43,7 +44,8 @@ func TestGenerateSourcePreservesSchemaSemantics(t *testing.T) {
 	wantFields := map[string][2]string{
 		"RequiredID": {"string", "`json:\"requiredId\"`"},
 		"Enabled":    {"*bool", "`json:\"enabled,omitempty\"`"},
-		"Kind":       {"any", "`json:\"kind,omitempty\"`"},
+		"Kind":       {"*StringOrStrings", "`json:\"kind,omitempty\"`"},
+		"Dynamic":    {"any", "`json:\"dynamic,omitempty\"`"},
 		"Tags":       {"[]string", "`json:\"tags,omitempty\"`"},
 	}
 	for field, want := range wantFields {

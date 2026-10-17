@@ -4,6 +4,7 @@ package warera
 
 import (
 	"encoding/json"
+	"errors"
 	"sort"
 	"time"
 )
@@ -16,6 +17,36 @@ type ItemPrice struct {
 	ItemCode string  `json:"itemCode"`
 	Price    float64 `json:"price"`
 	Currency string  `json:"currency,omitempty"`
+}
+
+// StringOrStrings represents a JSON value that can be either one string or a list of strings.
+// Set exactly one of Single or Multiple before marshaling.
+type StringOrStrings struct {
+	Single   *string
+	Multiple []string
+}
+
+// SingleString creates a StringOrStrings value containing one string.
+func SingleString(value string) *StringOrStrings {
+	return &StringOrStrings{Single: &value}
+}
+
+// StringList creates a StringOrStrings value containing a list of strings.
+func StringList(values ...string) *StringOrStrings {
+	return &StringOrStrings{Multiple: append([]string{}, values...)}
+}
+
+func (value StringOrStrings) MarshalJSON() ([]byte, error) {
+	if value.Single != nil && value.Multiple != nil {
+		return nil, errors.New("StringOrStrings must contain either Single or Multiple, not both")
+	}
+	if value.Single != nil {
+		return json.Marshal(*value.Single)
+	}
+	if value.Multiple != nil {
+		return json.Marshal(value.Multiple)
+	}
+	return nil, errors.New("StringOrStrings must contain either Single or Multiple")
 }
 
 // HasNext reports whether there is a subsequent page.

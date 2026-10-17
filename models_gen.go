@@ -104,14 +104,14 @@ type TradingOrderTopOrdersFilter struct {
 
 // TransactionFilter specifies query and filter options for transaction.getPaginatedTransactions.
 type TransactionFilter struct {
-	CountryID       string `json:"countryId,omitempty"`       // The country ID to get transactions for
-	Cursor          string `json:"cursor,omitempty"`          // The cursor to get the next transactions
-	ItemCode        string `json:"itemCode,omitempty"`        // The item code to get transactions for
-	Limit           int    `json:"limit,omitempty"`           // The limit of transactions to get
-	MUID            string `json:"muId,omitempty"`            // The MU ID to get transactions for
-	PartyID         string `json:"partyId,omitempty"`         // The party ID to get transactions for
-	TransactionType any    `json:"transactionType,omitempty"` // The type of transactions to get
-	UserID          string `json:"userId,omitempty"`          // The user ID to get transactions for
+	CountryID       string           `json:"countryId,omitempty"`       // The country ID to get transactions for
+	Cursor          string           `json:"cursor,omitempty"`          // The cursor to get the next transactions
+	ItemCode        string           `json:"itemCode,omitempty"`        // The item code to get transactions for
+	Limit           int              `json:"limit,omitempty"`           // The limit of transactions to get
+	MUID            string           `json:"muId,omitempty"`            // The MU ID to get transactions for
+	PartyID         string           `json:"partyId,omitempty"`         // The party ID to get transactions for
+	TransactionType *StringOrStrings `json:"transactionType,omitempty"` // The type of transactions to get
+	UserID          string           `json:"userId,omitempty"`          // The user ID to get transactions for
 }
 
 // UpgradeUpgradeByTypeAndEntityFilter specifies query and filter options for upgrade.getUpgradeByTypeAndEntity.

@@ -148,6 +148,9 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 			if property.Type == "boolean" && !required[name] {
 				goType = "*bool" // Preserve the distinction between omitted and false.
 			}
+			if goType == "StringOrStrings" && !required[name] {
+				goType = "*StringOrStrings"
+			}
 			tag := fmt.Sprintf("json:\"%s,omitempty\"", name)
 			if required[name] {
 				tag = fmt.Sprintf("json:\"%s\"", name)
@@ -180,6 +183,9 @@ func deriveFilterName(opID string) string {
 
 func goTypeFromOpenAPI(property OpenAPIProperty) (string, error) {
 	if len(property.AnyOf) > 0 {
+		if isStringOrStringsUnion(property) {
+			return "StringOrStrings", nil
+		}
 		var commonType string
 		for i, variant := range property.AnyOf {
 			variantType, err := goTypeFromOpenAPI(variant)
@@ -221,6 +227,24 @@ func goTypeFromOpenAPI(property OpenAPIProperty) (string, error) {
 	default:
 		return "", fmt.Errorf("unsupported OpenAPI type %q", property.Type)
 	}
+}
+
+func isStringOrStringsUnion(property OpenAPIProperty) bool {
+	if len(property.AnyOf) != 2 {
+		return false
+	}
+	hasString, hasStringArray := false, false
+	for _, variant := range property.AnyOf {
+		switch {
+		case variant.Type == "string":
+			hasString = true
+		case variant.Type == "array" && variant.Items != nil && variant.Items.Type == "string":
+			hasStringArray = true
+		default:
+			return false
+		}
+	}
+	return hasString && hasStringArray
 }
 
 func toGoFieldName(name string) string {

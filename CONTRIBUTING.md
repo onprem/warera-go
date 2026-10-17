@@ -55,11 +55,8 @@ This requires Go 1.23+ and network access. It refreshes and formats `spec/openap
 Make sure all tests pass and examples build:
 
 ```bash
-# Run unit and fixture integration tests
-go test -v ./...
-
-# Verify example builds
-go build ./examples/...
+make test
+make build
 ```
 
 ### 2. Recording Fixtures & Generating Models
@@ -68,11 +65,11 @@ When adding or updating endpoints:
 1. **Record Live Response Fixtures:**
    - **Discover & record missing fixtures** (skips existing files on disk):
      ```bash
-     go run ./cmd/record
+     make record
      ```
    - **Re-record all fixtures cleanly** (overwriting disk):
      ```bash
-     go run ./cmd/record --force
+     make record-force
      ```
    - **Target a specific endpoint** (replaces local fixture by default):
      ```bash
@@ -80,7 +77,7 @@ When adding or updating endpoints:
      ```
 2. **Regenerate Models:**
    ```bash
-   go generate ./...
+   make generate
    ```
 3. **Implement Service Method:** Add the method in the respective domain service file (e.g. `world.go`, `community.go`, etc.).
 4. **Write Unit Tests:** Add test cases in `client_test.go` loading the recorded fixture with `loadFixture(t, "<method>.json")`.
@@ -90,9 +87,9 @@ When adding or updating endpoints:
 ## Guidelines
 
 - **Zero External Dependencies:** We strive to keep `warera-go` lightweight by relying solely on the Go standard library. Please avoid adding third-party dependencies unless strictly necessary.
-- **Code Formatting:** Format code using standard Go tooling:
+- **Code Formatting:** Use the Make target for consistent formatting:
   ```bash
-  gofmt -s -w .
+  make fmt
   ```
 - **Commit Messages:** Follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat:`, `fix:`, `docs:`, `chore:`).
 

@@ -1,7 +1,6 @@
 # warera-go
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/onprem/warera-go.svg)](https://pkg.go.dev/github.com/onprem/warera-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/onprem/warera-go)](https://goreportcard.com/report/github.com/onprem/warera-go)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 An idiomatic, high-performance Go SDK for the [WarEra.io](https://warera.io) online multiplayer strategy game API.
@@ -160,7 +159,9 @@ client := warera.NewClient(
 
 ## Model generation and fixtures
 
-Run `make update-specs` to refresh the upstream OpenAPI document and WarEraProjects response declarations. The command pretty-prints the OpenAPI JSON and pins the TRPC source commit and license in the response declaration header; see [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review the refreshed contract files, then run `go generate ./...` to regenerate request and filter types from `spec/openapi.json`. Go response models in `models_response.go` are maintained explicitly because the OpenAPI document does not define response schemas. Recorded JSON under `spec/fixtures` is sample data for inspection and recording seeds; it does not generate Go response types.
+Run `make update-specs` to refresh the upstream OpenAPI document and WarEraProjects response declarations. The command pretty-prints the OpenAPI JSON and pins the TRPC source commit and license in the response declaration header; see [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review the refreshed contract files, then run `make generate` to regenerate request and filter types from `spec/openapi.json`. Go response models in `models_response.go` are maintained explicitly because the OpenAPI document does not define response schemas. Recorded JSON under `spec/fixtures` is sample data for inspection and recording seeds; it does not generate Go response types.
+
+Common development commands are available through `make help`, including `make test`, `make build`, `make fmt`, and the fixture recording targets. Live fixture recording requires `WARERA_API_KEY`.
 
 ---
 

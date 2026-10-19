@@ -145,9 +145,9 @@ type WorkOffer struct {
 	CompanyID       string  `json:"company,omitempty"`
 	CreatedAt       string  `json:"createdAt,omitempty"`
 	InitialQuantity int     `json:"initialQuantity,omitempty"`
-	MinEnergy       int     `json:"minEnergy,omitempty"`
-	MinLevel        int     `json:"minLevel,omitempty"`
-	MinProduction   int     `json:"minProduction,omitempty"`
+	MinEnergy       float64 `json:"minEnergy,omitempty"`
+	MinLevel        float64 `json:"minLevel,omitempty"`
+	MinProduction   float64 `json:"minProduction,omitempty"`
 	Quantity        int     `json:"quantity,omitempty"`
 	RegionID        string  `json:"region,omitempty"`
 	Text            string  `json:"text,omitempty"`

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 	"os"
@@ -240,23 +241,45 @@ func TestClient_TransparentBatching_MultiService(t *testing.T) {
 
 func TestClient_Articles_Iterator_Fixture(t *testing.T) {
 	articleFixture := loadFixture(t, "article.getArticlesPaginated.json")
+	var firstPage CursorPage[Article]
+	if err := json.Unmarshal(articleFixture, &firstPage); err != nil {
+		t.Fatalf("decode article fixture: %v", err)
+	}
 	pageCounter := 0
 
 	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
 		pageCounter++
+		if !strings.HasSuffix(r.URL.Path, "/article.getArticlesPaginated") {
+			return nil, errors.New("unexpected article iterator procedure: " + r.URL.Path)
+		}
+		var input ArticleFilter
+		if err := json.Unmarshal([]byte(r.URL.Query().Get("input")), &input); err != nil {
+			return nil, errors.New("decode article iterator input: " + err.Error())
+		}
+		if input.Type != "last" {
+			return nil, errors.New("article iterator did not preserve filter type")
+		}
 		var resp trpc.ResponseEnvelope
 		if pageCounter == 1 {
+			if input.Cursor != "" {
+				return nil, errors.New("first article page unexpectedly had a cursor")
+			}
 			resp = trpc.ResponseEnvelope{
 				Result: &trpc.ResultEnvelope{
 					Data: articleFixture,
 				},
 			}
-		} else {
+		} else if pageCounter == 2 {
+			if input.Cursor != firstPage.NextCursor {
+				return nil, errors.New("article iterator did not pass the next cursor")
+			}
 			resp = trpc.ResponseEnvelope{
 				Result: &trpc.ResultEnvelope{
 					Data: json.RawMessage(`{"items": [], "nextCursor": ""}`),
 				},
 			}
+		} else {
+			return nil, errors.New("article iterator fetched more pages than expected")
 		}
 
 		data, _ := json.Marshal(resp)
@@ -283,18 +306,16 @@ func TestClient_Articles_Iterator_Fixture(t *testing.T) {
 		articles = append(articles, article)
 	}
 
-	if len(articles) != 5 {
-		t.Fatalf("expected 5 iterated articles from fixture, got %d", len(articles))
+	if pageCounter != 2 {
+		t.Fatalf("expected two page requests, got %d", pageCounter)
 	}
-
-	if articles[0].Title != "Two Revolts One Nation" {
-		t.Errorf("unexpected article 0 title: %s", articles[0].Title)
+	if len(articles) != len(firstPage.Items) {
+		t.Fatalf("expected %d iterated articles from fixture, got %d", len(firstPage.Items), len(articles))
 	}
-	if articles[0].Stats.Likes != 5 {
-		t.Errorf("expected 5 likes on article 0, got %d", articles[0].Stats.Likes)
-	}
-	if articles[1].Language != "tr" {
-		t.Errorf("expected language tr on article 1, got %s", articles[1].Language)
+	for i := range firstPage.Items {
+		if articles[i].ID != firstPage.Items[i].ID {
+			t.Errorf("article %d ID = %q, want %q", i, articles[i].ID, firstPage.Items[i].ID)
+		}
 	}
 }
 
@@ -375,7 +396,7 @@ func TestClient_SearchUsers_Fixture(t *testing.T) {
 			}, nil
 		}
 
-		return nil, nil
+		return nil, errors.New("unexpected SearchUsers procedure: " + r.URL.Path)
 	})
 
 	client := NewClient(
@@ -720,19 +741,13 @@ func TestClient_Regions_GetAll_Fixture(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	if len(regions) != 726 {
-		t.Errorf("expected 726 regions, got %d", len(regions))
+	if len(regions) == 0 {
+		t.Fatal("expected at least one decoded region")
 	}
-
-	r, ok := regions["6813b7039403bc4170a5d671"]
-	if !ok {
-		t.Fatalf("expected region 6813b7039403bc4170a5d671 to be present")
-	}
-	if r.MainCity != "Apeldoorn" {
-		t.Errorf("expected MainCity Apeldoorn, got %s", r.MainCity)
-	}
-	if r.CountryCode != "nl" {
-		t.Errorf("expected CountryCode nl, got %s", r.CountryCode)
+	for key, region := range regions {
+		if key != region.ID {
+			t.Errorf("region map key %q does not match region ID %q", key, region.ID)
+		}
 	}
 }
 

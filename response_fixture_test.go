@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -18,12 +19,15 @@ func TestResponseFixturesDecode(t *testing.T) {
 		filename string
 		decode   func(json.RawMessage) error
 	}{
+		{"article detail", "article.getArticleById.json", decodeFixtureAs[Article]},
 		{"article list", "article.getArticlesPaginated.json", decodeFixtureAs[CursorPage[Article]]},
 		{"article lite", "article.getArticleLiteById.json", decodeFixtureAs[*Article]},
 		{"battle list", "battle.getBattles.json", decodeFixtureAs[CursorPage[Battle]]},
 		{"battle detail", "battle.getById.json", decodeFixtureAs[Battle]},
 		{"live battle", "battle.getLiveBattleData.json", decodeFixtureAs[LiveBattleData]},
+		{"battle loot summary", "battleLootSummary.getByBattleAndUser.json", decodeFixtureAs[BattleLootSummary]},
 		{"battle orders", "battleOrder.getByBattle.json", decodeFixtureAs[[]BattleOrder]},
+		{"battle ranking", "battleRanking.getRanking.json", decodeFixtureAs[BattleRanking]},
 		{"company detail", "company.getById.json", decodeFixtureAs[Company]},
 		{"company IDs", "company.getCompanies.json", decodeFixtureAs[CursorPage[string]]},
 		{"all countries", "country.getAllCountries.json", decodeFixtureAs[[]Country]},
@@ -36,7 +40,7 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"item prices", "itemTrading.getPrices.json", decodeFixtureAs[ItemPrices]},
 		{"military unit detail", "mu.getById.json", decodeFixtureAs[MilitaryUnit]},
 		{"military unit list", "mu.getManyPaginated.json", decodeFixtureAs[CursorPage[MilitaryUnit]]},
-		{"mercenary auction envelope", "mercenaryContractAuction.getPaginatedAuctions.json", decodeFixtureAs[CursorPage[json.RawMessage]]},
+		{"mercenary auctions", "mercenaryContractAuction.getPaginatedAuctions.json", decodeFixtureAs[CursorPage[MercenaryContractAuction]]},
 		{"ranking", "ranking.getRanking.json", decodeFixtureAs[Ranking]},
 		{"region detail", "region.getById.json", decodeFixtureAs[Region]},
 		{"region map", "region.getRegionsObject.json", decodeFixtureAs[map[string]Region]},
@@ -48,7 +52,23 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"user detail", "user.getUserById.json", decodeFixtureAs[User]},
 		{"user lite", "user.getUserLite.json", decodeFixtureAs[UserLite]},
 		{"users by country", "user.getUsersByCountry.json", decodeFixtureAs[CursorPage[User]]},
-		{"work offers envelope", "workOffer.getWorkOffersPaginated.json", decodeFixtureAs[CursorPage[json.RawMessage]]},
+		{"work offer", "workOffer.getById.json", decodeFixtureAs[WorkOffer]},
+		{"work offer by company", "workOffer.getWorkOfferByCompanyId.json", decodeFixtureAs[WorkOffer]},
+		{"work offers", "workOffer.getWorkOffersPaginated.json", decodeFixtureAs[CursorPage[WorkOffer]]},
+	}
+
+	covered := make(map[string]struct{}, len(tests))
+	for _, tt := range tests {
+		covered[tt.filename] = struct{}{}
+	}
+	fixtures, err := filepath.Glob(filepath.Join("spec", "fixtures", "*.json"))
+	if err != nil {
+		t.Fatalf("list response fixtures: %v", err)
+	}
+	for _, fixture := range fixtures {
+		if _, ok := covered[filepath.Base(fixture)]; !ok {
+			t.Errorf("fixture %s has no typed decode check", fixture)
+		}
 	}
 
 	for _, tt := range tests {

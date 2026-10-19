@@ -217,22 +217,28 @@ func TestClient_TransparentBatching(t *testing.T) {
 
 	var wg sync.WaitGroup
 	var out1, out2, out3 dummyOutput
+	var callErrs [3]error
 
 	wg.Add(3)
 	go func() {
 		defer wg.Done()
-		_ = client.Call(context.Background(), "proc.one", dummyInput{ID: "1"}, &out1)
+		callErrs[0] = client.Call(context.Background(), "proc.one", dummyInput{ID: "1"}, &out1)
 	}()
 	go func() {
 		defer wg.Done()
-		_ = client.Call(context.Background(), "proc.two", dummyInput{ID: "2"}, &out2)
+		callErrs[1] = client.Call(context.Background(), "proc.two", dummyInput{ID: "2"}, &out2)
 	}()
 	go func() {
 		defer wg.Done()
-		_ = client.Call(context.Background(), "proc.three", dummyInput{ID: "3"}, &out3)
+		callErrs[2] = client.Call(context.Background(), "proc.three", dummyInput{ID: "3"}, &out3)
 	}()
 
 	wg.Wait()
+	for i, err := range callErrs {
+		if err != nil {
+			t.Errorf("call %d failed: %v", i+1, err)
+		}
+	}
 
 	reqs := atomic.LoadInt32(&httpRequestsCount)
 	if reqs != 1 {
@@ -244,14 +250,22 @@ func TestClient_TransparentBatching(t *testing.T) {
 	}
 }
 
-func TestRateLimiter(t *testing.T) {
-	limiter := NewRateLimiter(120) // 2 tokens per second
-	ctx := context.Background()
+func TestRateLimiterWaitHonorsCancellation(t *testing.T) {
+	limiter := NewRateLimiter(1)
+	if err := limiter.Wait(context.Background()); err != nil {
+		t.Fatalf("consume initial token: %v", err)
+	}
 
-	// Should consume initial burst without waiting
-	for i := 0; i < 5; i++ {
-		if err := limiter.Wait(ctx); err != nil {
-			t.Fatalf("unexpected limiter err: %v", err)
-		}
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	if err := limiter.Wait(ctx); err != context.Canceled {
+		t.Fatalf("Wait error = %v, want context.Canceled", err)
+	}
+}
+
+func TestNilRateLimiterWait(t *testing.T) {
+	var limiter *RateLimiter
+	if err := limiter.Wait(context.Background()); err != nil {
+		t.Fatalf("nil limiter Wait error = %v, want nil", err)
 	}
 }

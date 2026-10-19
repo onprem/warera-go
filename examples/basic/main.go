@@ -51,7 +51,7 @@ func main() {
 
 	// Fetch full profile for matching user(s)
 	if len(results.UserIDs) > 0 {
-		user, err := client.Users.GetLite(ctx, results.UserIDs[0])
+		user, err := client.Users.GetLiteByID(ctx, results.UserIDs[0])
 		if err != nil {
 			log.Fatalf("failed to get user profile: %v", err)
 		}

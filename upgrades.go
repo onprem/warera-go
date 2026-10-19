@@ -8,7 +8,7 @@ type UpgradeService struct {
 }
 
 // GetByTypeAndEntity returns an upgrade matching the type and supplied entity ID.
-func (s *UpgradeService) GetByTypeAndEntity(ctx context.Context, filter UpgradeUpgradeByTypeAndEntityFilter) (*Upgrade, error) {
+func (s *UpgradeService) GetByTypeAndEntity(ctx context.Context, filter UpgradeFilter) (*Upgrade, error) {
 	var upgrade Upgrade
 	if err := s.client.trpc.Call(ctx, "upgrade.getUpgradeByTypeAndEntity", filter, &upgrade); err != nil {
 		return nil, err

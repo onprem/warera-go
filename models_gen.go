@@ -51,8 +51,8 @@ type BattleOrderByBattleFilter struct {
 	Side     string `json:"side"`
 }
 
-// BattleRankingRankingFilter specifies query and filter options for battleRanking.getRanking.
-type BattleRankingRankingFilter struct {
+// BattleRankingFilter specifies query and filter options for battleRanking.getRanking.
+type BattleRankingFilter struct {
 	BattleID string `json:"battleId,omitempty"` // Optional battle ID to filter rankings
 	Cursor   string `json:"cursor,omitempty"`   // Cursor to fetch the next page of entries
 	DataType string `json:"dataType"`           // Type of ranking data to retrieve (damage, ground points, or money)
@@ -78,8 +78,8 @@ type EventFilter struct {
 	Limit      int      `json:"limit,omitempty"`      // The limit of events to get
 }
 
-// AuctionFilter specifies query and filter options for mercenaryContractAuction.getPaginatedAuctions.
-type AuctionFilter struct {
+// MercenaryAuctionFilter specifies query and filter options for mercenaryContractAuction.getPaginatedAuctions.
+type MercenaryAuctionFilter struct {
 	BattleID  string `json:"battleId,omitempty"`
 	CountryID string `json:"countryId,omitempty"`
 	Cursor    string `json:"cursor,omitempty"`
@@ -87,8 +87,8 @@ type AuctionFilter struct {
 	Status    string `json:"status,omitempty"`
 }
 
-// MUFilter specifies query and filter options for mu.getManyPaginated.
-type MUFilter struct {
+// MilitaryUnitFilter specifies query and filter options for mu.getManyPaginated.
+type MilitaryUnitFilter struct {
 	Cursor   string `json:"cursor,omitempty"`
 	Limit    int    `json:"limit,omitempty"`
 	MemberID string `json:"memberId,omitempty"`
@@ -114,8 +114,8 @@ type TransactionFilter struct {
 	UserID          string           `json:"userId,omitempty"`          // The user ID to get transactions for
 }
 
-// UpgradeUpgradeByTypeAndEntityFilter specifies query and filter options for upgrade.getUpgradeByTypeAndEntity.
-type UpgradeUpgradeByTypeAndEntityFilter struct {
+// UpgradeFilter specifies query and filter options for upgrade.getUpgradeByTypeAndEntity.
+type UpgradeFilter struct {
 	CompanyID   string `json:"companyId,omitempty"` // The company ID to get upgrade for
 	MUID        string `json:"muId,omitempty"`      // The military unit ID to get upgrade for
 	RegionID    string `json:"regionId,omitempty"`  // The region ID to get upgrade for
@@ -141,8 +141,8 @@ type WorkOfferFilter struct {
 	UserID      string `json:"userId,omitempty"`
 }
 
-// WorkerWorkersFilter specifies query and filter options for worker.getWorkers.
-type WorkerWorkersFilter struct {
+// WorkerFilter specifies query and filter options for worker.getWorkers.
+type WorkerFilter struct {
 	CompanyID string `json:"companyId,omitempty"`
 	UserID    string `json:"userId,omitempty"`
 }

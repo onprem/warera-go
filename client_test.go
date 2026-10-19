@@ -433,7 +433,7 @@ func TestClient_SearchUsers_Fixture(t *testing.T) {
 	}
 }
 
-func TestClient_Battles_GetBattles_Fixture(t *testing.T) {
+func TestClient_Battles_List_Fixture(t *testing.T) {
 	battleFixture := loadFixture(t, "battle.getBattles.json")
 
 	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
@@ -462,7 +462,7 @@ func TestClient_Battles_GetBattles_Fixture(t *testing.T) {
 	)
 	defer client.Close()
 
-	page, err := client.Battles.GetBattles(context.Background(), BattleFilter{})
+	page, err := client.Battles.List(context.Background(), BattleFilter{})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

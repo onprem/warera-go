@@ -26,8 +26,8 @@ func (s *CompanyService) GetByID(ctx context.Context, companyID string) (*Compan
 	return &company, nil
 }
 
-// GetCompanies returns a paginated list of company IDs.
-func (s *CompanyService) GetCompanies(ctx context.Context, filter CompanyFilter) (*CursorPage[string], error) {
+// List returns one page of company IDs matching the filter.
+func (s *CompanyService) List(ctx context.Context, filter CompanyFilter) (*CursorPage[string], error) {
 	var page CursorPage[string]
 	err := s.client.trpc.Call(ctx, "company.getCompanies", filter, &page)
 	if err != nil {
@@ -41,7 +41,7 @@ func (s *CompanyService) All(ctx context.Context, filter CompanyFilter) iter.Seq
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[string], error) {
 		f := filter
 		f.Cursor = cur
-		return s.GetCompanies(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -98,8 +98,8 @@ type MercenaryAuctionService struct {
 	client *Client
 }
 
-// GetPaginatedAuctions returns one page of auctions matching the filter.
-func (s *MercenaryAuctionService) GetPaginatedAuctions(ctx context.Context, filter AuctionFilter) (*CursorPage[MercenaryContractAuction], error) {
+// List returns one page of auctions matching the filter.
+func (s *MercenaryAuctionService) List(ctx context.Context, filter MercenaryAuctionFilter) (*CursorPage[MercenaryContractAuction], error) {
 	var page CursorPage[MercenaryContractAuction]
 	if err := s.client.trpc.Call(ctx, "mercenaryContractAuction.getPaginatedAuctions", filter, &page); err != nil {
 		return nil, err
@@ -108,11 +108,11 @@ func (s *MercenaryAuctionService) GetPaginatedAuctions(ctx context.Context, filt
 }
 
 // All returns an iterator over all auctions matching the filter.
-func (s *MercenaryAuctionService) All(ctx context.Context, filter AuctionFilter) iter.Seq2[MercenaryContractAuction, error] {
+func (s *MercenaryAuctionService) All(ctx context.Context, filter MercenaryAuctionFilter) iter.Seq2[MercenaryContractAuction, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[MercenaryContractAuction], error) {
 		f := filter
 		f.Cursor = cursor
-		return s.GetPaginatedAuctions(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -121,8 +121,8 @@ type TransactionService struct {
 	client *Client
 }
 
-// GetPaginatedTransactions returns one page of transactions matching the filter.
-func (s *TransactionService) GetPaginatedTransactions(ctx context.Context, filter TransactionFilter) (*CursorPage[TransactionListItem], error) {
+// List returns one page of transactions matching the filter.
+func (s *TransactionService) List(ctx context.Context, filter TransactionFilter) (*CursorPage[TransactionListItem], error) {
 	var page CursorPage[TransactionListItem]
 	if err := s.client.trpc.Call(ctx, "transaction.getPaginatedTransactions", filter, &page); err != nil {
 		return nil, err
@@ -135,6 +135,6 @@ func (s *TransactionService) All(ctx context.Context, filter TransactionFilter) 
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[TransactionListItem], error) {
 		f := filter
 		f.Cursor = cursor
-		return s.GetPaginatedTransactions(c, f)
+		return s.List(c, f)
 	})
 }

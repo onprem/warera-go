@@ -36,8 +36,8 @@ func (s *WorkOfferService) GetByCompanyID(ctx context.Context, companyID string)
 	return &offer, nil
 }
 
-// GetWorkOffersPaginated returns one page of work offers matching the filter.
-func (s *WorkOfferService) GetWorkOffersPaginated(ctx context.Context, filter WorkOfferFilter) (*CursorPage[WorkOfferListItem], error) {
+// List returns one page of work offers matching the filter.
+func (s *WorkOfferService) List(ctx context.Context, filter WorkOfferFilter) (*CursorPage[WorkOfferListItem], error) {
 	var page CursorPage[WorkOfferListItem]
 	if err := s.client.trpc.Call(ctx, "workOffer.getWorkOffersPaginated", filter, &page); err != nil {
 		return nil, err
@@ -50,7 +50,7 @@ func (s *WorkOfferService) All(ctx context.Context, filter WorkOfferFilter) iter
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[WorkOfferListItem], error) {
 		f := filter
 		f.Cursor = cursor
-		return s.GetWorkOffersPaginated(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -73,7 +73,7 @@ func (s *WorkerService) GetTotalWorkersCount(ctx context.Context, userID string)
 }
 
 // GetWorkers returns workers grouped by company for the supplied filters.
-func (s *WorkerService) GetWorkers(ctx context.Context, filter WorkerWorkersFilter) (*Workers, error) {
+func (s *WorkerService) GetWorkers(ctx context.Context, filter WorkerFilter) (*Workers, error) {
 	var workers Workers
 	if err := s.client.trpc.Call(ctx, "worker.getWorkers", filter, &workers); err != nil {
 		return nil, err

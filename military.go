@@ -24,8 +24,8 @@ func (s *BattleService) GetByID(ctx context.Context, battleID string) (*Battle, 
 	return &battle, nil
 }
 
-// GetBattles returns a page of battles matching the filter.
-func (s *BattleService) GetBattles(ctx context.Context, filter BattleFilter) (*CursorPage[Battle], error) {
+// List returns one page of battles matching the filter.
+func (s *BattleService) List(ctx context.Context, filter BattleFilter) (*CursorPage[Battle], error) {
 	var page CursorPage[Battle]
 	err := s.client.trpc.Call(ctx, "battle.getBattles", filter, &page)
 	if err != nil {
@@ -39,7 +39,7 @@ func (s *BattleService) All(ctx context.Context, filter BattleFilter) iter.Seq2[
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[Battle], error) {
 		f := filter
 		f.Cursor = cur
-		return s.GetBattles(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -91,8 +91,8 @@ func (s *MilitaryUnitService) GetByID(ctx context.Context, muID string) (*Milita
 	return &unit, nil
 }
 
-// GetManyPaginated returns one page of military units matching the filter.
-func (s *MilitaryUnitService) GetManyPaginated(ctx context.Context, filter MUFilter) (*CursorPage[MilitaryUnit], error) {
+// List returns one page of military units matching the filter.
+func (s *MilitaryUnitService) List(ctx context.Context, filter MilitaryUnitFilter) (*CursorPage[MilitaryUnit], error) {
 	var page CursorPage[MilitaryUnit]
 	if err := s.client.trpc.Call(ctx, "mu.getManyPaginated", filter, &page); err != nil {
 		return nil, err
@@ -101,11 +101,11 @@ func (s *MilitaryUnitService) GetManyPaginated(ctx context.Context, filter MUFil
 }
 
 // All returns an iterator over all military units matching the filter.
-func (s *MilitaryUnitService) All(ctx context.Context, filter MUFilter) iter.Seq2[MilitaryUnit, error] {
+func (s *MilitaryUnitService) All(ctx context.Context, filter MilitaryUnitFilter) iter.Seq2[MilitaryUnit, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[MilitaryUnit], error) {
 		f := filter
 		f.Cursor = cursor
-		return s.GetManyPaginated(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -156,11 +156,27 @@ type BattleRankingService struct {
 	client *Client
 }
 
-// GetRanking returns ranking entries matching the supplied filter.
-func (s *BattleRankingService) GetRanking(ctx context.Context, filter BattleRankingRankingFilter) (*BattleRanking, error) {
+// List returns one page of ranking entries matching the supplied filter.
+func (s *BattleRankingService) List(ctx context.Context, filter BattleRankingFilter) (*BattleRanking, error) {
 	var ranking BattleRanking
 	if err := s.client.trpc.Call(ctx, "battleRanking.getRanking", filter, &ranking); err != nil {
 		return nil, err
 	}
 	return &ranking, nil
+}
+
+// All returns an iterator over all ranking entries matching the filter.
+func (s *BattleRankingService) All(ctx context.Context, filter BattleRankingFilter) iter.Seq2[BattleRankingEntry, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[BattleRankingEntry], error) {
+		f := filter
+		f.Cursor = cursor
+		page, err := s.List(c, f)
+		if err != nil {
+			return nil, err
+		}
+		if page == nil {
+			return nil, nil
+		}
+		return &CursorPage[BattleRankingEntry]{Items: page.Items, NextCursor: page.NextCursor}, nil
+	})
 }

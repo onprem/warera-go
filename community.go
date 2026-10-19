@@ -10,8 +10,8 @@ type EventService struct {
 	client *Client
 }
 
-// GetEventsPaginated returns one page of events matching the filter.
-func (s *EventService) GetEventsPaginated(ctx context.Context, filter EventFilter) (*CursorPage[Event], error) {
+// List returns one page of events matching the filter.
+func (s *EventService) List(ctx context.Context, filter EventFilter) (*CursorPage[Event], error) {
 	var page CursorPage[Event]
 	if err := s.client.trpc.Call(ctx, "event.getEventsPaginated", filter, &page); err != nil {
 		return nil, err
@@ -24,7 +24,7 @@ func (s *EventService) All(ctx context.Context, filter EventFilter) iter.Seq2[Ev
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Event], error) {
 		f := filter
 		f.Cursor = cursor
-		return s.GetEventsPaginated(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -59,8 +59,8 @@ func (s *ArticleService) GetLiteByID(ctx context.Context, articleID string) (*Ar
 	return &article, nil
 }
 
-// GetArticlesPaginated returns a single paginated page of articles matching the filter.
-func (s *ArticleService) GetArticlesPaginated(ctx context.Context, filter ArticleFilter) (*CursorPage[Article], error) {
+// List returns one page of articles matching the filter.
+func (s *ArticleService) List(ctx context.Context, filter ArticleFilter) (*CursorPage[Article], error) {
 	var page CursorPage[Article]
 	err := s.client.trpc.Call(ctx, "article.getArticlesPaginated", filter, &page)
 	if err != nil {
@@ -74,7 +74,7 @@ func (s *ArticleService) All(ctx context.Context, filter ArticleFilter) iter.Seq
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[Article], error) {
 		f := filter
 		f.Cursor = cur
-		return s.GetArticlesPaginated(c, f)
+		return s.List(c, f)
 	})
 }
 
@@ -99,8 +99,8 @@ func (s *UserService) GetByID(ctx context.Context, userID string) (*User, error)
 	return &user, nil
 }
 
-// GetLite returns a compact user profile.
-func (s *UserService) GetLite(ctx context.Context, userID string) (*UserLite, error) {
+// GetLiteByID returns a compact user profile by ID.
+func (s *UserService) GetLiteByID(ctx context.Context, userID string) (*UserLite, error) {
 	var user UserLite
 	err := s.client.trpc.Call(ctx, "user.getUserLite", getUserByIdInput{UserID: userID}, &user)
 	if err != nil {
@@ -109,8 +109,8 @@ func (s *UserService) GetLite(ctx context.Context, userID string) (*UserLite, er
 	return &user, nil
 }
 
-// GetUsersByCountry returns a page of users belonging to a specific country.
-func (s *UserService) GetUsersByCountry(ctx context.Context, filter UserFilter) (*CursorPage[User], error) {
+// List returns one page of users matching the filter.
+func (s *UserService) List(ctx context.Context, filter UserFilter) (*CursorPage[User], error) {
 	var page CursorPage[User]
 	err := s.client.trpc.Call(ctx, "user.getUsersByCountry", filter, &page)
 	if err != nil {
@@ -119,12 +119,12 @@ func (s *UserService) GetUsersByCountry(ctx context.Context, filter UserFilter) 
 	return &page, nil
 }
 
-// AllByCountry returns an iterator over all citizens of a country across pages.
-func (s *UserService) AllByCountry(ctx context.Context, filter UserFilter) iter.Seq2[User, error] {
+// All returns an iterator over all users matching the filter across pages.
+func (s *UserService) All(ctx context.Context, filter UserFilter) iter.Seq2[User, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[User], error) {
 		f := filter
 		f.Cursor = cur
-		return s.GetUsersByCountry(c, f)
+		return s.List(c, f)
 	})
 }
 

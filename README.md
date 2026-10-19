@@ -109,7 +109,7 @@ err := client.Batch(ctx, []warera.BatchCall{
 
 ## Auto-Pagination with Go 1.23 Iterators
 
-For paginated resources (Articles, Companies, Battles, Users), iterate through every item across pages without writing manual cursor boilerplate:
+Paginated services use `List(ctx, filter)` to fetch one page and `All(ctx, filter)` to lazily iterate across pages. The iterator yields an error if a page request fails:
 
 ```go
 // Automatically fetches page by page as you loop
@@ -164,28 +164,28 @@ if errors.As(err, &httpErr) {
 | Service | Methods | Description |
 |---|---|---|
 | `client.Countries` | `GetAll`, `GetByID` | Country stats, taxes, unrest, allies, wars |
-| `client.Companies` | `GetByID`, `GetCompanies`, `All` | Company details; listing methods return company IDs |
-| `client.Battles` | `GetByID`, `GetBattles`, `All`, `GetLiveBattleData` | War campaigns, active rounds, live combat |
-| `client.Articles` | `GetByID`, `GetLiteByID`, `GetArticlesPaginated`, `All` | In-game newspaper articles and comments |
-| `client.Users` | `GetByID`, `GetLite`, `GetUsersByCountry`, `AllByCountry` | Player profiles, level, wealth, damage |
+| `client.Companies` | `GetByID`, `List`, `All` | Company details; listing methods return company IDs |
+| `client.Battles` | `GetByID`, `List`, `All`, `GetLiveBattleData` | War campaigns, active rounds, live combat |
+| `client.Articles` | `GetByID`, `GetLiteByID`, `List`, `All` | In-game newspaper articles and comments |
+| `client.Users` | `GetByID`, `GetLiteByID`, `List`, `All` | Player profiles, level, wealth, damage |
 | `client.Regions` | `GetByID`, `GetAll` | Global map regions, resources, development |
 | `client.Government` | `GetByCountryID` | Presidents, ministers, congress members |
 | `client.GameConfig` | `GetDates`, `GetGameConfig` | Game clock, rollover times, configs |
 | `client.Trading` | `GetPrices`, `GetTopOrders` | Item exchange prices and orderbook |
 | `client.Search` | `SearchAnything` | Universal search across players, companies, countries |
-| `client.Events` | `GetEventsPaginated`, `All` | Paginated world events |
+| `client.Events` | `List`, `All` | Paginated world events |
 | `client.BattleOrders` | `GetByBattle` | Battle side orders |
-| `client.BattleRankings` | `GetRanking` | Battle and war rankings |
+| `client.BattleRankings` | `List`, `All` | Battle and war rankings |
 | `client.LootSummaries` | `GetByBattleAndUser` | Player battle loot summaries |
-| `client.MilitaryUnits` | `GetByID`, `GetManyPaginated`, `All` | Military unit profiles and listings |
+| `client.MilitaryUnits` | `GetByID`, `List`, `All` | Military unit profiles and listings |
 | `client.Rounds` | `GetByID`, `GetLastHits` | Battle round details and hit histories |
 | `client.Inventory` | `GetCurrentEquipment` | User equipment |
 | `client.Rankings` | `GetRanking` | Global game rankings |
 | `client.Upgrades` | `GetByTypeAndEntity` | Region, company, and unit upgrades |
 | `client.ItemOffers` | `GetByID` | Marketplace item offers |
-| `client.MercenaryAuctions` | `GetPaginatedAuctions`, `All` | Mercenary contract auctions |
-| `client.Transactions` | `GetPaginatedTransactions`, `All` | Transaction history |
-| `client.WorkOffers` | `GetByID`, `GetByCompanyID`, `GetWorkOffersPaginated`, `All` | Company work offers |
+| `client.MercenaryAuctions` | `List`, `All` | Mercenary contract auctions |
+| `client.Transactions` | `List`, `All` | Transaction history |
+| `client.WorkOffers` | `GetByID`, `GetByCompanyID`, `List`, `All` | Company work offers |
 | `client.Workers` | `GetTotalWorkersCount`, `GetWorkers` | Worker counts and company groupings |
 | `client.RawCall` | `RawCall(ctx, method, input, output)` | Call any unmapped or custom tRPC procedure |
 

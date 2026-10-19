@@ -99,6 +99,17 @@ func (s *UserService) GetByID(ctx context.Context, userID string) (*User, error)
 	return &user, nil
 }
 
+// GetMany retrieves full user profiles for the supplied IDs. Results preserve
+// the input order and duplicate IDs. An empty input returns an empty slice
+// without making a request. If any lookup fails, GetMany returns no profiles
+// and a [BatchLookupError] identifying the failed IDs. Large inputs are split
+// according to the client's configured batch-size limit.
+func (s *UserService) GetMany(ctx context.Context, userIDs []string) ([]User, error) {
+	return getManyByID[User](ctx, s.client, "users", "user.getUserById", userIDs, func(id string) any {
+		return getUserByIdInput{UserID: id}
+	})
+}
+
 // GetLiteByID returns a compact user profile by ID.
 func (s *UserService) GetLiteByID(ctx context.Context, userID string) (*UserLite, error) {
 	var user UserLite
@@ -107,6 +118,17 @@ func (s *UserService) GetLiteByID(ctx context.Context, userID string) (*UserLite
 		return nil, err
 	}
 	return &user, nil
+}
+
+// GetLiteMany retrieves compact user profiles for the supplied IDs. Results
+// preserve the input order and duplicate IDs. An empty input returns an empty
+// slice without making a request. If any lookup fails, GetLiteMany returns no
+// profiles and a [BatchLookupError] identifying the failed IDs. Large inputs
+// are split according to the client's configured batch-size limit.
+func (s *UserService) GetLiteMany(ctx context.Context, userIDs []string) ([]UserLite, error) {
+	return getManyByID[UserLite](ctx, s.client, "users", "user.getUserLite", userIDs, func(id string) any {
+		return getUserByIdInput{UserID: id}
+	})
 }
 
 // List returns one page of users matching the filter.
@@ -159,19 +181,5 @@ func (s *SearchService) SearchUsers(ctx context.Context, searchText string) ([]U
 	if len(result.UserIDs) == 0 {
 		return nil, nil
 	}
-
-	users := make([]UserLite, len(result.UserIDs))
-	calls := make([]BatchCall, len(result.UserIDs))
-	for i, id := range result.UserIDs {
-		calls[i] = BatchCall{
-			Method: "user.getUserLite",
-			Input:  getUserByIdInput{UserID: id},
-			Output: &users[i],
-		}
-	}
-	if err := s.client.Batch(ctx, calls); err != nil {
-		return nil, err
-	}
-
-	return users, nil
+	return s.client.Users.GetLiteMany(ctx, result.UserIDs)
 }

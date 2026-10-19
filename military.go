@@ -91,6 +91,17 @@ func (s *MilitaryUnitService) GetByID(ctx context.Context, muID string) (*Milita
 	return &unit, nil
 }
 
+// GetMany retrieves military units for the supplied IDs. Results preserve the
+// input order and duplicate IDs. An empty input returns an empty slice without
+// making a request. If any lookup fails, GetMany returns no units and a
+// [BatchLookupError] identifying the failed IDs. Large inputs are split
+// according to the client's configured batch-size limit.
+func (s *MilitaryUnitService) GetMany(ctx context.Context, muIDs []string) ([]MilitaryUnit, error) {
+	return getManyByID[MilitaryUnit](ctx, s.client, "military units", "mu.getById", muIDs, func(id string) any {
+		return getMilitaryUnitByIDInput{MUID: id}
+	})
+}
+
 // List returns one page of military units matching the filter.
 func (s *MilitaryUnitService) List(ctx context.Context, filter MilitaryUnitFilter) (*CursorPage[MilitaryUnit], error) {
 	var page CursorPage[MilitaryUnit]

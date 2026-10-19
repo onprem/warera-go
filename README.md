@@ -139,6 +139,24 @@ client := warera.NewClient(
 )
 ```
 
+## Error handling
+
+Service methods return structured tRPC errors for API failures and HTTP errors for transport or gateway failures. Inspect them with `errors.As`:
+
+```go
+var apiErr *warera.TRPCError
+if errors.As(err, &apiErr) {
+	if apiErr.Data != nil && apiErr.Data.Code == "NOT_FOUND" {
+		// Handle a missing resource.
+	}
+}
+
+var httpErr *warera.HTTPError
+if errors.As(err, &httpErr) {
+	log.Printf("WarEra returned HTTP %d", httpErr.StatusCode)
+}
+```
+
 ---
 
 ## Available Services

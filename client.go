@@ -6,38 +6,66 @@ import (
 	"github.com/onprem/warera-go/internal/trpc"
 )
 
-// Client is the main client for interacting with the WarEra API.
+// Client is the main client for the WarEra API. It exposes typed services and
+// shares batching, rate limiting, and retry behavior across their requests.
 type Client struct {
 	trpc *trpc.Client
 
-	// Services
-	Countries         *CountryService
-	Companies         *CompanyService
-	Battles           *BattleService
-	Articles          *ArticleService
-	Users             *UserService
-	Regions           *RegionService
-	Government        *GovernmentService
-	GameConfig        *GameConfigService
-	Trading           *TradingService
-	Search            *SearchService
-	Events            *EventService
-	BattleOrders      *BattleOrderService
-	MilitaryUnits     *MilitaryUnitService
-	Inventory         *InventoryService
-	Rankings          *RankingService
-	Rounds            *RoundService
-	Upgrades          *UpgradeService
-	LootSummaries     *BattleLootSummaryService
-	BattleRankings    *BattleRankingService
-	ItemOffers        *ItemOfferService
+	// Countries provides access to country details and listings.
+	Countries *CountryService
+	// Companies provides access to companies and company listings.
+	Companies *CompanyService
+	// Battles provides access to battles and live battle data.
+	Battles *BattleService
+	// Articles provides access to news articles.
+	Articles *ArticleService
+	// Users provides access to player profiles and country listings.
+	Users *UserService
+	// Regions provides access to regions and their details.
+	Regions *RegionService
+	// Government provides access to country government data.
+	Government *GovernmentService
+	// GameConfig provides access to game configuration and timing data.
+	GameConfig *GameConfigService
+	// Trading provides access to market prices and top orders.
+	Trading *TradingService
+	// Search searches across users and other game entities.
+	Search *SearchService
+	// Events provides access to world and country events.
+	Events *EventService
+	// BattleOrders provides access to battle side orders.
+	BattleOrders *BattleOrderService
+	// MilitaryUnits provides access to military unit profiles and listings.
+	MilitaryUnits *MilitaryUnitService
+	// Inventory provides access to user equipment.
+	Inventory *InventoryService
+	// Rankings provides access to global game rankings.
+	Rankings *RankingService
+	// Rounds provides access to battle rounds and hit histories.
+	Rounds *RoundService
+	// Upgrades provides access to region, company, and military unit upgrades.
+	Upgrades *UpgradeService
+	// LootSummaries provides access to battle loot summaries.
+	LootSummaries *BattleLootSummaryService
+	// BattleRankings provides access to rankings within battles and wars.
+	BattleRankings *BattleRankingService
+	// ItemOffers provides access to marketplace item offers.
+	ItemOffers *ItemOfferService
+	// MercenaryAuctions provides access to mercenary contract auctions.
 	MercenaryAuctions *MercenaryAuctionService
-	Transactions      *TransactionService
-	WorkOffers        *WorkOfferService
-	Workers           *WorkerService
+	// Transactions provides access to paginated transaction history.
+	Transactions *TransactionService
+	// WorkOffers provides access to work offers.
+	WorkOffers *WorkOfferService
+	// Workers provides access to worker counts and company groupings.
+	Workers *WorkerService
 }
 
-// NewClient creates a new WarEra API client with the given options.
+// NewClient creates a client for the WarEra API. It uses the default API
+// endpoint, batches concurrent calls, applies rate limiting, and retries
+// transient errors. Use the options to customize these behaviors.
+//
+// Call Close when the client is no longer needed.
 func NewClient(opts ...Option) *Client {
 	o := defaultOptions()
 	for _, opt := range opts {
@@ -93,15 +121,18 @@ func (c *Client) Close() {
 	}
 }
 
-// RawCall allows invoking an arbitrary or unmapped tRPC procedure directly.
+// RawCall invokes a tRPC procedure that does not have a typed service method.
+// The input is encoded as JSON and output must be a pointer to the destination.
 func (c *Client) RawCall(ctx context.Context, method string, input any, output any) error {
 	return c.trpc.Call(ctx, method, input, output)
 }
 
-// BatchCall represents a single procedure call within an explicit Batch execution.
+// BatchCall describes one procedure in an explicit Client.Batch call. Set
+// Output to a pointer where the decoded response should be stored.
 type BatchCall = trpc.BatchCall
 
-// Batch executes multiple distinct procedure calls in a single batched HTTP request.
+// Batch executes the supplied procedure calls together. Calls are split into
+// requests when the configured batch-size limit is exceeded.
 func (c *Client) Batch(ctx context.Context, calls []BatchCall) error {
 	return c.trpc.CallBatch(ctx, calls)
 }

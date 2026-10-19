@@ -36,6 +36,7 @@ func StringList(values ...string) *StringOrStrings {
 	return &StringOrStrings{Multiple: append([]string{}, values...)}
 }
 
+// MarshalJSON encodes the selected single string or string list.
 func (value StringOrStrings) MarshalJSON() ([]byte, error) {
 	if value.Single != nil && value.Multiple != nil {
 		return nil, errors.New("StringOrStrings must contain either Single or Multiple, not both")

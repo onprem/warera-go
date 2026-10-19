@@ -33,6 +33,7 @@ type RegionActiveBattleValue struct {
 	Details  *RegionActiveBattle
 }
 
+// UnmarshalJSON accepts an active battle as an ID, an expanded object, or null.
 func (b *RegionActiveBattleValue) UnmarshalJSON(data []byte) error {
 	data = bytes.TrimSpace(data)
 	*b = RegionActiveBattleValue{}
@@ -58,6 +59,7 @@ func (b *RegionActiveBattleValue) UnmarshalJSON(data []byte) error {
 	return fmt.Errorf("decode active battle: expected ID, object, or null")
 }
 
+// MarshalJSON writes the expanded battle when available, otherwise its ID or null.
 func (b RegionActiveBattleValue) MarshalJSON() ([]byte, error) {
 	if b.Details != nil {
 		return json.Marshal(b.Details)

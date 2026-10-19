@@ -8,7 +8,7 @@ import "encoding/json"
 // ItemPrices represents market reference prices indexed by item code.
 type ItemPrices map[string]float64
 
-// Article represents an item returned by the WarEra API.
+// Article is a news article published in the WarEra game.
 type Article struct {
 	ID          string       `json:"_id,omitempty"`
 	Author      string       `json:"author,omitempty"`
@@ -38,7 +38,7 @@ type ArticleStats struct {
 	Views    int `json:"views,omitempty"`
 }
 
-// Battle represents an item returned by the WarEra API.
+// Battle is a military conflict between attacker and defender sides.
 type Battle struct {
 	ID            string            `json:"_id,omitempty"`
 	Attacker      BattleSideSummary `json:"attacker,omitempty"`
@@ -55,7 +55,7 @@ type Battle struct {
 	WarID         string            `json:"war,omitempty"`
 }
 
-// BattleOrder represents data returned by the WarEra API.
+// BattleOrder is an order assigned to a country or military unit on a battle side.
 type BattleOrder struct {
 	ID          string `json:"_id,omitempty"`
 	Battle      string `json:"battle,omitempty"`
@@ -104,7 +104,7 @@ type BattleStats struct {
 	HitCount int `json:"hitCount,omitempty"`
 }
 
-// Company represents data returned by the WarEra API.
+// Company is a business that operates in a region and employs workers.
 type Company struct {
 	ID                  string                     `json:"_id,omitempty"`
 	ActiveUpgradeLevels CompanyActiveUpgradeLevels `json:"activeUpgradeLevels,omitempty"`
@@ -128,7 +128,7 @@ type CompanyActiveUpgradeLevels struct {
 	Storage         int `json:"storage,omitempty"`
 }
 
-// Country represents data returned by the WarEra API.
+// Country is a game nation with political, economic, and diplomatic state.
 type Country struct {
 	ID                 string                         `json:"_id,omitempty"`
 	AllianceID         string                         `json:"allianceId,omitempty"`
@@ -204,7 +204,7 @@ type CountryUnrest struct {
 	LastRevolutionEndedAt string `json:"lastRevolutionEndedAt,omitempty"`
 }
 
-// CurrentEquipment represents data returned by the WarEra API.
+// CurrentEquipment contains the equipment currently worn by a user.
 type CurrentEquipment struct {
 	Ammo   string        `json:"ammo,omitempty"`
 	Boots  EquipmentItem `json:"boots,omitempty"`
@@ -235,7 +235,7 @@ type EquipmentSkills struct {
 	Precision       int `json:"precision,omitempty"`
 }
 
-// Event represents an item returned by the WarEra API.
+// Event is a world or country event with event-specific data.
 type Event struct {
 	ID        string    `json:"_id,omitempty"`
 	Countries []string  `json:"countries,omitempty"`
@@ -265,7 +265,7 @@ type EventData struct {
 	WonBy           string   `json:"wonBy,omitempty"`
 }
 
-// GameConfig represents data returned by the WarEra API.
+// GameConfig contains server settings for game systems, skills, items, and rewards.
 type GameConfig struct {
 	Alliance               GameConfigAlliance               `json:"alliance,omitempty"`
 	Announcement           GameConfigAnnouncement           `json:"announcement,omitempty"`
@@ -2185,7 +2185,7 @@ type GameConfigWorker struct {
 	MaxFidelity                    int `json:"maxFidelity,omitempty"`
 }
 
-// GameDates represents data returned by the WarEra API.
+// GameDates contains server timestamps for daily rollover and energy regeneration.
 type GameDates struct {
 	DailyMissionRegenAt         string `json:"dailyMissionRegenAt,omitempty"`
 	MonthlyMissionRegenAt       string `json:"monthlyMissionRegenAt,omitempty"`
@@ -2198,7 +2198,7 @@ type GameDates struct {
 	WeeklyMissionRegenAt        string `json:"weeklyMissionRegenAt,omitempty"`
 }
 
-// Government represents data returned by the WarEra API.
+// Government contains the leadership and legislative positions for a country.
 type Government struct {
 	ID                  string          `json:"_id,omitempty"`
 	CongressMembers     []string        `json:"congressMembers,omitempty"`
@@ -2257,7 +2257,7 @@ type MURoles struct {
 	Managers   []string `json:"managers,omitempty"`
 }
 
-// MilitaryUnit represents data returned by the WarEra API.
+// MilitaryUnit is a player-managed military organization.
 type MilitaryUnit struct {
 	ID                  string                          `json:"_id,omitempty"`
 	ActiveUpgradeLevels MilitaryUnitActiveUpgradeLevels `json:"activeUpgradeLevels,omitempty"`
@@ -2280,7 +2280,7 @@ type MilitaryUnitActiveUpgradeLevels struct {
 	Dormitories int `json:"dormitories,omitempty"`
 }
 
-// Ranking represents data returned by the WarEra API.
+// Ranking contains a global ranking and its entries.
 type Ranking struct {
 	ID         string            `json:"_id,omitempty"`
 	IsGlobal   bool              `json:"isGlobal,omitempty"`
@@ -2315,7 +2315,7 @@ type RankingTierValues struct {
 	Silver   int   `json:"silver,omitempty"`
 }
 
-// Region represents data returned by the WarEra API.
+// Region is a map area with economic, geographic, and military state.
 type Region struct {
 	ID                           string                    `json:"_id,omitempty"`
 	ActiveBattle                 *RegionActiveBattleValue  `json:"activeBattle,omitempty"`
@@ -2452,7 +2452,7 @@ type RegionUpgradesV2UpgradesBunkerLastConstructions struct {
 	UserID         string `json:"user,omitempty"`
 }
 
-// Round represents data returned by the WarEra API.
+// Round is one stage of a battle and includes combat state and results.
 type Round struct {
 	ID        string               `json:"_id,omitempty"`
 	Attacker  RoundSideCombatStats `json:"attacker,omitempty"`
@@ -2524,7 +2524,7 @@ type RoundWeapon struct {
 	State             int          `json:"state,omitempty"`
 }
 
-// SearchResult represents data returned by the WarEra API.
+// SearchResult contains matching entity IDs grouped by entity type.
 type SearchResult struct {
 	AllianceIDs []string `json:"allianceIds,omitempty"`
 	CountryIDs  []string `json:"countryIds,omitempty"`
@@ -2548,7 +2548,7 @@ type TopOrder struct {
 	UserID    string  `json:"user,omitempty"`
 }
 
-// TopOrders represents data returned by the WarEra API.
+// TopOrders contains the best buy and sell orders for a tradeable item.
 type TopOrders struct {
 	BuyOrders  []TopOrder `json:"buyOrders,omitempty"`
 	SellOrders []TopOrder `json:"sellOrders,omitempty"`
@@ -2573,7 +2573,7 @@ type Upgrade struct {
 	WillBeActiveAt      string `json:"willBeActiveAt,omitempty"`
 }
 
-// User represents data returned by the WarEra API.
+// User is a full player profile, including skills, statistics, and equipment.
 type User struct {
 	ID                    string                 `json:"_id,omitempty"`
 	AvailableColorSchemes []string               `json:"availableColorSchemes,omitempty"`
@@ -2658,7 +2658,7 @@ type UserLeveling struct {
 	XP                   int `json:"xp,omitempty"`
 }
 
-// UserLite represents data returned by the WarEra API.
+// UserLite is a compact player profile for listings and search results.
 type UserLite struct {
 	ID           string                 `json:"_id,omitempty"`
 	AvatarURL    string                 `json:"avatarUrl,omitempty"`

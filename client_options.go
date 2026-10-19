@@ -37,44 +37,50 @@ func WithAPIKey(apiKey string) Option {
 	}
 }
 
-// WithBaseURL overrides the default tRPC base URL (e.g. for proxy, gateway, or tests).
+// WithBaseURL overrides the default tRPC endpoint, https://api2.warera.io/trpc.
+// This is useful for a proxy, gateway, or test server.
 func WithBaseURL(url string) Option {
 	return func(o *options) {
 		o.baseURL = url
 	}
 }
 
-// WithHTTPClient provides a custom *http.Client for requests.
+// WithHTTPClient provides the HTTP client used for requests. When unset, the
+// SDK uses an http.Client with a 30-second timeout.
 func WithHTTPClient(client *http.Client) Option {
 	return func(o *options) {
 		o.httpClient = client
 	}
 }
 
-// WithRateLimit sets an explicit request rate limit (requests per minute).
-// Set it to 0 to disable rate limiting or to a negative value to restore automatic detection.
+// WithRateLimit sets the request rate limit in requests per minute. A positive
+// value sets an explicit limit, 0 disables rate limiting, and a negative value
+// enables automatic selection (200 with an API key, 100 without one).
 func WithRateLimit(requestsPerMinute int) Option {
 	return func(o *options) {
 		o.rateLimitPerMinute = requestsPerMinute
 	}
 }
 
-// WithBatchWindow sets the duration to buffer requests before flushing a batch.
-// Set to 0 to disable automatic batching and send queries immediately.
+// WithBatchWindow sets how long concurrent calls wait to be grouped into a
+// batch. The default is 25 milliseconds. Set it to 0 to disable automatic
+// batching and send calls immediately.
 func WithBatchWindow(window time.Duration) Option {
 	return func(o *options) {
 		o.batchWindow = window
 	}
 }
 
-// WithMaxBatchSize sets the maximum number of queries in a single tRPC batch.
+// WithMaxBatchSize sets the maximum number of queries in one tRPC batch. The
+// default and server-supported maximum is 50.
 func WithMaxBatchSize(size int) Option {
 	return func(o *options) {
 		o.maxBatchSize = size
 	}
 }
 
-// WithMaxRetries sets the maximum number of retry attempts for transient errors.
+// WithMaxRetries sets the maximum number of retries for transient errors. The
+// default is 3; set it to 0 to disable retries.
 func WithMaxRetries(retries int) Option {
 	return func(o *options) {
 		o.maxRetries = retries

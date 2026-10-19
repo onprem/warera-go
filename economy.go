@@ -26,6 +26,17 @@ func (s *CompanyService) GetByID(ctx context.Context, companyID string) (*Compan
 	return &company, nil
 }
 
+// GetMany retrieves company details for the supplied IDs. Results preserve the
+// input order and duplicate IDs. An empty input returns an empty slice without
+// making a request. If any lookup fails, GetMany returns no records and a
+// [BatchLookupError] identifying the failed IDs. Large inputs are split into
+// requests according to the client's configured batch-size limit.
+func (s *CompanyService) GetMany(ctx context.Context, companyIDs []string) ([]Company, error) {
+	return getManyByID[Company](ctx, s.client, "companies", "company.getById", companyIDs, func(id string) any {
+		return getCompanyByIdInput{CompanyID: id}
+	})
+}
+
 // List returns one page of company IDs matching the filter.
 func (s *CompanyService) List(ctx context.Context, filter CompanyFilter) (*CursorPage[string], error) {
 	var page CursorPage[string]

@@ -18,5 +18,6 @@
 // procedure without a typed service method.
 //
 // API errors are available as [TRPCError] and transport failures as
-// [HTTPError]; use [errors.As] to inspect their fields.
+// [HTTPError]; use [errors.As] to inspect their fields. Bulk lookup methods
+// report failed entity IDs with [BatchLookupError].
 package warera

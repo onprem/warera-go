@@ -2815,7 +2815,7 @@ type UserSkillsDodge struct {
 type UserSkillsEnergy struct {
 	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
-	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
@@ -2830,7 +2830,7 @@ type UserSkillsEnergy struct {
 type UserSkillsEntrepreneurship struct {
 	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
-	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
@@ -2845,7 +2845,7 @@ type UserSkillsEntrepreneurship struct {
 type UserSkillsHealth struct {
 	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
-	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
@@ -2929,7 +2929,7 @@ type UserSkillsProduction struct {
 type UserSkillsStamina struct {
 	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
-	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`

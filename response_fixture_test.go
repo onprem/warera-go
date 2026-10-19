@@ -52,6 +52,8 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"user detail", "user.getUserById.json", decodeFixtureAs[User]},
 		{"user lite", "user.getUserLite.json", decodeFixtureAs[UserLite]},
 		{"users by country", "user.getUsersByCountry.json", decodeFixtureAs[CursorPage[User]]},
+		{"workers by user", "worker.getWorkers.json", decodeFixtureAs[Workers]},
+		{"workers by company", "worker.getWorkers.company.json", decodeFixtureAs[Workers]},
 		{"work offer", "workOffer.getById.json", decodeFixtureAs[WorkOffer]},
 		{"work offer by company", "workOffer.getWorkOfferByCompanyId.json", decodeFixtureAs[WorkOffer]},
 		{"work offers", "workOffer.getWorkOffersPaginated.json", decodeFixtureAs[CursorPage[WorkOffer]]},

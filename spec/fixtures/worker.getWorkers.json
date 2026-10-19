@@ -1,0 +1,97 @@
+{
+  "type": "user",
+  "workersPerCompany": [
+    {
+      "company": {
+        "_id": "6aa7ad06d91c79361d0b0684",
+        "name": "Shree Dhatu Udhyog",
+        "itemCode": "iron"
+      },
+      "workers": []
+    },
+    {
+      "company": {
+        "_id": "6aa9323cf4459e244ac90e12",
+        "name": "Chuna Mafia",
+        "itemCode": "ammo"
+      },
+      "workers": []
+    },
+    {
+      "company": {
+        "_id": "6aaae79d85376c726d2018af",
+        "name": "Bramhavartiya Istika",
+        "itemCode": "lightAmmo"
+      },
+      "workers": []
+    },
+    {
+      "company": {
+        "_id": "6aad2e41f12e16992878a5d8",
+        "name": "Uttam Ispata",
+        "itemCode": "heavyAmmo"
+      },
+      "workers": []
+    },
+    {
+      "company": {
+        "_id": "6ab5b59086acccf45f43d6ca",
+        "name": "Seesa Khanij",
+        "itemCode": "lead"
+      },
+      "workers": []
+    },
+    {
+      "company": {
+        "_id": "6ac298b4f7729800e3c94b11",
+        "name": "Kora Kagaz",
+        "itemCode": "iron"
+      },
+      "workers": [
+        {
+          "_id": "6ad4f8f61601e96600c832df",
+          "user": "6abbab6803200ed0bd70d6d1",
+          "company": "6ac298b4f7729800e3c94b11",
+          "employer": "6aa7ad06d91c79361d0b0673",
+          "wage": 0.155,
+          "joinedAt": "2026-10-15T15:22:54.248Z",
+          "fidelity": 3,
+          "lastFidelityIncreaseAt": "2026-10-18T08:34:33.161Z",
+          "createdAt": "2026-10-18T16:51:02.201Z",
+          "updatedAt": "2026-10-19T07:01:56.307Z",
+          "__v": 0
+        }
+      ]
+    },
+    {
+      "company": {
+        "_id": "6ac6c1bf2c8b47d37e1f9748",
+        "name": "Donali Bendre",
+        "itemCode": "steel"
+      },
+      "workers": [
+        {
+          "_id": "6ad3d1e4bd66c1c260c3d5f6",
+          "user": "69348a3071a1c722dd904b7c",
+          "company": "6ac6c1bf2c8b47d37e1f9748",
+          "employer": "6aa7ad06d91c79361d0b0673",
+          "wage": 0.156,
+          "joinedAt": "2026-10-15T15:04:58.522Z",
+          "fidelity": 3,
+          "lastFidelityIncreaseAt": "2026-10-18T09:29:27.812Z",
+          "createdAt": "2026-10-17T19:52:04.456Z",
+          "updatedAt": "2026-10-19T07:01:43.301Z",
+          "__v": 0
+        }
+      ]
+    },
+    {
+      "company": {
+        "_id": "6aca978b6164cfde0f131b17",
+        "name": "Asle ka Masla",
+        "itemCode": "lead"
+      },
+      "workers": []
+    }
+  ]
+}

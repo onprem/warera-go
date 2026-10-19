@@ -210,16 +210,34 @@ type WorkOffer struct {
 // WorkOfferListItem is a work offer returned in a paginated list.
 type WorkOfferListItem = WorkOffer
 
-// Workers groups a user's workers by company.
+// Workers contains the response to worker.getWorkers. The API returns a flat
+// Workers slice when filtering by company, or WorkersPerCompany when filtering
+// by user.
 type Workers struct {
 	Type              string                  `json:"type,omitempty"`
+	Workers           []Worker                `json:"workers,omitempty"`
 	WorkersPerCompany []WorkersPerCompanyItem `json:"workersPerCompany,omitempty"`
+}
+
+// Worker is an employment record returned by worker.getWorkers.
+type Worker struct {
+	ID                     string  `json:"_id,omitempty"`
+	UserID                 string  `json:"user,omitempty"`
+	CompanyID              string  `json:"company,omitempty"`
+	EmployerID             string  `json:"employer,omitempty"`
+	Wage                   float64 `json:"wage,omitempty"`
+	JoinedAt               string  `json:"joinedAt,omitempty"`
+	Fidelity               int     `json:"fidelity,omitempty"`
+	LastFidelityIncreaseAt string  `json:"lastFidelityIncreaseAt,omitempty"`
+	CreatedAt              string  `json:"createdAt,omitempty"`
+	UpdatedAt              string  `json:"updatedAt,omitempty"`
+	Version                int     `json:"__v,omitempty"`
 }
 
 // WorkersPerCompanyItem contains a company and its workers.
 type WorkersPerCompanyItem struct {
-	Company WorkerCompany     `json:"company,omitempty"`
-	Workers []json.RawMessage `json:"workers,omitempty"`
+	Company WorkerCompany `json:"company,omitempty"`
+	Workers []Worker      `json:"workers,omitempty"`
 }
 
 // WorkerCompany is identifying information for a company in a worker listing.

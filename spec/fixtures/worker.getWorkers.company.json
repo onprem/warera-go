@@ -1,0 +1,18 @@
+{
+  "type": "company",
+  "workers": [
+    {
+      "_id": "6ad4f8f61601e96600c832df",
+      "user": "6abbab6803200ed0bd70d6d1",
+      "company": "6ac298b4f7729800e3c94b11",
+      "employer": "6aa7ad06d91c79361d0b0673",
+      "wage": 0.155,
+      "joinedAt": "2026-10-15T15:22:54.248Z",
+      "fidelity": 3,
+      "lastFidelityIncreaseAt": "2026-10-18T08:34:33.161Z",
+      "createdAt": "2026-10-18T16:51:02.201Z",
+      "updatedAt": "2026-10-19T07:01:56.307Z",
+      "__v": 0
+    }
+  ]
+}

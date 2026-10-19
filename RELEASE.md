@@ -9,11 +9,11 @@
 - Start a new minor series when the current series has accumulated enough changes; do not imply the compatibility guarantees associated with `v1.x`.
 - Choose `v1.0.0` only when we are ready to preserve backward compatibility for the exported API.
 
-The first public preview should be `v0.1.0`, unless we decide to publish smaller incremental previews first. Do not create the tag until the release commit and its changelog have been reviewed.
+The first public preview is `v0.1.0`. Do not create the tag until the release commit and its changelog have been reviewed.
 
 ## Changelog
 
-Keep release notes in [`CHANGELOG.md`](CHANGELOG.md). Before a release, move the changes being released from `[Unreleased]` under a dated `## [0.x.y] - YYYY-MM-DD` heading, then create a fresh `[Unreleased]` section. Use the matching version section as the GitHub Release notes.
+Keep release notes in [`CHANGELOG.md`](CHANGELOG.md). When cutting a release, move the changes being released from `[Unreleased]` under a dated `## [0.x.y] - YYYY-MM-DD` heading, then create a fresh `[Unreleased]` section. Use the matching version section as the GitHub Release notes.
 
 ## Manual release steps
 

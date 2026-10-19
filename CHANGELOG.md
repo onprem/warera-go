@@ -4,13 +4,16 @@ All notable changes to this project are documented here. While the project is in
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-19
+
 ### Added
 
-- Add Go services for WarEra countries, regions, government, battles, military units, companies, workers, markets, inventory, work offers, users, articles, rankings, upgrades, and game configuration.
-- Add cursor-based pagination, automatic request batching, rate limiting, retries, and structured API errors.
-- Add fixture-backed response coverage and interactive examples for traders, soldiers, government members, commanders, treasurers, and researchers.
+- Add an idiomatic Go SDK for WarEra's tRPC API, with services covering supported country, region, government, battle, military, economy, inventory, work, community, ranking, upgrade, and game-configuration procedures.
+- Add cursor-based pagination, bulk lookup helpers, automatic request batching, rate limiting, retries, and structured API errors.
+- Add fixture-backed response coverage and runnable, interactive workflows for traders, soldiers, government members, commanders, treasurers, and researchers.
+- Generate request and filter models from the checked-in OpenAPI specification.
 
 ### Fixed
 
-- Decode flexible API response values, including fractional skill values and response fields that vary in shape.
+- Handle API responses whose JSON shapes vary, including nested battle history and fractional numeric skill values.
 

@@ -13,7 +13,7 @@ An idiomatic, high-performance Go SDK for the [WarEra.io](https://warera.io) onl
 - **Smart Rate Limiting:** Built-in token-bucket rate limiter (200 req/min with API key, 100 req/min unauthenticated).
 - **Transient Error Retries:** Automatic retries with exponential backoff and jitter for network drops and 429/5xx status codes.
 - **URL Length Optimization:** Seamlessly switches large batch GET requests into POST to avoid URL length cutoffs.
-- **Strongly Typed Models:** Complete data structures for Countries, Companies, Battles, Users, Articles, Market Trading, and Game Clock.
+- **Typed Response Models:** Go data structures for Countries, Companies, Battles, Users, Articles, Market Trading, and Game Clock, with nullable scalar pointers and opaque JSON fields where the API shape varies or is undocumented.
 
 ---
 

@@ -81,6 +81,64 @@ func TestResponseFixturesDecode(t *testing.T) {
 	}
 }
 
+func TestRegionActiveBattleFixtureShapes(t *testing.T) {
+	var detail Region
+	if err := json.Unmarshal(loadFixture(t, "region.getById.json"), &detail); err != nil {
+		t.Fatalf("decode region detail fixture: %v", err)
+	}
+	if detail.ActiveBattle == nil || detail.ActiveBattle.BattleID == "" || detail.ActiveBattle.Details != nil {
+		t.Fatalf("region detail active battle = %#v, want battle ID variant", detail.ActiveBattle)
+	}
+
+	var regions map[string]Region
+	if err := json.Unmarshal(loadFixture(t, "region.getRegionsObject.json"), &regions); err != nil {
+		t.Fatalf("decode regions fixture: %v", err)
+	}
+	var sawExpandedBattle, sawConstructionNull, sawConstructionBool bool
+	for _, region := range regions {
+		if region.ActiveBattle != nil && region.ActiveBattle.Details != nil {
+			if region.ActiveBattle.Details.ID == "" {
+				t.Fatalf("expanded active battle has no ID: %#v", region.ActiveBattle.Details)
+			}
+			sawExpandedBattle = true
+		}
+		for _, underConstruction := range []*bool{
+			region.UpgradesV2.Upgrades.Base.IsUnderConstruction,
+			region.UpgradesV2.Upgrades.Bunker.IsUnderConstruction,
+		} {
+			if underConstruction == nil {
+				sawConstructionNull = true
+			} else {
+				sawConstructionBool = true
+			}
+		}
+	}
+	if !sawExpandedBattle {
+		t.Fatal("regions fixture contains no expanded active battle")
+	}
+	if !sawConstructionNull || !sawConstructionBool {
+		t.Fatalf("construction values: null=%t boolean=%t, want both fixture variants", sawConstructionNull, sawConstructionBool)
+	}
+}
+
+func TestUserSkillFixtureRetainsNullAndNumericValues(t *testing.T) {
+	var user User
+	if err := json.Unmarshal(loadFixture(t, "user.getUserById.json"), &user); err != nil {
+		t.Fatalf("decode user fixture: %v", err)
+	}
+	attack := user.Skills.Attack
+	if attack.Equipment != nil {
+		t.Errorf("attack equipment = %v, want nil for JSON null", *attack.Equipment)
+	}
+	if attack.Value != 100 {
+		t.Errorf("attack value = %v, want 100", attack.Value)
+	}
+	armor := user.Skills.Armor
+	if !bytes.Equal(armor.Limited, []byte("null")) {
+		t.Errorf("armor limited = %s, want preserved JSON null", armor.Limited)
+	}
+}
+
 func decodeFixtureAs[T any](data json.RawMessage) error {
 	var got T
 	return json.Unmarshal(data, &got)

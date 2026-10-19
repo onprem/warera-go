@@ -1,5 +1,7 @@
 package warera
 
+import "encoding/json"
+
 // Response models are maintained separately from the fixture recorder.
 // Fixtures provide examples for checking decoding; they do not determine these Go types.
 
@@ -794,7 +796,7 @@ type GameConfigItemsBreadFlatStats struct {
 
 // GameConfigItemsBreadIconComponent is a nested component of GameConfigItemsBread.
 type GameConfigItemsBreadIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsBreadProductionNeeds is a nested component of GameConfigItemsBread.
@@ -930,7 +932,7 @@ type GameConfigItemsCoca struct {
 
 // GameConfigItemsCocaIconComponent is a nested component of GameConfigItemsCoca.
 type GameConfigItemsCocaIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsCocain is a nested component of GameConfigItems.
@@ -954,7 +956,7 @@ type GameConfigItemsCocainFlatStats struct {
 
 // GameConfigItemsCocainIconComponent is a nested component of GameConfigItemsCocain.
 type GameConfigItemsCocainIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsCocainProductionNeeds is a nested component of GameConfigItemsCocain.
@@ -1013,7 +1015,7 @@ type GameConfigItemsFish struct {
 
 // GameConfigItemsFishIconComponent is a nested component of GameConfigItemsFish.
 type GameConfigItemsFishIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsGloves1 is a nested component of GameConfigItems.
@@ -1126,7 +1128,7 @@ type GameConfigItemsGrain struct {
 
 // GameConfigItemsGrainIconComponent is a nested component of GameConfigItemsGrain.
 type GameConfigItemsGrainIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsGun is a nested component of GameConfigItems.
@@ -1148,7 +1150,7 @@ type GameConfigItemsGunDynamicStats struct {
 
 // GameConfigItemsGunIconComponent is a nested component of GameConfigItemsGun.
 type GameConfigItemsGunIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsHeavyAmmo is a nested component of GameConfigItems.
@@ -1172,7 +1174,7 @@ type GameConfigItemsHeavyAmmoFlatStats struct {
 
 // GameConfigItemsHeavyAmmoIconComponent is a nested component of GameConfigItemsHeavyAmmo.
 type GameConfigItemsHeavyAmmoIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsHeavyAmmoProductionNeeds is a nested component of GameConfigItemsHeavyAmmo.
@@ -1322,7 +1324,7 @@ type GameConfigItemsKnifeDynamicStats struct {
 
 // GameConfigItemsKnifeIconComponent is a nested component of GameConfigItemsKnife.
 type GameConfigItemsKnifeIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsLead is a nested component of GameConfigItems.
@@ -1384,7 +1386,7 @@ type GameConfigItemsLivestock struct {
 
 // GameConfigItemsLivestockIconComponent is a nested component of GameConfigItemsLivestock.
 type GameConfigItemsLivestockIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsOil is a nested component of GameConfigItems.
@@ -1400,7 +1402,7 @@ type GameConfigItemsOil struct {
 
 // GameConfigItemsOilIconComponent is a nested component of GameConfigItemsOil.
 type GameConfigItemsOilIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsOilProductionNeeds is a nested component of GameConfigItemsOil.
@@ -1517,7 +1519,7 @@ type GameConfigItemsPaper struct {
 
 // GameConfigItemsPaperIconComponent is a nested component of GameConfigItemsPaper.
 type GameConfigItemsPaperIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsPaperProductionNeeds is a nested component of GameConfigItemsPaper.
@@ -1539,7 +1541,7 @@ type GameConfigItemsPetroleum struct {
 
 // GameConfigItemsPetroleumIconComponent is a nested component of GameConfigItemsPetroleum.
 type GameConfigItemsPetroleumIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsRifle is a nested component of GameConfigItems.
@@ -1602,7 +1604,7 @@ type GameConfigItemsSteakFlatStats struct {
 
 // GameConfigItemsSteakIconComponent is a nested component of GameConfigItemsSteak.
 type GameConfigItemsSteakIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsSteakProductionNeeds is a nested component of GameConfigItemsSteak.
@@ -1644,7 +1646,7 @@ type GameConfigItemsTankDynamicStats struct {
 
 // GameConfigItemsTankIconComponent is a nested component of GameConfigItemsTank.
 type GameConfigItemsTankIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsWood is a nested component of GameConfigItems.
@@ -1661,7 +1663,7 @@ type GameConfigItemsWood struct {
 
 // GameConfigItemsWoodIconComponent is a nested component of GameConfigItemsWood.
 type GameConfigItemsWoodIconComponent struct {
-	Compare any `json:"compare,omitempty"`
+	Compare json.RawMessage `json:"compare,omitempty"`
 }
 
 // GameConfigItemsWoodenCase is a nested component of GameConfigItems.
@@ -2289,9 +2291,9 @@ type Ranking struct {
 
 // RankingItem represents a tiered leaderboard rank entry.
 type RankingItem struct {
-	Rank  int    `json:"rank,omitempty"`
-	Tier  string `json:"tier,omitempty"`
-	Value any    `json:"value,omitempty"`
+	Rank  int     `json:"rank,omitempty"`
+	Tier  string  `json:"tier,omitempty"`
+	Value float64 `json:"value,omitempty"`
 }
 
 // RankingItems is a nested component of Ranking.
@@ -2316,7 +2318,7 @@ type RankingTierValues struct {
 // Region represents data returned by the WarEra API.
 type Region struct {
 	ID                           string                    `json:"_id,omitempty"`
-	ActiveBattle                 any                       `json:"activeBattle,omitempty"`
+	ActiveBattle                 *RegionActiveBattleValue  `json:"activeBattle,omitempty"`
 	ActiveUpgradeLevels          RegionActiveUpgradeLevels `json:"activeUpgradeLevels,omitempty"`
 	BaseDevelopment              float64                   `json:"baseDevelopment,omitempty"`
 	Biome                        string                    `json:"biome,omitempty"`
@@ -2423,7 +2425,7 @@ type RegionUpgradesV2UpgradesBase struct {
 	ConstructionPoints    int      `json:"constructionPoints,omitempty"`
 	ConstructionStartedAt string   `json:"constructionStartedAt,omitempty"`
 	InvestedMoney         int      `json:"investedMoney,omitempty"`
-	IsUnderConstruction   any      `json:"isUnderConstruction,omitempty"`
+	IsUnderConstruction   *bool    `json:"isUnderConstruction,omitempty"`
 	LastConstructions     []string `json:"lastConstructions,omitempty"`
 	Level                 int      `json:"level,omitempty"`
 	Status                string   `json:"status,omitempty"`
@@ -2436,7 +2438,7 @@ type RegionUpgradesV2UpgradesBunker struct {
 	ConstructionPoints    int                                               `json:"constructionPoints,omitempty"`
 	ConstructionStartedAt string                                            `json:"constructionStartedAt,omitempty"`
 	InvestedMoney         int                                               `json:"investedMoney,omitempty"`
-	IsUnderConstruction   bool                                              `json:"isUnderConstruction,omitempty"`
+	IsUnderConstruction   *bool                                             `json:"isUnderConstruction,omitempty"`
 	LastConstructions     []RegionUpgradesV2UpgradesBunkerLastConstructions `json:"lastConstructions,omitempty"`
 	Level                 int                                               `json:"level,omitempty"`
 	Status                string                                            `json:"status,omitempty"`
@@ -2723,213 +2725,213 @@ type UserSkills struct {
 
 // UserSkillsArmor is a nested component of UserSkills.
 type UserSkillsArmor struct {
-	Equipment         int `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap int `json:"totalAfterSoftCap,omitempty"`
-	Value             any `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         int             `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap int             `json:"totalAfterSoftCap,omitempty"`
+	Value             *float64        `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsAttack is a nested component of UserSkills.
 type UserSkillsAttack struct {
-	AmmoPercent         int     `json:"ammoPercent,omitempty"`
-	BuffsPercent        int     `json:"buffsPercent,omitempty"`
-	DebuffsPercent      int     `json:"debuffsPercent,omitempty"`
-	Equipment           any     `json:"equipment,omitempty"`
-	Level               int     `json:"level,omitempty"`
-	Limited             any     `json:"limited,omitempty"`
-	MilitaryRankPercent float64 `json:"militaryRankPercent,omitempty"`
-	Overflow            any     `json:"overflow,omitempty"`
-	Prestige            int     `json:"prestige,omitempty"`
-	Total               int     `json:"total,omitempty"`
-	TotalAfterSoftCap   any     `json:"totalAfterSoftCap,omitempty"`
-	Value               int     `json:"value,omitempty"`
-	Weapon              int     `json:"weapon,omitempty"`
+	AmmoPercent         int             `json:"ammoPercent,omitempty"`
+	BuffsPercent        int             `json:"buffsPercent,omitempty"`
+	DebuffsPercent      int             `json:"debuffsPercent,omitempty"`
+	Equipment           *float64        `json:"equipment,omitempty"`
+	Level               int             `json:"level,omitempty"`
+	Limited             json.RawMessage `json:"limited,omitempty"`
+	MilitaryRankPercent float64         `json:"militaryRankPercent,omitempty"`
+	Overflow            json.RawMessage `json:"overflow,omitempty"`
+	Prestige            int             `json:"prestige,omitempty"`
+	Total               int             `json:"total,omitempty"`
+	TotalAfterSoftCap   *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value               int             `json:"value,omitempty"`
+	Weapon              int             `json:"weapon,omitempty"`
 }
 
 // UserSkillsCompanies is a nested component of UserSkills.
 type UserSkillsCompanies struct {
-	Equipment         any `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsCriticalChance is a nested component of UserSkills.
 type UserSkillsCriticalChance struct {
-	Equipment         any `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            int `json:"weapon,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            int             `json:"weapon,omitempty"`
 }
 
 // UserSkillsCriticalDamages is a nested component of UserSkills.
 type UserSkillsCriticalDamages struct {
-	Equipment         int `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         int             `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsDodge is a nested component of UserSkills.
 type UserSkillsDodge struct {
-	Equipment         int `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap int `json:"totalAfterSoftCap,omitempty"`
-	Value             any `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         int             `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap int             `json:"totalAfterSoftCap,omitempty"`
+	Value             *float64        `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsEnergy is a nested component of UserSkills.
 type UserSkillsEnergy struct {
-	CurrentBarValue   int `json:"currentBarValue,omitempty"`
-	Equipment         any `json:"equipment,omitempty"`
-	HourlyBarRegen    int `json:"hourlyBarRegen,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsEntrepreneurship is a nested component of UserSkills.
 type UserSkillsEntrepreneurship struct {
-	CurrentBarValue   int `json:"currentBarValue,omitempty"`
-	Equipment         any `json:"equipment,omitempty"`
-	HourlyBarRegen    int `json:"hourlyBarRegen,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsHealth is a nested component of UserSkills.
 type UserSkillsHealth struct {
-	CurrentBarValue   float64 `json:"currentBarValue,omitempty"`
-	Equipment         any     `json:"equipment,omitempty"`
-	HourlyBarRegen    int     `json:"hourlyBarRegen,omitempty"`
-	Level             int     `json:"level,omitempty"`
-	Limited           any     `json:"limited,omitempty"`
-	Overflow          any     `json:"overflow,omitempty"`
-	Prestige          int     `json:"prestige,omitempty"`
-	Total             int     `json:"total,omitempty"`
-	TotalAfterSoftCap any     `json:"totalAfterSoftCap,omitempty"`
-	Value             int     `json:"value,omitempty"`
-	Weapon            any     `json:"weapon,omitempty"`
+	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsHunger is a nested component of UserSkills.
 type UserSkillsHunger struct {
-	CurrentBarValue   int     `json:"currentBarValue,omitempty"`
-	Equipment         any     `json:"equipment,omitempty"`
-	HourlyBarRegen    float64 `json:"hourlyBarRegen,omitempty"`
-	Level             int     `json:"level,omitempty"`
-	Limited           any     `json:"limited,omitempty"`
-	Overflow          any     `json:"overflow,omitempty"`
-	Prestige          int     `json:"prestige,omitempty"`
-	Total             int     `json:"total,omitempty"`
-	TotalAfterSoftCap any     `json:"totalAfterSoftCap,omitempty"`
-	Value             int     `json:"value,omitempty"`
-	Weapon            any     `json:"weapon,omitempty"`
+	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsLootChance is a nested component of UserSkills.
 type UserSkillsLootChance struct {
-	Equipment         any `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsManagement is a nested component of UserSkills.
 type UserSkillsManagement struct {
-	Equipment         any `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsPrecision is a nested component of UserSkills.
 type UserSkillsPrecision struct {
-	Equipment         int `json:"equipment,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	Equipment         int             `json:"equipment,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsProduction is a nested component of UserSkills.
 type UserSkillsProduction struct {
-	CurrentBarValue   int     `json:"currentBarValue,omitempty"`
-	Equipment         any     `json:"equipment,omitempty"`
-	HourlyBarRegen    float64 `json:"hourlyBarRegen,omitempty"`
-	Level             int     `json:"level,omitempty"`
-	Limited           any     `json:"limited,omitempty"`
-	Overflow          any     `json:"overflow,omitempty"`
-	Prestige          int     `json:"prestige,omitempty"`
-	Total             int     `json:"total,omitempty"`
-	TotalAfterSoftCap any     `json:"totalAfterSoftCap,omitempty"`
-	Value             int     `json:"value,omitempty"`
-	Weapon            any     `json:"weapon,omitempty"`
+	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsStamina is a nested component of UserSkills.
 type UserSkillsStamina struct {
-	CurrentBarValue   int `json:"currentBarValue,omitempty"`
-	Equipment         any `json:"equipment,omitempty"`
-	HourlyBarRegen    int `json:"hourlyBarRegen,omitempty"`
-	Level             int `json:"level,omitempty"`
-	Limited           any `json:"limited,omitempty"`
-	Overflow          any `json:"overflow,omitempty"`
-	Prestige          int `json:"prestige,omitempty"`
-	Total             int `json:"total,omitempty"`
-	TotalAfterSoftCap any `json:"totalAfterSoftCap,omitempty"`
-	Value             int `json:"value,omitempty"`
-	Weapon            any `json:"weapon,omitempty"`
+	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	Equipment         *float64        `json:"equipment,omitempty"`
+	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
+	Level             int             `json:"level,omitempty"`
+	Limited           json.RawMessage `json:"limited,omitempty"`
+	Overflow          json.RawMessage `json:"overflow,omitempty"`
+	Prestige          int             `json:"prestige,omitempty"`
+	Total             int             `json:"total,omitempty"`
+	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
+	Value             int             `json:"value,omitempty"`
+	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserStats is a nested component of User.

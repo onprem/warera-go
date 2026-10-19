@@ -1,5 +1,11 @@
 package warera
 
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+)
+
 // These response models cover procedures whose contracts are not described by
 // the upstream OpenAPI document. They are maintained here from observed API
 // responses, endpoint behavior, and recorded fixtures.
@@ -18,6 +24,48 @@ type BattleLootSummary struct {
 	TotalMoneyFromContract float64              `json:"totalMoneyFromContract,omitempty"`
 	UpdatedAt              string               `json:"updatedAt,omitempty"`
 	UserID                 string               `json:"user,omitempty"`
+}
+
+// RegionActiveBattleValue represents the two shapes returned for a region's
+// active battle: a battle ID or an expanded battle object.
+type RegionActiveBattleValue struct {
+	BattleID string
+	Details  *RegionActiveBattle
+}
+
+func (b *RegionActiveBattleValue) UnmarshalJSON(data []byte) error {
+	data = bytes.TrimSpace(data)
+	*b = RegionActiveBattleValue{}
+	if len(data) == 0 {
+		return fmt.Errorf("decode active battle: empty JSON value")
+	}
+	switch data[0] {
+	case '"':
+		return json.Unmarshal(data, &b.BattleID)
+	case '{':
+		var battle RegionActiveBattle
+		if err := json.Unmarshal(data, &battle); err != nil {
+			return fmt.Errorf("decode expanded active battle: %w", err)
+		}
+		b.Details = &battle
+		return nil
+	case 'n':
+		if bytes.Equal(data, []byte("null")) {
+			*b = RegionActiveBattleValue{}
+			return nil
+		}
+	}
+	return fmt.Errorf("decode active battle: expected ID, object, or null")
+}
+
+func (b RegionActiveBattleValue) MarshalJSON() ([]byte, error) {
+	if b.Details != nil {
+		return json.Marshal(b.Details)
+	}
+	if b.BattleID != "" {
+		return json.Marshal(b.BattleID)
+	}
+	return []byte("null"), nil
 }
 
 // BattleLootPoolItem is one item in a battle loot pool.
@@ -168,8 +216,8 @@ type Workers struct {
 
 // WorkersPerCompanyItem contains a company and its workers.
 type WorkersPerCompanyItem struct {
-	Company WorkerCompany `json:"company,omitempty"`
-	Workers []any         `json:"workers,omitempty"`
+	Company WorkerCompany     `json:"company,omitempty"`
+	Workers []json.RawMessage `json:"workers,omitempty"`
 }
 
 // WorkerCompany is identifying information for a company in a worker listing.

@@ -5,8 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
+	"reflect"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -171,6 +173,66 @@ func TestClient_CallBatch_Explicit(t *testing.T) {
 
 	if out1.Name != "CountryA" || out2.Name != "CompanyB" {
 		t.Errorf("unexpected outputs: %+v, %+v", out1, out2)
+	}
+}
+
+func TestClient_CallBatchSplitsAtMaxBatchSize(t *testing.T) {
+	var paths []string
+	client := NewClient(ClientConfig{
+		BaseURL: "https://mock.warera.io/trpc",
+		HTTPClient: &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+			paths = append(paths, strings.TrimPrefix(r.URL.Path, "/trpc/"))
+			methods := strings.Split(paths[len(paths)-1], ",")
+			envelopes := make([]ResponseEnvelope, len(methods))
+			for i := range envelopes {
+				envelopes[i] = ResponseEnvelope{Result: &ResultEnvelope{Data: json.RawMessage(`{"name":"ok"}`)}}
+			}
+			var body []byte
+			var err error
+			if len(envelopes) == 1 {
+				body, err = json.Marshal(envelopes[0])
+			} else {
+				body, err = json.Marshal(envelopes)
+			}
+			if err != nil {
+				return nil, err
+			}
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Status:     "200 OK",
+				Body:       io.NopCloser(bytes.NewReader(body)),
+			}, nil
+		})},
+		MaxBatchSize:       2,
+		RateLimitPerMinute: 0,
+	})
+
+	calls := make([]BatchCall, 5)
+	outputs := make([]dummyOutput, len(calls))
+	for i := range calls {
+		calls[i] = BatchCall{
+			Method: fmt.Sprintf("procedure.%d", i),
+			Input:  dummyInput{ID: fmt.Sprint(i)},
+			Output: &outputs[i],
+		}
+	}
+	if err := client.CallBatch(context.Background(), calls); err != nil {
+		t.Fatalf("CallBatch: %v", err)
+	}
+
+	wantPaths := []string{"procedure.0,procedure.1", "procedure.2,procedure.3", "procedure.4"}
+	if !reflect.DeepEqual(paths, wantPaths) {
+		t.Fatalf("request paths = %v, want %v", paths, wantPaths)
+	}
+	for i, output := range outputs {
+		if output.Name != "ok" {
+			t.Errorf("output %d = %+v, want decoded result", i, output)
+		}
+	}
+	for i, call := range calls {
+		if call.Err != nil {
+			t.Errorf("call %d error = %v, want nil", i, call.Err)
+		}
 	}
 }
 
@@ -419,6 +481,120 @@ func TestClient_TransparentBatching(t *testing.T) {
 
 	if out1.Name != "Result1" || out2.Name != "Result2" || out3.Name != "Result3" {
 		t.Errorf("coalesced results mismatch: out1=%+v out2=%+v out3=%+v", out1, out2, out3)
+	}
+}
+
+func TestClient_CloseCompletesAcceptedQueuedCall(t *testing.T) {
+	started := make(chan struct{})
+	client := NewClient(ClientConfig{
+		BaseURL: "https://mock.warera.io/trpc",
+		HTTPClient: &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+			close(started)
+			<-r.Context().Done()
+			return nil, r.Context().Err()
+		})},
+		BatchWindow:        time.Hour,
+		MaxBatchSize:       10,
+		RateLimitPerMinute: 0,
+	})
+
+	entry := &batchEntry{
+		ctx:    context.Background(),
+		method: "procedure.queued",
+		input:  dummyInput{ID: "queued"},
+		output: &dummyOutput{},
+		doneCh: make(chan error, 1),
+	}
+	// Enqueue directly so Close deterministically starts with accepted work.
+	client.batcher.inCh <- entry
+
+	closeDone := make(chan struct{})
+	go func() {
+		client.Close()
+		close(closeDone)
+	}()
+	select {
+	case <-started:
+	case <-time.After(time.Second):
+		t.Fatal("closing did not flush the accepted queued call")
+	}
+	select {
+	case <-closeDone:
+	case <-time.After(time.Second):
+		t.Fatal("Close did not finish after canceling the in-flight batch")
+	}
+	select {
+	case err := <-entry.doneCh:
+		if err == nil {
+			t.Fatal("queued call error = nil, want cancellation from Close")
+		}
+	case <-time.After(time.Second):
+		t.Fatal("accepted queued entry remained unresolved after Close")
+	}
+}
+
+func TestClient_CloseRacingWithSubmissionsDoesNotStrandCallers(t *testing.T) {
+	client := NewClient(ClientConfig{
+		BaseURL: "https://mock.warera.io/trpc",
+		HTTPClient: &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+			methods := strings.Split(strings.TrimPrefix(r.URL.Path, "/trpc/"), ",")
+			envelopes := make([]ResponseEnvelope, len(methods))
+			for i := range envelopes {
+				envelopes[i] = ResponseEnvelope{Result: &ResultEnvelope{Data: json.RawMessage(`{"name":"ok"}`)}}
+			}
+			var body []byte
+			var err error
+			if len(envelopes) == 1 {
+				body, err = json.Marshal(envelopes[0])
+			} else {
+				body, err = json.Marshal(envelopes)
+			}
+			if err != nil {
+				return nil, err
+			}
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Status:     "200 OK",
+				Body:       io.NopCloser(bytes.NewReader(body)),
+			}, nil
+		})},
+		BatchWindow:        time.Millisecond,
+		MaxBatchSize:       5,
+		RateLimitPerMinute: 0,
+	})
+
+	const callCount = 40
+	start := make(chan struct{})
+	errs := make(chan error, callCount)
+	var callers sync.WaitGroup
+	callers.Add(callCount)
+	for i := 0; i < callCount; i++ {
+		go func(i int) {
+			defer callers.Done()
+			<-start
+			ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+			defer cancel()
+			errs <- client.Call(ctx, fmt.Sprintf("procedure.%d", i), dummyInput{ID: fmt.Sprint(i)}, &dummyOutput{})
+		}(i)
+	}
+	close(start)
+	client.Close()
+
+	done := make(chan struct{})
+	go func() {
+		callers.Wait()
+		close(done)
+	}()
+	select {
+	case <-done:
+	case <-time.After(3 * time.Second):
+		t.Fatal("callers remained blocked while Close raced with submissions")
+	}
+	close(errs)
+	for err := range errs {
+		if err != nil && !errors.Is(err, context.Canceled) {
+			t.Errorf("call error = %v, want success or shutdown cancellation", err)
+		}
 	}
 }
 

@@ -14,6 +14,8 @@ import (
 func main() {
 	client := warera.NewClient(
 		warera.WithAPIKey(os.Getenv("WARERA_API_KEY")),
+		// Calls submitted close together have a chance to share a batch request.
+		// The window trades a tiny amount of latency for request coalescing.
 		warera.WithBatchWindow(30*time.Millisecond),
 	)
 	defer client.Close()
@@ -22,8 +24,9 @@ func main() {
 	defer cancel()
 
 	fmt.Println("=== Example 1: Transparent Request Coalescing ===")
-	// When multiple goroutines query the client at the same time,
-	// warera-go automatically bundles them into a single HTTP request!
+	// Start independent reads concurrently. The client can combine calls that
+	// reach its batcher during the configured window; batching is transparent to
+	// each service method, which still returns its own typed result.
 	var wg sync.WaitGroup
 	var countries []warera.Country
 	var dates *warera.GameDates
@@ -62,7 +65,8 @@ func main() {
 		len(countries), dates != nil, len(prices))
 
 	fmt.Println("=== Example 2: Go 1.23+ Range Iterator Auto-Pagination ===")
-	// Automatically paginates across cursor pages
+	// All follows cursor pages and yields one value at a time. Breaking early
+	// stops iteration, which is useful when a caller only needs a sample.
 	count := 0
 	for article, err := range client.Articles.All(ctx, warera.ArticleFilter{Type: "last", Limit: 10}) {
 		if err != nil {
@@ -70,7 +74,7 @@ func main() {
 		}
 		fmt.Printf("[%d] %s (by %s)\n", count+1, article.Title, article.Author)
 		count++
-		if count >= 5 { // Process first 5
+		if count >= 5 { // Stop after five records even if more pages are available.
 			break
 		}
 	}

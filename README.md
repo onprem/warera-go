@@ -45,6 +45,9 @@ See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the p
 - `go run ./examples/trader` prompts for a player handle and shows companies, workers, wages, and current market context.
 - `go run ./examples/soldier` prompts for a player, then selects an active or recent battle involving their country and shows profile, equipment, and battle data.
 - `go run ./examples/government` prompts for a country and collects a country briefing.
+- `go run ./examples/commander` prompts for a military unit and inspects its roster and orders in an active battle.
+- `go run ./examples/treasurer` prompts for a country and shows current treasury and tax fields alongside one transaction page.
+- `go run ./examples/researcher` prompts for a country and follows its event feed and pinned-article reference.
 - `go run ./examples/basic` and `go run ./examples/batching` show basic client and batching usage.
 
 Set `WARERA_API_KEY` in the environment when the API requires authentication. The persona examples are read-only. [`CONTRIBUTING.md`](CONTRIBUTING.md) describes the development workflow.

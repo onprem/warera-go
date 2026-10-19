@@ -116,6 +116,43 @@ func SelectCountry(ctx context.Context, client *warera.Client, prompt *Prompt) (
 	}
 }
 
+// SelectMilitaryUnit resolves a unit name or partial name through the global
+// search endpoint and hydrates the returned IDs into full military-unit records.
+func SelectMilitaryUnit(ctx context.Context, client *warera.Client, prompt *Prompt) (*warera.MilitaryUnit, error) {
+	for {
+		query, err := prompt.Ask(ctx, "Enter a military-unit name or part of a name:")
+		if err != nil {
+			return nil, fmt.Errorf("read military-unit query: %w", err)
+		}
+		result, err := client.Search.SearchAnything(ctx, query)
+		if err != nil {
+			return nil, fmt.Errorf("search military units: %w", err)
+		}
+		if len(result.MUIDs) == 0 {
+			fmt.Fprintf(prompt.out, "No military units matched %q. Try a more specific name.\n", query)
+			continue
+		}
+		units, err := client.MilitaryUnits.GetMany(ctx, result.MUIDs)
+		if err != nil {
+			return nil, fmt.Errorf("load matching military units: %w", err)
+		}
+		if len(units) > 20 {
+			units = units[:20]
+			fmt.Fprintln(prompt.out, "Showing the first 20 matches. Enter a more specific name if yours is not listed.")
+		}
+		options := make([]string, len(units))
+		for i, unit := range units {
+			options[i] = fmt.Sprintf("%s | country %s | region %s | %d listed members | ID %s",
+				unit.Name, unit.CountryID, unit.Region, len(unit.Members), unit.ID)
+		}
+		selected, err := chooseSingleOrPrompt(ctx, prompt, "Select the military unit:", options)
+		if err != nil {
+			return nil, err
+		}
+		return &units[selected], nil
+	}
+}
+
 func chooseSingleOrPrompt(ctx context.Context, prompt *Prompt, title string, options []string) (int, error) {
 	return prompt.Choose(ctx, title, options)
 }

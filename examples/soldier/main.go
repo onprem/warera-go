@@ -16,6 +16,7 @@ import (
 
 	"github.com/onprem/warera-go"
 	"github.com/onprem/warera-go/examples/internal/console"
+	"github.com/onprem/warera-go/examples/internal/skillmix"
 )
 
 func main() {
@@ -117,6 +118,14 @@ func run() error {
 	}
 	fmt.Printf("\nCapture window: %s to %s (UTC)\n", captureStartedAt.Format(time.RFC3339), captureFinishedAt.Format(time.RFC3339))
 	fmt.Printf("Player: %s (level %d, military rank %d)\n", profile.Username, profile.Level(), profile.MilitaryRank)
+	mix := skillmix.Analyze(profile.Skills)
+	fmt.Printf("Skill mix: %s leaning; war %.1f%% (%d pts), eco %.1f%% (%d pts); prestige levels war=%d eco=%d\n",
+		mix.Mode(), mix.WarPercent, mix.WarPoints, mix.EcoPercent, mix.EcoPoints,
+		mix.WarPrestigeLevels, mix.EcoPrestigeLevels)
+	if mix.ClassifiedPoints != profile.Leveling.SpentSkillPoints {
+		fmt.Printf("Categorized regular points=%d; profile reports %d spent points.\n",
+			mix.ClassifiedPoints, profile.Leveling.SpentSkillPoints)
+	}
 	fmt.Printf("Combat skills: attack=%d criticalChance=%d criticalDamage=%d precision=%d armor=%d\n",
 		profile.Skills.Attack.Total, profile.Skills.CriticalChance.Total,
 		profile.Skills.CriticalDamages.Total, profile.Skills.Precision.Total, profile.Skills.Armor.Total)

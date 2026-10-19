@@ -40,19 +40,28 @@ type ArticleStats struct {
 
 // Battle is a military conflict between attacker and defender sides.
 type Battle struct {
-	ID            string            `json:"_id,omitempty"`
-	Attacker      BattleSideSummary `json:"attacker,omitempty"`
-	CreatedAt     string            `json:"createdAt,omitempty"`
-	CurrentRound  *BattleRound      `json:"currentRound,omitempty"`
-	Defender      BattleSideSummary `json:"defender,omitempty"`
-	IsActive      bool              `json:"isActive,omitempty"`
-	Rounds        []string          `json:"rounds,omitempty"`
-	RoundsHistory []string          `json:"roundsHistory,omitempty"`
-	RoundsToWin   int               `json:"roundsToWin,omitempty"`
-	Stats         BattleStats       `json:"stats,omitempty"`
-	Type          string            `json:"type,omitempty"`
-	UpdatedAt     string            `json:"updatedAt,omitempty"`
-	WarID         string            `json:"war,omitempty"`
+	ID            string               `json:"_id,omitempty"`
+	Attacker      BattleSideSummary    `json:"attacker,omitempty"`
+	CreatedAt     string               `json:"createdAt,omitempty"`
+	CurrentRound  *BattleRound         `json:"currentRound,omitempty"`
+	Defender      BattleSideSummary    `json:"defender,omitempty"`
+	IsActive      bool                 `json:"isActive,omitempty"`
+	Rounds        []string             `json:"rounds,omitempty"`
+	RoundsHistory []BattleRoundHistory `json:"roundsHistory,omitempty"`
+	RoundsToWin   int                  `json:"roundsToWin,omitempty"`
+	Stats         BattleStats          `json:"stats,omitempty"`
+	Type          string               `json:"type,omitempty"`
+	UpdatedAt     string               `json:"updatedAt,omitempty"`
+	WarID         string               `json:"war,omitempty"`
+}
+
+// BattleRoundHistory summarizes the outcome of a completed battle round.
+type BattleRoundHistory struct {
+	AttackerDamages int    `json:"attackerDamages,omitempty"`
+	AttackerPoints  int    `json:"attackerPoints,omitempty"`
+	DefenderDamages int    `json:"defenderDamages,omitempty"`
+	DefenderPoints  int    `json:"defenderPoints,omitempty"`
+	WonBy           string `json:"wonBy,omitempty"`
 }
 
 // BattleOrder is an order assigned to a country or military unit on a battle side.
@@ -2225,12 +2234,12 @@ type LiveBattleData struct {
 
 // LiveBattleSummary is a nested component of LiveBattleData.
 type LiveBattleSummary struct {
-	AttackerCountryOrders     []string `json:"attackerCountryOrders,omitempty"`
-	AttackerMoneyPer1kDamages float64  `json:"attackerMoneyPer1kDamages,omitempty"`
-	DefenderCountryOrders     []string `json:"defenderCountryOrders,omitempty"`
-	IsActive                  bool     `json:"isActive,omitempty"`
-	RoundHistory              []string `json:"roundHistory,omitempty"`
-	RoundIds                  []string `json:"roundIds,omitempty"`
+	AttackerCountryOrders     []string             `json:"attackerCountryOrders,omitempty"`
+	AttackerMoneyPer1kDamages float64              `json:"attackerMoneyPer1kDamages,omitempty"`
+	DefenderCountryOrders     []string             `json:"defenderCountryOrders,omitempty"`
+	IsActive                  bool                 `json:"isActive,omitempty"`
+	RoundHistory              []BattleRoundHistory `json:"roundHistory,omitempty"`
+	RoundIds                  []string             `json:"roundIds,omitempty"`
 }
 
 // LiveRoundSummary is a nested component of LiveBattleData.
@@ -2266,7 +2275,7 @@ type MilitaryUnit struct {
 	CreatedAt           string                          `json:"createdAt,omitempty"`
 	Leveling            MULeveling                      `json:"leveling,omitempty"`
 	Members             []string                        `json:"members,omitempty"`
-	MercenaryReputation int                             `json:"mercenaryReputation,omitempty"`
+	MercenaryReputation float64                         `json:"mercenaryReputation,omitempty"`
 	Name                string                          `json:"name,omitempty"`
 	Rankings            map[string]RankingItem          `json:"rankings,omitempty"`
 	Region              string                          `json:"region,omitempty"`
@@ -2352,30 +2361,24 @@ type Region struct {
 
 // RegionActiveBattle is a nested component of Region.
 type RegionActiveBattle struct {
-	ID            string                            `json:"_id,omitempty"`
-	Attacker      BattleSideSummary                 `json:"attacker,omitempty"`
-	CreatedAt     string                            `json:"createdAt,omitempty"`
-	CurrentRound  *BattleRound                      `json:"currentRound,omitempty"`
-	Defender      BattleSideSummary                 `json:"defender,omitempty"`
-	IsActive      bool                              `json:"isActive,omitempty"`
-	IsBigBattle   bool                              `json:"isBigBattle,omitempty"`
-	Rounds        []string                          `json:"rounds,omitempty"`
-	RoundsHistory []RegionActiveBattleRoundsHistory `json:"roundsHistory,omitempty"`
-	RoundsToWin   int                               `json:"roundsToWin,omitempty"`
-	Stats         RegionActiveBattleStats           `json:"stats,omitempty"`
-	Type          string                            `json:"type,omitempty"`
-	UpdatedAt     string                            `json:"updatedAt,omitempty"`
-	WarID         string                            `json:"war,omitempty"`
+	ID            string                  `json:"_id,omitempty"`
+	Attacker      BattleSideSummary       `json:"attacker,omitempty"`
+	CreatedAt     string                  `json:"createdAt,omitempty"`
+	CurrentRound  *BattleRound            `json:"currentRound,omitempty"`
+	Defender      BattleSideSummary       `json:"defender,omitempty"`
+	IsActive      bool                    `json:"isActive,omitempty"`
+	IsBigBattle   bool                    `json:"isBigBattle,omitempty"`
+	Rounds        []string                `json:"rounds,omitempty"`
+	RoundsHistory []BattleRoundHistory    `json:"roundsHistory,omitempty"`
+	RoundsToWin   int                     `json:"roundsToWin,omitempty"`
+	Stats         RegionActiveBattleStats `json:"stats,omitempty"`
+	Type          string                  `json:"type,omitempty"`
+	UpdatedAt     string                  `json:"updatedAt,omitempty"`
+	WarID         string                  `json:"war,omitempty"`
 }
 
-// RegionActiveBattleRoundsHistory is a nested component of RegionActiveBattle.
-type RegionActiveBattleRoundsHistory struct {
-	AttackerDamages int    `json:"attackerDamages,omitempty"`
-	AttackerPoints  int    `json:"attackerPoints,omitempty"`
-	DefenderDamages int    `json:"defenderDamages,omitempty"`
-	DefenderPoints  int    `json:"defenderPoints,omitempty"`
-	WonBy           string `json:"wonBy,omitempty"`
-}
+// RegionActiveBattleRoundsHistory is an alias for [BattleRoundHistory].
+type RegionActiveBattleRoundsHistory = BattleRoundHistory
 
 // RegionActiveBattleStats is a nested component of RegionActiveBattle.
 type RegionActiveBattleStats struct {
@@ -2421,36 +2424,39 @@ type RegionUpgradesV2Upgrades struct {
 
 // RegionUpgradesV2UpgradesBase is a nested component of RegionUpgradesV2Upgrades.
 type RegionUpgradesV2UpgradesBase struct {
-	ConstructionEndedAt   string   `json:"constructionEndedAt,omitempty"`
-	ConstructionPoints    int      `json:"constructionPoints,omitempty"`
-	ConstructionStartedAt string   `json:"constructionStartedAt,omitempty"`
-	InvestedMoney         int      `json:"investedMoney,omitempty"`
-	IsUnderConstruction   *bool    `json:"isUnderConstruction,omitempty"`
-	LastConstructions     []string `json:"lastConstructions,omitempty"`
-	Level                 int      `json:"level,omitempty"`
-	Status                string   `json:"status,omitempty"`
-	StatusChangedAt       string   `json:"statusChangedAt,omitempty"`
+	ConstructionEndedAt   string                          `json:"constructionEndedAt,omitempty"`
+	ConstructionPoints    int                             `json:"constructionPoints,omitempty"`
+	ConstructionStartedAt string                          `json:"constructionStartedAt,omitempty"`
+	InvestedMoney         int                             `json:"investedMoney,omitempty"`
+	IsUnderConstruction   *bool                           `json:"isUnderConstruction,omitempty"`
+	LastConstructions     []RegionUpgradeLastConstruction `json:"lastConstructions,omitempty"`
+	Level                 int                             `json:"level,omitempty"`
+	Status                string                          `json:"status,omitempty"`
+	StatusChangedAt       string                          `json:"statusChangedAt,omitempty"`
 }
 
 // RegionUpgradesV2UpgradesBunker is a nested component of RegionUpgradesV2Upgrades.
 type RegionUpgradesV2UpgradesBunker struct {
-	ConstructionEndedAt   string                                            `json:"constructionEndedAt,omitempty"`
-	ConstructionPoints    int                                               `json:"constructionPoints,omitempty"`
-	ConstructionStartedAt string                                            `json:"constructionStartedAt,omitempty"`
-	InvestedMoney         int                                               `json:"investedMoney,omitempty"`
-	IsUnderConstruction   *bool                                             `json:"isUnderConstruction,omitempty"`
-	LastConstructions     []RegionUpgradesV2UpgradesBunkerLastConstructions `json:"lastConstructions,omitempty"`
-	Level                 int                                               `json:"level,omitempty"`
-	Status                string                                            `json:"status,omitempty"`
-	StatusChangedAt       string                                            `json:"statusChangedAt,omitempty"`
+	ConstructionEndedAt   string                          `json:"constructionEndedAt,omitempty"`
+	ConstructionPoints    int                             `json:"constructionPoints,omitempty"`
+	ConstructionStartedAt string                          `json:"constructionStartedAt,omitempty"`
+	InvestedMoney         int                             `json:"investedMoney,omitempty"`
+	IsUnderConstruction   *bool                           `json:"isUnderConstruction,omitempty"`
+	LastConstructions     []RegionUpgradeLastConstruction `json:"lastConstructions,omitempty"`
+	Level                 int                             `json:"level,omitempty"`
+	Status                string                          `json:"status,omitempty"`
+	StatusChangedAt       string                          `json:"statusChangedAt,omitempty"`
 }
 
-// RegionUpgradesV2UpgradesBunkerLastConstructions is a nested component of RegionUpgradesV2UpgradesBunker.
-type RegionUpgradesV2UpgradesBunkerLastConstructions struct {
+// RegionUpgradeLastConstruction records a completed upgrade construction.
+type RegionUpgradeLastConstruction struct {
 	Construction   int    `json:"construction,omitempty"`
 	ConstructionAt string `json:"constructionAt,omitempty"`
 	UserID         string `json:"user,omitempty"`
 }
+
+// RegionUpgradesV2UpgradesBunkerLastConstructions is an alias for [RegionUpgradeLastConstruction].
+type RegionUpgradesV2UpgradesBunkerLastConstructions = RegionUpgradeLastConstruction
 
 // Round is one stage of a battle and includes combat state and results.
 type Round struct {
@@ -2807,7 +2813,7 @@ type UserSkillsDodge struct {
 
 // UserSkillsEnergy is a nested component of UserSkills.
 type UserSkillsEnergy struct {
-	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
 	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
@@ -2822,7 +2828,7 @@ type UserSkillsEnergy struct {
 
 // UserSkillsEntrepreneurship is a nested component of UserSkills.
 type UserSkillsEntrepreneurship struct {
-	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
 	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
@@ -2852,7 +2858,7 @@ type UserSkillsHealth struct {
 
 // UserSkillsHunger is a nested component of UserSkills.
 type UserSkillsHunger struct {
-	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
 	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
@@ -2906,7 +2912,7 @@ type UserSkillsPrecision struct {
 
 // UserSkillsProduction is a nested component of UserSkills.
 type UserSkillsProduction struct {
-	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
 	HourlyBarRegen    float64         `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`
@@ -2921,7 +2927,7 @@ type UserSkillsProduction struct {
 
 // UserSkillsStamina is a nested component of UserSkills.
 type UserSkillsStamina struct {
-	CurrentBarValue   int             `json:"currentBarValue,omitempty"`
+	CurrentBarValue   float64         `json:"currentBarValue,omitempty"`
 	Equipment         *float64        `json:"equipment,omitempty"`
 	HourlyBarRegen    int             `json:"hourlyBarRegen,omitempty"`
 	Level             int             `json:"level,omitempty"`

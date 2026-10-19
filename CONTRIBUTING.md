@@ -16,17 +16,16 @@ warera-go/
 ├── cmd/
 │   ├── generate/     # Request model generator from the OpenAPI spec
 │   ├── record/       # Utility to record real live WarEra tRPC responses
-│   └── update-specs/ # Refreshes upstream contract snapshots
+│   └── update-specs/ # Refreshes the upstream OpenAPI document
 ├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
 ├── spec/
 │   ├── fixtures/     # Recorded JSON responses used by tests and recorder seeds
-│   ├── Responses.d.ts # Generated response declarations from WarEraProjects/TRPC
 │   ├── openapi.json  # WarEra's published OpenAPI 3 specification
 │   └── SOURCES.md    # Source attribution and refresh instructions
 ├── models_gen.go     # Generated request/filter types and CursorPage
 ├── models.go         # Custom domain helper methods & //go:generate directive
 ├── models_response.go # Maintained response models
-├── models_additional.go # Response models based on upstream Responses.d.ts
+├── models_additional.go # Maintained response models for additional procedures
 ├── iterator.go       # Generic cursor pagination iterator (iter.Seq2)
 ├── client.go         # Top-level Client and service wiring
 ├── client_options.go # Functional options (WithAPIKey, WithBatchWindow, etc.)
@@ -54,7 +53,7 @@ Run this from the repository root when you want to update the checked-in contrac
 make update-specs
 ```
 
-This requires Go 1.23+ and network access. It refreshes and formats `spec/openapi.json` from WarEra and refreshes `spec/Responses.d.ts` from WarEraProjects/TRPC with a pinned source commit and license link in its header. See [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review these files and their diff before regenerating models.
+This requires Go 1.23+ and network access. It refreshes and formats `spec/openapi.json` from WarEra. Response models are maintained directly as Go code in `models_response.go` and `models_additional.go`; use recorded fixtures as representative examples, then update the types and typed decode coverage deliberately when the API changes. See [`spec/SOURCES.md`](spec/SOURCES.md) for source attribution and model policy. Review the spec diff before regenerating request and filter models.
 
 ### 1. Run Tests and Builds
 

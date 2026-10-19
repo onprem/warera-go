@@ -1,7 +1,8 @@
 package warera
 
 // These response models cover procedures whose contracts are not described by
-// the upstream OpenAPI document. Their field shapes follow spec/Responses.d.ts.
+// the upstream OpenAPI document. They are maintained here from observed API
+// responses, endpoint behavior, and recorded fixtures.
 
 // BattleLootSummary is a player's loot summary for a battle.
 type BattleLootSummary struct {
@@ -27,8 +28,7 @@ type BattleLootPoolItem struct {
 	Round string      `json:"round,omitempty"`
 }
 
-// BattleRanking is the current paginated response for a battle. The upstream
-// Responses.d.ts snapshot still describes the older rankings-array shape.
+// BattleRanking is the paginated response for a battle.
 type BattleRanking struct {
 	Items      []BattleRankingEntry `json:"items,omitempty"`
 	NextCursor string               `json:"nextCursor,omitempty"`

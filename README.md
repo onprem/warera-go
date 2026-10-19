@@ -173,7 +173,7 @@ client := warera.NewClient(
 
 ## Model generation and fixtures
 
-Run `make update-specs` to refresh the upstream OpenAPI document and WarEraProjects response declarations. The command pretty-prints the OpenAPI JSON and pins the TRPC source commit and license in the response declaration header; see [`spec/SOURCES.md`](spec/SOURCES.md) for attribution. Review the refreshed contract files, then run `make generate` to regenerate request and filter types from `spec/openapi.json`. Response models in `models_response.go` and `models_additional.go` are maintained explicitly from the upstream response declarations, using recorded fixtures as examples where available. Fixtures are recorder seeds and decode samples; they do not generate Go response types.
+Run `make update-specs` to refresh and pretty-print WarEra's upstream OpenAPI document. Then run `make generate` to regenerate request and filter types from `spec/openapi.json`. Response models in `models_response.go` and `models_additional.go` are maintained as Go types in this repository, informed by observed API behavior and recorded fixtures. We do not generate response types from fixtures. See [`spec/SOURCES.md`](spec/SOURCES.md) for source attribution and model policy.
 
 Common development commands are available through `make help`, including `make test`, `make build`, `make fmt`, `make check-generated`, and the fixture recording targets. Live fixture recording uses `WARERA_API_KEY` when provided; endpoint-specific IDs can be supplied to the recorder with `-seeds`.
 

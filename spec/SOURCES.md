@@ -1,18 +1,6 @@
-# Specification sources and attribution
+# Specification sources and response model policy
 
-The checked-in files in this directory come from separate upstream sources:
+- [`openapi.json`](openapi.json) is WarEra's published OpenAPI document: <https://api2.warera.io/openapi.json>. Its `info.version` identifies the specification version. Refresh it with `make update-specs`.
+- Response models in `models_response.go` and `models_additional.go` are maintained as Go code in this repository. They are informed by observed API behavior, recorded fixtures, and the [WarEraProjects/TRPC response declarations](https://github.com/WarEraProjects/TRPC/blob/e7b7765d2487b43e01d3b13654bedf9ee5edb16f/src/api/Responses.d.ts) as a reference. The declaration file is not vendored or required by this SDK or its generation workflow.
 
-- [`openapi.json`](openapi.json) is the WarEra API's published OpenAPI document: <https://api2.warera.io/openapi.json>. Its `info.version` identifies the API specification version.
-- [`Responses.d.ts`](Responses.d.ts) contains generated response declarations from [WarEraProjects/TRPC](https://github.com/WarEraProjects/TRPC). Its header records the exact upstream commit and `LICENSE` URL.
-
-The response declarations retain their upstream generated header and link to the upstream `LICENSE`; consult that file at the pinned revision for its terms. The root `LICENSE` in this repository applies to `warera-go` code and does not replace the terms for upstream material.
-
-At the time this attribution was added, GitHub identifies the TRPC repository as Apache-2.0 while its `package.json` declares MIT. The file header links to the exact upstream `LICENSE` at the pinned revision instead of assuming either label applies to this snapshot.
-
-Refresh both snapshots from the repository root with:
-
-```sh
-make update-specs
-```
-
-The refresh requires Go 1.23+ and network access. It validates both downloads, pretty-prints the OpenAPI JSON, and stages the files before updating them. Review the source snapshots together before regenerating Go models with `go generate ./...`.
+The OpenAPI document is used to generate request and filter models. Recorded fixtures are examples for decoding and tests; they do not generate response model types. When endpoint responses change, update the relevant Go model and add or update fixture-backed decoding assertions for the fields the SDK relies on.

@@ -25,7 +25,7 @@ check-generated:
 fmt:
 	gofmt -s -w .
 
-## Refresh the checked-in OpenAPI document and upstream response declarations.
+## Refresh the checked-in OpenAPI document.
 update-specs:
 	go run ./cmd/update-specs
 

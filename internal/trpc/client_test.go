@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 	"strings"
@@ -170,6 +171,177 @@ func TestClient_CallBatch_Explicit(t *testing.T) {
 
 	if out1.Name != "CountryA" || out2.Name != "CompanyB" {
 		t.Errorf("unexpected outputs: %+v, %+v", out1, out2)
+	}
+}
+
+func TestClient_CallBatch_PreservesPerCallErrors(t *testing.T) {
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		resp := []ResponseEnvelope{
+			{Result: &ResultEnvelope{Data: json.RawMessage(`{"name":"CountryA"}`)}},
+			{Error: &TRPCError{Message: "company unavailable", Code: -32004, Data: &TRPCErrorData{Code: "NOT_FOUND", HTTPStatus: 404}}},
+		}
+		data, _ := json.Marshal(resp)
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(bytes.NewReader(data)),
+		}, nil
+	})
+	client := NewClient(ClientConfig{
+		BaseURL:            "https://mock.warera.io/trpc",
+		HTTPClient:         &http.Client{Transport: mockTransport},
+		RateLimitPerMinute: 0,
+	})
+
+	var country, company dummyOutput
+	calls := []BatchCall{
+		{Method: "country.getById", Input: dummyInput{ID: "1"}, Output: &country},
+		{Method: "company.getById", Input: dummyInput{ID: "2"}, Output: &company},
+	}
+	err := client.CallBatch(context.Background(), calls)
+	if err == nil {
+		t.Fatal("expected batch to report its failed call")
+	}
+	if country.Name != "CountryA" {
+		t.Errorf("successful call output = %q, want CountryA", country.Name)
+	}
+	if calls[0].Err != nil {
+		t.Errorf("successful call error = %v, want nil", calls[0].Err)
+	}
+	callErr, ok := calls[1].Err.(*TRPCError)
+	if !ok || callErr.Message != "company unavailable" {
+		t.Errorf("failed call error = %#v, want company unavailable tRPC error", calls[1].Err)
+	}
+}
+
+func TestClient_CallBatch_RejectsResponseCountMismatch(t *testing.T) {
+	mockTransport := roundTripFunc(func(*http.Request) (*http.Response, error) {
+		body := `[{"result":{"data":{"name":"CountryA"}}}]`
+		return &http.Response{
+			StatusCode: http.StatusOK,
+			Status:     "200 OK",
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(strings.NewReader(body)),
+		}, nil
+	})
+	client := NewClient(ClientConfig{
+		BaseURL:            "https://mock.warera.io/trpc",
+		HTTPClient:         &http.Client{Transport: mockTransport},
+		RateLimitPerMinute: 0,
+	})
+
+	var first, second dummyOutput
+	calls := []BatchCall{
+		{Method: "country.getById", Input: dummyInput{ID: "1"}, Output: &first},
+		{Method: "company.getById", Input: dummyInput{ID: "2"}, Output: &second},
+	}
+	err := client.CallBatch(context.Background(), calls)
+	if err == nil || !strings.Contains(err.Error(), "mismatched batch response count") {
+		t.Fatalf("CallBatch error = %v, want response count mismatch", err)
+	}
+	for i, call := range calls {
+		if call.Err == nil || call.Err.Error() != err.Error() {
+			t.Errorf("call %d error = %v, want batch mismatch error %v", i, call.Err, err)
+		}
+	}
+}
+
+func TestClient_CallDirect_RetriesTemporaryHTTPFailure(t *testing.T) {
+	requests := 0
+	mockTransport := roundTripFunc(func(*http.Request) (*http.Response, error) {
+		requests++
+		status := http.StatusServiceUnavailable
+		statusText := "503 Service Unavailable"
+		body := `busy`
+		if requests > 1 {
+			status = http.StatusOK
+			statusText = "200 OK"
+			body = `{"result":{"data":{"name":"Recovered"}}}`
+		}
+		return &http.Response{
+			StatusCode: status,
+			Status:     statusText,
+			Header:     http.Header{"Content-Type": []string{"application/json"}},
+			Body:       io.NopCloser(strings.NewReader(body)),
+		}, nil
+	})
+	client := NewClient(ClientConfig{
+		BaseURL:            "https://mock.warera.io/trpc",
+		HTTPClient:         &http.Client{Transport: mockTransport},
+		RateLimitPerMinute: 0,
+		MaxRetries:         1,
+	})
+
+	var out dummyOutput
+	if err := client.CallDirect(context.Background(), "country.getById", dummyInput{ID: "1"}, &out); err != nil {
+		t.Fatalf("CallDirect after temporary failure: %v", err)
+	}
+	if requests != 2 {
+		t.Fatalf("request count = %d, want 2", requests)
+	}
+	if out.Name != "Recovered" {
+		t.Fatalf("decoded result = %q, want Recovered", out.Name)
+	}
+}
+
+func TestClient_CallDirect_StopsAfterMaxRetries(t *testing.T) {
+	requests := 0
+	mockTransport := roundTripFunc(func(*http.Request) (*http.Response, error) {
+		requests++
+		return &http.Response{
+			StatusCode: http.StatusServiceUnavailable,
+			Status:     "503 Service Unavailable",
+			Header:     http.Header{"Content-Type": []string{"text/plain"}},
+			Body:       io.NopCloser(strings.NewReader("still unavailable")),
+		}, nil
+	})
+	client := NewClient(ClientConfig{
+		BaseURL:            "https://mock.warera.io/trpc",
+		HTTPClient:         &http.Client{Transport: mockTransport},
+		RateLimitPerMinute: 0,
+		MaxRetries:         1,
+	})
+
+	err := client.CallDirect(context.Background(), "country.getById", dummyInput{ID: "1"}, &dummyOutput{})
+	if err == nil || !strings.Contains(err.Error(), "request failed after 2 attempts") {
+		t.Fatalf("CallDirect error = %v, want exhausted retry error", err)
+	}
+	if requests != 2 {
+		t.Fatalf("request count = %d, want 2", requests)
+	}
+}
+
+func TestClient_CallDirect_HonorsContextCancellation(t *testing.T) {
+	started := make(chan struct{})
+	var startOnce sync.Once
+	requests := int32(0)
+	mockTransport := roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		atomic.AddInt32(&requests, 1)
+		startOnce.Do(func() { close(started) })
+		<-r.Context().Done()
+		return nil, r.Context().Err()
+	})
+	client := NewClient(ClientConfig{
+		BaseURL:            "https://mock.warera.io/trpc",
+		HTTPClient:         &http.Client{Transport: mockTransport},
+		RateLimitPerMinute: 0,
+		MaxRetries:         1,
+	})
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	result := make(chan error, 1)
+	go func() {
+		result <- client.CallDirect(ctx, "country.getById", dummyInput{ID: "1"}, &dummyOutput{})
+	}()
+	<-started
+	cancel()
+	if err := <-result; !errors.Is(err, context.Canceled) {
+		t.Fatalf("CallDirect error = %v, want context.Canceled", err)
+	}
+	if got := atomic.LoadInt32(&requests); got != 1 {
+		t.Fatalf("request count = %d, want 1 after cancellation", got)
 	}
 }
 

@@ -104,6 +104,10 @@ When adding or updating endpoints:
   ```
 - **Commit Messages:** Follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat:`, `fix:`, `docs:`, `chore:`).
 
+## Releases
+
+See [`RELEASE.md`](RELEASE.md) for versioning policy, changelog guidance, and the release procedure.
+
 ---
 
 ## Questions or Issues?

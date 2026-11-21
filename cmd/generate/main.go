@@ -246,6 +246,9 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 			fmt.Fprintf(&b, "\t%s %s `%s`%s\n", fieldName, goType, tag, comment)
 		}
 		b.WriteString("}\n\n")
+		if _, hasCursor := props["cursor"]; hasCursor {
+			fmt.Fprintf(&b, "func (f %s) withCursor(cursor string) %s {\n\tf.Cursor = cursor\n\treturn f\n}\n\n", structName, structName)
+		}
 	}
 
 	enumNames := make([]string, 0, len(enums))

@@ -21,6 +21,11 @@ type ArticleFilter struct {
 	UserID            string          `json:"userId,omitempty"`            // The user ID to get articles for
 }
 
+func (f ArticleFilter) withCursor(cursor string) ArticleFilter {
+	f.Cursor = cursor
+	return f
+}
+
 // BattleFilter specifies query and filter options for battle.getBattles.
 type BattleFilter struct {
 	AllianceID       string           `json:"allianceId,omitempty"`       // Filter battles involving any member country of this alliance
@@ -32,6 +37,11 @@ type BattleFilter struct {
 	IsActive         *bool            `json:"isActive,omitempty"`         // Whether to get active battles
 	Limit            int              `json:"limit,omitempty"`            // The limit of battles to get
 	WarID            string           `json:"warId,omitempty"`            // Filter battles by war ID
+}
+
+func (f BattleFilter) withCursor(cursor string) BattleFilter {
+	f.Cursor = cursor
+	return f
 }
 
 // liveBattleDataInput specifies query and filter options for battle.getLiveBattleData.
@@ -64,11 +74,21 @@ type BattleRankingFilter struct {
 	WarID    string                `json:"warId,omitempty"`    // Optional war ID to filter rankings
 }
 
+func (f BattleRankingFilter) withCursor(cursor string) BattleRankingFilter {
+	f.Cursor = cursor
+	return f
+}
+
 // CompanyFilter specifies query and filter options for company.getCompanies.
 type CompanyFilter struct {
 	Cursor string `json:"cursor,omitempty"`  // Pagination cursor for next page
 	Limit  int    `json:"perPage,omitempty"` // Number of companies per page (1-100)
 	UserID string `json:"userId,omitempty"`  // Filter companies by user ID
+}
+
+func (f CompanyFilter) withCursor(cursor string) CompanyFilter {
+	f.Cursor = cursor
+	return f
 }
 
 // EventFilter specifies query and filter options for event.getEventsPaginated.
@@ -77,6 +97,11 @@ type EventFilter struct {
 	Cursor     string      `json:"cursor,omitempty"`     // The cursor to get the next events
 	EventTypes []EventType `json:"eventTypes,omitempty"` // Filter events by event types
 	Limit      int         `json:"limit,omitempty"`      // The limit of events to get
+}
+
+func (f EventFilter) withCursor(cursor string) EventFilter {
+	f.Cursor = cursor
+	return f
 }
 
 // MercenaryAuctionFilter specifies query and filter options for mercenaryContractAuction.getPaginatedAuctions.
@@ -88,6 +113,11 @@ type MercenaryAuctionFilter struct {
 	Status    MercenaryAuctionStatus `json:"status,omitempty"`
 }
 
+func (f MercenaryAuctionFilter) withCursor(cursor string) MercenaryAuctionFilter {
+	f.Cursor = cursor
+	return f
+}
+
 // MilitaryUnitFilter specifies query and filter options for mu.getManyPaginated.
 type MilitaryUnitFilter struct {
 	Cursor   string `json:"cursor,omitempty"`
@@ -97,12 +127,22 @@ type MilitaryUnitFilter struct {
 	UserID   string `json:"userId,omitempty"`
 }
 
+func (f MilitaryUnitFilter) withCursor(cursor string) MilitaryUnitFilter {
+	f.Cursor = cursor
+	return f
+}
+
 // PollVoterFilter specifies query and filter options for poll.getPollVoters.
 type PollVoterFilter struct {
 	Cursor   string `json:"cursor,omitempty"`
 	Limit    int    `json:"limit,omitempty"`
 	OptionID int    `json:"optionId"` // The answer to list voters for
 	PollID   string `json:"pollId"`   // The ID of the poll
+}
+
+func (f PollVoterFilter) withCursor(cursor string) PollVoterFilter {
+	f.Cursor = cursor
+	return f
 }
 
 // RankingAroundFilter specifies query and filter options for ranking.getRankingAround.
@@ -120,6 +160,11 @@ type RankingPageFilter struct {
 	Limit       int         `json:"limit,omitempty"`
 	MUID        string      `json:"muId,omitempty"`
 	RankingType RankingType `json:"rankingType"` // The type of ranking to retrieve
+}
+
+func (f RankingPageFilter) withCursor(cursor string) RankingPageFilter {
+	f.Cursor = cursor
+	return f
 }
 
 // topOrdersInput specifies query and filter options for tradingOrder.getTopOrders.
@@ -140,6 +185,11 @@ type TransactionFilter struct {
 	UserID           string            `json:"userId,omitempty"`          // The user ID to get transactions for
 }
 
+func (f TransactionFilter) withCursor(cursor string) TransactionFilter {
+	f.Cursor = cursor
+	return f
+}
+
 // UpgradeFilter specifies query and filter options for upgrade.getUpgradeByTypeAndEntity.
 type UpgradeFilter struct {
 	CompanyID   string      `json:"companyId,omitempty"` // The company ID to get upgrade for
@@ -153,6 +203,11 @@ type UserFilter struct {
 	CountryID string `json:"countryId"`
 	Cursor    string `json:"cursor,omitempty"`
 	Limit     int    `json:"limit,omitempty"`
+}
+
+func (f UserFilter) withCursor(cursor string) UserFilter {
+	f.Cursor = cursor
+	return f
 }
 
 // ArticleListType is a value accepted by the API; the constants below list the values in spec/openapi.json.

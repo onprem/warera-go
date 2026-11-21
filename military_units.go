@@ -302,6 +302,45 @@ func (s *ContributionService) ListRegion(ctx context.Context, regionID string, p
 	return &result, nil
 }
 
+// AllCountryUnrest returns an iterator over every contribution to a country's
+// unrest, newest first.
+func (s *ContributionService) AllCountryUnrest(ctx context.Context, countryID string) iter.Seq2[Contribution, error] {
+	return allContributionPages(ctx, func(ctx context.Context, page int) (*ContributionPage, error) {
+		return s.ListCountryUnrest(ctx, countryID, page)
+	})
+}
+
+// AllRegion returns an iterator over every contribution to a region's
+// resistance, newest first.
+func (s *ContributionService) AllRegion(ctx context.Context, regionID string) iter.Seq2[Contribution, error] {
+	return allContributionPages(ctx, func(ctx context.Context, page int) (*ContributionPage, error) {
+		return s.ListRegion(ctx, regionID, page)
+	})
+}
+
+func allContributionPages(ctx context.Context, list func(context.Context, int) (*ContributionPage, error)) iter.Seq2[Contribution, error] {
+	return func(yield func(Contribution, error) bool) {
+		for page := 1; ; {
+			result, err := list(ctx, page)
+			if err != nil {
+				yield(Contribution{}, err)
+				return
+			}
+			for _, contribution := range result.Results {
+				if !yield(contribution, nil) {
+					return
+				}
+			}
+			// NextPage is 0 on the last page; guard against a page that does
+			// not advance.
+			if result.NextPage <= page {
+				return
+			}
+			page = result.NextPage
+		}
+	}
+}
+
 // LeagueService handles the weekly player leagues.
 type LeagueService struct {
 	client *Client

@@ -80,9 +80,8 @@ type BattleLootPoolItem struct {
 
 // BattleRanking is the paginated response for a battle.
 type BattleRanking struct {
-	Items      []BattleRankingEntry `json:"items"`
-	NextCursor string               `json:"nextCursor"`
-	ItemCount  int                  `json:"itemCount"`
+	CursorPage[BattleRankingEntry]
+	ItemCount int `json:"itemCount"`
 }
 
 // BattleRankingEntry is one battle ranking result.

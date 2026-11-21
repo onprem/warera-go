@@ -9,7 +9,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"iter"
 	"log"
 	"os"
 	"os/signal"
@@ -142,7 +141,7 @@ func run() error {
 		return err
 	})
 	launch("parties", func(ctx context.Context) error {
-		parties, err := collect(client.Parties.All(ctx, warera.PartyFilter{CountryID: countryID, Limit: 100}))
+		parties, err := warera.Collect(client.Parties.All(ctx, warera.PartyFilter{CountryID: countryID, Limit: 100}), 0)
 		sort.Slice(parties, func(i, j int) bool { return len(parties[i].MemberIDs) > len(parties[j].MemberIDs) })
 		snapshot.parties = parties
 		return err
@@ -189,8 +188,8 @@ func run() error {
 	})
 	launch("users", func(ctx context.Context) error {
 		// All consumes the iterator across pages; entries carry only user IDs.
-		// collect keeps partial results on an error.
-		users, err := collect(client.Users.All(ctx, warera.UserFilter{CountryID: countryID, Limit: 100}))
+		// Collect keeps partial results on an error.
+		users, err := warera.Collect(client.Users.All(ctx, warera.UserFilter{CountryID: countryID, Limit: 100}), 0)
 		snapshot.users = users
 		return err
 	})
@@ -212,7 +211,7 @@ func run() error {
 	launch("events", func(ctx context.Context) error {
 		// Iterator-based endpoints hide cursor handling, so callers can focus on
 		// the filter and the records they want to inspect.
-		events, err := collect(client.Events.All(ctx, warera.EventFilter{CountryID: countryID, Limit: 100}))
+		events, err := warera.Collect(client.Events.All(ctx, warera.EventFilter{CountryID: countryID, Limit: 100}), 0)
 		snapshot.events = events
 		return err
 	})
@@ -220,11 +219,11 @@ func run() error {
 	launch("active battles", func(ctx context.Context) error {
 		// A pointer bool lets the filter distinguish "active only" from an unset
 		// IsActive filter, which would return both active and completed battles.
-		battles, err := collect(client.Battles.All(ctx, warera.BattleFilter{
+		battles, err := warera.Collect(client.Battles.All(ctx, warera.BattleFilter{
 			CountryID: countryID,
 			IsActive:  &active,
 			Limit:     100,
-		}))
+		}), 0)
 		snapshot.battles = battles
 		if err != nil {
 			return err
@@ -257,19 +256,6 @@ func run() error {
 		return fmt.Errorf("briefing is partial: %d section(s) failed", len(sectionErrors))
 	}
 	return nil
-}
-
-func collect[T any](items iter.Seq2[T, error]) ([]T, error) {
-	// Iterator errors arrive alongside values. Return what was already collected
-	// with the error so a partial briefing can still show useful sections.
-	collected := make([]T, 0)
-	for item, err := range items {
-		if err != nil {
-			return collected, err
-		}
-		collected = append(collected, item)
-	}
-	return collected, nil
 }
 
 func printSnapshot(snapshot countrySnapshot, countryID string) {

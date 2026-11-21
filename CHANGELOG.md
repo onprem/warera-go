@@ -4,6 +4,8 @@ All notable changes to this project are documented here. While the project is in
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-21
+
 This release follows the game's v0.27–v0.28 updates, which replaced player workers with NPC employees and managers, removed Entrepreneurship, and introduced government types, polls, and paged rankings.
 
 ### Added
@@ -23,6 +25,7 @@ This release follows the game's v0.27–v0.28 updates, which replaced player wor
 - **Breaking:** `Workers` and `WorkOffers` services and their models and filters. The API no longer serves these procedures.
 - **Breaking:** Response fields for removed game features: company worker counts, country specialization and self-work tax, region deposits, strategic-resource production bonuses, fixed minister slots on `Government` (use `Ministers`), worker-era user fields, the Entrepreneurship skill, and game-config settings the API no longer returns.
 - **Breaking:** `UserLite.Skills`. Use `Users.GetSkills`.
+- **Breaking:** `ItemOffers` service. API keys may no longer list item offers, so offer IDs cannot be discovered.
 
 ### Changed
 

@@ -5,7 +5,10 @@
 // from the live API, so a tool can run against realistic data in one line:
 //
 //	srv := waretest.NewServer(t)
-//	client := warera.NewClient(warera.WithBaseURL(srv.URL))
+//	client := warera.NewClient(warera.WithBaseURL(srv.URL), warera.WithRateLimit(0))
+//
+// WithRateLimit(0) turns off the client's own rate limit, which would
+// otherwise slow a test that makes many calls.
 //
 // Recorded responses answer any input. Use [Server.Handle] to answer a
 // procedure yourself, for example to return chosen data, a null result, or an
@@ -85,13 +88,14 @@ type Server struct {
 	mu       sync.Mutex
 	handlers map[string]Handler
 	calls    map[string]int
+	inputs   map[string][]json.RawMessage
 }
 
 // NewServer starts a server that answers every wrapped procedure with its
 // recorded response, and closes it when the test ends.
 func NewServer(t testing.TB) *Server {
 	t.Helper()
-	s := &Server{handlers: map[string]Handler{}, calls: map[string]int{}}
+	s := &Server{handlers: map[string]Handler{}, calls: map[string]int{}, inputs: map[string][]json.RawMessage{}}
 	entries, err := fixtures.ReadDir("fixtures")
 	if err != nil {
 		t.Fatalf("waretest: read fixtures: %v", err)
@@ -122,6 +126,14 @@ func (s *Server) Calls(procedure string) int {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	return s.calls[procedure]
+}
+
+// Inputs returns the JSON inputs of the calls to procedure the server has
+// answered, oldest first. A call without input has a nil entry.
+func (s *Server) Inputs(procedure string) []json.RawMessage {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return append([]json.RawMessage(nil), s.inputs[procedure]...)
 }
 
 type envelope struct {
@@ -192,6 +204,7 @@ func (s *Server) call(procedure string, input json.RawMessage) (envelope, int) {
 	s.mu.Lock()
 	h, ok := s.handlers[procedure]
 	s.calls[procedure]++
+	s.inputs[procedure] = append(s.inputs[procedure], input)
 	s.mu.Unlock()
 	if !ok {
 		return errorEnvelope(procedure, &Error{Code: "NOT_FOUND", Message: fmt.Sprintf("No procedure found on path %q", procedure)})

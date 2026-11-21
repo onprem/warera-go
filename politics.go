@@ -236,12 +236,13 @@ func (s *CountryService) GetUnrest(ctx context.Context, countryID string) (*Unre
 
 // GetStrategicResourceBonuses returns the strategic resources available to a
 // country, through its alliance when it has one, and the bonuses they grant.
+// It returns nil and no error when the country has none.
 func (s *CountryService) GetStrategicResourceBonuses(ctx context.Context, countryID string) (*StrategicResourceBonuses, error) {
-	var bonuses StrategicResourceBonuses
+	var bonuses *StrategicResourceBonuses
 	if err := s.client.trpc.Call(ctx, "country.getStrategicResourceBonuses", getCountryByIdInput{CountryID: countryID}, &bonuses); err != nil {
 		return nil, err
 	}
-	return &bonuses, nil
+	return bonuses, nil
 }
 
 // GetCongressSeats returns a country's congress members and their parties.

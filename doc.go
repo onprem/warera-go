@@ -27,5 +27,7 @@
 //
 // API errors are available as [TRPCError] and transport failures as
 // [HTTPError]; use [errors.As] to inspect their fields. Bulk lookup methods
-// report failed entity IDs with [BatchLookupError].
+// report failed entity IDs with [BatchLookupError]. [IsNotFound],
+// [IsRateLimited], and [IsTemporary] classify any of these errors, so callers
+// can tell a missing entity from a failure worth retrying.
 package warera

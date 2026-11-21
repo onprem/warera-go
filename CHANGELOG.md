@@ -4,6 +4,19 @@ All notable changes to this project are documented here. While the project is in
 
 ## [Unreleased]
 
+### Added
+
+- `IsNotFound`, `IsRateLimited`, and `IsTemporary` classify errors, so tools can tell a missing entity from a failure worth retrying. `ErrNotFound` is returned when a lookup's result is null.
+
+### Changed
+
+- **Breaking:** `Countries.GetStrategicResourceBonuses` returns nil and no error for a country with no strategic resources; the API returns null for these.
+
+### Fixed
+
+- When every call in a batch failed with the same status, such as `GetMany` with only unknown IDs or concurrent lookups that all missed, each call got a shared `*HTTPError` instead of its own `*TRPCError`. Error handling no longer depends on whether calls happened to be batched.
+- Lookups whose result is null, such as `Tournaments.GetByID`, `Tournaments.GetTeam`, and `Employees.GetByID` with an unknown ID, returned an empty record and no error. They now return `ErrNotFound`, and bulk lookups report those IDs as failed.
+
 ## [0.2.0] - 2026-11-21
 
 This release follows the game's v0.27–v0.28 updates, which replaced player workers with NPC employees and managers, removed Entrepreneurship, and introduced government types, polls, and paged rankings.

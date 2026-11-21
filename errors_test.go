@@ -3,7 +3,9 @@ package warera_test
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"strings"
 	"testing"
@@ -66,5 +68,87 @@ func TestPublicHTTPErrorCanBeInspected(t *testing.T) {
 	}
 	if httpErr.StatusCode != http.StatusBadRequest || string(httpErr.Body) != "gateway rejected request" {
 		t.Fatalf("HTTP error = %#v, want status 400 and response body", httpErr)
+	}
+}
+
+func clientReturning(status int, body string) *warera.Client {
+	return warera.NewClient(
+		warera.WithBaseURL("https://example.test/trpc"),
+		warera.WithHTTPClient(&http.Client{Transport: errorResponseTransport(func(*http.Request) (*http.Response, error) {
+			return &http.Response{StatusCode: status, Status: http.StatusText(status), Body: io.NopCloser(strings.NewReader(body))}, nil
+		})}),
+		warera.WithRateLimit(0),
+		warera.WithMaxRetries(0),
+	)
+}
+
+// When every call in a batch fails the same way, tRPC answers with that HTTP
+// status and one error per call. Each caller must still get its own tRPC error.
+func TestBatchWhereEveryCallFailsReturnsPerCallTRPCErrors(t *testing.T) {
+	client := clientReturning(http.StatusNotFound, `[`+
+		`{"error":{"message":"user a missing","code":-32004,"data":{"code":"NOT_FOUND","httpStatus":404}}},`+
+		`{"error":{"message":"user b missing","code":-32004,"data":{"code":"NOT_FOUND","httpStatus":404}}}]`)
+	defer client.Close()
+
+	_, err := client.Users.GetLiteMany(context.Background(), []string{"a", "b"})
+	var lookupErr *warera.BatchLookupError
+	if !errors.As(err, &lookupErr) || len(lookupErr.Failures) != 2 {
+		t.Fatalf("error = %v, want BatchLookupError with two failures", err)
+	}
+	for i, id := range []string{"a", "b"} {
+		failure := lookupErr.Failures[i]
+		var apiErr *warera.TRPCError
+		if failure.ID != id || !errors.As(failure.Err, &apiErr) || apiErr.Message != "user "+id+" missing" {
+			t.Errorf("failure %d = %s: %v, want %s with its own tRPC error", i, failure.ID, failure.Err, id)
+		}
+	}
+	if !warera.IsNotFound(err) {
+		t.Error("IsNotFound = false, want true")
+	}
+}
+
+func TestNullResultIsNotFoundUnlessNoneIsDocumented(t *testing.T) {
+	client := clientReturning(http.StatusOK, `{"result":{"data":null}}`)
+	defer client.Close()
+
+	tournament, err := client.Tournaments.GetByID(context.Background(), "missing")
+	if tournament != nil || !errors.Is(err, warera.ErrNotFound) || !warera.IsNotFound(err) {
+		t.Fatalf("GetByID = %v, %v; want nil, ErrNotFound", tournament, err)
+	}
+	// Managers.GetByCompanyID documents null as "no manager".
+	manager, err := client.Managers.GetByCompanyID(context.Background(), "company")
+	if manager != nil || err != nil {
+		t.Fatalf("GetByCompanyID = %v, %v; want nil, nil", manager, err)
+	}
+}
+
+func TestErrorClassification(t *testing.T) {
+	trpcErr := func(code string) error {
+		return &warera.TRPCError{Message: code, Data: &warera.TRPCErrorData{Code: code}}
+	}
+	tests := []struct {
+		name                             string
+		err                              error
+		notFound, rateLimited, temporary bool
+	}{
+		{"tRPC not found", trpcErr("NOT_FOUND"), true, false, false},
+		{"HTTP 404", &warera.HTTPError{StatusCode: 404}, true, false, false},
+		{"tRPC rate limit", trpcErr("TOO_MANY_REQUESTS"), false, true, true},
+		{"HTTP 429 after retries", fmt.Errorf("request failed after 4 attempts: %w", &warera.HTTPError{StatusCode: 429}), false, true, true},
+		{"HTTP 503", &warera.HTTPError{StatusCode: 503}, false, false, true},
+		{"tRPC validation", trpcErr("BAD_REQUEST"), false, false, false},
+		{"HTTP 401", &warera.HTTPError{StatusCode: 401}, false, false, false},
+		{"network", &net.OpError{Op: "dial", Err: errors.New("connection refused")}, false, false, true},
+	}
+	for _, tt := range tests {
+		if got := warera.IsNotFound(tt.err); got != tt.notFound {
+			t.Errorf("%s: IsNotFound = %t", tt.name, got)
+		}
+		if got := warera.IsRateLimited(tt.err); got != tt.rateLimited {
+			t.Errorf("%s: IsRateLimited = %t", tt.name, got)
+		}
+		if got := warera.IsTemporary(tt.err); got != tt.temporary {
+			t.Errorf("%s: IsTemporary = %t", tt.name, got)
+		}
 	}
 }

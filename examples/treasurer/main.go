@@ -74,19 +74,23 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("load strategic resource bonuses: %w", err)
 	}
-	resources := make([]string, 0, len(bonuses.RegionIDs))
-	for resource, regions := range bonuses.RegionIDs {
-		resources = append(resources, fmt.Sprintf("%s=%d", resource, len(regions)))
+	if bonuses == nil {
+		fmt.Println("\nStrategic resources: none")
+	} else {
+		resources := make([]string, 0, len(bonuses.RegionIDs))
+		for resource, regions := range bonuses.RegionIDs {
+			resources = append(resources, fmt.Sprintf("%s=%d", resource, len(regions)))
+		}
+		sort.Strings(resources)
+		fmt.Printf("\nStrategic resources (regions per resource, shared by %d countries): %s\n", len(bonuses.CountryIDs), strings.Join(resources, " "))
+		skills := make([]string, 0, len(bonuses.Bonuses.Skills))
+		for skill, bonus := range bonuses.Bonuses.Skills {
+			skills = append(skills, fmt.Sprintf("%s=%+g", skill, bonus))
+		}
+		sort.Strings(skills)
+		fmt.Printf("Bonuses: development=%+.1f%% production=%+.1f%% skills: %s\n",
+			bonuses.Bonuses.DevelopmentPercent, bonuses.Bonuses.ProductionPercent, strings.Join(skills, " "))
 	}
-	sort.Strings(resources)
-	fmt.Printf("\nStrategic resources (regions per resource, shared by %d countries): %s\n", len(bonuses.CountryIDs), strings.Join(resources, " "))
-	skills := make([]string, 0, len(bonuses.Bonuses.Skills))
-	for skill, bonus := range bonuses.Bonuses.Skills {
-		skills = append(skills, fmt.Sprintf("%s=%+g", skill, bonus))
-	}
-	sort.Strings(skills)
-	fmt.Printf("Bonuses: development=%+.1f%% production=%+.1f%% skills: %s\n",
-		bonuses.Bonuses.DevelopmentPercent, bonuses.Bonuses.ProductionPercent, strings.Join(skills, " "))
 
 	// The state army is the country's spending on military units: oil for
 	// headquarters, mercenary contracts, and items given under sponsorship laws.

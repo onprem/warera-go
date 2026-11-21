@@ -4,11 +4,13 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"math/rand"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 	"sync"
 	"time"
@@ -306,6 +308,11 @@ func setBatchError(calls []BatchCall, err error) error {
 	return err
 }
 
+// ErrNotFound is returned when a procedure's result is null but the caller's
+// output cannot represent null, such as a struct or a number. Outputs that can
+// (pointers, slices, maps, and interfaces) decode null as their zero value.
+var ErrNotFound = errors.New("warera: not found")
+
 func decodeResult(env ResponseEnvelope, output any) error {
 	if env.Error != nil {
 		return env.Error
@@ -316,12 +323,36 @@ func decodeResult(env ResponseEnvelope, output any) error {
 	if len(env.Result.Data) == 0 {
 		return fmt.Errorf("invalid tRPC response: missing result data")
 	}
-	if output != nil {
-		if err := json.Unmarshal(env.Result.Data, output); err != nil {
-			return fmt.Errorf("failed to decode response data: %w", err)
-		}
+	return decodeData(env.Result.Data, output)
+}
+
+// decodeData decodes a procedure's result into output, returning ErrNotFound
+// for a null result that output cannot represent.
+func decodeData(data json.RawMessage, output any) error {
+	if output == nil {
+		return nil
+	}
+	if string(bytes.TrimSpace(data)) == "null" && !acceptsNull(output) {
+		return ErrNotFound
+	}
+	if err := json.Unmarshal(data, output); err != nil {
+		return fmt.Errorf("failed to decode response data: %w", err)
 	}
 	return nil
+}
+
+// acceptsNull reports whether decoding JSON null into output yields a
+// meaningful "none" value rather than silently leaving it unchanged.
+func acceptsNull(output any) bool {
+	v := reflect.ValueOf(output)
+	if v.Kind() != reflect.Pointer || v.IsNil() {
+		return true
+	}
+	switch v.Elem().Kind() {
+	case reflect.Pointer, reflect.Slice, reflect.Map, reflect.Interface:
+		return true
+	}
+	return false
 }
 
 func (c *Client) setHeaders(req *http.Request) {
@@ -397,6 +428,13 @@ func (c *Client) doWithRetry(req *http.Request) ([]byte, error) {
 		var env ResponseEnvelope
 		if err := json.Unmarshal(respBody, &env); err == nil && env.Error != nil {
 			return nil, env.Error
+		}
+		// When every call in a batch fails with the same status, tRPC responds
+		// with that status and one error envelope per call. Return the body so
+		// each caller receives its own tRPC error.
+		var envs []ResponseEnvelope
+		if err := json.Unmarshal(respBody, &envs); err == nil && len(envs) > 0 {
+			return respBody, nil
 		}
 
 		return nil, &HTTPError{

@@ -3,7 +3,6 @@ package trpc
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -97,12 +96,7 @@ func (b *Batcher) submit(ctx context.Context, method string, input any, output a
 		if res.err != nil {
 			return res.err
 		}
-		if output != nil {
-			if err := json.Unmarshal(res.data, output); err != nil {
-				return fmt.Errorf("failed to decode response data: %w", err)
-			}
-		}
-		return nil
+		return decodeData(res.data, output)
 	}
 }
 

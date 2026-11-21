@@ -1,7 +1,9 @@
 // government interactively selects a country and collects a read-only briefing
-// from several SDK services. Set WARERA_API_KEY when authentication is required,
-// then run: go run ./examples/government. It scans all military units because
-// the current listing filter does not include a country ID.
+// from several SDK services: government, alliance and diplomacy, wars, unrest,
+// congress and parties, regions, citizens, military units, events, and battles.
+// Set WARERA_API_KEY, which the politics procedures require, then run:
+// go run ./examples/government. It scans all military units because the
+// current listing filter does not include a country ID.
 package main
 
 import (
@@ -12,6 +14,7 @@ import (
 	"os"
 	"os/signal"
 	"sort"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
@@ -25,6 +28,13 @@ type countrySnapshot struct {
 	finishedAt time.Time
 	country    *warera.Country
 	government *warera.Government
+	alliance   *warera.Alliance
+	diplomacy  *warera.Diplomacy
+	unrest     *warera.UnrestStatus
+	seats      []warera.CongressSeat
+	parties    []warera.Party
+	wars       []warera.War
+	names      map[string]string // country ID to name
 	regions    []warera.Region
 	users      []warera.UserListItem
 	officials  map[string]string // user ID to username
@@ -96,6 +106,45 @@ func run() error {
 		// normal lookup pattern used when an ID came from a search or menu.
 		country, err := client.Countries.GetByID(ctx, countryID)
 		snapshot.country = country
+		if err != nil || country.AllianceID == "" {
+			return err
+		}
+		// The country record holds only the alliance ID; load the alliance for
+		// its name and member countries.
+		snapshot.alliance, err = client.Alliances.GetByID(ctx, country.AllianceID)
+		return err
+	})
+	launch("country names", func(ctx context.Context) error {
+		// Alliances, pacts, and wars refer to other countries by ID. One
+		// world listing resolves them all to names.
+		countries, err := client.Countries.GetAll(ctx)
+		snapshot.names = map[string]string{}
+		for _, c := range countries {
+			snapshot.names[c.ID] = c.Name
+		}
+		return err
+	})
+	launch("diplomacy", func(ctx context.Context) error {
+		diplomacy, err := client.Countries.GetDiplomacy(ctx, countryID)
+		snapshot.diplomacy = diplomacy
+		return err
+	})
+	launch("unrest", func(ctx context.Context) error {
+		unrest, err := client.Countries.GetUnrest(ctx, countryID)
+		snapshot.unrest = unrest
+		return err
+	})
+	launch("congress", func(ctx context.Context) error {
+		// Seats name each member's party by ID; the party listing below
+		// supplies the names.
+		seats, err := client.Government.GetCongressSeats(ctx, countryID)
+		snapshot.seats = seats
+		return err
+	})
+	launch("parties", func(ctx context.Context) error {
+		parties, err := collect(client.Parties.All(ctx, warera.PartyFilter{CountryID: countryID, Limit: 100}))
+		sort.Slice(parties, func(i, j int) bool { return len(parties[i].MemberIDs) > len(parties[j].MemberIDs) })
+		snapshot.parties = parties
 		return err
 	})
 	launch("government", func(ctx context.Context) error {
@@ -177,6 +226,20 @@ func run() error {
 			Limit:     100,
 		}))
 		snapshot.battles = battles
+		if err != nil {
+			return err
+		}
+		// Battles belong to wars. Collect the distinct war IDs and load the
+		// wars in one batched request for their running score.
+		seen := map[string]bool{}
+		warIDs := []string{}
+		for _, battle := range battles {
+			if battle.WarID != "" && !seen[battle.WarID] {
+				seen[battle.WarID] = true
+				warIDs = append(warIDs, battle.WarID)
+			}
+		}
+		snapshot.wars, err = client.Wars.GetMany(ctx, warIDs)
 		return err
 	})
 
@@ -234,6 +297,52 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 		}
 	}
 
+	if alliance := snapshot.alliance; alliance != nil {
+		members := make([]string, 0, len(alliance.MemberCountries))
+		for _, member := range alliance.MemberCountries {
+			members = append(members, countryName(member.CountryID, snapshot.names))
+		}
+		fmt.Printf("Alliance: %s, %d member countries: %s\n", alliance.Name, len(members), strings.Join(members, ", "))
+	} else if snapshot.country != nil {
+		fmt.Println("Alliance: none")
+	}
+	if diplomacy := snapshot.diplomacy; diplomacy != nil {
+		if enemy := diplomacy.SwornEnemy; enemy != nil {
+			fmt.Printf("Sworn enemy: %s (+%.0f%% damage, %.0f dealt)\n", countryName(enemy.EnemyID, snapshot.names), enemy.BonusPercent, enemy.DamagesDealt)
+		}
+		for _, pact := range diplomacy.DefensivePacts {
+			fmt.Printf("  defensive pact: %s (+%.0f%% damage, %.0f dealt)\n", countryName(pact.PartnerID, snapshot.names), pact.BonusPercent, pact.DamagesDealt)
+		}
+	}
+	for _, war := range snapshot.wars {
+		fmt.Printf("War: %s vs %s, battles won %d-%d, rounds won %d-%d\n",
+			countryName(war.Attacker.CountryID, snapshot.names), countryName(war.Defender.CountryID, snapshot.names),
+			war.Attacker.WonBattlesCount, war.Defender.WonBattlesCount, war.Attacker.WonRoundsCount, war.Defender.WonRoundsCount)
+	}
+	if unrest := snapshot.unrest; unrest != nil {
+		fmt.Printf("Unrest: %.0f/%.0f, revolution cooldown=%t\n", unrest.Bar, unrest.BarMax, unrest.IsOnRevolutionCooldown)
+	}
+	if len(snapshot.seats) > 0 || len(snapshot.parties) > 0 {
+		seatsByParty := map[string]int{}
+		for _, seat := range snapshot.seats {
+			seatsByParty[seat.PartyID]++
+		}
+		fmt.Printf("Congress: %d seats; parties: %d\n", len(snapshot.seats), len(snapshot.parties))
+		for i, party := range snapshot.parties {
+			if i == 5 {
+				break
+			}
+			fmt.Printf("  party: %s, members=%d, congress seats=%d", party.Name, len(party.MemberIDs), seatsByParty[party.ID])
+			if party.FavoriteGovType != "" {
+				fmt.Printf(", favourite government=%s", party.FavoriteGovType)
+			}
+			fmt.Println()
+		}
+		if n := seatsByParty[""]; n > 0 {
+			fmt.Printf("  independents: %d congress seats\n", n)
+		}
+	}
+
 	regionPopulation := 0
 	activeRegions := 0
 	// This is a sum of reported regional values. It is shown alongside the
@@ -265,6 +374,13 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 			battle.ID, battle.Type, battle.Attacker.CountryID, battle.Defender.CountryID)
 	}
 	fmt.Println("Population growth and change alerts require comparing this capture with a later saved snapshot.")
+}
+
+func countryName(countryID string, names map[string]string) string {
+	if name, ok := names[countryID]; ok {
+		return name
+	}
+	return countryID
 }
 
 func resolveUser(userID string, usernames map[string]string) string {

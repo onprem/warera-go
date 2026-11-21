@@ -1,6 +1,7 @@
 // trader prints a read-only snapshot of a player's companies, their NPC
-// employees and managers, and current market context. It prompts for a player
-// handle. Set WARERA_API_KEY, which the employee procedures require, then run:
+// employees and managers, and market context for their products: recent price
+// history, order books, and the money a production point earns. It prompts for
+// a player handle. Set WARERA_API_KEY, which the employee procedures require, then run:
 // go run ./examples/trader.
 package main
 
@@ -130,23 +131,71 @@ func run() error {
 		}
 	}
 
-	itemCode := strings.TrimSpace(os.Getenv("WARERA_ITEM_CODE"))
-	if itemCode == "" {
-		itemCode = companies[0].ItemCode
-	}
-	if itemCode != "" {
-		// Top orders provide a small view of visible buy/sell demand for one item.
-		// Choose WARERA_ITEM_CODE to inspect another product without editing code.
-		orders, err := client.Trading.GetTopOrders(ctx, itemCode, 5)
-		if err != nil {
-			return fmt.Errorf("load top orders for %q: %w", itemCode, err)
+	// Market context covers every product these companies make, or the
+	// comma-separated item codes in WARERA_ITEM_CODES.
+	itemCodes := []string{}
+	if env := strings.TrimSpace(os.Getenv("WARERA_ITEM_CODES")); env != "" {
+		itemCodes = strings.Split(env, ",")
+	} else {
+		seen := map[string]bool{}
+		for _, company := range companies {
+			if company.ItemCode != "" && !seen[company.ItemCode] {
+				seen[company.ItemCode] = true
+				itemCodes = append(itemCodes, company.ItemCode)
+			}
 		}
-		fmt.Printf("\nTop visible orders for %s\n", itemCode)
-		printOrders("buy", orders.BuyOrders)
-		printOrders("sell", orders.SellOrders)
+	}
+	if err := printMarket(ctx, client, itemCodes); err != nil {
+		return err
 	}
 
 	fmt.Println("\nAll values above are API records and the game's own hourly estimates. This example does not estimate profit or rank products.")
+	return nil
+}
+
+func printMarket(ctx context.Context, client *warera.Client, itemCodes []string) error {
+	// One request returns the top of the order book for every item.
+	books, err := client.Trading.GetTopOrdersPerItem(ctx, itemCodes, 3)
+	if err != nil {
+		return fmt.Errorf("load order books: %w", err)
+	}
+	// The game's own estimate of what a production point earns when spent on
+	// each item at current prices.
+	ppValues, err := client.MarketStats.GetPPMoneyValueByItem(ctx)
+	if err != nil {
+		return fmt.Errorf("load production point values: %w", err)
+	}
+	// Trading history is one call per item; issued together, they share a
+	// batched request.
+	histories := make([]*warera.ItemTrading, len(itemCodes))
+	errs := make([]error, len(itemCodes))
+	var wg sync.WaitGroup
+	for i, itemCode := range itemCodes {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			histories[i], errs[i] = client.Trading.GetItemTrading(ctx, itemCode)
+		}()
+	}
+	wg.Wait()
+	if err := errors.Join(errs...); err != nil {
+		return fmt.Errorf("load trading history: %w", err)
+	}
+
+	for i, itemCode := range itemCodes {
+		fmt.Printf("\nMarket for %s: money per production point=%.4f\n", itemCode, ppValues[itemCode])
+		// The last day in the history is today and still incomplete, so
+		// compare the last complete day with the one a week before it.
+		if days := histories[i].Values; len(days) >= 9 {
+			last, weekAgo := days[len(days)-2], days[len(days)-9]
+			fmt.Printf("  average price %s: %.4f (%+.1f%% vs %s), volume=%d in %d trades\n",
+				last.ValueAt, last.AvgValue, 100*(last.AvgValue/weekAgo.AvgValue-1), weekAgo.ValueAt,
+				last.TotalQuantity, last.TransactionsCount)
+		}
+		book := books[itemCode]
+		printOrders("buy", book.BuyOrders)
+		printOrders("sell", book.SellOrders)
+	}
 	return nil
 }
 
@@ -154,6 +203,6 @@ func printOrders(label string, orders []warera.TopOrder) {
 	// Both sides use the same order shape; the label tells the reader whether the
 	// displayed price is a buy offer or a sell offer.
 	for _, order := range orders {
-		fmt.Printf("- %s price=%.4f quantity=%d offerAt=%s\n", label, order.Price, order.Quantity, order.OfferAt)
+		fmt.Printf("  %s price=%.4f quantity=%d offerAt=%s\n", label, order.Price, order.Quantity, order.OfferAt)
 	}
 }

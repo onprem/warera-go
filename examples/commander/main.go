@@ -1,6 +1,7 @@
-// commander interactively selects a military unit and shows its listed roster
-// and orders for one active battle. Set WARERA_API_KEY when the API requires
-// authentication, then run: go run ./examples/commander.
+// commander interactively selects a military unit and shows its roster with
+// each member's damage, the unit's league standing and sponsorship, and its
+// orders for one active battle. Set WARERA_API_KEY, which the member, league,
+// and sponsorship procedures require, then run: go run ./examples/commander.
 package main
 
 import (
@@ -56,6 +57,16 @@ func run() error {
 		if err != nil {
 			return fmt.Errorf("load unit member skills: %w", err)
 		}
+		// Member records carry the unit's own weekly, monthly, and all-time
+		// damage and help counts for each member, keyed by user ID.
+		memberStats, err := client.MilitaryUnits.GetMembers(ctx, unit.ID)
+		if err != nil {
+			return fmt.Errorf("load unit member stats: %w", err)
+		}
+		statsByUser := map[string]warera.MUMember{}
+		for _, stats := range memberStats {
+			statsByUser[stats.UserID] = stats
+		}
 		fmt.Printf("Listed roster: %d members\n", len(members))
 		modeCounts := map[skillmix.Mode]int{}
 		for i, member := range members {
@@ -70,6 +81,11 @@ func run() error {
 			fmt.Printf("  skill mix: %s leaning; war %.1f%% (%d pts), eco %.1f%% (%d pts); prestige levels war=%d eco=%d\n",
 				mix.Mode(), mix.WarPercent, mix.WarPoints, mix.EcoPercent, mix.EcoPoints,
 				mix.WarPrestigeLevels, mix.EcoPrestigeLevels)
+			if stats, ok := statsByUser[member.ID]; ok {
+				fmt.Printf("  damage: week=%.0f month=%.0f total=%.0f; help: week=%d month=%d total=%d\n",
+					stats.WeeklyDamagesCount, stats.MonthlyDamagesCount, stats.TotalDamagesCount,
+					stats.WeeklyHelpCount, stats.MonthlyHelpCount, stats.TotalHelpCount)
+			}
 			if mix.ClassifiedPoints != member.Leveling.SpentSkillPoints {
 				fmt.Printf("  note: categorized regular points=%d, profile reports %d spent points\n",
 					mix.ClassifiedPoints, member.Leveling.SpentSkillPoints)
@@ -78,6 +94,30 @@ func run() error {
 		fmt.Printf("Roster by larger regular skill-point allocation: war=%d eco=%d balanced=%d unknown=%d\n",
 			modeCounts[skillmix.ModeWar], modeCounts[skillmix.ModeEco],
 			modeCounts[skillmix.ModeBalanced], modeCounts[skillmix.ModeUnknown])
+	}
+
+	// The MU league ranks units weekly within divisions; League and Me are nil
+	// when the unit has not joined this week.
+	league, err := client.MilitaryUnits.GetLeague(ctx, unit.ID)
+	if err != nil {
+		return fmt.Errorf("load unit league: %w", err)
+	}
+	if me := league.Me; me != nil {
+		fmt.Printf("\nLeague week %s: division %d, rank %d of %d, points=%.0f, next week=%s (ends %s)\n",
+			league.YearWeek, me.Division, me.Rank, len(league.Rows), me.Points, me.Move, league.WeekEndsAt)
+	} else {
+		fmt.Printf("\nLeague week %s: the unit is not in a league.\n", league.YearWeek)
+	}
+	// A country can sponsor a unit through a law. GetSponsorship returns nil
+	// when the unit has no active or offered sponsorship.
+	sponsorship, err := client.MilitaryUnits.GetSponsorship(ctx, unit.ID)
+	if err != nil {
+		return fmt.Errorf("load unit sponsorship: %w", err)
+	}
+	if sponsorship != nil {
+		fmt.Printf("Sponsorship: %s by country %s since %s\n", sponsorship.Status, sponsorship.CountryID, sponsorship.AcceptedAt)
+	} else {
+		fmt.Println("Sponsorship: none")
 	}
 
 	active := true

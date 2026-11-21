@@ -1,6 +1,7 @@
 // treasurer interactively selects a country and prints its current treasury,
-// tax fields, strategic-resource bonuses, and a bounded page of country
-// transactions. Set WARERA_API_KEY when required, then run:
+// tax fields, strategic-resource bonuses, state army spending, donations, and a
+// bounded page of country transactions. Set WARERA_API_KEY, which the
+// strategic-resource, state army, and donation procedures require, then run:
 // go run ./examples/treasurer.
 package main
 
@@ -10,6 +11,8 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"sort"
+	"strings"
 	"syscall"
 	"time"
 
@@ -63,6 +66,65 @@ func run() error {
 			income.StrategicResourcesBonus, income.GovType)
 	} else {
 		fmt.Println("No income breakdown was present in the country response.")
+	}
+
+	// Strategic resources are pooled across an alliance, so the bonuses can
+	// come from regions held by other member countries.
+	bonuses, err := client.Countries.GetStrategicResourceBonuses(ctx, country.ID)
+	if err != nil {
+		return fmt.Errorf("load strategic resource bonuses: %w", err)
+	}
+	resources := make([]string, 0, len(bonuses.RegionIDs))
+	for resource, regions := range bonuses.RegionIDs {
+		resources = append(resources, fmt.Sprintf("%s=%d", resource, len(regions)))
+	}
+	sort.Strings(resources)
+	fmt.Printf("\nStrategic resources (regions per resource, shared by %d countries): %s\n", len(bonuses.CountryIDs), strings.Join(resources, " "))
+	skills := make([]string, 0, len(bonuses.Bonuses.Skills))
+	for skill, bonus := range bonuses.Bonuses.Skills {
+		skills = append(skills, fmt.Sprintf("%s=%+g", skill, bonus))
+	}
+	sort.Strings(skills)
+	fmt.Printf("Bonuses: development=%+.1f%% production=%+.1f%% skills: %s\n",
+		bonuses.Bonuses.DevelopmentPercent, bonuses.Bonuses.ProductionPercent, strings.Join(skills, " "))
+
+	// The state army is the country's spending on military units: oil for
+	// headquarters, mercenary contracts, and items given under sponsorship laws.
+	const days = 7
+	army, err := client.StateArmy.GetOverview(ctx, country.ID, days)
+	if err != nil {
+		return fmt.Errorf("load state army overview: %w", err)
+	}
+	fmt.Printf("\nState army spending over %d days:", days)
+	if len(army.ByKind) == 0 {
+		fmt.Print(" none")
+	}
+	fmt.Println()
+	for _, total := range army.ByKind {
+		fmt.Printf("- %s money=%.2f items=%d\n", total.Kind, total.Money, total.Quantity)
+	}
+
+	// Donations are cumulative per donor, so the first page lists the largest
+	// donors. Their user IDs resolve to names in one batched lookup.
+	donated, err := client.Donations.GetTotal(ctx, warera.DonationTotalFilter{CountryID: country.ID})
+	if err != nil {
+		return fmt.Errorf("load donation total: %w", err)
+	}
+	donors, err := client.Donations.List(ctx, warera.DonationFilter{CountryID: country.ID, Limit: 5})
+	if err != nil {
+		return fmt.Errorf("load top donors: %w", err)
+	}
+	fmt.Printf("\nDonations: %.2f from %d donors\n", donated.TotalAmount, donated.DonorCount)
+	donorIDs := make([]string, len(donors.Items))
+	for i, donor := range donors.Items {
+		donorIDs[i] = donor.UserID
+	}
+	profiles, err := client.Users.GetLiteMany(ctx, donorIDs)
+	if err != nil {
+		return fmt.Errorf("load donor profiles: %w", err)
+	}
+	for i, donor := range donors.Items {
+		fmt.Printf("- %s donated %.2f, latest %s\n", profiles[i].Username, donor.Amount, donor.UpdatedAt)
 	}
 
 	fmt.Printf("\nTransaction page: %d records", len(transactions.Items))

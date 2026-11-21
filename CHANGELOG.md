@@ -31,6 +31,7 @@ This release follows the game's v0.27–v0.28 updates, which replaced player wor
 - **Breaking:** `GameConfig.Items`, `GameConfig.Badge`, and `GameConfig.Skills` are now maps keyed by item code, badge code, and skill name, with one `GameConfigItem`, `GameConfigBadge`, and `GameConfigSkill` type each, so new game content no longer needs a model change. The per-skill `UserSkills*` types are replaced by one `UserSkill` type.
 - **Breaking:** `Users.List` and `Users.All` return `UserListItem` values (ID and join date), which is all `user.getUsersByCountry` returns; they were typed as full `User` profiles with every other field empty.
 - **Breaking:** `Ranking` drops `ID` and `IsGlobal`, adds `Count` and `UpdatedAt`, and lists `RankingEntry` values, which identify users, countries, military units, or alliances.
+- The trader, government, commander, and treasurer examples show the new employee, politics, market, and military data, and the README lists the services by game area. The trader example reads `WARERA_ITEM_CODES` (comma-separated) instead of `WARERA_ITEM_CODE`.
 - The rate limiter now enforces a sliding 60-second window. Previously a new client could send up to twice its per-minute limit in its first minute.
 
 ### Fixed

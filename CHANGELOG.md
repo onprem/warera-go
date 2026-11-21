@@ -11,6 +11,7 @@ All notable changes to this project are documented here. While the project is in
 - `Pages` iterates whole pages from any `List` method, so long-running collectors can save each page's `NextCursor` and resume after a restart. `Collect` gathers an iterator's values (optionally up to a limit), and `Until` stops an iterator at a value already seen, so polling the newest-first event and transaction listings fetches only what is new.
 - `Directory` caches countries, regions, the game configuration, and compact user profiles with a TTL, so tools can turn IDs into names without refetching. Concurrent callers share one fetch, and user lookups fetch only IDs not already cached.
 - `waretest` package: a fake WarEra API server for testing tools without network access. It answers every wrapped procedure with a response recorded from the live API, speaks tRPC's batch protocol, and lets tests override procedures with their own data, null results, or API errors (`waretest.NotFound`, `RateLimited`, …). The recorded fixtures moved from `spec/fixtures` to `waretest/fixtures`.
+- `examples/collector`: a long-running, read-only collector that stores prices, new trades, and new events as JSON Lines and resumes after a restart.
 - `Battles.GetMany`, `Articles.GetMany`, and `Tournaments.GetMany`.
 - `Contributions.AllCountryUnrest` and `Contributions.AllRegion` iterate the page-numbered contribution listings.
 - `WithHooks` observes every HTTP attempt (procedures, status, duration, remaining server quota) and every pause for a retry or rate limit, for logging and metrics.

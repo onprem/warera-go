@@ -11,7 +11,16 @@
 // be bounded by the caller.
 // Cursor-paginated services provide List to fetch a single page and All to
 // lazily iterate across pages. All returns an [iter.Seq2], so check each error
-// yielded by the iterator.
+// yielded by the iterator. [Pages] iterates whole pages so a collector can
+// save its cursor and resume, [Collect] gathers an iterator's values, and
+// [Until] stops at a record already seen, so polling the newest-first event
+// and transaction listings fetches only what is new.
+//
+// GetMany methods look up many IDs in batched requests and return the records
+// found keyed by ID. [Directory] caches countries, regions, the game
+// configuration, and user profiles for turning IDs into names. To test a tool
+// without the network, point a client at the fake server in the waretest
+// package.
 //
 // Concurrent calls made through a client are batched automatically, and the
 // API counts a batch as one request against its rate limit. The client keeps

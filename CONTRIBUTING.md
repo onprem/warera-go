@@ -82,9 +82,9 @@ When adding or updating endpoints:
      ```
    - **Supply IDs for bulk endpoints without a local fixture seed**:
      ```bash
-     go run ./cmd/record -seeds '{"itemOfferId":"...","workOfferId":"..."}'
+     go run ./cmd/record -seeds '{"companyId":"...","pollId":"..."}'
      ```
-     The recorder derives `companyId` from `company.getById.json` and `workOfferId` from a non-empty work-offer list fixture when available.
+     The recorder derives `companyId` from `company.getById.json` or `company.getCompanies.json` when available.
 2. **Regenerate Request Models:**
    ```bash
    make generate

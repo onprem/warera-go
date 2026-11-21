@@ -101,18 +101,6 @@ type BattleRankingEntry struct {
 	LootItem  *Item   `json:"lootItem,omitempty"`
 }
 
-// ItemOffer is a market offer for an item.
-type ItemOffer struct {
-	ID        string      `json:"_id,omitempty"`
-	CountryID string      `json:"country,omitempty"`
-	CreatedAt string      `json:"createdAt,omitempty"`
-	Item      RoundWeapon `json:"item,omitempty"`
-	ItemCode  string      `json:"itemCode,omitempty"`
-	Price     float64     `json:"price,omitempty"`
-	UpdatedAt string      `json:"updatedAt,omitempty"`
-	UserID    string      `json:"user,omitempty"`
-}
-
 // MercenaryContractAuction is a mercenary contract auction listing.
 type MercenaryContractAuction struct {
 	ID                string                        `json:"_id,omitempty"`

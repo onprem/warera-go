@@ -96,24 +96,6 @@ func (s *TradingService) GetTopOrders(ctx context.Context, itemCode string, limi
 	return &orders, nil
 }
 
-// ItemOfferService handles individual marketplace offers.
-type ItemOfferService struct {
-	client *Client
-}
-
-type getItemOfferByIDInput struct {
-	ItemOfferID string `json:"itemOfferId"`
-}
-
-// GetByID returns an item offer by ID.
-func (s *ItemOfferService) GetByID(ctx context.Context, itemOfferID string) (*ItemOffer, error) {
-	var offer ItemOffer
-	if err := s.client.trpc.Call(ctx, "itemOffer.getById", getItemOfferByIDInput{ItemOfferID: itemOfferID}, &offer); err != nil {
-		return nil, err
-	}
-	return &offer, nil
-}
-
 // MercenaryAuctionService handles paginated mercenary contract auctions.
 type MercenaryAuctionService struct {
 	client *Client

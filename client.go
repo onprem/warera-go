@@ -55,8 +55,6 @@ type Client struct {
 	LootSummaries *BattleLootSummaryService
 	// BattleRankings provides access to rankings within battles and wars.
 	BattleRankings *BattleRankingService
-	// ItemOffers provides access to marketplace item offers.
-	ItemOffers *ItemOfferService
 	// MercenaryAuctions provides access to mercenary contract auctions.
 	MercenaryAuctions *MercenaryAuctionService
 	// Transactions provides access to paginated transaction history.
@@ -110,7 +108,6 @@ func NewClient(opts ...Option) *Client {
 	c.Upgrades = &UpgradeService{client: c}
 	c.LootSummaries = &BattleLootSummaryService{client: c}
 	c.BattleRankings = &BattleRankingService{client: c}
-	c.ItemOffers = &ItemOfferService{client: c}
 	c.MercenaryAuctions = &MercenaryAuctionService{client: c}
 	c.Transactions = &TransactionService{client: c}
 

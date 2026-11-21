@@ -46,7 +46,7 @@ func (s *BattleService) All(ctx context.Context, filter BattleFilter) iter.Seq2[
 // GetLiveBattleData returns real-time damage and combat state for a battle and round.
 func (s *BattleService) GetLiveBattleData(ctx context.Context, battleID string, roundNumber int) (*LiveBattleData, error) {
 	var live LiveBattleData
-	err := s.client.trpc.Call(ctx, "battle.getLiveBattleData", BattleLiveBattleDataFilter{
+	err := s.client.trpc.Call(ctx, "battle.getLiveBattleData", liveBattleDataInput{
 		BattleID:    battleID,
 		RoundNumber: roundNumber,
 	}, &live)
@@ -64,7 +64,7 @@ type BattleOrderService struct {
 // GetByBattle returns orders for a battle side.
 func (s *BattleOrderService) GetByBattle(ctx context.Context, battleID string, side BattleSide) ([]BattleOrder, error) {
 	var orders []BattleOrder
-	if err := s.client.trpc.Call(ctx, "battleOrder.getByBattle", BattleOrderByBattleFilter{
+	if err := s.client.trpc.Call(ctx, "battleOrder.getByBattle", battleOrdersInput{
 		BattleID: battleID,
 		Side:     side,
 	}, &orders); err != nil {
@@ -155,7 +155,7 @@ type BattleLootSummaryService struct {
 // GetByBattleAndUser returns a user's loot summary for a battle.
 func (s *BattleLootSummaryService) GetByBattleAndUser(ctx context.Context, battleID, userID string) (*BattleLootSummary, error) {
 	var summary BattleLootSummary
-	input := BattleLootSummaryByBattleAndUserFilter{BattleID: battleID, UserID: userID}
+	input := lootSummaryByBattleAndUserInput{BattleID: battleID, UserID: userID}
 	if err := s.client.trpc.Call(ctx, "battleLootSummary.getByBattleAndUser", input, &summary); err != nil {
 		return nil, err
 	}

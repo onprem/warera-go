@@ -232,7 +232,7 @@ func withoutDocumentVersions(value any) any {
 	return value
 }
 
-func TestGameConfigService_GetGameConfigFixture(t *testing.T) {
+func TestGameConfigService_GetFixture(t *testing.T) {
 	fixture := loadFixture(t, "gameConfig.getGameConfig.json")
 	client := NewClient(
 		WithHTTPClient(&http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
@@ -246,9 +246,9 @@ func TestGameConfigService_GetGameConfigFixture(t *testing.T) {
 	)
 	defer client.Close()
 
-	config, err := client.GameConfig.GetGameConfig(context.Background())
+	config, err := client.GameConfig.Get(context.Background())
 	if err != nil {
-		t.Fatalf("GetGameConfig returned error: %v", err)
+		t.Fatalf("Get returned error: %v", err)
 	}
 	if config == nil || config.Announcement.DurationHours != 24 || config.Badge["babyBoomer"].Reward != 100 {
 		t.Fatalf("unexpected decoded config: %+v", config)

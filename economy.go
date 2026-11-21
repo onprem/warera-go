@@ -86,7 +86,7 @@ func (s *TradingService) GetPrices(ctx context.Context) (ItemPrices, error) {
 // GetTopOrders returns best buy/sell market orders for a given item code.
 func (s *TradingService) GetTopOrders(ctx context.Context, itemCode string, limit int) (*TopOrders, error) {
 	var orders TopOrders
-	err := s.client.trpc.Call(ctx, "tradingOrder.getTopOrders", TradingOrderTopOrdersFilter{
+	err := s.client.trpc.Call(ctx, "tradingOrder.getTopOrders", topOrdersInput{
 		ItemCode: itemCode,
 		Limit:    limit,
 	}, &orders)

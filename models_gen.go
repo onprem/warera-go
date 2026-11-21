@@ -34,20 +34,20 @@ type BattleFilter struct {
 	WarID            string           `json:"warId,omitempty"`            // Filter battles by war ID
 }
 
-// BattleLiveBattleDataFilter specifies query and filter options for battle.getLiveBattleData.
-type BattleLiveBattleDataFilter struct {
+// liveBattleDataInput specifies query and filter options for battle.getLiveBattleData.
+type liveBattleDataInput struct {
 	BattleID    string `json:"battleId"`              // The unique identifier of the battle
 	RoundNumber int    `json:"roundNumber,omitempty"` // Optional specific round number to retrieve
 }
 
-// BattleLootSummaryByBattleAndUserFilter specifies query and filter options for battleLootSummary.getByBattleAndUser.
-type BattleLootSummaryByBattleAndUserFilter struct {
+// lootSummaryByBattleAndUserInput specifies query and filter options for battleLootSummary.getByBattleAndUser.
+type lootSummaryByBattleAndUserInput struct {
 	BattleID string `json:"battleId"`
 	UserID   string `json:"userId"`
 }
 
-// BattleOrderByBattleFilter specifies query and filter options for battleOrder.getByBattle.
-type BattleOrderByBattleFilter struct {
+// battleOrdersInput specifies query and filter options for battleOrder.getByBattle.
+type battleOrdersInput struct {
 	BattleID string     `json:"battleId"`
 	Side     BattleSide `json:"side"`
 }
@@ -66,9 +66,9 @@ type BattleRankingFilter struct {
 
 // CompanyFilter specifies query and filter options for company.getCompanies.
 type CompanyFilter struct {
-	Cursor  string `json:"cursor,omitempty"`  // Pagination cursor for next page
-	PerPage int    `json:"perPage,omitempty"` // Number of companies per page (1-100)
-	UserID  string `json:"userId,omitempty"`  // Filter companies by user ID
+	Cursor string `json:"cursor,omitempty"`  // Pagination cursor for next page
+	Limit  int    `json:"perPage,omitempty"` // Number of companies per page (1-100)
+	UserID string `json:"userId,omitempty"`  // Filter companies by user ID
 }
 
 // EventFilter specifies query and filter options for event.getEventsPaginated.
@@ -122,8 +122,8 @@ type RankingPageFilter struct {
 	RankingType RankingType `json:"rankingType"` // The type of ranking to retrieve
 }
 
-// TradingOrderTopOrdersFilter specifies query and filter options for tradingOrder.getTopOrders.
-type TradingOrderTopOrdersFilter struct {
+// topOrdersInput specifies query and filter options for tradingOrder.getTopOrders.
+type topOrdersInput struct {
 	ItemCode string `json:"itemCode"`        // The item code to get orders for
 	Limit    int    `json:"limit,omitempty"` // The limit of orders to get
 }

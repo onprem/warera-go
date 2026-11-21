@@ -127,6 +127,12 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 		"poll.getPollVoters":                            "PollVoterFilter",
 		"ranking.getRankingPage":                        "RankingPageFilter",
 		"ranking.getRankingAround":                      "RankingAroundFilter",
+		// Inputs that public methods take as positional parameters stay
+		// unexported, so they do not clutter the package documentation.
+		"battle.getLiveBattleData":             "liveBattleDataInput",
+		"battleLootSummary.getByBattleAndUser": "lootSummaryByBattleAndUserInput",
+		"battleOrder.getByBattle":              "battleOrdersInput",
+		"tradingOrder.getTopOrders":            "topOrdersInput",
 	}
 
 	// enumTypes names the Go type for each enum-valued input, keyed by
@@ -427,7 +433,7 @@ func toGoFieldName(name string) string {
 	case "itemCode":
 		return "ItemCode"
 	case "perPage":
-		return "PerPage"
+		return "Limit" // Every other filter names its page size Limit.
 	case "roundNumber":
 		return "RoundNumber"
 	default:

@@ -18,8 +18,8 @@ func (s *GameConfigService) GetDates(ctx context.Context) (*GameDates, error) {
 	return &dates, nil
 }
 
-// GetGameConfig returns the game's configuration settings.
-func (s *GameConfigService) GetGameConfig(ctx context.Context) (*GameConfig, error) {
+// Get returns the game's configuration settings.
+func (s *GameConfigService) Get(ctx context.Context) (*GameConfig, error) {
 	var config GameConfig
 	err := s.client.trpc.Call(ctx, "gameConfig.getGameConfig", struct{}{}, &config)
 	if err != nil {

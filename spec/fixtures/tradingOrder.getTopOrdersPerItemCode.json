@@ -1,0 +1,215 @@
+{
+  "steel": {
+    "buyOrders": [
+      {
+        "_id": "6b01b6617dbe9fd10980baef",
+        "user": "6a9b9d37c8d1baa0f07365d6",
+        "itemCode": "steel",
+        "quantity": 1067,
+        "price": 1.697,
+        "offerAt": "2026-11-21T15:18:57.818Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b01bc8b51fa731018753141",
+        "user": "6ad615e4ca9ede57a2d96c0b",
+        "itemCode": "steel",
+        "quantity": 100,
+        "price": 1.697,
+        "offerAt": "2026-11-21T15:45:15.140Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b01b556b1db4a3538b92b38",
+        "user": "69fb9d1288925a2a86bea4a6",
+        "itemCode": "steel",
+        "quantity": 6000,
+        "price": 1.696,
+        "offerAt": "2026-11-21T15:14:30.854Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b018c13177f7609ea3049a0",
+        "user": "69d416566fb8686cc9b8a77f",
+        "itemCode": "steel",
+        "quantity": 3000,
+        "price": 1.695,
+        "offerAt": "2026-11-21T12:26:43.025Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b019933942dc44cc5610907",
+        "user": "6b007c76177f7609eac5d123",
+        "itemCode": "steel",
+        "quantity": 120,
+        "price": 1.695,
+        "offerAt": "2026-11-21T13:14:27.275Z",
+        "type": "buy",
+        "__v": 0
+      }
+    ],
+    "sellOrders": [
+      {
+        "_id": "6b01bd59c9eb5f9053608ea9",
+        "user": "6af8d29846a24ac3d3d81acc",
+        "itemCode": "steel",
+        "quantity": 6,
+        "price": 1.7,
+        "offerAt": "2026-11-21T15:48:41.767Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b01bd82edc346de82fd43f5",
+        "user": "6a05f65f65ae5994efe28a6f",
+        "itemCode": "steel",
+        "quantity": 152,
+        "price": 1.702,
+        "offerAt": "2026-11-21T15:49:22.879Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b01ba9fca388b09f8836414",
+        "user": "69b2a9e32895f070b71fd794",
+        "itemCode": "steel",
+        "quantity": 1657,
+        "price": 1.703,
+        "offerAt": "2026-11-21T15:37:03.319Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b01adca3feefde2e352f3d4",
+        "user": "69cd6a09bafacf0f989e3127",
+        "itemCode": "steel",
+        "quantity": 667,
+        "price": 1.704,
+        "offerAt": "2026-11-21T15:29:55.587Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b01ba7451fa731018725ade",
+        "user": "6a85eda72932c5e4e357174b",
+        "itemCode": "steel",
+        "quantity": 230,
+        "price": 1.704,
+        "offerAt": "2026-11-21T15:36:20.223Z",
+        "type": "sell",
+        "__v": 0
+      }
+    ]
+  },
+  "lightAmmo": {
+    "buyOrders": [
+      {
+        "_id": "6b0169dbd1854d1ecca93b8e",
+        "user": "6a12c5410e0c549a7b8c2953",
+        "itemCode": "lightAmmo",
+        "quantity": 326,
+        "price": 0.195,
+        "offerAt": "2026-11-21T09:52:27.628Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b0173ac162b8d1d8993ea46",
+        "user": "6a71cd63c68d908724c5374c",
+        "itemCode": "lightAmmo",
+        "quantity": 350,
+        "price": 0.195,
+        "offerAt": "2026-11-21T10:34:20.953Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b01774e3233d9f84400d1ed",
+        "user": "6afb3a8917a14289f5d08417",
+        "itemCode": "lightAmmo",
+        "quantity": 10,
+        "price": 0.195,
+        "offerAt": "2026-11-21T10:49:50.814Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b0178bae03e9127c6e43c21",
+        "user": "6a0ef7f877b6f4c397ef4027",
+        "itemCode": "lightAmmo",
+        "quantity": 500,
+        "price": 0.195,
+        "offerAt": "2026-11-21T10:55:54.098Z",
+        "type": "buy",
+        "__v": 0
+      },
+      {
+        "_id": "6b017a5d3707d462660f7ef3",
+        "user": "6b0007d6d7ea8feea223c649",
+        "itemCode": "lightAmmo",
+        "quantity": 35,
+        "price": 0.195,
+        "offerAt": "2026-11-21T11:02:53.396Z",
+        "type": "buy",
+        "__v": 0
+      }
+    ],
+    "sellOrders": [
+      {
+        "_id": "6b0165a62eea835530967f61",
+        "user": "69f3e4ad1f3c12395c5858de",
+        "itemCode": "lightAmmo",
+        "quantity": 684,
+        "price": 0.197,
+        "offerAt": "2026-11-21T09:34:30.202Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b016781b3322037882d4f28",
+        "user": "698ab042852386695b230306",
+        "itemCode": "lightAmmo",
+        "quantity": 1000,
+        "price": 0.197,
+        "offerAt": "2026-11-21T09:42:25.885Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b016a8c1b6fc988a97c597b",
+        "user": "6a10a257265e888c4add5894",
+        "itemCode": "lightAmmo",
+        "quantity": 1157,
+        "price": 0.197,
+        "offerAt": "2026-11-21T09:55:24.139Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b016aaa1b6fc988a97c6c7d",
+        "user": "6a99700f2ecee5bfa1ab5fb1",
+        "country": "6813b6d546e731854c7ac84b",
+        "itemCode": "lightAmmo",
+        "quantity": 10000,
+        "price": 0.197,
+        "offerAt": "2026-11-21T09:55:54.902Z",
+        "type": "sell",
+        "__v": 0
+      },
+      {
+        "_id": "6b016bb6d38fb11ef9a8d2b3",
+        "user": "69aff96e445e36e405b37754",
+        "itemCode": "lightAmmo",
+        "quantity": 1000,
+        "price": 0.197,
+        "offerAt": "2026-11-21T10:00:22.154Z",
+        "type": "sell",
+        "__v": 0
+      }
+    ]
+  }
+}

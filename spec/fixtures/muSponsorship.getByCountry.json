@@ -1,0 +1,99 @@
+{
+  "active": [
+    {
+      "_id": "6afbfac572eb96d283b1aae2",
+      "country": "683ddd2c24b5a2e114af15c3",
+      "mu": "698c150574831a9507811709",
+      "law": "6afb934b0e99bf4dfd1d07cf",
+      "status": "active",
+      "offeredAt": "2026-11-17T06:57:09.591Z",
+      "kickedUsers": [
+        "698b7006f4d930a30fb1ca4d",
+        "698c4e8874831a9507b34d74",
+        "69a7a37406b3d07863a7f1f0",
+        "69f10f08845138ab0390e144"
+      ],
+      "live": true,
+      "createdAt": "2026-11-17T06:57:09.591Z",
+      "updatedAt": "2026-11-17T07:20:27.744Z",
+      "__v": 0,
+      "acceptedAt": "2026-11-17T07:20:27.744Z",
+      "acceptedBy": "698c61ee8bdebdf66d293429"
+    },
+    {
+      "_id": "6afc5d649bef85220e74bbc4",
+      "country": "683ddd2c24b5a2e114af15c3",
+      "mu": "6a6787cfedbb5b90c62b1e78",
+      "law": "6afc257b42691edccddbfb2c",
+      "status": "active",
+      "offeredAt": "2026-11-17T13:57:56.534Z",
+      "kickedUsers": [
+        "6a6e41741214a3b5c6c7936b"
+      ],
+      "live": true,
+      "createdAt": "2026-11-17T13:57:56.534Z",
+      "updatedAt": "2026-11-17T15:49:49.065Z",
+      "__v": 0,
+      "acceptedAt": "2026-11-17T15:49:49.065Z",
+      "acceptedBy": "6a6a169ac35eb65da74105ce"
+    }
+  ],
+  "offered": [
+    {
+      "_id": "6afbfabde75e028774e24eef",
+      "country": "683ddd2c24b5a2e114af15c3",
+      "mu": "6a6a04575e5b28c5bc7fec55",
+      "law": "6afb96f1de4bea0fc3cd4849",
+      "status": "offered",
+      "offeredAt": "2026-11-17T06:57:01.164Z",
+      "offerExpiresAt": "2026-11-24T06:57:01.164Z",
+      "kickedUsers": [],
+      "live": true,
+      "createdAt": "2026-11-17T06:57:01.164Z",
+      "updatedAt": "2026-11-17T06:57:01.164Z",
+      "__v": 0
+    }
+  ],
+  "past": [
+    {
+      "_id": "6afbfac07444724344eaa408",
+      "country": "683ddd2c24b5a2e114af15c3",
+      "mu": "69b4b295e853e271cefcdd70",
+      "law": "6afb93da0e99bf4dfd1da688",
+      "status": "ended",
+      "offeredAt": "2026-11-17T06:57:04.629Z",
+      "kickedUsers": [
+        "6a3fa04298d9192163fb3648"
+      ],
+      "createdAt": "2026-11-17T06:57:04.629Z",
+      "updatedAt": "2026-11-21T12:58:28.464Z",
+      "__v": 0,
+      "acceptedAt": "2026-11-17T07:08:44.438Z",
+      "acceptedBy": "697f03c891974c7d1db20076",
+      "endReason": "citizenship",
+      "endedAt": "2026-11-21T12:58:28.464Z"
+    }
+  ],
+  "mus": {
+    "698c150574831a9507811709": {
+      "name": "Band of the Hawk",
+      "membersCount": 19,
+      "hqLevel": 4
+    },
+    "69b4b295e853e271cefcdd70": {
+      "name": "SWAT",
+      "membersCount": 22,
+      "hqLevel": 4
+    },
+    "6a6787cfedbb5b90c62b1e78": {
+      "name": "storm division",
+      "membersCount": 25,
+      "hqLevel": 4
+    },
+    "6a6a04575e5b28c5bc7fec55": {
+      "name": "Soprano",
+      "membersCount": 24,
+      "hqLevel": 4
+    }
+  }
+}

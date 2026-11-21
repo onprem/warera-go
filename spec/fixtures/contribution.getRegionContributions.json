@@ -1,0 +1,129 @@
+{
+  "results": [
+    {
+      "_id": "6b01c0403feefde2e362f746",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T16:01:04.377Z",
+      "updatedAt": "2026-11-21T16:01:04.377Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01c0400450a371566d5522",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T16:01:04.002Z",
+      "updatedAt": "2026-11-21T16:01:04.002Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01c03f69df18de1fa09412",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T16:01:03.566Z",
+      "updatedAt": "2026-11-21T16:01:03.566Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01c03f43b77abb1049c876",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T16:01:03.143Z",
+      "updatedAt": "2026-11-21T16:01:03.143Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0d8392635d67a86645b",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T13:47:04.791Z",
+      "updatedAt": "2026-11-21T13:47:04.791Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0d8d38fb11ef9c4662d",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T13:47:04.439Z",
+      "updatedAt": "2026-11-21T13:47:04.439Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0d717ec74d1b6355c61",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T13:47:03.989Z",
+      "updatedAt": "2026-11-21T13:47:03.989Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0d717ec74d1b6355b92",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T13:47:03.471Z",
+      "updatedAt": "2026-11-21T13:47:03.471Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0d7810e35f2646ba385",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T13:47:03.169Z",
+      "updatedAt": "2026-11-21T13:47:03.169Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0d6177f7609ea3c3b76",
+      "type": "resistance",
+      "user": "69fb81ef8e99a5a53aa7f32d",
+      "region": "6813b7039403bc4170a5d68a",
+      "country": "6813b6d446e731854c7ac7a6",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-21T13:47:02.827Z",
+      "updatedAt": "2026-11-21T13:47:02.827Z",
+      "__v": 0
+    }
+  ],
+  "count": 1511,
+  "limit": 10,
+  "page": 1,
+  "pages": 152,
+  "nextPage": 2
+}

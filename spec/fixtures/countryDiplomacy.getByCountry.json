@@ -1,0 +1,89 @@
+{
+  "swornEnemy": {
+    "enemy": "6813b6d446e731854c7ac7b2",
+    "bonusPercent": 10,
+    "damagesDealt": 1122502
+  },
+  "defensivePacts": [
+    {
+      "partner": "6873d0ea1758b40e712b5f16",
+      "bonusPercent": 10,
+      "damagesDealt": 2890832
+    },
+    {
+      "partner": "683ddd2c24b5a2e114af15cd",
+      "bonusPercent": 10,
+      "damagesDealt": 592603
+    },
+    {
+      "partner": "683ddd2c24b5a2e114af1609",
+      "bonusPercent": 10,
+      "damagesDealt": 872
+    },
+    {
+      "partner": "6813b6d546e731854c7ac817",
+      "bonusPercent": 10,
+      "damagesDealt": 21030
+    },
+    {
+      "partner": "6873d0ea1758b40e712b5f40",
+      "bonusPercent": 10,
+      "damagesDealt": 645
+    },
+    {
+      "partner": "683ddd2c24b5a2e114af1603",
+      "bonusPercent": 10,
+      "damagesDealt": 880868
+    },
+    {
+      "partner": "6813b6d546e731854c7ac814",
+      "bonusPercent": 10,
+      "damagesDealt": 4770
+    },
+    {
+      "partner": "6813b6d546e731854c7ac8ce",
+      "bonusPercent": 10,
+      "damagesDealt": 2594645
+    },
+    {
+      "partner": "6813b6d446e731854c7ac7b6",
+      "bonusPercent": 10,
+      "damagesDealt": 6365159
+    },
+    {
+      "partner": "6873d0ea1758b40e712b5ef7",
+      "bonusPercent": 10,
+      "damagesDealt": 90
+    },
+    {
+      "partner": "6813b6d546e731854c7ac811",
+      "bonusPercent": 10,
+      "damagesDealt": 75
+    },
+    {
+      "partner": "683ddd2c24b5a2e114af15bf",
+      "bonusPercent": 10,
+      "damagesDealt": 2012797
+    },
+    {
+      "partner": "6813b6d446e731854c7ac7ba",
+      "bonusPercent": 10,
+      "damagesDealt": 75
+    },
+    {
+      "partner": "6813b6d546e731854c7ac8d4",
+      "bonusPercent": 10,
+      "damagesDealt": 1653347
+    },
+    {
+      "partner": "683ddd2c24b5a2e114af15c1",
+      "bonusPercent": 10,
+      "damagesDealt": 0
+    },
+    {
+      "partner": "6813b6d546e731854c7ac86b",
+      "bonusPercent": 7,
+      "damagesDealt": 492248
+    }
+  ]
+}

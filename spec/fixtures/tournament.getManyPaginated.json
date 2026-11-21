@@ -1,0 +1,1715 @@
+{
+  "items": [
+    {
+      "_id": "69754f87a37b3d8b67277b63",
+      "name": "MU Tournament",
+      "description": "Military Units compete for glory",
+      "isActive": false,
+      "status": "ended",
+      "startAt": "2026-01-27T23:02:31.841Z",
+      "teamSize": 15,
+      "teamCount": 225,
+      "roundsCount": 8,
+      "type": "mu",
+      "maxRarity": "legendary",
+      "skillKey": "criticalChance",
+      "autoQualify1stRound": [
+        "6979449e2cef3ca65a5f4f67",
+        "6979449d2cef3ca65a5f4e26",
+        "6979449d2cef3ca65a5f4e29",
+        "6979449d2cef3ca65a5f4e14",
+        "6979449c2cef3ca65a5f4de7",
+        "6979449d2cef3ca65a5f4e35",
+        "6979449d2cef3ca65a5f4e20",
+        "6979449f2cef3ca65a5f5030",
+        "6979449c2cef3ca65a5f4d9a",
+        "6979449e2cef3ca65a5f4f8b",
+        "6979449e2cef3ca65a5f4f1f",
+        "6979449d2cef3ca65a5f4ef2",
+        "6979449d2cef3ca65a5f4eb6",
+        "6979449e2cef3ca65a5f4f0a",
+        "6979449d2cef3ca65a5f4e53",
+        "6979449e2cef3ca65a5f4f5e",
+        "6979449e2cef3ca65a5f4f94",
+        "6979449c2cef3ca65a5f4db7",
+        "6979449e2cef3ca65a5f4f46",
+        "6979449e2cef3ca65a5f4f0d",
+        "6979449e2cef3ca65a5f4f34",
+        "6979449d2cef3ca65a5f4e23",
+        "6979449c2cef3ca65a5f4dc6",
+        "6979449d2cef3ca65a5f4e17",
+        "6979449d2cef3ca65a5f4ebc",
+        "6979449c2cef3ca65a5f4dde",
+        "6979449e2cef3ca65a5f4f2e",
+        "6979449e2cef3ca65a5f4f3a",
+        "6979449d2cef3ca65a5f4ecb",
+        "6979449d2cef3ca65a5f4e32",
+        "6979449e2cef3ca65a5f4f22"
+      ],
+      "registered": {
+        "countries": [],
+        "mus": [],
+        "users": []
+      },
+      "createdAt": "2026-01-24T23:02:31.849Z",
+      "updatedAt": "2026-02-03T15:55:01.580Z",
+      "__v": 0,
+      "activeRound": 8,
+      "rounds": {
+        "1": {
+          "roundNumber": 1,
+          "cases": 1,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "6979449e2cef3ca65a5f4f43",
+              "defender": "6979449e2cef3ca65a5f4f8e",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5046",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4f07",
+              "defender": "6979449d2cef3ca65a5f4edd",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f504f",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f3d",
+              "defender": "6979449e2cef3ca65a5f4f6d",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5058",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f6a",
+              "defender": "6979449c2cef3ca65a5f4ddb",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5061",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f37",
+              "defender": "6979449e2cef3ca65a5f4f4f",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f506a",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f25",
+              "defender": "6979449e2cef3ca65a5f4f9d",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5073",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ed4",
+              "defender": "6979449c2cef3ca65a5f4dea",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f507c",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dba",
+              "defender": "6979449e2cef3ca65a5f4fa6",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5085",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dc9",
+              "defender": "6979449e2cef3ca65a5f4f13",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f508e",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4d9d",
+              "defender": "6979449f2cef3ca65a5f5021",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5097",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fe2",
+              "defender": "6979449e2cef3ca65a5f4f64",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50a0",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f76",
+              "defender": "6979449d2cef3ca65a5f4e7a",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50a9",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eda",
+              "defender": "6979449e2cef3ca65a5f4fdf",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50b2",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f4ff7",
+              "defender": "6979449e2cef3ca65a5f4f82",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50bb",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dcf",
+              "defender": "6979449c2cef3ca65a5f4df6",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50c4",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f7c",
+              "defender": "6979449c2cef3ca65a5f4da9",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50cd",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eaa",
+              "defender": "6979449d2cef3ca65a5f4e44",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50d6",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f70",
+              "defender": "6979449c2cef3ca65a5f4df3",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50df",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5018",
+              "defender": "6979449f2cef3ca65a5f5009",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50e8",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4ded",
+              "defender": "6979449d2cef3ca65a5f4e83",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50f1",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f9a",
+              "defender": "6979449c2cef3ca65a5f4da0",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f50fa",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f4c",
+              "defender": "6979449d2cef3ca65a5f4e68",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5103",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dc0",
+              "defender": "6979449d2cef3ca65a5f4e47",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f510c",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f58",
+              "defender": "6979449c2cef3ca65a5f4de4",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5115",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5039",
+              "defender": "6979449e2cef3ca65a5f4f40",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f511e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4feb",
+              "defender": "6979449e2cef3ca65a5f4f49",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5127",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e80",
+              "defender": "6979449e2cef3ca65a5f4f5b",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5130",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ef5",
+              "defender": "6979449e2cef3ca65a5f4f97",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5139",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e4a",
+              "defender": "6979449e2cef3ca65a5f4fd6",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5142",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f16",
+              "defender": "6979449e2cef3ca65a5f4f28",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f514b",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f2b",
+              "defender": "6979449d2cef3ca65a5f4eec",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5154",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e1d",
+              "defender": "6979449d2cef3ca65a5f4eb0",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f515d",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4efb",
+              "defender": "6979449e2cef3ca65a5f4fac",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5166",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4da6",
+              "defender": "6979449d2cef3ca65a5f4dfc",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f516f",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f502a",
+              "defender": "6979449e2cef3ca65a5f4fbb",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5178",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e4d",
+              "defender": "6979449d2cef3ca65a5f4e41",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5181",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f52",
+              "defender": "6979449e2cef3ca65a5f4fc4",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f518a",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e1a",
+              "defender": "6979449d2cef3ca65a5f4e62",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5193",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ea1",
+              "defender": "6979449e2cef3ca65a5f4fb2",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f519c",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f1c",
+              "defender": "6979449d2cef3ca65a5f4dff",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51a5",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4de1",
+              "defender": "6979449d2cef3ca65a5f4ebf",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51ae",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fcd",
+              "defender": "6979449d2cef3ca65a5f4ec5",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51b7",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f501e",
+              "defender": "6979449d2cef3ca65a5f4e95",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51c0",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e5c",
+              "defender": "6979449e2cef3ca65a5f4fd9",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51c9",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e6e",
+              "defender": "6979449d2cef3ca65a5f4ee9",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51d2",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e77",
+              "defender": "6979449f2cef3ca65a5f502d",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51db",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4efe",
+              "defender": "6979449e2cef3ca65a5f4f73",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51e4",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4da3",
+              "defender": "6979449c2cef3ca65a5f4dd5",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51ed",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fca",
+              "defender": "6979449d2cef3ca65a5f4e0e",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51f6",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fd3",
+              "defender": "6979449f2cef3ca65a5f5033",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f51ff",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f31",
+              "defender": "6979449d2cef3ca65a5f4e05",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5208",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f7f",
+              "defender": "6979449d2cef3ca65a5f4e92",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5211",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ece",
+              "defender": "6979449d2cef3ca65a5f4e6b",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f521a",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f79",
+              "defender": "6979449d2cef3ca65a5f4eb9",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5223",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ee6",
+              "defender": "6979449d2cef3ca65a5f4e86",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f522c",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f88",
+              "defender": "6979449d2cef3ca65a5f4e5f",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5235",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5024",
+              "defender": "6979449e2cef3ca65a5f4ff1",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f523e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f501b",
+              "defender": "6979449d2cef3ca65a5f4e98",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5247",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fa0",
+              "defender": "6979449d2cef3ca65a5f4ec8",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5250",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eef",
+              "defender": "6979449d2cef3ca65a5f4ee0",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5259",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fbe",
+              "defender": "6979449d2cef3ca65a5f4ead",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5262",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e71",
+              "defender": "6979449e2cef3ca65a5f4fe5",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f526b",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f4ff4",
+              "defender": "6979449f2cef3ca65a5f4ffd",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5274",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eb3",
+              "defender": "6979449d2cef3ca65a5f4e56",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f527d",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e8c",
+              "defender": "6979449d2cef3ca65a5f4ea7",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5286",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5006",
+              "defender": "6979449d2cef3ca65a5f4ee3",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f528f",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dd8",
+              "defender": "6979449d2cef3ca65a5f4e11",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5298",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fa9",
+              "defender": "6979449d2cef3ca65a5f4e7d",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52a1",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f61",
+              "defender": "6979449f2cef3ca65a5f4ffa",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52aa",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f55",
+              "defender": "6979449f2cef3ca65a5f500f",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52b3",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f10",
+              "defender": "6979449e2cef3ca65a5f4fb5",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52bc",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5000",
+              "defender": "6979449d2cef3ca65a5f4e50",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52c5",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fb8",
+              "defender": "6979449e2cef3ca65a5f4fc7",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52ce",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e38",
+              "defender": "6979449c2cef3ca65a5f4dd2",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52d7",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dad",
+              "defender": "6979449c2cef3ca65a5f4df9",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52e0",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5036",
+              "defender": "6979449e2cef3ca65a5f4f19",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52e9",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e74",
+              "defender": "6979449d2cef3ca65a5f4e65",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52f2",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fd0",
+              "defender": "6979449c2cef3ca65a5f4db4",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f52fb",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e9b",
+              "defender": "6979449c2cef3ca65a5f4dc3",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5304",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ea4",
+              "defender": "6979449d2cef3ca65a5f4e02",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f530d",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e2c",
+              "defender": "6979449f2cef3ca65a5f500c",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5316",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dcc",
+              "defender": "6979449e2cef3ca65a5f4f85",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f531f",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fc1",
+              "defender": "6979449c2cef3ca65a5f4db1",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5328",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4f01",
+              "defender": "6979449d2cef3ca65a5f4e59",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5331",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dbd",
+              "defender": "6979449d2cef3ca65a5f4e08",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f533a",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5015",
+              "defender": "6979449f2cef3ca65a5f503c",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5343",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fa3",
+              "defender": "6979449e2cef3ca65a5f4fe8",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f534c",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e9e",
+              "defender": "6979449d2cef3ca65a5f4ec2",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5355",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e3e",
+              "defender": "6979449d2cef3ca65a5f4ef8",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f535e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e3b",
+              "defender": "6979449d2cef3ca65a5f4f04",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5367",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5003",
+              "defender": "6979449d2cef3ca65a5f4e0b",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5370",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fdc",
+              "defender": "6979449e2cef3ca65a5f4faf",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5379",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ed1",
+              "defender": "6979449f2cef3ca65a5f5012",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5382",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5027",
+              "defender": "6979449d2cef3ca65a5f4ed7",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f538b",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e8f",
+              "defender": "6979449d2cef3ca65a5f4e89",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f5394",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f91",
+              "defender": "6979449c2cef3ca65a5f4df0",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f539d",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e2f",
+              "defender": "6979449e2cef3ca65a5f4fee",
+              "isQualificationRound": true,
+              "battle": "6979449f2cef3ca65a5f53a6",
+              "wonBy": "attacker"
+            }
+          ],
+          "isQualificationRound": true
+        },
+        "2": {
+          "roundNumber": 2,
+          "cases": 1,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "6979449e2cef3ca65a5f4f67",
+              "defender": "6979449d2cef3ca65a5f4e26",
+              "battle": "697a73182ee3b99d67e297f7",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e29",
+              "defender": "6979449d2cef3ca65a5f4e14",
+              "battle": "697a73182ee3b99d67e29800",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4de7",
+              "defender": "6979449d2cef3ca65a5f4e35",
+              "battle": "697a73182ee3b99d67e29809",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e20",
+              "defender": "6979449f2cef3ca65a5f5030",
+              "battle": "697a73182ee3b99d67e29812",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4d9a",
+              "defender": "6979449e2cef3ca65a5f4f8b",
+              "battle": "697a73182ee3b99d67e2981b",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f1f",
+              "defender": "6979449d2cef3ca65a5f4ef2",
+              "battle": "697a73182ee3b99d67e29824",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eb6",
+              "defender": "6979449e2cef3ca65a5f4f0a",
+              "battle": "697a73182ee3b99d67e2982d",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e53",
+              "defender": "6979449e2cef3ca65a5f4f5e",
+              "battle": "697a73182ee3b99d67e29836",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f94",
+              "defender": "6979449c2cef3ca65a5f4db7",
+              "battle": "697a73182ee3b99d67e2983f",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f46",
+              "defender": "6979449e2cef3ca65a5f4f0d",
+              "battle": "697a73182ee3b99d67e29848",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f34",
+              "defender": "6979449d2cef3ca65a5f4e23",
+              "battle": "697a73182ee3b99d67e29851",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dc6",
+              "defender": "6979449d2cef3ca65a5f4e17",
+              "battle": "697a73182ee3b99d67e2985a",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ebc",
+              "defender": "6979449c2cef3ca65a5f4dde",
+              "battle": "697a73182ee3b99d67e29863",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f2e",
+              "defender": "6979449e2cef3ca65a5f4f3a",
+              "battle": "697a73182ee3b99d67e2986c",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ecb",
+              "defender": "6979449d2cef3ca65a5f4e32",
+              "battle": "697a73182ee3b99d67e29875",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f22",
+              "defender": "6979449e2cef3ca65a5f4f43",
+              "battle": "697a73182ee3b99d67e2987e",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4edd",
+              "defender": "6979449e2cef3ca65a5f4f3d",
+              "battle": "697a73182ee3b99d67e29887",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4ddb",
+              "defender": "6979449e2cef3ca65a5f4f4f",
+              "battle": "697a73182ee3b99d67e29890",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f9d",
+              "defender": "6979449c2cef3ca65a5f4dea",
+              "battle": "697a73182ee3b99d67e29899",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fa6",
+              "defender": "6979449c2cef3ca65a5f4dc9",
+              "battle": "697a73182ee3b99d67e298a2",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4d9d",
+              "defender": "6979449e2cef3ca65a5f4f64",
+              "battle": "697a73182ee3b99d67e298ab",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e7a",
+              "defender": "6979449e2cef3ca65a5f4fdf",
+              "battle": "697a73182ee3b99d67e298b4",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f4ff7",
+              "defender": "6979449c2cef3ca65a5f4df6",
+              "battle": "697a73182ee3b99d67e298bd",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f7c",
+              "defender": "6979449d2cef3ca65a5f4eaa",
+              "battle": "697a73182ee3b99d67e298c6",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4df3",
+              "defender": "6979449f2cef3ca65a5f5009",
+              "battle": "697a73182ee3b99d67e298cf",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e83",
+              "defender": "6979449c2cef3ca65a5f4da0",
+              "battle": "697a73182ee3b99d67e298d8",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e68",
+              "defender": "6979449c2cef3ca65a5f4dc0",
+              "battle": "697a73182ee3b99d67e298e1",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4de4",
+              "defender": "6979449e2cef3ca65a5f4f40",
+              "battle": "697a73182ee3b99d67e298ea",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f49",
+              "defender": "6979449e2cef3ca65a5f4f5b",
+              "battle": "697a73182ee3b99d67e298f3",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ef5",
+              "defender": "6979449d2cef3ca65a5f4e4a",
+              "battle": "697a73182ee3b99d67e298fc",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f28",
+              "defender": "6979449e2cef3ca65a5f4f2b",
+              "battle": "697a73182ee3b99d67e29905",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e1d",
+              "defender": "6979449d2cef3ca65a5f4efb",
+              "battle": "697a73182ee3b99d67e2990e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4da6",
+              "defender": "6979449e2cef3ca65a5f4fbb",
+              "battle": "697a73182ee3b99d67e29917",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e41",
+              "defender": "6979449e2cef3ca65a5f4fc4",
+              "battle": "697a73182ee3b99d67e29920",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e62",
+              "defender": "6979449d2cef3ca65a5f4ea1",
+              "battle": "697a73182ee3b99d67e29929",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f1c",
+              "defender": "6979449d2cef3ca65a5f4ebf",
+              "battle": "697a73182ee3b99d67e29932",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ec5",
+              "defender": "6979449d2cef3ca65a5f4e95",
+              "battle": "697a73182ee3b99d67e2993b",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e5c",
+              "defender": "6979449d2cef3ca65a5f4e6e",
+              "battle": "697a73182ee3b99d67e29944",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e77",
+              "defender": "6979449e2cef3ca65a5f4f73",
+              "battle": "697a73182ee3b99d67e2994d",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4da3",
+              "defender": "6979449d2cef3ca65a5f4e0e",
+              "battle": "697a73182ee3b99d67e29956",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5033",
+              "defender": "6979449d2cef3ca65a5f4e05",
+              "battle": "697a73182ee3b99d67e2995f",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e92",
+              "defender": "6979449d2cef3ca65a5f4e6b",
+              "battle": "697a73192ee3b99d67e29968",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f79",
+              "defender": "6979449d2cef3ca65a5f4e86",
+              "battle": "697a73192ee3b99d67e29971",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f88",
+              "defender": "6979449e2cef3ca65a5f4ff1",
+              "battle": "697a73192ee3b99d67e2997a",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e98",
+              "defender": "6979449d2cef3ca65a5f4ec8",
+              "battle": "697a73192ee3b99d67e29983",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eef",
+              "defender": "6979449d2cef3ca65a5f4ead",
+              "battle": "697a73192ee3b99d67e2998c",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e71",
+              "defender": "6979449f2cef3ca65a5f4ff4",
+              "battle": "697a73192ee3b99d67e29995",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e56",
+              "defender": "6979449d2cef3ca65a5f4e8c",
+              "battle": "697a73192ee3b99d67e2999e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5006",
+              "defender": "6979449c2cef3ca65a5f4dd8",
+              "battle": "697a73192ee3b99d67e299a7",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e7d",
+              "defender": "6979449e2cef3ca65a5f4f61",
+              "battle": "697a73192ee3b99d67e299b0",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f55",
+              "defender": "6979449e2cef3ca65a5f4fb5",
+              "battle": "697a73192ee3b99d67e299b9",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e50",
+              "defender": "6979449e2cef3ca65a5f4fc7",
+              "battle": "697a73192ee3b99d67e299c2",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dd2",
+              "defender": "6979449c2cef3ca65a5f4df9",
+              "battle": "697a73192ee3b99d67e299cb",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f19",
+              "defender": "6979449d2cef3ca65a5f4e65",
+              "battle": "697a73192ee3b99d67e299d4",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4db4",
+              "defender": "6979449d2cef3ca65a5f4e9b",
+              "battle": "697a73192ee3b99d67e299dd",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e02",
+              "defender": "6979449d2cef3ca65a5f4e2c",
+              "battle": "697a73192ee3b99d67e299e6",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dcc",
+              "defender": "6979449c2cef3ca65a5f4db1",
+              "battle": "697a73192ee3b99d67e299ef",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e59",
+              "defender": "6979449d2cef3ca65a5f4e08",
+              "battle": "697a73192ee3b99d67e299f8",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5015",
+              "defender": "6979449e2cef3ca65a5f4fe8",
+              "battle": "697a73192ee3b99d67e29a01",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ec2",
+              "defender": "6979449d2cef3ca65a5f4ef8",
+              "battle": "697a73192ee3b99d67e29a0a",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e3b",
+              "defender": "6979449d2cef3ca65a5f4e0b",
+              "battle": "697a73192ee3b99d67e29a13",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fdc",
+              "defender": "6979449d2cef3ca65a5f4ed1",
+              "battle": "697a73192ee3b99d67e29a1c",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ed7",
+              "defender": "6979449d2cef3ca65a5f4e89",
+              "battle": "697a73192ee3b99d67e29a25",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4df0",
+              "defender": "6979449d2cef3ca65a5f4e2f",
+              "battle": "697a73192ee3b99d67e29a2e",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "3": {
+          "roundNumber": 3,
+          "cases": 2,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "6979449d2cef3ca65a5f4e26",
+              "defender": "6979449d2cef3ca65a5f4e29",
+              "battle": "697ba61a3532c0f548148841",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e35",
+              "defender": "6979449f2cef3ca65a5f5030",
+              "battle": "697ba61a3532c0f54814884a",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4d9a",
+              "defender": "6979449d2cef3ca65a5f4ef2",
+              "battle": "697ba61a3532c0f548148853",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f0a",
+              "defender": "6979449d2cef3ca65a5f4e53",
+              "battle": "697ba61a3532c0f54814885c",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4db7",
+              "defender": "6979449e2cef3ca65a5f4f0d",
+              "battle": "697ba61a3532c0f548148865",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e23",
+              "defender": "6979449c2cef3ca65a5f4dc6",
+              "battle": "697ba61a3532c0f54814886e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ebc",
+              "defender": "6979449e2cef3ca65a5f4f2e",
+              "battle": "697ba61a3532c0f548148877",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ecb",
+              "defender": "6979449e2cef3ca65a5f4f22",
+              "battle": "697ba61a3532c0f548148880",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f3d",
+              "defender": "6979449c2cef3ca65a5f4ddb",
+              "battle": "697ba61a3532c0f548148889",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dea",
+              "defender": "6979449e2cef3ca65a5f4fa6",
+              "battle": "697ba61a3532c0f548148892",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4d9d",
+              "defender": "6979449d2cef3ca65a5f4e7a",
+              "battle": "697ba61a3532c0f54814889b",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4df6",
+              "defender": "6979449d2cef3ca65a5f4eaa",
+              "battle": "697ba61a3532c0f5481488a4",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4df3",
+              "defender": "6979449d2cef3ca65a5f4e83",
+              "battle": "697ba61a3532c0f5481488ad",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dc0",
+              "defender": "6979449c2cef3ca65a5f4de4",
+              "battle": "697ba61a3532c0f5481488b6",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f49",
+              "defender": "6979449d2cef3ca65a5f4e4a",
+              "battle": "697ba61a3532c0f5481488bf",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f28",
+              "defender": "6979449d2cef3ca65a5f4efb",
+              "battle": "697ba61a3532c0f5481488c8",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fbb",
+              "defender": "6979449d2cef3ca65a5f4e41",
+              "battle": "697ba61a3532c0f5481488d1",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ea1",
+              "defender": "6979449e2cef3ca65a5f4f1c",
+              "battle": "697ba61a3532c0f5481488da",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ec5",
+              "defender": "6979449d2cef3ca65a5f4e6e",
+              "battle": "697ba61a3532c0f5481488e3",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e77",
+              "defender": "6979449d2cef3ca65a5f4e0e",
+              "battle": "697ba61a3532c0f5481488ec",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e05",
+              "defender": "6979449d2cef3ca65a5f4e92",
+              "battle": "697ba61a3532c0f5481488f5",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e86",
+              "defender": "6979449e2cef3ca65a5f4f88",
+              "battle": "697ba61a3532c0f5481488fe",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ec8",
+              "defender": "6979449d2cef3ca65a5f4ead",
+              "battle": "697ba61a3532c0f548148907",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e71",
+              "defender": "6979449d2cef3ca65a5f4e8c",
+              "battle": "697ba61a3532c0f548148910",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dd8",
+              "defender": "6979449d2cef3ca65a5f4e7d",
+              "battle": "697ba61a3532c0f548148919",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4fb5",
+              "defender": "6979449d2cef3ca65a5f4e50",
+              "battle": "697ba61a3532c0f548148922",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4df9",
+              "defender": "6979449e2cef3ca65a5f4f19",
+              "battle": "697ba61a3532c0f54814892b",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4db4",
+              "defender": "6979449d2cef3ca65a5f4e2c",
+              "battle": "697ba61a3532c0f548148934",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4db1",
+              "defender": "6979449d2cef3ca65a5f4e08",
+              "battle": "697ba61a3532c0f54814893d",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449f2cef3ca65a5f5015",
+              "defender": "6979449d2cef3ca65a5f4ef8",
+              "battle": "697ba61a3532c0f548148946",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e3b",
+              "defender": "6979449d2cef3ca65a5f4ed1",
+              "battle": "697ba61a3532c0f54814894f",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e89",
+              "defender": "6979449d2cef3ca65a5f4e2f",
+              "battle": "697ba61a3532c0f548148958",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "4": {
+          "roundNumber": 4,
+          "cases": 2,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "6979449d2cef3ca65a5f4e26",
+              "defender": "6979449d2cef3ca65a5f4e35",
+              "battle": "697ccb07c53d20495bc6b6e6",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ef2",
+              "defender": "6979449e2cef3ca65a5f4f0a",
+              "battle": "697ccb07c53d20495bc6b6ef",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4db7",
+              "defender": "6979449c2cef3ca65a5f4dc6",
+              "battle": "697ccb07c53d20495bc6b6f8",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f2e",
+              "defender": "6979449e2cef3ca65a5f4f22",
+              "battle": "697ccb07c53d20495bc6b701",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f3d",
+              "defender": "6979449e2cef3ca65a5f4fa6",
+              "battle": "697ccb07c53d20495bc6b70a",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4d9d",
+              "defender": "6979449d2cef3ca65a5f4eaa",
+              "battle": "697ccb07c53d20495bc6b713",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e83",
+              "defender": "6979449c2cef3ca65a5f4dc0",
+              "battle": "697ccb07c53d20495bc6b71c",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e4a",
+              "defender": "6979449d2cef3ca65a5f4efb",
+              "battle": "697ccb07c53d20495bc6b725",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e41",
+              "defender": "6979449e2cef3ca65a5f4f1c",
+              "battle": "697ccb07c53d20495bc6b72e",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e6e",
+              "defender": "6979449d2cef3ca65a5f4e77",
+              "battle": "697ccb07c53d20495bc6b737",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e92",
+              "defender": "6979449d2cef3ca65a5f4e86",
+              "battle": "697ccb07c53d20495bc6b740",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ec8",
+              "defender": "6979449d2cef3ca65a5f4e8c",
+              "battle": "697ccb07c53d20495bc6b749",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dd8",
+              "defender": "6979449d2cef3ca65a5f4e50",
+              "battle": "697ccb07c53d20495bc6b752",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f19",
+              "defender": "6979449d2cef3ca65a5f4e2c",
+              "battle": "697ccb07c53d20495bc6b75b",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e08",
+              "defender": "6979449d2cef3ca65a5f4ef8",
+              "battle": "697ccb07c53d20495bc6b764",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4ed1",
+              "defender": "6979449d2cef3ca65a5f4e2f",
+              "battle": "697ccb07c53d20495bc6b76d",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "5": {
+          "roundNumber": 5,
+          "cases": 3,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "6979449d2cef3ca65a5f4e35",
+              "defender": "6979449d2cef3ca65a5f4ef2",
+              "battle": "697e0e6e1ef0d8230c75d473",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4db7",
+              "defender": "6979449e2cef3ca65a5f4f22",
+              "battle": "697e0e6e1ef0d8230c75d47c",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f3d",
+              "defender": "6979449d2cef3ca65a5f4eaa",
+              "battle": "697e0e6e1ef0d8230c75d485",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dc0",
+              "defender": "6979449d2cef3ca65a5f4efb",
+              "battle": "697e0e6e1ef0d8230c75d48e",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e41",
+              "defender": "6979449d2cef3ca65a5f4e6e",
+              "battle": "697e0e6e1ef0d8230c75d497",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e92",
+              "defender": "6979449d2cef3ca65a5f4e8c",
+              "battle": "697e0e6e1ef0d8230c75d4a0",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449c2cef3ca65a5f4dd8",
+              "defender": "6979449e2cef3ca65a5f4f19",
+              "battle": "697e0e6e1ef0d8230c75d4a9",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e08",
+              "defender": "6979449d2cef3ca65a5f4e2f",
+              "battle": "697e0e6e1ef0d8230c75d4b2",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "6": {
+          "roundNumber": 6,
+          "cases": 3,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "6979449d2cef3ca65a5f4e35",
+              "defender": "6979449c2cef3ca65a5f4db7",
+              "battle": "697f3cc1017b88f7abf8b349",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4eaa",
+              "defender": "6979449d2cef3ca65a5f4efb",
+              "battle": "697f3cc1017b88f7abf8b352",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e6e",
+              "defender": "6979449d2cef3ca65a5f4e8c",
+              "battle": "697f3cc1017b88f7abf8b35b",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "6979449e2cef3ca65a5f4f19",
+              "defender": "6979449d2cef3ca65a5f4e2f",
+              "battle": "697f3cc1017b88f7abf8b364",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "7": {
+          "roundNumber": 7,
+          "cases": 5,
+          "skillValue": 5,
+          "matches": [
+            {
+              "attacker": "6979449c2cef3ca65a5f4db7",
+              "defender": "6979449d2cef3ca65a5f4efb",
+              "battle": "69804a47135d8036cab31f37",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "6979449d2cef3ca65a5f4e8c",
+              "defender": "6979449d2cef3ca65a5f4e2f",
+              "battle": "69804a47135d8036cab31f40",
+              "wonBy": "attacker"
+            }
+          ]
+        },
+        "8": {
+          "roundNumber": 8,
+          "cases": 10,
+          "skillValue": 10,
+          "matches": [
+            {
+              "attacker": "6979449c2cef3ca65a5f4db7",
+              "defender": "6979449d2cef3ca65a5f4e8c",
+              "battle": "69816a8ecd3c01d3c8dec21f",
+              "wonBy": "attacker"
+            }
+          ]
+        }
+      },
+      "winnerTournamentTeam": "6979449c2cef3ca65a5f4db7"
+    },
+    {
+      "_id": "69666f702032ddeda457fca4",
+      "name": "Country Tournament",
+      "description": "Nations compete for glory",
+      "isActive": false,
+      "status": "ended",
+      "startAt": "2026-01-16T16:14:40.013Z",
+      "teamSize": 165.00215311305456,
+      "teamCount": 16,
+      "roundsCount": 4,
+      "type": "country",
+      "maxRarity": "epic",
+      "skillKey": "energy",
+      "autoQualify1stRound": [],
+      "registered": {
+        "countries": [],
+        "mus": [],
+        "users": []
+      },
+      "createdAt": "2026-01-13T16:14:40.029Z",
+      "updatedAt": "2026-01-19T06:55:02.515Z",
+      "__v": 0,
+      "activeRound": 4,
+      "rounds": {
+        "1": {
+          "roundNumber": 1,
+          "cases": 3,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "696a64052e880a80d8606c51",
+              "defender": "696a64052e880a80d8606c48",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606c70",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c3f",
+              "defender": "696a64052e880a80d8606c3c",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606c79",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c63",
+              "defender": "696a64052e880a80d8606c66",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606c82",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c45",
+              "defender": "696a64052e880a80d8606c4e",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606c8b",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c42",
+              "defender": "696a64052e880a80d8606c54",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606c94",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c5d",
+              "defender": "696a64052e880a80d8606c5a",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606c9d",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c4b",
+              "defender": "696a64052e880a80d8606c39",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606ca6",
+              "wonBy": "defender"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c60",
+              "defender": "696a64052e880a80d8606c57",
+              "isQualificationRound": false,
+              "battle": "696a64052e880a80d8606caf",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "2": {
+          "roundNumber": 2,
+          "cases": 3,
+          "skillValue": null,
+          "matches": [
+            {
+              "attacker": "696a64052e880a80d8606c48",
+              "defender": "696a64052e880a80d8606c3f",
+              "battle": "696ba0828e856b32af52003d",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c63",
+              "defender": "696a64052e880a80d8606c45",
+              "battle": "696ba0828e856b32af520046",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c42",
+              "defender": "696a64052e880a80d8606c5a",
+              "battle": "696ba0828e856b32af52004f",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c39",
+              "defender": "696a64052e880a80d8606c57",
+              "battle": "696ba0828e856b32af520058",
+              "wonBy": "attacker"
+            }
+          ]
+        },
+        "3": {
+          "roundNumber": 3,
+          "cases": 5,
+          "skillValue": 10,
+          "matches": [
+            {
+              "attacker": "696a64052e880a80d8606c48",
+              "defender": "696a64052e880a80d8606c63",
+              "battle": "696c599aae9a312f1bb12d82",
+              "wonBy": "attacker"
+            },
+            {
+              "attacker": "696a64052e880a80d8606c42",
+              "defender": "696a64052e880a80d8606c39",
+              "battle": "696c599aae9a312f1bb12d8b",
+              "wonBy": "defender"
+            }
+          ]
+        },
+        "4": {
+          "roundNumber": 4,
+          "cases": 10,
+          "skillValue": 20,
+          "matches": [
+            {
+              "attacker": "696a64052e880a80d8606c48",
+              "defender": "696a64052e880a80d8606c39",
+              "battle": "696d232bea96d800b55b7e28",
+              "wonBy": "attacker"
+            }
+          ]
+        }
+      },
+      "winnerTournamentTeam": "696a64052e880a80d8606c48"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0wMS0xNlQxNjoxNDo0MC4wMTNaIn0seyJ0Ijoic3RyIiwidiI6IjY5NjY2ZjcwMjAzMmRkZWRhNDU3ZmNhNCJ9XQ"
+}

@@ -31,10 +31,22 @@ type Client struct {
 	Regions *RegionService
 	// Government provides access to country government data.
 	Government *GovernmentService
+	// Alliances provides access to alliances and their strategic resource bonuses.
+	Alliances *AllianceService
+	// Wars provides access to wars between countries.
+	Wars *WarService
+	// Parties provides access to political parties.
+	Parties *PartyService
+	// Elections provides access to country and party elections.
+	Elections *ElectionService
 	// GameConfig provides access to game configuration and timing data.
 	GameConfig *GameConfigService
-	// Trading provides access to market prices and top orders.
+	// Trading provides access to market prices, order books, and trading history.
 	Trading *TradingService
+	// MarketStats provides access to game-wide economy statistics such as production point values.
+	MarketStats *MarketStatsService
+	// Donations provides access to money donations to countries, military units, and parties.
+	Donations *DonationService
 	// Search searches across users and other game entities.
 	Search *SearchService
 	// Events provides access to world and country events.
@@ -43,6 +55,14 @@ type Client struct {
 	BattleOrders *BattleOrderService
 	// MilitaryUnits provides access to military unit profiles and listings.
 	MilitaryUnits *MilitaryUnitService
+	// Tournaments provides access to MU and country tournaments and their teams.
+	Tournaments *TournamentService
+	// StateArmy provides access to countries' state army spending.
+	StateArmy *StateArmyService
+	// Contributions provides access to contributions to country unrest and region resistance.
+	Contributions *ContributionService
+	// Leagues provides access to the weekly player leagues.
+	Leagues *LeagueService
 	// Inventory provides access to user equipment.
 	Inventory *InventoryService
 	// Rankings provides access to global game rankings.
@@ -96,12 +116,22 @@ func NewClient(opts ...Option) *Client {
 	c.Users = &UserService{client: c}
 	c.Regions = &RegionService{client: c}
 	c.Government = &GovernmentService{client: c}
+	c.Alliances = &AllianceService{client: c}
+	c.Wars = &WarService{client: c}
+	c.Parties = &PartyService{client: c}
+	c.Elections = &ElectionService{client: c}
 	c.GameConfig = &GameConfigService{client: c}
 	c.Trading = &TradingService{client: c}
+	c.MarketStats = &MarketStatsService{client: c}
+	c.Donations = &DonationService{client: c}
 	c.Search = &SearchService{client: c}
 	c.Events = &EventService{client: c}
 	c.BattleOrders = &BattleOrderService{client: c}
 	c.MilitaryUnits = &MilitaryUnitService{client: c}
+	c.Tournaments = &TournamentService{client: c}
+	c.StateArmy = &StateArmyService{client: c}
+	c.Contributions = &ContributionService{client: c}
+	c.Leagues = &LeagueService{client: c}
 	c.Inventory = &InventoryService{client: c}
 	c.Rankings = &RankingService{client: c}
 	c.Rounds = &RoundService{client: c}

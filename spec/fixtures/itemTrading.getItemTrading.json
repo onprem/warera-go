@@ -1,0 +1,222 @@
+{
+  "_id": "6827659fbeae77b79dd720a9",
+  "itemCode": "steel",
+  "minPrice": 2,
+  "maxPrice": 20,
+  "values": [
+    {
+      "valueAt": "2026-10-23",
+      "avgValue": 1.995854963820366,
+      "totalValue": 1256662.136,
+      "totalQuantity": 629636,
+      "transactionsCount": 7906
+    },
+    {
+      "valueAt": "2026-10-24",
+      "avgValue": 1.997339085050055,
+      "totalValue": 1192836.8669999985,
+      "totalQuantity": 597213,
+      "transactionsCount": 8020
+    },
+    {
+      "valueAt": "2026-10-25",
+      "avgValue": 2.1135535293523704,
+      "totalValue": 1737474.1549999977,
+      "totalQuantity": 822063,
+      "transactionsCount": 8591
+    },
+    {
+      "valueAt": "2026-10-26",
+      "avgValue": 1.9735873415750218,
+      "totalValue": 2357280.350999988,
+      "totalQuantity": 1194414,
+      "transactionsCount": 10263
+    },
+    {
+      "valueAt": "2026-10-27",
+      "avgValue": 1.959224022988208,
+      "totalValue": 1538182.8619999962,
+      "totalQuantity": 785098,
+      "transactionsCount": 9469
+    },
+    {
+      "valueAt": "2026-10-28",
+      "avgValue": 2.0754514029361255,
+      "totalValue": 1417969.1529999904,
+      "totalQuantity": 683210,
+      "transactionsCount": 9159
+    },
+    {
+      "valueAt": "2026-10-29",
+      "avgValue": 2.104658852342986,
+      "totalValue": 1124018.3159999999,
+      "totalQuantity": 534062,
+      "transactionsCount": 8459
+    },
+    {
+      "valueAt": "2026-10-30",
+      "avgValue": 2.1754502173447063,
+      "totalValue": 1126537.316,
+      "totalQuantity": 517841,
+      "transactionsCount": 8511
+    },
+    {
+      "valueAt": "2026-10-31",
+      "avgValue": 2.1432080888385334,
+      "totalValue": 1029258.538999995,
+      "totalQuantity": 480242,
+      "transactionsCount": 8130
+    },
+    {
+      "valueAt": "2026-11-01",
+      "avgValue": 2.0068592869272663,
+      "totalValue": 977322.4109999964,
+      "totalQuantity": 486991,
+      "transactionsCount": 8480
+    },
+    {
+      "valueAt": "2026-11-02",
+      "avgValue": 1.9468806695306295,
+      "totalValue": 930854.2670000017,
+      "totalQuantity": 478126,
+      "transactionsCount": 8442
+    },
+    {
+      "valueAt": "2026-11-03",
+      "avgValue": 1.8864707502005729,
+      "totalValue": 1001674.4659999998,
+      "totalQuantity": 530978,
+      "transactionsCount": 7644
+    },
+    {
+      "valueAt": "2026-11-04",
+      "avgValue": 1.8416138778790139,
+      "totalValue": 847961.9020000026,
+      "totalQuantity": 460445,
+      "transactionsCount": 7243
+    },
+    {
+      "valueAt": "2026-11-05",
+      "avgValue": 1.8178751192315457,
+      "totalValue": 811881.2070000006,
+      "totalQuantity": 446610,
+      "transactionsCount": 7080
+    },
+    {
+      "valueAt": "2026-11-06",
+      "avgValue": 1.763751287169906,
+      "totalValue": 864973.6150000037,
+      "totalQuantity": 490417,
+      "transactionsCount": 7365
+    },
+    {
+      "valueAt": "2026-11-07",
+      "avgValue": 1.7154489925452339,
+      "totalValue": 816215.7769999999,
+      "totalQuantity": 475803,
+      "transactionsCount": 6472
+    },
+    {
+      "valueAt": "2026-11-08",
+      "avgValue": 1.757930727162649,
+      "totalValue": 874006.2409999986,
+      "totalQuantity": 497179,
+      "transactionsCount": 6787
+    },
+    {
+      "valueAt": "2026-11-09",
+      "avgValue": 1.7318441239003128,
+      "totalValue": 1069519.3890000011,
+      "totalQuantity": 617561,
+      "transactionsCount": 7897
+    },
+    {
+      "valueAt": "2026-11-10",
+      "avgValue": 1.7456876187303283,
+      "totalValue": 985098.5059999991,
+      "totalQuantity": 564304,
+      "transactionsCount": 7404
+    },
+    {
+      "valueAt": "2026-11-11",
+      "avgValue": 1.7648795987811299,
+      "totalValue": 992720.0660000027,
+      "totalQuantity": 562486,
+      "transactionsCount": 7310
+    },
+    {
+      "valueAt": "2026-11-12",
+      "avgValue": 1.7336786668284463,
+      "totalValue": 957314.8219999992,
+      "totalQuantity": 552187,
+      "transactionsCount": 7504
+    },
+    {
+      "valueAt": "2026-11-13",
+      "avgValue": 1.706449048916814,
+      "totalValue": 922316.94,
+      "totalQuantity": 540489,
+      "transactionsCount": 7719
+    },
+    {
+      "valueAt": "2026-11-14",
+      "avgValue": 1.677839119502868,
+      "totalValue": 946910.318999997,
+      "totalQuantity": 564363,
+      "transactionsCount": 8230
+    },
+    {
+      "valueAt": "2026-11-15",
+      "avgValue": 1.6763438484288193,
+      "totalValue": 976622.8389999943,
+      "totalQuantity": 582591,
+      "transactionsCount": 8865
+    },
+    {
+      "valueAt": "2026-11-16",
+      "avgValue": 1.6704320336698306,
+      "totalValue": 1094244.900999995,
+      "totalQuantity": 655067,
+      "transactionsCount": 10042
+    },
+    {
+      "valueAt": "2026-11-17",
+      "avgValue": 1.6976298121301578,
+      "totalValue": 1017024.5559999956,
+      "totalQuantity": 599085,
+      "transactionsCount": 8679
+    },
+    {
+      "valueAt": "2026-11-18",
+      "avgValue": 1.731462237320518,
+      "totalValue": 1080023.8109999956,
+      "totalQuantity": 623764,
+      "transactionsCount": 9355
+    },
+    {
+      "valueAt": "2026-11-19",
+      "avgValue": 1.7198640822686628,
+      "totalValue": 1052966.1460000016,
+      "totalQuantity": 612238,
+      "transactionsCount": 9089
+    },
+    {
+      "valueAt": "2026-11-20",
+      "avgValue": 1.7036041453050494,
+      "totalValue": 1025128.4620000058,
+      "totalQuantity": 601741,
+      "transactionsCount": 9736
+    },
+    {
+      "valueAt": "2026-11-21",
+      "avgValue": 1.6992944476962377,
+      "totalValue": 574827.1299999971,
+      "totalQuantity": 338274,
+      "transactionsCount": 5685
+    }
+  ],
+  "sellOrders": [],
+  "buyOrders": [],
+  "__v": 0,
+  "currentValue": 1.6992944476962377
+}

@@ -1,0 +1,438 @@
+{
+  "yearWeek": "2026-47",
+  "weekEndsAt": "2026-11-23T00:00:00.000Z",
+  "rows": [
+    {
+      "mu": "6a08926d4e4673d395505872",
+      "rank": 1,
+      "points": 723786043,
+      "seats": 25,
+      "isEligible": true,
+      "pot": {
+        "money": 15000,
+        "case1": 300,
+        "case2": 20,
+        "hasBadge": true
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "6a7203ea02dd43e0267df0bd",
+      "rank": 2,
+      "points": 657946723,
+      "seats": 25,
+      "isEligible": true,
+      "pot": {
+        "money": 10500,
+        "case1": 200,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "69cc40fa8c83b81ca7c8fb41",
+      "rank": 3,
+      "points": 609336404,
+      "seats": 25,
+      "isEligible": true,
+      "pot": {
+        "money": 7500,
+        "case1": 120,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "69bfeca032fb887b699d98be",
+      "rank": 4,
+      "points": 522030278,
+      "seats": 22,
+      "isEligible": true,
+      "pot": {
+        "money": 5400,
+        "case1": 0,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "69c954d4a95d5546a3ddeb9c",
+      "rank": 5,
+      "points": 481695595,
+      "seats": 24,
+      "isEligible": true,
+      "pot": {
+        "money": 4200,
+        "case1": 0,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "6a5d62fb2d0d72c7b6528ca9",
+      "rank": 6,
+      "points": 470477596,
+      "seats": 23,
+      "isEligible": true,
+      "pot": {
+        "money": 3000,
+        "case1": 0,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "6873e8e2f60e6c78cb43f06a",
+      "rank": 7,
+      "points": 404072265,
+      "seats": 25,
+      "isEligible": true,
+      "pot": {
+        "money": 2100,
+        "case1": 0,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "697dfff14fe43895c80e9f4b",
+      "rank": 8,
+      "points": 384693135,
+      "seats": 23,
+      "isEligible": true,
+      "pot": {
+        "money": 1500,
+        "case1": 0,
+        "case2": 0,
+        "hasBadge": false
+      },
+      "division": 15,
+      "move": "stay"
+    },
+    {
+      "mu": "68b71ca8b5e39a174fba68c2",
+      "rank": 9,
+      "points": 360459921,
+      "seats": 22,
+      "isEligible": true,
+      "pot": null,
+      "division": 15,
+      "move": "down"
+    },
+    {
+      "mu": "69f017436747ca7acb63b8d6",
+      "rank": 10,
+      "points": 336206772,
+      "seats": 24,
+      "isEligible": true,
+      "pot": null,
+      "division": 15,
+      "move": "down"
+    }
+  ],
+  "shares": [
+    {
+      "user": "697f9add92b5608af23fb9c5",
+      "points": 32228679,
+      "share": 0.07975969100477609,
+      "isMember": true,
+      "reward": {
+        "money": 168
+      }
+    },
+    {
+      "user": "69df6ce65bb1f1ef9f33dc5c",
+      "points": 29093344,
+      "share": 0.07200034874949905,
+      "isMember": true,
+      "reward": {
+        "money": 151
+      }
+    },
+    {
+      "user": "69e0e2fbb59898d9e19f5ba5",
+      "points": 27195624,
+      "share": 0.06730386209506362,
+      "isMember": true,
+      "reward": {
+        "money": 141
+      }
+    },
+    {
+      "user": "69de69e50fb8f235284a422f",
+      "points": 25719400,
+      "share": 0.06365049578446073,
+      "isMember": true,
+      "reward": {
+        "money": 134
+      }
+    },
+    {
+      "user": "69de667ba32a66b863747fe2",
+      "points": 25613272,
+      "share": 0.06338784969564788,
+      "isMember": true,
+      "reward": {
+        "money": 133
+      }
+    },
+    {
+      "user": "69617eb2a76096bc997caf32",
+      "points": 24668017,
+      "share": 0.06104852803990395,
+      "isMember": true,
+      "reward": {
+        "money": 128
+      }
+    },
+    {
+      "user": "6964ebd64731ec7d731f957e",
+      "points": 24515239,
+      "share": 0.060670432304973966,
+      "isMember": true,
+      "reward": {
+        "money": 127
+      }
+    },
+    {
+      "user": "69616fae1a3cf2732d626c65",
+      "points": 23926876,
+      "share": 0.05921434870072065,
+      "isMember": true,
+      "reward": {
+        "money": 124
+      }
+    },
+    {
+      "user": "69e39842120ca003b2432991",
+      "points": 21522754,
+      "share": 0.05326461592210492,
+      "isMember": true,
+      "reward": {
+        "money": 112
+      }
+    },
+    {
+      "user": "69f9b6bb610c6907eace7466",
+      "points": 20631210,
+      "share": 0.05105821850950349,
+      "isMember": true,
+      "reward": {
+        "money": 107
+      }
+    },
+    {
+      "user": "6a4b54413491814bdddf1aae",
+      "points": 19388275,
+      "share": 0.04798219694687533,
+      "isMember": true,
+      "reward": {
+        "money": 101
+      }
+    },
+    {
+      "user": "696158e1e27934d5f08739ab",
+      "points": 18815504,
+      "share": 0.046564700499797974,
+      "isMember": true,
+      "reward": {
+        "money": 98
+      }
+    },
+    {
+      "user": "69a6fe7d3c1729e5e80fb0e3",
+      "points": 18223606,
+      "share": 0.04509986846041017,
+      "isMember": true,
+      "reward": {
+        "money": 95
+      }
+    },
+    {
+      "user": "69f85fdcb7f0a4bdfc57c823",
+      "points": 18128762,
+      "share": 0.044865148069491975,
+      "isMember": true,
+      "reward": {
+        "money": 94
+      }
+    },
+    {
+      "user": "684c7b78a4bac2a5600b6990",
+      "points": 16309326,
+      "share": 0.04036239903770678,
+      "isMember": true,
+      "reward": {
+        "money": 85
+      }
+    },
+    {
+      "user": "69de5f651ec47f741900dba6",
+      "points": 15881187,
+      "share": 0.03930283856527495,
+      "isMember": true,
+      "reward": {
+        "money": 83
+      }
+    },
+    {
+      "user": "6961ee461045fd603504d00e",
+      "points": 13303092,
+      "share": 0.03292255656299499,
+      "isMember": true,
+      "reward": {
+        "money": 69
+      }
+    },
+    {
+      "user": "69df5ff11ec47f7419f41711",
+      "points": 9848525,
+      "share": 0.02437317740676906,
+      "isMember": true,
+      "reward": {
+        "money": 51
+      }
+    },
+    {
+      "user": "69d2bdcb2f9d5ca51873fae8",
+      "points": 8121583,
+      "share": 0.02009933297451138,
+      "isMember": false,
+      "reward": {
+        "money": 42
+      }
+    },
+    {
+      "user": "697f9a0a05620972c8d2efdc",
+      "points": 7655228,
+      "share": 0.018945195360042837,
+      "isMember": false,
+      "reward": {
+        "money": 40
+      }
+    },
+    {
+      "user": "6975ccf9fa12e6923832d799",
+      "points": 2714839,
+      "share": 0.006718696716291577,
+      "isMember": true,
+      "reward": {
+        "money": 14
+      }
+    },
+    {
+      "user": "6af377b2383684a9ed968ee6",
+      "points": 177237,
+      "share": 0.0004386269866851663,
+      "isMember": false,
+      "reward": {
+        "money": 1
+      }
+    },
+    {
+      "user": "69a45d2d8c6c665404d07615",
+      "points": 155478,
+      "share": 0.0003847777080171538,
+      "isMember": true,
+      "reward": {
+        "money": 1
+      }
+    },
+    {
+      "user": "696ee957ae489d5e439fc9a1",
+      "points": 144819,
+      "share": 0.0003583987631519327,
+      "isMember": true,
+      "reward": {
+        "money": 1
+      }
+    },
+    {
+      "user": "69a43d511cfa64ee460da39e",
+      "points": 90389,
+      "share": 0.00022369513532437076,
+      "isMember": true
+    }
+  ],
+  "placePots": [
+    {
+      "money": 15000,
+      "case1": 300,
+      "case2": 20,
+      "hasBadge": true
+    },
+    {
+      "money": 10500,
+      "case1": 200,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 7500,
+      "case1": 120,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 5400,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 4200,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 3000,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 2100,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 1500,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    null,
+    null
+  ],
+  "league": {
+    "_id": "6afb05dea051162b13648c34",
+    "groupIndex": 1,
+    "groupsCount": 105,
+    "strengthAvg": 543651718.9,
+    "membersCount": 10,
+    "promoteCount": 0,
+    "demoteCount": 2
+  },
+  "me": {
+    "rank": 7,
+    "points": 404072265,
+    "division": 15,
+    "multiplier": 10,
+    "move": "stay"
+  }
+}

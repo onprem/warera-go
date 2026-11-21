@@ -1,0 +1,131 @@
+{
+  "yearWeek": "2026-47",
+  "weekEndsAt": "2026-11-23T00:00:00.000Z",
+  "league": {
+    "_id": "6afa47f784ba77df320ef3ac",
+    "kind": "regular",
+    "groupIndex": 2083,
+    "membersCount": 10,
+    "ratingAvg": 50.8,
+    "levelAvg": 48,
+    "multiplier": 1.5038464910930212
+  },
+  "me": {
+    "points": 37106357,
+    "rank": 1
+  },
+  "rows": [
+    {
+      "user": "691d7aefc66380bdd827820f",
+      "rank": 1,
+      "points": 37106357,
+      "isEligible": true
+    },
+    {
+      "user": "68c989b4d5376fb75ee9afee",
+      "rank": 2,
+      "points": 27304528,
+      "isEligible": true
+    },
+    {
+      "user": "69768b8c8895f42c719dc3a4",
+      "rank": 3,
+      "points": 26459217,
+      "isEligible": true
+    },
+    {
+      "user": "69e53fa7cd345e323983cccd",
+      "rank": 4,
+      "points": 26178608,
+      "isEligible": true
+    },
+    {
+      "user": "69bced00e01eb035977d0e20",
+      "rank": 5,
+      "points": 20744222,
+      "isEligible": true
+    },
+    {
+      "user": "69d090fa8045f16fb01f1add",
+      "rank": 6,
+      "points": 18206203,
+      "isEligible": true
+    },
+    {
+      "user": "685ba0e5e00bfb5018fbb470",
+      "rank": 7,
+      "points": 18040268,
+      "isEligible": true
+    },
+    {
+      "user": "69cbe25b8779721aeac8008a",
+      "rank": 8,
+      "points": 14166639,
+      "isEligible": true
+    },
+    {
+      "user": "69b47152de471383ca369fce",
+      "rank": 9,
+      "points": 28191,
+      "isEligible": true
+    },
+    {
+      "user": "686934bb5841fc53d8747a32",
+      "rank": 10,
+      "points": 0,
+      "isEligible": false
+    }
+  ],
+  "placeRewards": [
+    {
+      "money": 226,
+      "case1": 24,
+      "case2": 3,
+      "hasBadge": true
+    },
+    {
+      "money": 158,
+      "case1": 18,
+      "case2": 2,
+      "hasBadge": false
+    },
+    {
+      "money": 113,
+      "case1": 12,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 81,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 63,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 45,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 32,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    {
+      "money": 23,
+      "case1": 0,
+      "case2": 0,
+      "hasBadge": false
+    },
+    null,
+    null
+  ]
+}

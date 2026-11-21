@@ -1,0 +1,235 @@
+[
+  {
+    "_id": "6a2981ad131983aa8445864d",
+    "name": "Frente Unido de Autodefensa",
+    "scheme": "purple",
+    "mapAccent": "dark",
+    "leader": "681d67ba470bf2a142189e0d",
+    "memberCountries": [
+      {
+        "country": "6813b6d546e731854c7ac838",
+        "coreDevelopment": 39.81,
+        "averageDevelopment": 33.18,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d546e731854c7ac83f",
+        "coreDevelopment": 56.69,
+        "averageDevelopment": 56.69,
+        "suspended": false
+      }
+    ],
+    "currentDevelopment": 83.24,
+    "coreDevelopment": 96.5,
+    "averageDevelopment": 89.87,
+    "createdAt": "2026-06-10T15:24:29.172Z",
+    "updatedAt": "2026-11-21T15:30:03.292Z",
+    "__v": 0,
+    "rankings": {
+      "allianceInitialDevelopment": {
+        "value": 96.5,
+        "rank": 13,
+        "tier": "bronze"
+      },
+      "allianceDevelopment": {
+        "value": 83.24,
+        "rank": 12,
+        "tier": "bronze"
+      },
+      "allianceWeeklyDamages": {
+        "value": 20524406,
+        "rank": 13,
+        "tier": "bronze"
+      },
+      "allianceDamages": {
+        "value": 787613306,
+        "rank": 13,
+        "tier": "bronze"
+      },
+      "alliancePopulation": {
+        "value": 27,
+        "rank": 13,
+        "tier": "bronze"
+      },
+      "allianceWeeklyDamagesPerCitizen": {
+        "value": 760163.1851851852,
+        "rank": 11,
+        "tier": "bronze"
+      }
+    },
+    "avatarUrl": "https://media.warera.io/avatars/alliance/alliance-6a2981ad131983aa8445864d-1781631826735-xdyvwnoj.png"
+  },
+  {
+    "_id": "6af05947f6d148886978a65a",
+    "name": "Dumb Idiots Gaining Global Authority",
+    "scheme": "gray",
+    "mapAccent": "dark",
+    "leader": "69a87b38762cdbffe2f2994c",
+    "memberCountries": [
+      {
+        "country": "6813b6d446e731854c7ac79c",
+        "coreDevelopment": 2398.26,
+        "averageDevelopment": 2411.11,
+        "suspended": false
+      },
+      {
+        "country": "6873d0ea1758b40e712b5ef7",
+        "coreDevelopment": 202.42,
+        "averageDevelopment": 283.92,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d446e731854c7ac80e",
+        "coreDevelopment": 405.64,
+        "averageDevelopment": 544.38,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d546e731854c7ac811",
+        "coreDevelopment": 52.54,
+        "averageDevelopment": 97.16,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d546e731854c7ac8e0",
+        "coreDevelopment": 129.82,
+        "averageDevelopment": 129.82,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d446e731854c7ac7ba",
+        "coreDevelopment": 663.24,
+        "averageDevelopment": 743.12,
+        "suspended": false
+      },
+      {
+        "country": "683ddd2c24b5a2e114af15f7",
+        "coreDevelopment": 49.17,
+        "averageDevelopment": 49.16,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d546e731854c7ac817",
+        "coreDevelopment": 24.54,
+        "averageDevelopment": 24.54,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d546e731854c7ac814",
+        "coreDevelopment": 34.84,
+        "averageDevelopment": 34.84,
+        "suspended": false
+      }
+    ],
+    "currentDevelopment": 4675.63,
+    "coreDevelopment": 3960.47,
+    "averageDevelopment": 4318.05,
+    "createdAt": "2026-11-08T11:13:11.288Z",
+    "updatedAt": "2026-11-21T15:30:03.293Z",
+    "__v": 0,
+    "rankings": {
+      "allianceInitialDevelopment": {
+        "value": 3956.18,
+        "rank": 4,
+        "tier": "gold"
+      },
+      "allianceDevelopment": {
+        "value": 4468.37,
+        "rank": 4,
+        "tier": "gold"
+      },
+      "allianceWeeklyDamages": {
+        "value": 5973491766,
+        "rank": 5,
+        "tier": "gold"
+      },
+      "allianceDamages": {
+        "value": 84199686982,
+        "rank": 5,
+        "tier": "gold"
+      },
+      "alliancePopulation": {
+        "value": 1255,
+        "rank": 4,
+        "tier": "gold"
+      },
+      "allianceWeeklyDamagesPerCitizen": {
+        "value": 4759754.395219124,
+        "rank": 6,
+        "tier": "silver"
+      }
+    }
+  },
+  {
+    "_id": "6af8c5903fd2dbec091ae186",
+    "name": "FAFO",
+    "scheme": "green",
+    "mapAccent": "dark",
+    "leader": "697f856b15e8474880f62480",
+    "memberCountries": [
+      {
+        "country": "683ddd2c24b5a2e114af1612",
+        "coreDevelopment": 516.1,
+        "averageDevelopment": 568.27,
+        "suspended": false
+      },
+      {
+        "country": "6813b6d546e731854c7ac848",
+        "coreDevelopment": 1286.31,
+        "averageDevelopment": 964.72,
+        "suspended": false
+      },
+      {
+        "country": "6873d0ea1758b40e712b5f6d",
+        "coreDevelopment": 28.44,
+        "averageDevelopment": 28.44,
+        "suspended": false
+      },
+      {
+        "country": "6873d0ea1758b40e712b5f43",
+        "coreDevelopment": 23.71,
+        "averageDevelopment": 23.71,
+        "suspended": false
+      }
+    ],
+    "currentDevelopment": 1315.72,
+    "coreDevelopment": 1854.56,
+    "averageDevelopment": 1585.14,
+    "createdAt": "2026-11-14T20:33:20.810Z",
+    "updatedAt": "2026-11-21T15:30:03.293Z",
+    "__v": 0,
+    "rankings": {
+      "allianceInitialDevelopment": {
+        "value": 1849.08,
+        "rank": 10,
+        "tier": "bronze"
+      },
+      "allianceDevelopment": {
+        "value": 1312.99,
+        "rank": 10,
+        "tier": "bronze"
+      },
+      "allianceWeeklyDamages": {
+        "value": 756576739,
+        "rank": 10,
+        "tier": "bronze"
+      },
+      "allianceDamages": {
+        "value": 13829670007,
+        "rank": 10,
+        "tier": "bronze"
+      },
+      "alliancePopulation": {
+        "value": 1248,
+        "rank": 5,
+        "tier": "gold"
+      },
+      "allianceWeeklyDamagesPerCitizen": {
+        "value": 606231.3613782051,
+        "rank": 12,
+        "tier": "bronze"
+      }
+    },
+    "avatarUrl": "https://media.warera.io/avatars/alliance/alliance-6af8c5903fd2dbec091ae186-1795035726638-5ii0mnyt.png"
+  }
+]

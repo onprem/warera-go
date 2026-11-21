@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "_id": "69aed52ab829eeafcce13c8a",
+      "muId": null,
+      "countryId": "683ddd2c24b5a2e114af15d9",
+      "partyId": null,
+      "userId": "69ae75987972e334e3d939c1",
+      "__v": 0,
+      "amount": 64836.291,
+      "createdAt": "2026-03-09T14:11:54.105Z",
+      "updatedAt": "2026-11-10T16:06:27.689Z"
+    },
+    {
+      "_id": "69c38a54b829eeafcce7fa7e",
+      "muId": null,
+      "countryId": "683ddd2c24b5a2e114af15d9",
+      "partyId": null,
+      "userId": "69b10be184786b5c77443c7c",
+      "__v": 0,
+      "amount": 63604.983,
+      "createdAt": "2026-03-25T07:10:12.873Z",
+      "updatedAt": "2026-10-28T02:01:50.335Z"
+    },
+    {
+      "_id": "69ac27cdb829eeafcce0671e",
+      "userId": "69abf037616e1a9253ecce35",
+      "partyId": null,
+      "countryId": "683ddd2c24b5a2e114af15d9",
+      "muId": null,
+      "__v": 0,
+      "amount": 30248,
+      "createdAt": "2026-03-07T13:27:41.535Z",
+      "updatedAt": "2026-11-19T10:30:53.428Z"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6Im51bSIsInYiOjMwMjQ4fSx7InQiOiJzdHIiLCJ2IjoiNjlhYzI3Y2RiODI5ZWVhZmNjZTA2NzFlIn1d"
+}

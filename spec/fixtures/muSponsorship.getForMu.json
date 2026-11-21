@@ -1,0 +1,20 @@
+{
+  "_id": "6afbfac572eb96d283b1aae2",
+  "country": "683ddd2c24b5a2e114af15c3",
+  "mu": "698c150574831a9507811709",
+  "law": "6afb934b0e99bf4dfd1d07cf",
+  "status": "active",
+  "offeredAt": "2026-11-17T06:57:09.591Z",
+  "kickedUsers": [
+    "698b7006f4d930a30fb1ca4d",
+    "698c4e8874831a9507b34d74",
+    "69a7a37406b3d07863a7f1f0",
+    "69f10f08845138ab0390e144"
+  ],
+  "live": true,
+  "createdAt": "2026-11-17T06:57:09.591Z",
+  "updatedAt": "2026-11-17T07:20:27.744Z",
+  "__v": 0,
+  "acceptedAt": "2026-11-17T07:20:27.744Z",
+  "acceptedBy": "698c61ee8bdebdf66d293429"
+}

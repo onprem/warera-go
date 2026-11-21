@@ -1,0 +1,34 @@
+{
+  "_id": "6b008bcd45bf6735778f60fd",
+  "tournament": "6afa47873058eea178c32e56",
+  "number": 2,
+  "countries": [],
+  "mus": [
+    "6a9561bc35ebdb104e474c0f"
+  ],
+  "users": [],
+  "participants": [
+    "699731a04f89f5df12c41014",
+    "69b06cb74a0b814a34740842",
+    "6a92992935ebdb104e450b0b",
+    "6a939819e40e996f7054818d",
+    "6a946a216c6a255969030274",
+    "6a9491ebe1a09b1a38cee025",
+    "6a94f3ed45b7b2e42fd5b1ed",
+    "6ad190ebc1b8c89e36c5b36d"
+  ],
+  "colorScheme": "cyan",
+  "estimatedUsers": 8,
+  "status": "active",
+  "totalDamage": 430509,
+  "damageByEntity": {
+    "6813b6d546e731854c7ac855": 430509,
+    "69b06cb74a0b814a34740842": 179985,
+    "6a9561bc35ebdb104e474c0f": 430509,
+    "6a94f3ed45b7b2e42fd5b1ed": 248251,
+    "6a9491ebe1a09b1a38cee025": 2273
+  },
+  "createdAt": "2026-11-20T18:05:01.687Z",
+  "updatedAt": "2026-11-21T06:10:48.962Z",
+  "__v": 0
+}

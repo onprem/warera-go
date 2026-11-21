@@ -1,0 +1,153 @@
+{
+  "_id": "6afccfb1ae29a661cde8d386",
+  "country": "6813b6d446e731854c7ac7f8",
+  "electedCandidates": [
+    "69a768652b9ecc888d1a4503",
+    "6a9b2f0923f3f01a4adb9a1a",
+    "6a9b8061a18f982db8829780",
+    "699679e34f89f5df12e44265",
+    "6a9c64247d02813357041a21",
+    "6a99f29b618635e73db17a17",
+    "6a9acf01c7d0b5e34372d6ca",
+    "6a9a250ee302f9503ff27252",
+    "6a9cefeb2bc787b448f3ebf8"
+  ],
+  "isActive": false,
+  "type": "congressList",
+  "candidates": [
+    {
+      "user": "69a768652b9ecc888d1a4503",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "6a98cc6b7428764164f96674"
+    },
+    {
+      "user": "6a9b2f0923f3f01a4adb9a1a",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "6a98cc6b7428764164f96674"
+    },
+    {
+      "user": "6a9b8061a18f982db8829780",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "6aa4caf47b972a6b02a1f27f"
+    },
+    {
+      "user": "699679e34f89f5df12e44265",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "698d25aff81f3341a0db3851"
+    },
+    {
+      "user": "6a9c64247d02813357041a21",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "698d25aff81f3341a0db3851"
+    },
+    {
+      "user": "6a99f29b618635e73db17a17",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "698d25aff81f3341a0db3851"
+    },
+    {
+      "user": "6a9acf01c7d0b5e34372d6ca",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "698d25aff81f3341a0db3851"
+    },
+    {
+      "user": "6a9a250ee302f9503ff27252",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "698d25aff81f3341a0db3851"
+    },
+    {
+      "user": "6a9cefeb2bc787b448f3ebf8",
+      "voteCount": 0,
+      "isElected": true,
+      "party": "698d25aff81f3341a0db3851"
+    }
+  ],
+  "votesStartAt": "2026-11-18T22:06:01.628Z",
+  "votesEndAt": "2026-11-19T22:06:01.628Z",
+  "votesCount": 43,
+  "electedCount": 9,
+  "createdAt": "2026-11-17T22:05:37.131Z",
+  "status": "finished",
+  "lists": [
+    {
+      "party": "6a98cc6b7428764164f96674",
+      "registeredAt": "2026-11-17T22:07:52.364Z",
+      "registeredBy": "69a768652b9ecc888d1a4503",
+      "members": [
+        "69a768652b9ecc888d1a4503",
+        "6a9b2f0923f3f01a4adb9a1a",
+        "6a9b1308fb23bd975999f245",
+        "6a9b6809a18f982db87306ec",
+        "6a9b9d37c8d1baa0f07365d6",
+        "6a9e37b046a0179eb3b386b6",
+        "6a9a59e64b6c8ea46b725319",
+        "6ab7886d358cc7fdfe39d67d",
+        "6a9d7ddff550de360dd9fb0a",
+        "6a9b4fb4fb23bd9759ce7232"
+      ],
+      "seats": 2
+    },
+    {
+      "party": "6aa4caf47b972a6b02a1f27f",
+      "registeredAt": "2026-11-17T22:47:02.483Z",
+      "registeredBy": "6a5d557d42a2b7a727238859",
+      "members": [
+        "6a9b8061a18f982db8829780",
+        "6a9b031010d39eb8a677b450",
+        "6a9a62d74a98355c98ed55d3",
+        "684f5a4bde35509db16e07f7",
+        "6a9a3431fb23bd9759d89fb9",
+        "6a9bdb3662ecf063a0c6ec14",
+        "6ac33bfe3de6115004d522b3",
+        "69fa6210c9b2e70d5e7b24ae",
+        "6a5d557d42a2b7a727238859",
+        "6a9b165e2ecee5bfa11e119f"
+      ],
+      "seats": 1
+    },
+    {
+      "party": "6af1694d9c96cafd64902faa",
+      "registeredAt": "2026-11-17T22:56:01.245Z",
+      "registeredBy": "6a9c4f7e10d39eb8a6999835",
+      "article": "6af1725970b9074343b1d9d3",
+      "members": [
+        "6a9c4f7e10d39eb8a6999835"
+      ],
+      "seats": 0
+    },
+    {
+      "party": "698d25aff81f3341a0db3851",
+      "registeredAt": "2026-11-18T02:38:44.114Z",
+      "registeredBy": "688282868ed720aa9644e5b9",
+      "article": "6ac46078ab5e2f7cb284d317",
+      "members": [
+        "699679e34f89f5df12e44265",
+        "6a9c64247d02813357041a21",
+        "6a99f29b618635e73db17a17",
+        "6a9acf01c7d0b5e34372d6ca",
+        "6a9a250ee302f9503ff27252",
+        "6a9cefeb2bc787b448f3ebf8",
+        "6a9b00020e670bf347940046",
+        "6a9a58a55e8b0dc50fc9b425",
+        "69a78bf60b70ad8a75d00325",
+        "6aaac8758101a810746a7b80"
+      ],
+      "seats": 6
+    }
+  ],
+  "__v": 0,
+  "votes": {
+    "6a98cc6b7428764164f96674": 12,
+    "698d25aff81f3341a0db3851": 25,
+    "6af1694d9c96cafd64902faa": 1,
+    "6aa4caf47b972a6b02a1f27f": 5
+  }
+}

@@ -1157,6 +1157,7 @@ type TopOrder struct {
 	ItemCode  string  `json:"itemCode,omitempty"`
 	MUID      string  `json:"mu,omitempty"`
 	OfferAt   string  `json:"offerAt,omitempty"`
+	PartyID   string  `json:"party,omitempty"`
 	Price     float64 `json:"price,omitempty"`
 	Quantity  int     `json:"quantity,omitempty"`
 	Type      string  `json:"type,omitempty"`

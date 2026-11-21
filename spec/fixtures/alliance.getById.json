@@ -1,0 +1,144 @@
+{
+  "_id": "6a2965afbc253b28fcf0d1c7",
+  "name": "P.A.S.T.A.",
+  "scheme": "amber",
+  "mapAccent": "dark",
+  "leader": "69d7a94a4336cd270ab7a6b8",
+  "memberCountries": [
+    {
+      "country": "6813b6d446e731854c7ac7a2",
+      "coreDevelopment": 818.3,
+      "averageDevelopment": 759.85,
+      "suspended": false
+    },
+    {
+      "country": "6813b6d446e731854c7ac7b4",
+      "coreDevelopment": 52.06,
+      "averageDevelopment": 121.43,
+      "suspended": false
+    },
+    {
+      "country": "683ddd2c24b5a2e114af15d7",
+      "coreDevelopment": 49.25,
+      "averageDevelopment": 49.25,
+      "suspended": false
+    },
+    {
+      "country": "696a81da63e2489f47e5a28c",
+      "coreDevelopment": 92.51,
+      "averageDevelopment": 92.51,
+      "suspended": false
+    },
+    {
+      "country": "683ddd2c24b5a2e114af15c3",
+      "coreDevelopment": 605.78,
+      "averageDevelopment": 605.79,
+      "suspended": false
+    },
+    {
+      "country": "683ddd2c24b5a2e114af15b5",
+      "coreDevelopment": 30.99,
+      "averageDevelopment": 31,
+      "suspended": false
+    },
+    {
+      "country": "683ddd2c24b5a2e114af15bd",
+      "coreDevelopment": 46.04,
+      "averageDevelopment": 46.22,
+      "suspended": false
+    },
+    {
+      "country": "6813b6d546e731854c7ac89c",
+      "coreDevelopment": 44.18,
+      "averageDevelopment": 22.09,
+      "suspended": false
+    },
+    {
+      "country": "683ddd2c24b5a2e114af15fd",
+      "coreDevelopment": 72.59,
+      "averageDevelopment": 79.84,
+      "suspended": false
+    },
+    {
+      "country": "6813b6d446e731854c7ac7c0",
+      "coreDevelopment": 299.98,
+      "averageDevelopment": 306.89,
+      "suspended": false
+    },
+    {
+      "country": "6813b6d446e731854c7ac7e2",
+      "coreDevelopment": 48.93,
+      "averageDevelopment": 48.93,
+      "suspended": false
+    },
+    {
+      "country": "6813b6d546e731854c7ac8d7",
+      "coreDevelopment": 62.97,
+      "averageDevelopment": 49.48,
+      "suspended": false
+    },
+    {
+      "country": "683ddd2c24b5a2e114af15cf",
+      "coreDevelopment": 85.75,
+      "averageDevelopment": 42.87,
+      "suspended": false
+    },
+    {
+      "country": "6873d0ea1758b40e712b5f2b",
+      "coreDevelopment": 26.2,
+      "averageDevelopment": 13.1,
+      "suspended": false
+    },
+    {
+      "country": "6813b6d546e731854c7ac84e",
+      "coreDevelopment": 283.39,
+      "averageDevelopment": 141.69,
+      "suspended": false
+    },
+    {
+      "country": "687eab339142f76907295e50",
+      "coreDevelopment": 45.72,
+      "averageDevelopment": 45.72,
+      "suspended": false
+    }
+  ],
+  "currentDevelopment": 2248.69,
+  "coreDevelopment": 2664.64,
+  "averageDevelopment": 2456.66,
+  "createdAt": "2026-06-10T13:25:03.335Z",
+  "updatedAt": "2026-11-21T15:30:03.291Z",
+  "__v": 0,
+  "rankings": {
+    "allianceInitialDevelopment": {
+      "value": 2663.01,
+      "rank": 7,
+      "tier": "silver"
+    },
+    "allianceDevelopment": {
+      "value": 2247.71,
+      "rank": 7,
+      "tier": "silver"
+    },
+    "allianceWeeklyDamages": {
+      "value": 5827884493,
+      "rank": 6,
+      "tier": "silver"
+    },
+    "allianceDamages": {
+      "value": 55833805298,
+      "rank": 6,
+      "tier": "silver"
+    },
+    "alliancePopulation": {
+      "value": 896,
+      "rank": 8,
+      "tier": "bronze"
+    },
+    "allianceWeeklyDamagesPerCitizen": {
+      "value": 6504335.371651785,
+      "rank": 3,
+      "tier": "platinum"
+    }
+  },
+  "avatarUrl": "https://media.warera.io/avatars/alliance/alliance-6a2965afbc253b28fcf0d1c7-1790340542353-fozjj8vi.png"
+}

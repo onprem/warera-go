@@ -1,0 +1,173 @@
+{
+  "byKind": [
+    {
+      "kind": "contract",
+      "quantity": 0,
+      "money": 1225
+    },
+    {
+      "kind": "hqOil",
+      "quantity": 3110,
+      "money": 0
+    },
+    {
+      "kind": "sponsorLaw",
+      "quantity": 19918,
+      "money": 0
+    }
+  ],
+  "byUnit": [
+    {
+      "mu": "69a41d7b75b50126c381cca5",
+      "kind": "sponsorLaw",
+      "quantity": 3336,
+      "money": 0
+    },
+    {
+      "mu": "699f7d14c629e138fa86ec9c",
+      "kind": "hqOil",
+      "quantity": 490,
+      "money": 0
+    },
+    {
+      "mu": "69bc0bf57e5e55af7b3d9bda",
+      "kind": "hqOil",
+      "quantity": 540,
+      "money": 0
+    },
+    {
+      "mu": "6a1001fc6d0ebebbfd1b197b",
+      "kind": "hqOil",
+      "quantity": 1150,
+      "money": 0
+    },
+    {
+      "mu": "69a896d1214e4eeda01ba4c5",
+      "kind": "hqOil",
+      "quantity": 470,
+      "money": 0
+    },
+    {
+      "mu": "695c338ec617ea3c92421bc3",
+      "kind": "hqOil",
+      "quantity": 450,
+      "money": 0
+    },
+    {
+      "mu": "6a1001fc6d0ebebbfd1b197b",
+      "kind": "contract",
+      "quantity": 0,
+      "money": 1225
+    },
+    {
+      "mu": "69a41d7b75b50126c381cca5",
+      "kind": "hqOil",
+      "quantity": 10,
+      "money": 0
+    },
+    {
+      "mu": "695c338ec617ea3c92421bc3",
+      "kind": "sponsorLaw",
+      "quantity": 3322,
+      "money": 0
+    },
+    {
+      "mu": "6a1001fc6d0ebebbfd1b197b",
+      "kind": "sponsorLaw",
+      "quantity": 3330,
+      "money": 0
+    },
+    {
+      "mu": "69bc0bf57e5e55af7b3d9bda",
+      "kind": "sponsorLaw",
+      "quantity": 3291,
+      "money": 0
+    },
+    {
+      "mu": "699f7d14c629e138fa86ec9c",
+      "kind": "sponsorLaw",
+      "quantity": 3317,
+      "money": 0
+    },
+    {
+      "mu": "69a896d1214e4eeda01ba4c5",
+      "kind": "sponsorLaw",
+      "quantity": 3322,
+      "money": 0
+    }
+  ],
+  "byDay": [
+    {
+      "day": "2026-11-16",
+      "kind": "hqOil",
+      "quantity": 20,
+      "money": 0
+    },
+    {
+      "day": "2026-11-16",
+      "kind": "sponsorLaw",
+      "quantity": 3330,
+      "money": 0
+    },
+    {
+      "day": "2026-11-17",
+      "kind": "contract",
+      "quantity": 0,
+      "money": 800
+    },
+    {
+      "day": "2026-11-17",
+      "kind": "hqOil",
+      "quantity": 240,
+      "money": 0
+    },
+    {
+      "day": "2026-11-18",
+      "kind": "contract",
+      "quantity": 0,
+      "money": 175.00000000000003
+    },
+    {
+      "day": "2026-11-18",
+      "kind": "hqOil",
+      "quantity": 240,
+      "money": 0
+    },
+    {
+      "day": "2026-11-19",
+      "kind": "hqOil",
+      "quantity": 550,
+      "money": 0
+    },
+    {
+      "day": "2026-11-19",
+      "kind": "sponsorLaw",
+      "quantity": 13252,
+      "money": 0
+    },
+    {
+      "day": "2026-11-20",
+      "kind": "hqOil",
+      "quantity": 1200,
+      "money": 0
+    },
+    {
+      "day": "2026-11-20",
+      "kind": "sponsorLaw",
+      "quantity": 3336,
+      "money": 0
+    },
+    {
+      "day": "2026-11-21",
+      "kind": "contract",
+      "quantity": 0,
+      "money": 250
+    },
+    {
+      "day": "2026-11-21",
+      "kind": "hqOil",
+      "quantity": 860,
+      "money": 0
+    }
+  ]
+}

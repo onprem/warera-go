@@ -1,0 +1,59 @@
+{
+  "allianceId": "6a2965afbc253b28fcf0d1c7",
+  "countryIds": [
+    "6813b6d446e731854c7ac7a2",
+    "6813b6d446e731854c7ac7b4",
+    "683ddd2c24b5a2e114af15d7",
+    "696a81da63e2489f47e5a28c",
+    "683ddd2c24b5a2e114af15c3",
+    "683ddd2c24b5a2e114af15b5",
+    "683ddd2c24b5a2e114af15bd",
+    "6813b6d546e731854c7ac89c",
+    "683ddd2c24b5a2e114af15fd",
+    "6813b6d446e731854c7ac7c0",
+    "6813b6d446e731854c7ac7e2",
+    "6813b6d546e731854c7ac8d7",
+    "683ddd2c24b5a2e114af15cf",
+    "6873d0ea1758b40e712b5f2b",
+    "6813b6d546e731854c7ac84e",
+    "687eab339142f76907295e50"
+  ],
+  "regionIds": {
+    "gold": [
+      "6813b7039403bc4170a5d699",
+      "6813b7049403bc4170a5d732",
+      "683ddd3e36dbc90b780474f5"
+    ],
+    "coal": [
+      "6813b7059403bc4170a5d76e",
+      "683ddd3d36dbc90b7804747f",
+      "687eab418fc7f0dfa1d2b988"
+    ],
+    "lithium": [
+      "6813b7059403bc4170a5d77a",
+      "6813b70d9403bc4170a5db97"
+    ],
+    "uranium": [
+      "683ddd3d36dbc90b78047454",
+      "683ddd3e36dbc90b780474ac"
+    ],
+    "diamonds": [
+      "683ddd3e36dbc90b78047540"
+    ],
+    "rareEarths": [
+      "696a81f5882256e1db118204"
+    ]
+  },
+  "bonuses": {
+    "skills": {
+      "management": 1,
+      "precision": 5,
+      "energy": 10,
+      "lootChance": 2,
+      "health": 10,
+      "production": 3
+    },
+    "productionPercent": 0,
+    "developmentPercent": 60
+  }
+}

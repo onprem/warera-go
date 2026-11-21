@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "_id": "6afb1a24d11032d1066bc2d6",
+      "country": "6813b6d446e731854c7ac7a4",
+      "mu": "69bfeca032fb887b699d98be",
+      "law": "6afb0d5115ce538f76b28e4c",
+      "status": "active",
+      "offeredAt": "2026-11-16T14:58:44.763Z",
+      "kickedUsers": [],
+      "live": true,
+      "createdAt": "2026-11-16T14:58:44.763Z",
+      "updatedAt": "2026-11-16T15:00:10.585Z",
+      "__v": 0,
+      "acceptedAt": "2026-11-16T15:00:10.585Z",
+      "acceptedBy": "69175a4947cb935b3e09c080"
+    },
+    {
+      "_id": "6afb1952e370598d689b27b0",
+      "country": "6813b6d446e731854c7ac7a4",
+      "mu": "6951d49ef8fb628e2559a370",
+      "law": "6afb0fdb5d57535875f4276e",
+      "status": "active",
+      "offeredAt": "2026-11-16T14:55:14.034Z",
+      "kickedUsers": [],
+      "live": true,
+      "createdAt": "2026-11-16T14:55:14.035Z",
+      "updatedAt": "2026-11-16T15:37:06.853Z",
+      "__v": 0,
+      "acceptedAt": "2026-11-16T15:37:06.852Z",
+      "acceptedBy": "6914d6382bcf008a80a140b9"
+    },
+    {
+      "_id": "6afb2c06753c3006a1d78c27",
+      "country": "6813b6d446e731854c7ac7a4",
+      "mu": "697dfff14fe43895c80e9f4b",
+      "law": "6afb1ba99e284f23654c2955",
+      "status": "active",
+      "offeredAt": "2026-11-16T16:15:02.677Z",
+      "kickedUsers": [],
+      "live": true,
+      "createdAt": "2026-11-16T16:15:02.677Z",
+      "updatedAt": "2026-11-16T18:48:45.238Z",
+      "__v": 0,
+      "acceptedAt": "2026-11-16T18:48:45.238Z",
+      "acceptedBy": "69175a4947cb935b3e09c080"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0xMS0xNlQxODo0ODo0NS4yMzhaIn0seyJ0Ijoic3RyIiwidiI6IjZhZmIyYzA2NzUzYzMwMDZhMWQ3OGMyNyJ9XQ",
+  "mus": {
+    "6951d49ef8fb628e2559a370": {
+      "name": "Royal Air Force",
+      "membersCount": 24,
+      "hqLevel": 4
+    },
+    "697dfff14fe43895c80e9f4b": {
+      "name": "Belgian Black Devils",
+      "membersCount": 25,
+      "hqLevel": 4
+    },
+    "69bfeca032fb887b699d98be": {
+      "name": "The Schtroumpfs",
+      "membersCount": 24,
+      "hqLevel": 4
+    }
+  }
+}

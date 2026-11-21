@@ -26,7 +26,9 @@ const (
 
 // VoidInputProcedures contains endpoints where the server rejects `{}` and requires void/no input.
 var VoidInputProcedures = map[string]bool{
-	"gameStat.getWorldDevelopment": true,
+	"gameStat.getWorldDevelopment":   true,
+	"gameStat.getPpMoneyValue":       true,
+	"gameStat.getPpMoneyValueByItem": true,
 }
 
 // ClientConfig holds configuration for the low-level tRPC client.

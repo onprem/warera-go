@@ -1,0 +1,1093 @@
+{
+  "items": [
+    {
+      "_id": "6afccfb1ae29a661cde8d386",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [
+        "69a768652b9ecc888d1a4503",
+        "6a9b2f0923f3f01a4adb9a1a",
+        "6a9b8061a18f982db8829780",
+        "699679e34f89f5df12e44265",
+        "6a9c64247d02813357041a21",
+        "6a99f29b618635e73db17a17",
+        "6a9acf01c7d0b5e34372d6ca",
+        "6a9a250ee302f9503ff27252",
+        "6a9cefeb2bc787b448f3ebf8"
+      ],
+      "isActive": false,
+      "type": "congressList",
+      "candidates": [
+        {
+          "user": "69a768652b9ecc888d1a4503",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b2f0923f3f01a4adb9a1a",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b8061a18f982db8829780",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "699679e34f89f5df12e44265",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9c64247d02813357041a21",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a99f29b618635e73db17a17",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9acf01c7d0b5e34372d6ca",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9a250ee302f9503ff27252",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9cefeb2bc787b448f3ebf8",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        }
+      ],
+      "votesStartAt": "2026-11-18T22:06:01.628Z",
+      "votesEndAt": "2026-11-19T22:06:01.628Z",
+      "votesCount": 43,
+      "electedCount": 9,
+      "createdAt": "2026-11-17T22:05:37.131Z",
+      "status": "finished",
+      "lists": [
+        {
+          "party": "6a98cc6b7428764164f96674",
+          "registeredAt": "2026-11-17T22:07:52.364Z",
+          "registeredBy": "69a768652b9ecc888d1a4503",
+          "members": [
+            "69a768652b9ecc888d1a4503",
+            "6a9b2f0923f3f01a4adb9a1a",
+            "6a9b1308fb23bd975999f245",
+            "6a9b6809a18f982db87306ec",
+            "6a9b9d37c8d1baa0f07365d6",
+            "6a9e37b046a0179eb3b386b6",
+            "6a9a59e64b6c8ea46b725319",
+            "6ab7886d358cc7fdfe39d67d",
+            "6a9d7ddff550de360dd9fb0a",
+            "6a9b4fb4fb23bd9759ce7232"
+          ],
+          "seats": 2
+        },
+        {
+          "party": "6aa4caf47b972a6b02a1f27f",
+          "registeredAt": "2026-11-17T22:47:02.483Z",
+          "registeredBy": "6a5d557d42a2b7a727238859",
+          "members": [
+            "6a9b8061a18f982db8829780",
+            "6a9b031010d39eb8a677b450",
+            "6a9a62d74a98355c98ed55d3",
+            "684f5a4bde35509db16e07f7",
+            "6a9a3431fb23bd9759d89fb9",
+            "6a9bdb3662ecf063a0c6ec14",
+            "6ac33bfe3de6115004d522b3",
+            "69fa6210c9b2e70d5e7b24ae",
+            "6a5d557d42a2b7a727238859",
+            "6a9b165e2ecee5bfa11e119f"
+          ],
+          "seats": 1
+        },
+        {
+          "party": "6af1694d9c96cafd64902faa",
+          "registeredAt": "2026-11-17T22:56:01.245Z",
+          "registeredBy": "6a9c4f7e10d39eb8a6999835",
+          "article": "6af1725970b9074343b1d9d3",
+          "members": [
+            "6a9c4f7e10d39eb8a6999835"
+          ],
+          "seats": 0
+        },
+        {
+          "party": "698d25aff81f3341a0db3851",
+          "registeredAt": "2026-11-18T02:38:44.114Z",
+          "registeredBy": "688282868ed720aa9644e5b9",
+          "article": "6ac46078ab5e2f7cb284d317",
+          "members": [
+            "699679e34f89f5df12e44265",
+            "6a9c64247d02813357041a21",
+            "6a99f29b618635e73db17a17",
+            "6a9acf01c7d0b5e34372d6ca",
+            "6a9a250ee302f9503ff27252",
+            "6a9cefeb2bc787b448f3ebf8",
+            "6a9b00020e670bf347940046",
+            "6a9a58a55e8b0dc50fc9b425",
+            "69a78bf60b70ad8a75d00325",
+            "6aaac8758101a810746a7b80"
+          ],
+          "seats": 6
+        }
+      ],
+      "__v": 0,
+      "votes": {
+        "6a98cc6b7428764164f96674": 12,
+        "698d25aff81f3341a0db3851": 25,
+        "6af1694d9c96cafd64902faa": 1,
+        "6aa4caf47b972a6b02a1f27f": 5
+      }
+    },
+    {
+      "_id": "6afcca73318d5d49def5b942",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "president",
+      "candidates": [
+        {
+          "user": "684f5a4bde35509db16e07f7",
+          "voteCount": 0,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "699679e34f89f5df12e44265",
+          "voteCount": 0,
+          "article": "6ae686fcbbe777a9c3131a17",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "69a7b7458d3ec3323bdc57fb",
+          "voteCount": 0,
+          "party": "6ac352b1fa5a72a7920ca439"
+        },
+        {
+          "user": "685b7fc9901b26fedacaea78",
+          "voteCount": 0,
+          "party": "69c011edd01b8ef2e55a12e3"
+        },
+        {
+          "user": "699b611c77416359573f5372",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9c4f7e10d39eb8a6999835",
+          "voteCount": 0,
+          "article": "6aed75a57cc3949d7141fc43",
+          "party": "6af1694d9c96cafd64902faa"
+        },
+        {
+          "user": "6a9b1b8b7ce340a482f6ab75",
+          "voteCount": 0,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9a29d00e670bf347d3c793",
+          "voteCount": 0,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        }
+      ],
+      "votesStartAt": "2026-11-18T21:43:31.483Z",
+      "votesEndAt": "2026-11-19T21:43:31.483Z",
+      "votesCount": 68,
+      "electedCount": 1,
+      "createdAt": "2026-11-17T21:43:15.897Z",
+      "status": "finished",
+      "lists": [],
+      "__v": 0,
+      "votes": {
+        "699b611c77416359573f5372": 32,
+        "684f5a4bde35509db16e07f7": 12,
+        "6a9a29d00e670bf347d3c793": 10,
+        "699679e34f89f5df12e44265": 6,
+        "685b7fc9901b26fedacaea78": 3,
+        "69a7b7458d3ec3323bdc57fb": 3,
+        "6a9c4f7e10d39eb8a6999835": 2
+      }
+    },
+    {
+      "_id": "6aebc7364984fd2ae8aa498d",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "congress",
+      "candidates": [
+        {
+          "user": "6a9a29d00e670bf347d3c793",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "684f5a4bde35509db16e07f7",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9a250ee302f9503ff27252",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b7fc17ce340a4824b0a21",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9c64247d02813357041a21",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6ac3d41e319dc164e922d629",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b00020e670bf347940046",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b2f0923f3f01a4adb9a1a",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a99f29b618635e73db17a17",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6aec23ecb7d1a422c1e90ece",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b031010d39eb8a677b450",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "69a768652b9ecc888d1a4503",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "698ffc28a6b2401a1ff71040",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b8061a18f982db8829780",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6ac33afff3951065cb1682df",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9b1308fb23bd975999f245",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9c4f7e10d39eb8a6999835",
+          "voteCount": 0,
+          "isElected": false
+        },
+        {
+          "user": "6aaac8758101a810746a7b80",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aed0a5bedb2e49381c7fcdd",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "699679e34f89f5df12e44265",
+          "voteCount": 0,
+          "isElected": false
+        },
+        {
+          "user": "6a5be8c844ab4aefad806bda",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9bdb3662ecf063a0c6ec14",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9bcf967115b9c5038bc0e9",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aec285f141dfa3a37cd15e7",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "69a78bf60b70ad8a75d00325",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b6809a18f982db87306ec",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b9d37c8d1baa0f07365d6",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        }
+      ],
+      "votesStartAt": "2026-11-06T00:01:04.950Z",
+      "votesEndAt": "2026-11-07T00:01:04.950Z",
+      "votesCount": 54,
+      "electedCount": 9,
+      "createdAt": "2026-11-05T00:00:54.925Z",
+      "status": "finished",
+      "__v": 0,
+      "votes": {
+        "6a9a29d00e670bf347d3c793": 8,
+        "6a9b2f0923f3f01a4adb9a1a": 3,
+        "6a99f29b618635e73db17a17": 3,
+        "6aaac8758101a810746a7b80": 2,
+        "6a9b00020e670bf347940046": 3,
+        "684f5a4bde35509db16e07f7": 5,
+        "6a9b8061a18f982db8829780": 2,
+        "69a768652b9ecc888d1a4503": 2,
+        "6a9a250ee302f9503ff27252": 4,
+        "699679e34f89f5df12e44265": 1,
+        "698ffc28a6b2401a1ff71040": 2,
+        "6a9b1308fb23bd975999f245": 2,
+        "6a9c64247d02813357041a21": 4,
+        "69a78bf60b70ad8a75d00325": 1,
+        "6a5be8c844ab4aefad806bda": 1,
+        "6a9c4f7e10d39eb8a6999835": 2,
+        "6a9b7fc17ce340a4824b0a21": 4,
+        "6a9bdb3662ecf063a0c6ec14": 1,
+        "6a9bcf967115b9c5038bc0e9": 1,
+        "6a9b6809a18f982db87306ec": 1,
+        "6a9b031010d39eb8a677b450": 2
+      }
+    },
+    {
+      "_id": "6ae6816a1849058456f4ef1c",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "president",
+      "candidates": [
+        {
+          "user": "69a7b7458d3ec3323bdc57fb",
+          "voteCount": 0,
+          "party": "6ac352b1fa5a72a7920ca439"
+        },
+        {
+          "user": "6a04e7bd1901c8c4897ba9fc",
+          "voteCount": 0,
+          "article": "6ae54bb644dca8d69fcc7775",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "699b611c77416359573f5372",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6ae6ef9dbb9226aa07d3f689",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a0514ac428f1f3693ff1c96",
+          "voteCount": 0
+        },
+        {
+          "user": "684f5a4bde35509db16e07f7",
+          "voteCount": 0,
+          "article": "6ae7b4110271773a0101a8f2",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        }
+      ],
+      "votesStartAt": "2026-11-02T00:02:04.127Z",
+      "votesEndAt": "2026-11-03T00:02:04.127Z",
+      "votesCount": 63,
+      "electedCount": 1,
+      "createdAt": "2026-11-01T00:01:46.896Z",
+      "status": "finished",
+      "__v": 0,
+      "votes": {
+        "699b611c77416359573f5372": 40,
+        "69a7b7458d3ec3323bdc57fb": 1,
+        "684f5a4bde35509db16e07f7": 9,
+        "6a04e7bd1901c8c4897ba9fc": 13
+      }
+    },
+    {
+      "_id": "6ac2e8ac4bbb745d0ffbe114",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "congress",
+      "candidates": [
+        {
+          "user": "69a768652b9ecc888d1a4503",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "69a78bf60b70ad8a75d00325",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "699b611c77416359573f5372",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9a250ee302f9503ff27252",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "69937d58ffd582efd9873426",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6abf19122aac401da6b49648"
+        },
+        {
+          "user": "6a9c64247d02813357041a21",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b8061a18f982db8829780",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6ac33afff3951065cb1682df",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9b031010d39eb8a677b450",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a5d557d42a2b7a727238859",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9cd55f304f0e68011eb2b8",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "69a7b7458d3ec3323bdc57fb",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "69c011edd01b8ef2e55a12e3"
+        },
+        {
+          "user": "6a9b165e2ecee5bfa11e119f",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "699730b26a081dd0369c9c4f",
+          "voteCount": 0,
+          "isElected": false
+        },
+        {
+          "user": "6a9b4caba18f982db85d37c8",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "698bc2c2c0b91cffed9a14a9",
+          "voteCount": 0,
+          "isElected": false
+        },
+        {
+          "user": "6a9a59e64b6c8ea46b725319",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b1308fb23bd975999f245",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "69b9c6fcd55749174b94c7b5",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6abf19122aac401da6b49648"
+        },
+        {
+          "user": "6a9b2f0923f3f01a4adb9a1a",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9d7ddff550de360dd9fb0a",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9bcf967115b9c5038bc0e9",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b6856b59a226aba26e5f5",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9c4f7e10d39eb8a6999835",
+          "voteCount": 0,
+          "isElected": false
+        },
+        {
+          "user": "6a9b5d3f7428764164396735",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6ab7886d358cc7fdfe39d67d",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6aa19866113a975f0d44994c",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9b6809a18f982db87306ec",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6ac32eceadf8245d97e6c56d",
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9acf01c7d0b5e34372d6ca",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        }
+      ],
+      "votesStartAt": "2026-10-06T00:01:10.331Z",
+      "votesEndAt": "2026-10-07T00:01:10.331Z",
+      "votesCount": 64,
+      "electedCount": 11,
+      "createdAt": "2026-10-05T00:00:44.761Z",
+      "status": "finished",
+      "__v": 6,
+      "votes": {
+        "6a9b1308fb23bd975999f245": 1,
+        "6a9c64247d02813357041a21": 4,
+        "69937d58ffd582efd9873426": 4,
+        "6a9b2f0923f3f01a4adb9a1a": 1,
+        "6a9b4caba18f982db85d37c8": 2,
+        "698bc2c2c0b91cffed9a14a9": 2,
+        "69a768652b9ecc888d1a4503": 7,
+        "6a9b031010d39eb8a677b450": 3,
+        "699730b26a081dd0369c9c4f": 2,
+        "6a9b8061a18f982db8829780": 4,
+        "69a7b7458d3ec3323bdc57fb": 2,
+        "6a9d7ddff550de360dd9fb0a": 1,
+        "699b611c77416359573f5372": 6,
+        "6a9b165e2ecee5bfa11e119f": 2,
+        "6a9a250ee302f9503ff27252": 5,
+        "69a78bf60b70ad8a75d00325": 6,
+        "6a5d557d42a2b7a727238859": 3,
+        "6a9c4f7e10d39eb8a6999835": 1,
+        "6a9a59e64b6c8ea46b725319": 2,
+        "69b9c6fcd55749174b94c7b5": 1,
+        "6a9bcf967115b9c5038bc0e9": 1,
+        "6a9cd55f304f0e68011eb2b8": 3,
+        "6a9b6856b59a226aba26e5f5": 1
+      }
+    },
+    {
+      "_id": "6abda2c4d4fb0da559968e2c",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "president",
+      "candidates": [
+        {
+          "user": "6a9c4f7e10d39eb8a6999835",
+          "voteCount": 0
+        },
+        {
+          "user": "6a0514ac428f1f3693ff1c96",
+          "voteCount": 0
+        },
+        {
+          "user": "69a768652b9ecc888d1a4503",
+          "voteCount": 0,
+          "article": "6abd80672df29b9d580d800c",
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9a29d00e670bf347d3c793",
+          "voteCount": 0,
+          "article": "6abda8502b9553a0a0323eda",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9b4f8cfe13512dc883b467",
+          "voteCount": 0
+        },
+        {
+          "user": "6ab7886d358cc7fdfe39d67d",
+          "voteCount": 0,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "69a7b7458d3ec3323bdc57fb",
+          "voteCount": 0,
+          "party": "69c011edd01b8ef2e55a12e3"
+        },
+        {
+          "user": "6a52c3bfb09cbbd696dae9ee",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6abd701b81cacf1e401e152a",
+          "party": "698d25aff81f3341a0db3851"
+        }
+      ],
+      "votesStartAt": "2026-10-02T00:01:13.999Z",
+      "votesEndAt": "2026-10-03T00:01:13.999Z",
+      "votesCount": 71,
+      "electedCount": 1,
+      "createdAt": "2026-10-01T00:01:08.394Z",
+      "status": "finished",
+      "__v": 1,
+      "votes": {
+        "6a9a29d00e670bf347d3c793": 14,
+        "69a768652b9ecc888d1a4503": 23,
+        "6a52c3bfb09cbbd696dae9ee": 30,
+        "69a7b7458d3ec3323bdc57fb": 2,
+        "6a0514ac428f1f3693ff1c96": 1,
+        "6a9c4f7e10d39eb8a6999835": 1
+      }
+    },
+    {
+      "_id": "6aa63a17af702ab8b37754fe",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "congress",
+      "candidates": [
+        {
+          "user": "6a5d557d42a2b7a727238859",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6aa604e8f5704bad47f77147",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "684f5a4bde35509db16e07f7",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a3d652b405ca24743ea75f0"
+        },
+        {
+          "user": "69a768652b9ecc888d1a4503",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9cd55f304f0e68011eb2b8",
+          "voteCount": 0,
+          "isElected": true,
+          "article": "6aa643554e9b5bd2eadefc84",
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "69a78bf60b70ad8a75d00325",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b14b662ecf063a020e3e6",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "688282868ed720aa9644e5b9",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b5d3f7428764164396735",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b1308fb23bd975999f245",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a5be8c844ab4aefad806bda",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b031010d39eb8a677b450",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9b3ae7618635e73dc979f5",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a0514ac428f1f3693ff1c96",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b6c9de302f9503ffdbc13",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "69a7b7458d3ec3323bdc57fb",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aa7876cf5704bad478a1fbf",
+          "party": "69c011edd01b8ef2e55a12e3"
+        },
+        {
+          "user": "6a9d7ddff550de360dd9fb0a",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b165e2ecee5bfa11e119f",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aa604e8f5704bad47f77147",
+          "party": "6aa4caf47b972a6b02a1f27f"
+        },
+        {
+          "user": "6a9a59e64b6c8ea46b725319",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aa64a37eced546da8305293",
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b8975fe13512dc8ae2da8",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b2f0923f3f01a4adb9a1a",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b8061a18f982db8829780",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b6f7741c34849b767880b",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aa75dc241154ecf06e87f16",
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "6a9b4caba18f982db85d37c8",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a9b0e41fe13512dc844cfee",
+          "voteCount": 0,
+          "isElected": false,
+          "article": "6aa70f4dbd9da3edd956da9f",
+          "party": "6a3d652b405ca24743ea75f0"
+        }
+      ],
+      "votesStartAt": "2026-09-14T05:52:38.129Z",
+      "votesEndAt": "2026-09-15T05:52:38.129Z",
+      "votesCount": 61,
+      "electedCount": 10,
+      "createdAt": "2026-09-13T05:52:23.927Z",
+      "status": "finished",
+      "__v": 7,
+      "votes": {
+        "69a7b7458d3ec3323bdc57fb": 2,
+        "6a0514ac428f1f3693ff1c96": 2,
+        "6a5d557d42a2b7a727238859": 9,
+        "684f5a4bde35509db16e07f7": 8,
+        "6a9b6f7741c34849b767880b": 1,
+        "6a9b031010d39eb8a677b450": 2,
+        "6a5be8c844ab4aefad806bda": 2,
+        "688282868ed720aa9644e5b9": 3,
+        "6a9b14b662ecf063a020e3e6": 3,
+        "6a9b8061a18f982db8829780": 1,
+        "6a9b3ae7618635e73dc979f5": 2,
+        "6a9b1308fb23bd975999f245": 2,
+        "69a768652b9ecc888d1a4503": 8,
+        "6a9cd55f304f0e68011eb2b8": 4,
+        "6a9b8975fe13512dc8ae2da8": 1,
+        "69a78bf60b70ad8a75d00325": 3,
+        "6a9b2f0923f3f01a4adb9a1a": 1,
+        "6a9b5d3f7428764164396735": 2,
+        "6a9d7ddff550de360dd9fb0a": 1,
+        "6a9a59e64b6c8ea46b725319": 1,
+        "6a9b6c9de302f9503ffdbc13": 2,
+        "6a9b165e2ecee5bfa11e119f": 1
+      }
+    },
+    {
+      "_id": "6a9b5ba966fc7993606619d7",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "congress",
+      "candidates": [
+        {
+          "user": "69a768652b9ecc888d1a4503",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a98cc6b7428764164f96674"
+        },
+        {
+          "user": "684f5a4bde35509db16e07f7",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a3d652b405ca24743ea75f0"
+        },
+        {
+          "user": "688282868ed720aa9644e5b9",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a52c3bfb09cbbd696dae9ee",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "699730b26a081dd0369c9c4f",
+          "voteCount": 0,
+          "isElected": true
+        },
+        {
+          "user": "6a5d557d42a2b7a727238859",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "69c011edd01b8ef2e55a12e3"
+        },
+        {
+          "user": "699b611c77416359573f5372",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a5be8c844ab4aefad806bda",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a0514ac428f1f3693ff1c96",
+          "voteCount": 0,
+          "isElected": false,
+          "party": "698d25aff81f3341a0db3851"
+        }
+      ],
+      "votesStartAt": "2026-09-06T00:01:09.589Z",
+      "votesEndAt": "2026-09-07T00:01:09.589Z",
+      "votesCount": 14,
+      "electedCount": 5,
+      "createdAt": "2026-09-05T00:00:41.579Z",
+      "status": "finished",
+      "__v": 0,
+      "votes": {
+        "69a768652b9ecc888d1a4503": 5,
+        "6a52c3bfb09cbbd696dae9ee": 1,
+        "688282868ed720aa9644e5b9": 2,
+        "684f5a4bde35509db16e07f7": 2,
+        "699b611c77416359573f5372": 1,
+        "6a5be8c844ab4aefad806bda": 1,
+        "6a5d557d42a2b7a727238859": 1,
+        "699730b26a081dd0369c9c4f": 1
+      }
+    },
+    {
+      "_id": "6a9615bb3794d58a46688fff",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "president",
+      "candidates": [
+        {
+          "user": "6a0514ac428f1f3693ff1c96",
+          "voteCount": 0,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a52c3bfb09cbbd696dae9ee",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "699730b26a081dd0369c9c4f",
+          "voteCount": 0
+        },
+        {
+          "user": "69fa6210c9b2e70d5e7b24ae",
+          "voteCount": 0
+        },
+        {
+          "user": "6a04e7bd1901c8c4897ba9fc",
+          "voteCount": 0,
+          "party": "6a3d652b405ca24743ea75f0"
+        }
+      ],
+      "votesStartAt": "2026-09-02T00:01:10.740Z",
+      "votesEndAt": "2026-09-03T00:01:10.740Z",
+      "votesCount": 17,
+      "electedCount": 1,
+      "createdAt": "2026-09-01T00:00:59.621Z",
+      "status": "finished",
+      "__v": 2,
+      "votes": {
+        "6a0514ac428f1f3693ff1c96": 4,
+        "6a52c3bfb09cbbd696dae9ee": 5,
+        "699730b26a081dd0369c9c4f": 3,
+        "6a04e7bd1901c8c4897ba9fc": 3,
+        "69fa6210c9b2e70d5e7b24ae": 2
+      }
+    },
+    {
+      "_id": "6a727d25614370abfeef3f40",
+      "country": "6813b6d446e731854c7ac7f8",
+      "electedCandidates": [],
+      "isActive": false,
+      "type": "congress",
+      "candidates": [
+        {
+          "user": "684f5a4bde35509db16e07f7",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a3d652b405ca24743ea75f0"
+        },
+        {
+          "user": "6a52c3bfb09cbbd696dae9ee",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "699730b26a081dd0369c9c4f",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "688282868ed720aa9644e5b9",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "698d25aff81f3341a0db3851"
+        },
+        {
+          "user": "6a04e7bd1901c8c4897ba9fc",
+          "voteCount": 0,
+          "isElected": true,
+          "party": "6a3d652b405ca24743ea75f0"
+        }
+      ],
+      "votesStartAt": "2026-08-06T00:00:38.359Z",
+      "votesEndAt": "2026-08-07T00:00:38.359Z",
+      "votesCount": 6,
+      "electedCount": 5,
+      "createdAt": "2026-08-05T00:00:37.390Z",
+      "status": "finished",
+      "__v": 0,
+      "votes": {
+        "6a52c3bfb09cbbd696dae9ee": 2,
+        "684f5a4bde35509db16e07f7": 2,
+        "688282868ed720aa9644e5b9": 1,
+        "699730b26a081dd0369c9c4f": 1
+      }
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0wOC0wNVQwMDowMDozNy4zOTBaIn0seyJ0Ijoic3RyIiwidiI6IjZhNzI3ZDI1NjE0MzcwYWJmZWVmM2Y0MCJ9XQ"
+}

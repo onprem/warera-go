@@ -1,0 +1,119 @@
+{
+  "results": [
+    {
+      "_id": "6afae28cfe0ae541385f64a3",
+      "type": "unrest",
+      "user": "6a8bd8883284cb348acf0190",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "energy",
+      "createdAt": "2026-11-16T11:01:32.086Z",
+      "updatedAt": "2026-11-16T11:01:32.086Z",
+      "__v": 0
+    },
+    {
+      "_id": "6afae28b9c699f0b8cbf6740",
+      "type": "unrest",
+      "user": "6a8bd8883284cb348acf0190",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "energy",
+      "createdAt": "2026-11-16T11:01:31.542Z",
+      "updatedAt": "2026-11-16T11:01:31.542Z",
+      "__v": 0
+    },
+    {
+      "_id": "6afae28938f752fd7c178735",
+      "type": "unrest",
+      "user": "6a8bd8883284cb348acf0190",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-16T11:01:29.474Z",
+      "updatedAt": "2026-11-16T11:01:29.474Z",
+      "__v": 0
+    },
+    {
+      "_id": "6afae288f969df4006ae628f",
+      "type": "unrest",
+      "user": "6a8bd8883284cb348acf0190",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-16T11:01:28.923Z",
+      "updatedAt": "2026-11-16T11:01:28.923Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af72a3a0fa86b2353986142",
+      "type": "unrest",
+      "user": "6a4817078923235494f2c4e8",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-13T15:18:18.120Z",
+      "updatedAt": "2026-11-13T15:18:18.120Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af0e04cee146d69e3ee2a19",
+      "type": "unrest",
+      "user": "6a9577a9f165b1f2b5cce58f",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-08T20:49:16.753Z",
+      "updatedAt": "2026-11-08T20:49:16.753Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af0e04aa02ed1b849fd39e4",
+      "type": "unrest",
+      "user": "6a9577a9f165b1f2b5cce58f",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-08T20:49:14.770Z",
+      "updatedAt": "2026-11-08T20:49:14.770Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af0e048822b9ad5cc229077",
+      "type": "unrest",
+      "user": "6a9577a9f165b1f2b5cce58f",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": 1,
+      "resource": "health",
+      "createdAt": "2026-11-08T20:49:12.677Z",
+      "updatedAt": "2026-11-08T20:49:12.677Z",
+      "__v": 0
+    },
+    {
+      "_id": "6aee158ec87eab1904dce65e",
+      "type": "unrest",
+      "user": "6a593666007231bce0cd7b15",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": -1,
+      "resource": "health",
+      "createdAt": "2026-11-06T17:59:42.374Z",
+      "updatedAt": "2026-11-06T17:59:42.374Z",
+      "__v": 0
+    },
+    {
+      "_id": "6aee158e35705ca4a34d0f68",
+      "type": "unrest",
+      "user": "6a593666007231bce0cd7b15",
+      "country": "6813b6d446e731854c7ac7b8",
+      "amount": -1,
+      "resource": "health",
+      "createdAt": "2026-11-06T17:59:42.224Z",
+      "updatedAt": "2026-11-06T17:59:42.224Z",
+      "__v": 0
+    }
+  ],
+  "count": 596,
+  "limit": 10,
+  "page": 1,
+  "pages": 60,
+  "nextPage": 2
+}

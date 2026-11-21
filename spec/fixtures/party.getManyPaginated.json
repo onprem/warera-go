@@ -1,0 +1,542 @@
+{
+  "items": [
+    {
+      "_id": "6b016f3e3feefde2e337be89",
+      "name": "حزب الشعبي",
+      "description": "إعادة الامبراطورية من المغرب الى نهر السنغال ",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7099403bc4170a5d954",
+      "leader": "6af8e62fdfcd767be8f34bc9",
+      "councilMembers": [
+        "6af8e62fdfcd767be8f34bc9"
+      ],
+      "members": [
+        "6af8e62fdfcd767be8f34bc9",
+        "6afa08657c091ae67f157be4"
+      ],
+      "congressList": [
+        "6afa08657c091ae67f157be4",
+        "6af8e62fdfcd767be8f34bc9"
+      ],
+      "createdAt": "2026-11-21T10:15:26.779Z",
+      "updatedAt": "2026-11-21T11:23:36.865Z",
+      "__v": 0,
+      "congressListUpdatedAt": "2026-11-21T11:23:36.865Z",
+      "congressListUpdatedBy": "6af8e62fdfcd767be8f34bc9",
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b016f3e3feefde2e337be89-1795256252224-p6f06dta.jpg"
+    },
+    {
+      "_id": "6b00ff355d06869851db8b82",
+      "name": "United Empire — الإمبراطورية المتحدة",
+      "description": "الإمبراطورية المتحدة حزب يقوم على الوحدة والقوة والقيادة الحكيمة. نؤمن بأن المجد لا يُمنح، بل يُصنع بالإرادة والتخطيط والعمل الجماعي. هدفنا بناء دولة قوية ومزدهرة، يكون لكل عضو فيها دور في صناعة مستقبلها.",
+      "country": "6813b6d546e731854c7ac84b",
+      "region": "696a81f5882256e1db118216",
+      "leader": "6add3d22a214c4e7c6f453e2",
+      "councilMembers": [
+        "6add3d22a214c4e7c6f453e2"
+      ],
+      "members": [
+        "6add3d22a214c4e7c6f453e2",
+        "6af90bb62f0c8398bbd9ca89",
+        "6afeacc7b21976165248d8cf",
+        "6b01b7c288598f03eee81557",
+        "6aff30bb28b5b308fd891c69",
+        "6b009246ad5643c315c8a95c",
+        "6ac544eed3120522d0b10da7",
+        "6aff092e5cf26c042d0eeff9"
+      ],
+      "congressList": [
+        "6add3d22a214c4e7c6f453e2"
+      ],
+      "createdAt": "2026-11-21T02:17:25.526Z",
+      "updatedAt": "2026-11-21T15:42:01.104Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b00ff355d06869851db8b82-1795227785073-cb4elz8r.png",
+      "congressListUpdatedAt": "2026-11-21T02:23:27.104Z",
+      "congressListUpdatedBy": "6add3d22a214c4e7c6f453e2",
+      "treasurer": "6af90bb62f0c8398bbd9ca89"
+    },
+    {
+      "_id": "6b0090e5162b8d1d893b6801",
+      "name": "{FIS}.  الجبهة الاسلامية للانقاذ",
+      "description": "حزب الجبهة الإسلامية للإنقاذ يسعى الى نشر الهوية العربية والإسلامية للجزائر اولاً و هذا يتحقق بجزائر قوية مهيمنة على المنطقة والقارة، و القضاء على الهيمنة الاجنبية.\nتحقيق العدالة الاجتماعية وفق المنظور الإسلامي.\nجزائر أقوى السيطرة على العالم نعم السيطرة على العالم ونشر الهوية الجزائرية المسلمة.\n ",
+      "country": "6813b6d546e731854c7ac84b",
+      "region": "6813b7099403bc4170a5d98a",
+      "leader": "6af7618c0c74f983f746beb7",
+      "councilMembers": [
+        "6af7618c0c74f983f746beb7"
+      ],
+      "members": [
+        "6af7618c0c74f983f746beb7"
+      ],
+      "congressList": [
+        "6af7618c0c74f983f746beb7"
+      ],
+      "createdAt": "2026-11-20T18:26:45.840Z",
+      "updatedAt": "2026-11-21T00:49:26.019Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b0090e5162b8d1d893b6801-1795221197120-ri7e1dfa.jpg",
+      "favoriteGovType": "republic",
+      "congressListUpdatedAt": "2026-11-21T00:02:17.688Z",
+      "congressListUpdatedBy": "6af7618c0c74f983f746beb7"
+    },
+    {
+      "_id": "6b0079eeb1721000c5117249",
+      "name": "حزب الوحدة الوطنية",
+      "description": "🇹🇳 قيم الحزب: الوحدة، العدل، التضامن، احترام القانون.\n\nأهدافه: حماية الوطن، دعم الاقتصاد، تحسين الخدمات، وتحقيق الاستقرار.\n\nالشعار: تونس واحدة وشعب واحد.",
+      "country": "6813b6d546e731854c7ac84e",
+      "region": "6813b7099403bc4170a5d990",
+      "leader": "6a4c90f3acf9f61f1ba4b47c",
+      "councilMembers": [
+        "6a4c90f3acf9f61f1ba4b47c"
+      ],
+      "members": [
+        "6a4c90f3acf9f61f1ba4b47c"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-20T16:48:46.282Z",
+      "updatedAt": "2026-11-20T16:51:40.790Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b0079eeb1721000c5117249-1795193500180-0u14soz8.png"
+    },
+    {
+      "_id": "6b00634d3fe8c7c8b04bf7d5",
+      "name": "Partido Liberal",
+      "description": "Ang Partido Liberal ng Pilipinas (LP) ay ang pangalawang pinakamatandang aktibong partidong pampolitika sa bansa, na itinatag noong Enero 19, 1946 bilang isang paksyon na humiwalay mula sa Nacionalista Party. Isinusulong ng partido ang social liberalism at progressivism mula sa posisyong gitna hanggang gitnang-kaliwa. Gumanap ito ng mahalagang papel sa mga kilusang nagtataguyod ng demokratikong pamamahala sa Pilipinas.",
+      "country": "6813b6d546e731854c7ac82c",
+      "region": "6813b7089403bc4170a5d8e8",
+      "leader": "69933c9e4cfa3781b1891b70",
+      "councilMembers": [
+        "69933c9e4cfa3781b1891b70"
+      ],
+      "members": [
+        "69933c9e4cfa3781b1891b70"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-20T15:12:13.653Z",
+      "updatedAt": "2026-11-20T15:15:38.405Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b00634d3fe8c7c8b04bf7d5-1795187544093-wbm5mle0.png",
+      "favoriteGovType": "republic"
+    },
+    {
+      "_id": "6b0053526f578de0cd2f5e75",
+      "name": "National Socialist Patriotic Party[NSPP]",
+      "description": " هدفنا وهدف حزبنا هو حكم المغرب بين أيادي سليمة وقوة عضيمة وروح وعزيمة وحكم الأراضي وارجاع الامجاد القديمة",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7099403bc4170a5d957",
+      "leader": "6af104d411db48fef786eb9c",
+      "councilMembers": [
+        "6af104d411db48fef786eb9c"
+      ],
+      "members": [
+        "6af104d411db48fef786eb9c",
+        "6af4c001dcc749a742bbc104",
+        "6af84a2bdb8f6e69bdd9e7af",
+        "6af84be0caad6a1b42ad4650",
+        "6af846b4feecf843cb6c0a3b"
+      ],
+      "congressList": [
+        "6af4c001dcc749a742bbc104",
+        "6af104d411db48fef786eb9c"
+      ],
+      "createdAt": "2026-11-20T14:04:02.974Z",
+      "updatedAt": "2026-11-21T11:39:00.151Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b0053526f578de0cd2f5e75-1795183836118-ldyc280f.jpg",
+      "congressListUpdatedAt": "2026-11-20T15:00:21.436Z",
+      "congressListUpdatedBy": "6af104d411db48fef786eb9c",
+      "treasurer": "6af4c001dcc749a742bbc104"
+    },
+    {
+      "_id": "6b003b7239c599f77b27f2b0",
+      "name": "Union Soberana del Sur (USS)",
+      "description": "Argentina no wipeada: Que no nos borren del mapa ni nos arruinen la partida.\nHemisferio Sur unido: Fuerza de bloque y respaldo mutuo en el sur.\nCero guerra entre hermanos latinoamericanos: No atacamos a ningún país de la región.\nSi se pelean entre ellos, no nos metemos\nSi ataca una potencia de afuera, se pudre todo saltamos todos juntos a defender la región.",
+      "country": "6813b6d546e731854c7ac832",
+      "region": "6813b7089403bc4170a5d912",
+      "leader": "6996a54d53a5ede8f6a427f5",
+      "councilMembers": [
+        "6996a54d53a5ede8f6a427f5"
+      ],
+      "members": [
+        "6996a54d53a5ede8f6a427f5"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-20T12:22:10.063Z",
+      "updatedAt": "2026-11-21T03:16:31.169Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6b003b7239c599f77b27f2b0-1795178670753-uobpusw3.jpg",
+      "favoriteGovType": "federation",
+      "congressListUpdatedAt": "2026-11-21T03:16:31.169Z",
+      "congressListUpdatedBy": "6996a54d53a5ede8f6a427f5"
+    },
+    {
+      "_id": "6affb979cc2d414d9b6bda78",
+      "name": "The Eggplant Movement",
+      "description": "",
+      "country": "6813b6d546e731854c7ac8be",
+      "region": "6813b70c9403bc4170a5db0a",
+      "leader": "6878d7a4c7da4340d38ae643",
+      "councilMembers": [
+        "6878d7a4c7da4340d38ae643"
+      ],
+      "members": [
+        "6878d7a4c7da4340d38ae643",
+        "6a71a1464fbf735a26d5813d",
+        "6a234e221d5a6e00fae3c8e4",
+        "69ea30959c33b52a7e70c400"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-20T03:07:37.663Z",
+      "updatedAt": "2026-11-20T12:48:44.153Z",
+      "__v": 0,
+      "treasurer": "6a71a1464fbf735a26d5813d"
+    },
+    {
+      "_id": "6aff81c228b5b308fde0bd4b",
+      "name": "حزب العمال الجزائري الإشتراكي الوطني/NSAP",
+      "description": "1/بناء دولة جزائرية قوية وموحدة\n2/تعزيز السيادة الوطنية وحماية الحدود \n3/توسيع النفوذ الجيوسياسي \n4/التوسع الإقليمي وضم الأراضي الجديدة",
+      "country": "6813b6d546e731854c7ac84b",
+      "region": "696a81f5882256e1db118214",
+      "leader": "6a9c734bca31ae69f6ec8229",
+      "councilMembers": [
+        "6a9c734bca31ae69f6ec8229"
+      ],
+      "members": [
+        "6a9c734bca31ae69f6ec8229",
+        "6afdcf7663fb201f40e62046",
+        "6af74e569c3436ee1b25f1d6",
+        "6af75de8d53570a41616e4a8",
+        "6aff97fd80319e2306d690d8",
+        "6aff7ea907ae89c6f3033696",
+        "6b0014ed509be01d4628fdb7",
+        "6aff3dd0532a1b945a9594f0",
+        "6afb40e0467a8115d3086976",
+        "6b00051dffe870d868e15799",
+        "6af7038751d5449581c9f3c8",
+        "6b003fe32cbffad584b15a42",
+        "6af662945d9599d0985268bf",
+        "6afc6874b81cb7e540781192",
+        "6b003f813fe8c7c8b02e68ed",
+        "6aff4501b42104f689895aea",
+        "6b0019a02167ad5e7e43f9cc",
+        "6b001e7b942dc44cc5d25019",
+        "6afa3d36efc33ab7b5c45c7e",
+        "6b00428a3a9402f85ac5647d",
+        "6affb5d42167ad5e7ef370f2",
+        "6b001422ffe870d868f1d0a8",
+        "6afd31da751e7f0d530be29a",
+        "6b005cdaedc346de8299705b",
+        "6afacffffeecf843cb769c8c"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-19T23:09:54.126Z",
+      "updatedAt": "2026-11-21T13:27:31.331Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6aff81c228b5b308fde0bd4b-1795132570685-yh29nbi5.jpg"
+    },
+    {
+      "_id": "6afefc2259df6a6e76d819bb",
+      "name": "حزب المقاومة",
+      "description": "",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7099403bc4170a5d95d",
+      "leader": "6af7112db10b5a3cf94b9b76",
+      "councilMembers": [
+        "6af7112db10b5a3cf94b9b76"
+      ],
+      "members": [
+        "6af7112db10b5a3cf94b9b76",
+        "6af83a2146a24ac3d363255e",
+        "6af49f77fd8bf978f274fc95"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-19T13:39:46.705Z",
+      "updatedAt": "2026-11-19T16:53:51.020Z",
+      "__v": 0,
+      "treasurer": "6af83a2146a24ac3d363255e"
+    },
+    {
+      "_id": "6afe9eec3582dfc999939c20",
+      "name": "Advisory Council of Morocco",
+      "description": "مجلس مستقل، ما تابعين حتى تيار. الهدف ديالنا هو نعاونو الملك/رئيس، نقدمو الرأي والنصيحة وقت الحاجة، ونخدمو لمصلحة المغرب.",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7099403bc4170a5d957",
+      "leader": "6a0c9e26ae880baa0bc5017b",
+      "councilMembers": [
+        "6a0c9e26ae880baa0bc5017b"
+      ],
+      "members": [
+        "6a0c9e26ae880baa0bc5017b"
+      ],
+      "congressList": [
+        "6a0c9e26ae880baa0bc5017b"
+      ],
+      "createdAt": "2026-11-19T07:02:04.292Z",
+      "updatedAt": "2026-11-21T01:30:52.686Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afe9eec3582dfc999939c20-1795071743751-xtg5vuww.png",
+      "congressListUpdatedAt": "2026-11-19T07:02:40.407Z",
+      "congressListUpdatedBy": "6a0c9e26ae880baa0bc5017b",
+      "favoriteGovType": "autocracy"
+    },
+    {
+      "_id": "6afddf72b1f3e4c71257f1c3",
+      "name": "حزب تجمع مواطنين المغاربة هيا بنا",
+      "description": "حزب يطمح في ثورة ضد البرتغال وا تفريق ثروة على شعب",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7089403bc4170a5d951",
+      "councilMembers": [],
+      "members": [
+        "6af9d2350c74f983f7035b5c",
+        "6afc91602588fb7ad9a03158"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-18T17:25:06.788Z",
+      "updatedAt": "2026-11-18T17:59:16.003Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afddf72b1f3e4c71257f1c3-1795022721980-oojfslov.jpg",
+      "congressListUpdatedAt": "2026-11-18T17:51:49.616Z",
+      "congressListUpdatedBy": "6afba7366ec20e53fe495182"
+    },
+    {
+      "_id": "6afdd5f41a084258aa690a70",
+      "name": "Shakira Foundation",
+      "description": "",
+      "country": "683ddd2c24b5a2e114af15cf",
+      "region": "683ddd3e36dbc90b780474dc",
+      "leader": "69815a6b5312557c1fbf27d1",
+      "councilMembers": [
+        "69815a6b5312557c1fbf27d1"
+      ],
+      "members": [
+        "69815a6b5312557c1fbf27d1"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-18T16:44:36.411Z",
+      "updatedAt": "2026-11-19T00:41:02.779Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afdd5f41a084258aa690a70-1795048862293-6g9195da.jpg"
+    },
+    {
+      "_id": "6afdce854a975f1c6d1f6c51",
+      "name": "المملكة المغربية العسكرية",
+      "description": "🇲🇦 RMA – Royal Moroccan Army\n\nحزب المملكة المغربية العسكرية هو تحالف مغربي استراتيجي يهدف إلى بناء قوة عسكرية قوية وموحدة داخل لعبة War Ear.\n\nنؤمن بالقوة والولاء والتعاون والانضباط، ونسعى إلى حماية الحلفاء، وتحقيق الانتصارات، ورفع راية المملكة المغربية في ساحات المعارك.\n\nشعارنا: الله، الوطن، الشعب.\n\nهدفنا: القوة، الاتحاد، المجد، والانتصار.\n\nالمغرب أولاً، والنصر دائماً!",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7099403bc4170a5d95a",
+      "leader": "6af6420c2f0c8398bbb4687c",
+      "councilMembers": [
+        "6af6420c2f0c8398bbb4687c"
+      ],
+      "members": [
+        "6af6420c2f0c8398bbb4687c",
+        "6af72020616e0a81344f0d2b",
+        "6af919c6734b8bda4aa7ac73",
+        "6af63fe5b10b5a3cf9bdf411",
+        "6af6d9e47d6d81a5d6391dc0",
+        "6af7921e2f0c8398bbc45959",
+        "6afbc76f6574904a2d218753",
+        "6afe367fb219761652e4c6eb",
+        "6af5909efe0d062883b818fb",
+        "6afa0a1cf969df400611a4f8",
+        "6afb6cc0f27f94623653a611",
+        "6afa51004529875e7e31a51e",
+        "6af7fb7ed53570a4167aa315",
+        "6af7084e616e0a8134426c9b",
+        "6ac8db27f90cfbc04e396a57",
+        "6af50eacfd7287e37e72e49a",
+        "6afee9031bd7d9b3847a07a6",
+        "6af7592e20a9a4755b4ec0be"
+      ],
+      "congressList": [
+        "6af6420c2f0c8398bbb4687c",
+        "6af919c6734b8bda4aa7ac73",
+        "6af63fe5b10b5a3cf9bdf411",
+        "6af6d9e47d6d81a5d6391dc0",
+        "6af5909efe0d062883b818fb",
+        "6afe367fb219761652e4c6eb",
+        "6ac8db27f90cfbc04e396a57",
+        "6afb6cc0f27f94623653a611"
+      ],
+      "createdAt": "2026-11-18T16:12:53.925Z",
+      "updatedAt": "2026-11-20T15:44:58.962Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afdce854a975f1c6d1f6c51-1795018583169-m7lp7306.jpg",
+      "congressListUpdatedAt": "2026-11-19T18:56:05.065Z",
+      "congressListUpdatedBy": "6af6420c2f0c8398bbb4687c",
+      "treasurer": "6af919c6734b8bda4aa7ac73"
+    },
+    {
+      "_id": "6afdce6c4a975f1c6d1f4aed",
+      "name": "NASE(NP)",
+      "description": "We believe in power, and the faster development ",
+      "country": "6813b6d546e731854c7ac848",
+      "region": "6813b7099403bc4170a5d954",
+      "leader": "6af64aedaeabc5cba7a171e9",
+      "councilMembers": [
+        "6af64aedaeabc5cba7a171e9"
+      ],
+      "members": [
+        "6af64aedaeabc5cba7a171e9"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-18T16:12:28.572Z",
+      "updatedAt": "2026-11-18T17:57:31.229Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afdce6c4a975f1c6d1f4aed-1795024651035-kig0cvdr.jpg",
+      "congressListUpdatedAt": "2026-11-18T17:41:55.258Z",
+      "congressListUpdatedBy": "6af64aedaeabc5cba7a171e9"
+    },
+    {
+      "_id": "6afcf4c2694e5eef2cc090a6",
+      "name": "N.R.P",
+      "description": "البناء وتصحيح",
+      "country": "6813b6d546e731854c7ac84b",
+      "region": "696a81f5882256e1db118214",
+      "leader": "6a08b15be04251b8ffb0cdd0",
+      "councilMembers": [
+        "6a08b15be04251b8ffb0cdd0"
+      ],
+      "members": [
+        "6a08b15be04251b8ffb0cdd0",
+        "6a0413a9e70fe3ae70e6da29",
+        "6afceb8febc89ef299879182",
+        "6afa1d3cb865e0bd96bad625",
+        "6af5a7625a30abd099cc02f2",
+        "6afdf1308d4a5f88f3e3fe32",
+        "6a0741ce3f98d88864053640",
+        "6a0400a77e0502af791de8b1",
+        "6af753b320a9a4755b4948bd",
+        "6af6ef5491d16320322ea7ac",
+        "6afefa7d80321fc5598d3291",
+        "6afef9775e97c5d7afad299a",
+        "6aff021af67d7c59513a759d",
+        "6ac54d3dab5e2f7cb2693ce9",
+        "6af73a7b9c3436ee1b1b663c",
+        "6afffe939d6695c0ef1c99e7",
+        "6afee353933cc58e0f0fe57a",
+        "6b0034a0942dc44cc5ea47f7",
+        "6b002c19352772a9f97bf6de",
+        "6aff74240b0b91c60173b506",
+        "6b0037fb2eea8355307ac0c9",
+        "6b002f2988598f03ee35e653",
+        "6aff2a5977a18fa8e06ddaab",
+        "6afe176e39829a2a0849de54",
+        "6afba10be336c723788c8c34",
+        "6aff0ac5ffbedc74068ea088",
+        "6afe1646636bef3643fcb57a",
+        "6aff727dab92b66734e8ba13",
+        "6aff5cf1bd7d2b2a591d93f6",
+        "6aff5601dff074cd3082c9ac",
+        "6b003302ea7f357b8d779c0e",
+        "6afec3cf8944855217c6d9db",
+        "6afb80943d24fddfecce5fc8",
+        "6aff681fa41f7a636b0755eb",
+        "6afe0eb25afaed5e9ed13282",
+        "6b005762ff081513934fe427",
+        "6aff214b28b5b308fd70e31b",
+        "6b00c72369df18de1f4bdcd3",
+        "6a73025d9f9b25f15abb47c9",
+        "6afe174ea4ce513f3babcf65",
+        "6b003f3541b80629f5c03a90"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-18T00:43:46.236Z",
+      "updatedAt": "2026-11-20T23:20:55.374Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afcf4c2694e5eef2cc090a6-1794962710595-xeve4nt7.jpg",
+      "treasurer": "6a0400a77e0502af791de8b1",
+      "favoriteGovType": "federation"
+    },
+    {
+      "_id": "6afcdc976e528cfdad86f02d",
+      "name": "MaltaVPN",
+      "description": "MaltaVPN nasce con una missione chiara: garantire ai cittadini di ogni Nazione il diritto fondamentale di comprare latte Maltese senza blocchi, confini o interferenze nemiche.",
+      "country": "6873d0ea1758b40e712b5f3d",
+      "region": "6873d11594e6b3b7989a4c41",
+      "leader": "69ea5e021cf790e1bbb1066c",
+      "councilMembers": [
+        "69ea5e021cf790e1bbb1066c"
+      ],
+      "members": [
+        "69ea5e021cf790e1bbb1066c",
+        "6a5ea31dfc4c52b2f8ace326",
+        "69bbbf41a9ceb0160d2189b1"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-17T23:00:39.461Z",
+      "updatedAt": "2026-11-18T17:42:11.373Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afcdc976e528cfdad86f02d-1794956462145-gy9rf7dd.png",
+      "congressListUpdatedAt": "2026-11-18T00:42:26.802Z",
+      "congressListUpdatedBy": "69ea5e021cf790e1bbb1066c",
+      "treasurer": "69bbbf41a9ceb0160d2189b1"
+    },
+    {
+      "_id": "6afcba84b1aab0acbafc7881",
+      "name": "Jogadores Degenerados Anónimos (JDA)",
+      "description": "",
+      "country": "6813b6d446e731854c7ac7aa",
+      "region": "6813b7049403bc4170a5d6ff",
+      "leader": "69ade91592668a04c70c6a31",
+      "councilMembers": [
+        "69ade91592668a04c70c6a31"
+      ],
+      "members": [
+        "69ade91592668a04c70c6a31"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-17T20:35:16.747Z",
+      "updatedAt": "2026-11-17T20:35:49.472Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afcba84b1aab0acbafc7881-1794947749311-p39a4hv7.png"
+    },
+    {
+      "_id": "6afca1b7da1c3cbff75e2af1",
+      "name": "تحالف النهضة التشادية (CRA)",
+      "description": "تحالف النهضة التشادية: هدفنا بناء تشاد قوية ومتطورة بالتعاون والعمل المشترك.\nChad Renaissance Alliance (CRA): United to build a strong, prosperous, and stable Chad through teamwork and smart strategy.",
+      "country": "6873d0ea1758b40e712b5f7c",
+      "region": "6873d11894e6b3b7989a4d0a",
+      "councilMembers": [
+        "6a97e5ea16f005d582249d65"
+      ],
+      "members": [
+        "6a97e5ea16f005d582249d65"
+      ],
+      "congressList": [
+        "6a97e5ea16f005d582249d65"
+      ],
+      "createdAt": "2026-11-17T18:49:27.822Z",
+      "updatedAt": "2026-11-21T08:21:56.024Z",
+      "__v": 0,
+      "congressListUpdatedAt": "2026-11-18T17:24:44.262Z",
+      "congressListUpdatedBy": "6a97e5ea16f005d582249d65",
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afca1b7da1c3cbff75e2af1-1794941499669-di7xws5x.jpg",
+      "favoriteGovType": "republic",
+      "primaryWinner": "6a97e5ea16f005d582249d65",
+      "leader": "6a97e5ea16f005d582249d65"
+    },
+    {
+      "_id": "6afc96c521e15a547f53a042",
+      "name": "Eggy Party",
+      "description": "For these trying times.",
+      "country": "6813b6d446e731854c7ac79e",
+      "region": "6813b7039403bc4170a5d6a8",
+      "leader": "6a9222497b4d8a151b2d9d87",
+      "councilMembers": [
+        "6a24695ac7637906a7119a75",
+        "6a9222497b4d8a151b2d9d87"
+      ],
+      "members": [
+        "6a9222497b4d8a151b2d9d87",
+        "6a24695ac7637906a7119a75"
+      ],
+      "congressList": [],
+      "createdAt": "2026-11-17T18:02:45.499Z",
+      "updatedAt": "2026-11-20T19:59:10.360Z",
+      "__v": 0,
+      "avatarUrl": "https://media.warera.io/avatars/party/party-6afc96c521e15a547f53a042-1794938777752-ypog63jp.jpg"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0xMS0xN1QxODowMjo0NS40OTlaIn0seyJ0Ijoic3RyIiwidiI6IjZhZmM5NmM1MjFlMTVhNTQ3ZjUzYTA0MiJ9XQ"
+}

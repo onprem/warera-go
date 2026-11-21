@@ -1,0 +1,250 @@
+{
+  "buyOrders": [
+    {
+      "_id": "6b0131caa7161f1464b77a57",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "lightAmmo",
+      "quantity": 215735,
+      "price": 0.195,
+      "offerAt": "2026-11-21T15:39:03.709Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6b01922417ec74d1b62c74d6",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "lead",
+      "quantity": 100000,
+      "price": 0.097,
+      "offerAt": "2026-11-21T12:44:20.786Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0a1c9eb5f9053532ee8",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "iron",
+      "quantity": 100000,
+      "price": 0.085,
+      "offerAt": "2026-11-21T13:46:09.693Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b9e8496e1392819dbeea",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "grain",
+      "quantity": 100000,
+      "price": 0.07,
+      "offerAt": "2026-11-21T15:34:00.649Z",
+      "type": "buy",
+      "__v": 0
+    }
+  ],
+  "sellOrders": [
+    {
+      "_id": "6afd7a0ed8d8bcac66548421",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "heavyAmmo",
+      "quantity": 2713,
+      "price": 3.333,
+      "offerAt": "2026-11-18T10:12:30.103Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6affac16a41f7a636b4880ac",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "oil",
+      "quantity": 95672,
+      "price": 0.17,
+      "offerAt": "2026-11-21T08:04:07.780Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b0033333707d462667e41c5",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "lightAmmo",
+      "quantity": 5000,
+      "price": 0.215,
+      "offerAt": "2026-11-20T11:46:59.745Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b003350810e35f264c76824",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "paper",
+      "quantity": 30000,
+      "price": 0.215,
+      "offerAt": "2026-11-20T11:47:28.685Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b01ba02021ad80aad4bb11b",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "heavyAmmo",
+      "quantity": 208,
+      "price": 3.091,
+      "offerAt": "2026-11-21T15:34:26.842Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b01ba9fca388b09f8836414",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "steel",
+      "quantity": 1657,
+      "price": 1.703,
+      "offerAt": "2026-11-21T15:37:03.319Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b01baf4e03e9127c62c78a3",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "livestock",
+      "quantity": 83,
+      "price": 1.544,
+      "offerAt": "2026-11-21T15:38:28.229Z",
+      "type": "sell",
+      "__v": 0
+    }
+  ],
+  "allOrders": [
+    {
+      "_id": "6b0131caa7161f1464b77a57",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "lightAmmo",
+      "quantity": 215735,
+      "price": 0.195,
+      "offerAt": "2026-11-21T15:39:03.709Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6b01922417ec74d1b62c74d6",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "lead",
+      "quantity": 100000,
+      "price": 0.097,
+      "offerAt": "2026-11-21T12:44:20.786Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6b01a0a1c9eb5f9053532ee8",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "iron",
+      "quantity": 100000,
+      "price": 0.085,
+      "offerAt": "2026-11-21T13:46:09.693Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b9e8496e1392819dbeea",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "grain",
+      "quantity": 100000,
+      "price": 0.07,
+      "offerAt": "2026-11-21T15:34:00.649Z",
+      "type": "buy",
+      "__v": 0
+    },
+    {
+      "_id": "6afd7a0ed8d8bcac66548421",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "heavyAmmo",
+      "quantity": 2713,
+      "price": 3.333,
+      "offerAt": "2026-11-18T10:12:30.103Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6affac16a41f7a636b4880ac",
+      "user": "69b2a9e32895f070b71fd794",
+      "country": "683ddd2c24b5a2e114af15d9",
+      "itemCode": "oil",
+      "quantity": 95672,
+      "price": 0.17,
+      "offerAt": "2026-11-21T08:04:07.780Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b0033333707d462667e41c5",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "lightAmmo",
+      "quantity": 5000,
+      "price": 0.215,
+      "offerAt": "2026-11-20T11:46:59.745Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b003350810e35f264c76824",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "paper",
+      "quantity": 30000,
+      "price": 0.215,
+      "offerAt": "2026-11-20T11:47:28.685Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b01ba02021ad80aad4bb11b",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "heavyAmmo",
+      "quantity": 208,
+      "price": 3.091,
+      "offerAt": "2026-11-21T15:34:26.842Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b01ba9fca388b09f8836414",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "steel",
+      "quantity": 1657,
+      "price": 1.703,
+      "offerAt": "2026-11-21T15:37:03.319Z",
+      "type": "sell",
+      "__v": 0
+    },
+    {
+      "_id": "6b01baf4e03e9127c62c78a3",
+      "user": "69b2a9e32895f070b71fd794",
+      "itemCode": "livestock",
+      "quantity": 83,
+      "price": 1.544,
+      "offerAt": "2026-11-21T15:38:28.229Z",
+      "type": "sell",
+      "__v": 0
+    }
+  ],
+  "totalBuyMoneyInvested": 67268.32500000001,
+  "totalSellMoneyExpected": 36424.62,
+  "totalSellQuantities": {
+    "heavyAmmo": 2921,
+    "oil": 95672,
+    "lightAmmo": 5000,
+    "paper": 30000,
+    "steel": 1657,
+    "livestock": 83
+  }
+}

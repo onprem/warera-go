@@ -1,0 +1,22 @@
+{
+  "_id": "6987b5c22c44fa30e444a600",
+  "attacker": {
+    "country": "6813b6d446e731854c7ac80e",
+    "wonBattlesCount": 48,
+    "wonRoundsCount": 104,
+    "damages": 6467462423
+  },
+  "defender": {
+    "country": "6813b6d446e731854c7ac7bc",
+    "wonBattlesCount": 50,
+    "wonRoundsCount": 104,
+    "damages": 5830525189
+  },
+  "isActive": true,
+  "battles": [],
+  "priority": "6813b6d446e731854c7ac80e",
+  "priorityEndAt": "2026-11-22T14:53:01.958Z",
+  "createdAt": "2026-02-07T21:59:30.663Z",
+  "updatedAt": "2026-11-21T14:53:01.984Z",
+  "__v": 0
+}

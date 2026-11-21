@@ -1,0 +1,299 @@
+{
+  "_id": "6ae7d285ea6351cf6d7884f6",
+  "name": "Country Tournament",
+  "description": "Nations compete for glory",
+  "isActive": false,
+  "status": "ended",
+  "startAt": "2026-11-06T18:00:00.000Z",
+  "teamSize": 51140.5,
+  "teamCount": 8,
+  "roundsCount": 3,
+  "type": "country",
+  "maxRarity": "rare",
+  "skillKey": "armor",
+  "autoQualify1stRound": [],
+  "registered": {
+    "countries": [
+      "6813b6d546e731854c7ac8c4",
+      "6873d0ea1758b40e712b5ef1",
+      "6813b6d446e731854c7ac79a",
+      "683ddd2c24b5a2e114af15cd",
+      "6813b6d446e731854c7ac7b6",
+      "6813b6d546e731854c7ac8a6",
+      "6813b6d546e731854c7ac852",
+      "6813b6d546e731854c7ac8dd",
+      "6813b6d546e731854c7ac83c",
+      "6813b6d546e731854c7ac845",
+      "6813b6d546e731854c7ac886",
+      "6873d0ea1758b40e712b5eef",
+      "6813b6d446e731854c7ac7fe",
+      "6813b6d546e731854c7ac865",
+      "6873d0ea1758b40e712b5f37",
+      "683ddd2c24b5a2e114af15d5",
+      "6813b6d546e731854c7ac811",
+      "6873d0ea1758b40e712b5f3d",
+      "6813b6d446e731854c7ac805",
+      "6813b6d446e731854c7ac7a2",
+      "6873d0ea1758b40e712b5f4f",
+      "6813b6d446e731854c7ac7bc",
+      "6813b6d546e731854c7ac889",
+      "696a81da63e2489f47e5a28c",
+      "6813b6d546e731854c7ac84b",
+      "6813b6d546e731854c7ac8c1",
+      "6873d0ea1758b40e712b5f2b",
+      "69614d0e5d798a861630c58e",
+      "687eab339142f76907295e4e",
+      "6813b6d446e731854c7ac7a0",
+      "6813b6d546e731854c7ac8a0",
+      "6873d0ea1758b40e712b5f63",
+      "683ddd2c24b5a2e114af15d9",
+      "6813b6d546e731854c7ac87d",
+      "687eab339142f76907295e50",
+      "6813b6d446e731854c7ac7b2",
+      "696a81da63e2489f47e5a28e",
+      "6813b6d446e731854c7ac80e",
+      "6813b6d546e731854c7ac8af",
+      "6813b6d446e731854c7ac7ac",
+      "6813b6d546e731854c7ac82f",
+      "6873d0ea1758b40e712b5f46",
+      "6813b6d446e731854c7ac7b8",
+      "6813b6d446e731854c7ac7a8",
+      "6813b6d546e731854c7ac880",
+      "683ddd2c24b5a2e114af15d3",
+      "683ddd2c24b5a2e114af15c9",
+      "6813b6d546e731854c7ac826",
+      "6813b6d546e731854c7ac88d",
+      "6873d0ea1758b40e712b5f7c",
+      "6813b6d546e731854c7ac85c",
+      "6813b6d546e731854c7ac82c",
+      "6813b6d546e731854c7ac858",
+      "6813b6d546e731854c7ac8ac",
+      "6813b6d546e731854c7ac820",
+      "6873d0ea1758b40e712b5f79",
+      "6813b6d446e731854c7ac7f5",
+      "6813b6d546e731854c7ac8d7",
+      "6813b6d446e731854c7ac80b",
+      "6873d0ea1758b40e712b5ef5",
+      "6873d0ea1758b40e712b5eed",
+      "6813b6d546e731854c7ac8d4",
+      "6813b6d446e731854c7ac7ae",
+      "6813b6d446e731854c7ac7e8",
+      "6813b6d546e731854c7ac81d",
+      "6813b6d446e731854c7ac7c0",
+      "6813b6d546e731854c7ac899",
+      "6873d0ea1758b40e712b5eeb",
+      "6873d0ea1758b40e712b5f6a",
+      "683ddd2c24b5a2e114af15d1",
+      "6813b6d546e731854c7ac8e0",
+      "683ddd2c24b5a2e114af15fd",
+      "6813b6d546e731854c7ac8be",
+      "6813b6d446e731854c7ac7a4",
+      "683ddd2c24b5a2e114af15fa",
+      "683ddd2c24b5a2e114af160f",
+      "6813b6d446e731854c7ac7aa",
+      "6813b6d446e731854c7ac79c",
+      "6adf5d1d58ce8dc7669676bb",
+      "683ddd2c24b5a2e114af1600",
+      "6813b6d546e731854c7ac814",
+      "6813b6d546e731854c7ac862",
+      "6873d0ea1758b40e712b5ee9",
+      "683ddd2c24b5a2e114af15c1",
+      "6813b6d446e731854c7ac7e2",
+      "6873d0ea1758b40e712b5f6d",
+      "6813b6d546e731854c7ac877",
+      "683ddd2c24b5a2e114af15bf",
+      "6813b6d546e731854c7ac8cb",
+      "6813b6d546e731854c7ac8ce",
+      "6813b6d546e731854c7ac868",
+      "6873d0ea1758b40e712b5f28",
+      "6873d0ea1758b40e712b5f76",
+      "6873d0ea1758b40e712b5f59",
+      "6873d0ea1758b40e712b5f5c",
+      "6813b6d446e731854c7ac7b4",
+      "683ddd2c24b5a2e114af15c5",
+      "683ddd2c24b5a2e114af15b7",
+      "683ddd2c24b5a2e114af15c3",
+      "683ddd2c24b5a2e114af1612",
+      "6813b6d446e731854c7ac7be",
+      "683ddd2c24b5a2e114af15cf",
+      "6873d0ea1758b40e712b5f25",
+      "6813b6d546e731854c7ac871",
+      "6873d0ea1758b40e712b5f19",
+      "6873d0ea1758b40e712b5f31",
+      "683ddd2c24b5a2e114af160c",
+      "6813b6d546e731854c7ac874",
+      "6813b6d446e731854c7ac79e",
+      "6813b6d546e731854c7ac85f",
+      "6813b6d546e731854c7ac86b",
+      "6813b6d446e731854c7ac7f8",
+      "6813b6d446e731854c7ac7ef",
+      "6813b6d546e731854c7ac893",
+      "6813b6d546e731854c7ac835",
+      "6873d0ea1758b40e712b5ee7",
+      "6873d0ea1758b40e712b5f70",
+      "6813b6d546e731854c7ac890",
+      "683ddd2c24b5a2e114af1603",
+      "683ddd2c24b5a2e114af15f7",
+      "6873d0ea1758b40e712b5f1f",
+      "6813b6d446e731854c7ac7e5",
+      "6813b6d546e731854c7ac8a9",
+      "6873d0ea1758b40e712b5f40",
+      "6813b6d546e731854c7ac883",
+      "6813b6d546e731854c7ac842",
+      "6813b6d446e731854c7ac7a6",
+      "6813b6d546e731854c7ac8b2",
+      "6813b6d546e731854c7ac8c8",
+      "683ddd2c24b5a2e114af1609",
+      "6813b6d446e731854c7ac7b0",
+      "6873d0ea1758b40e712b5f2e",
+      "6813b6d446e731854c7ac7f2",
+      "6813b6d546e731854c7ac86e",
+      "6813b6d446e731854c7ac802",
+      "6813b6d446e731854c7ac7ba",
+      "6813b6d546e731854c7ac8da",
+      "683ddd2c24b5a2e114af15d7",
+      "6813b6d446e731854c7ac7fb",
+      "683ddd2c24b5a2e114af15bd",
+      "6873d0ea1758b40e712b5f73",
+      "6873d0ea1758b40e712b5ef7",
+      "6873d0ea1758b40e712b5ef3"
+    ],
+    "mus": [],
+    "users": []
+  },
+  "createdAt": "2026-11-02T00:00:05.536Z",
+  "updatedAt": "2026-11-08T23:55:13.310Z",
+  "__v": 0,
+  "activeRound": 3,
+  "rounds": {
+    "1": {
+      "roundNumber": 1,
+      "cases": 3,
+      "skillValue": null,
+      "matches": [
+        {
+          "matchIndex": 0,
+          "attacker": "6aee16cdee2d4374a5e6d922",
+          "defender": "6aee16cdee2d4374a5e6d90b",
+          "isQualificationRound": false,
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d922"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d90b"
+          ],
+          "battle": "6aee16cdee2d4374a5e6d92e",
+          "wonBy": "attacker"
+        },
+        {
+          "matchIndex": 1,
+          "attacker": "6aee16cdee2d4374a5e6d90e",
+          "defender": "6aee16cdee2d4374a5e6d91a",
+          "isQualificationRound": false,
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d90e"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d91a"
+          ],
+          "battle": "6aee16cdee2d4374a5e6d93a",
+          "wonBy": "defender"
+        },
+        {
+          "matchIndex": 2,
+          "attacker": "6aee16cdee2d4374a5e6d911",
+          "defender": "6aee16cdee2d4374a5e6d914",
+          "isQualificationRound": false,
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d911"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d914"
+          ],
+          "battle": "6aee16cdee2d4374a5e6d946",
+          "wonBy": "attacker"
+        },
+        {
+          "matchIndex": 3,
+          "attacker": "6aee16cdee2d4374a5e6d917",
+          "defender": "6aee16cdee2d4374a5e6d91f",
+          "isQualificationRound": false,
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d917"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d91f"
+          ],
+          "battle": "6aee16cdee2d4374a5e6d952",
+          "wonBy": "attacker"
+        }
+      ]
+    },
+    "2": {
+      "roundNumber": 2,
+      "cases": 5,
+      "skillValue": 6,
+      "matches": [
+        {
+          "matchIndex": 0,
+          "predecessors": {
+            "attacker": 0,
+            "defender": 1
+          },
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d922"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d91a"
+          ],
+          "attacker": "6aee16cdee2d4374a5e6d922",
+          "defender": "6aee16cdee2d4374a5e6d91a",
+          "battle": "6aef305b628cff409816b090",
+          "wonBy": "defender"
+        },
+        {
+          "matchIndex": 1,
+          "predecessors": {
+            "attacker": 2,
+            "defender": 3
+          },
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d911"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d917"
+          ],
+          "attacker": "6aee16cdee2d4374a5e6d911",
+          "defender": "6aee16cdee2d4374a5e6d917",
+          "battle": "6aef305b628cff409816b09c",
+          "wonBy": "defender"
+        }
+      ]
+    },
+    "3": {
+      "roundNumber": 3,
+      "cases": 10,
+      "skillValue": 12,
+      "matches": [
+        {
+          "matchIndex": 0,
+          "predecessors": {
+            "attacker": 0,
+            "defender": 1
+          },
+          "possibleAttackerTeamIds": [
+            "6aee16cdee2d4374a5e6d91a"
+          ],
+          "possibleDefenderTeamIds": [
+            "6aee16cdee2d4374a5e6d917"
+          ],
+          "attacker": "6aee16cdee2d4374a5e6d91a",
+          "defender": "6aee16cdee2d4374a5e6d917",
+          "battle": "6af05e7f12e90f0ba768f1e0",
+          "wonBy": "defender"
+        }
+      ]
+    }
+  },
+  "winnerTournamentTeam": "6aee16cdee2d4374a5e6d917"
+}

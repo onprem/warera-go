@@ -48,7 +48,7 @@ func main() {
 	inputFlag := flag.String("input", "", "Optional custom JSON input for the targeted method")
 	seedsFlag := flag.String("seeds", "", "Optional JSON object of seed values used to construct bulk request inputs")
 	forceFlag := flag.Bool("force", false, "Re-record all fixtures cleanly, overwriting existing files on disk")
-	outDirFlag := flag.String("out", "spec/fixtures", "Output directory for fixture files")
+	outDirFlag := flag.String("out", "waretest/fixtures", "Output directory for fixture files")
 	specFlag := flag.String("spec", "spec/openapi.json", "Path to WarEra OpenAPI specification")
 	flag.Parse()
 

@@ -114,7 +114,7 @@ func TestResponseFixturesDecode(t *testing.T) {
 	for _, tt := range tests {
 		covered[tt.filename] = struct{}{}
 	}
-	fixtures, err := filepath.Glob(filepath.Join("spec", "fixtures", "*.json"))
+	fixtures, err := filepath.Glob(filepath.Join("waretest", "fixtures", "*.json"))
 	if err != nil {
 		t.Fatalf("list response fixtures: %v", err)
 	}

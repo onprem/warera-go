@@ -26,10 +26,10 @@ func (f roundTripFunc) RoundTrip(req *http.Request) (*http.Response, error) {
 
 func loadFixture(t *testing.T, filename string) json.RawMessage {
 	t.Helper()
-	path := filepath.Join("spec", "fixtures", filename)
+	path := filepath.Join("waretest", "fixtures", filename)
 	data, err := os.ReadFile(path)
 	if err != nil {
-		path = filepath.Join("..", "spec", "fixtures", filename)
+		path = filepath.Join("..", "waretest", "fixtures", filename)
 		data, err = os.ReadFile(path)
 		if err != nil {
 			t.Fatalf("failed to load fixture %s: %v", filename, err)

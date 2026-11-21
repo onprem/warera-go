@@ -18,8 +18,8 @@ warera-go/
 │   ├── record/       # Utility to record real live WarEra tRPC responses
 │   └── update-specs/ # Refreshes the upstream OpenAPI document
 ├── internal/trpc/    # Low-level tRPC HTTP batching link, retry, and rate limiter
+├── waretest/         # Fake tRPC server for tests, with recorded responses in fixtures/
 ├── spec/
-│   ├── fixtures/     # Recorded JSON responses used by tests and recorder seeds
 │   ├── openapi.json  # WarEra's published OpenAPI 3 specification
 │   └── SOURCES.md    # Source attribution and refresh instructions
 ├── models_gen.go     # Generated request/filter types and CursorPage

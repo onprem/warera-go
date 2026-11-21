@@ -1,0 +1,12 @@
+{
+  "_id": "6b01b3c92eea835530e6ec56",
+  "company": "6a04f7d1578457141eaeb49c",
+  "user": "69fcfd43c02ccf7626a6e934",
+  "region": "6813b7049403bc4170a5d720",
+  "rateManagement": 0.016328,
+  "maxHourlyWage": 0.179608,
+  "minManagement": 4,
+  "createdAt": "2026-11-21T15:07:53.289Z",
+  "updatedAt": "2026-11-21T15:07:53.289Z",
+  "__v": 0
+}

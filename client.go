@@ -15,6 +15,10 @@ type Client struct {
 	Countries *CountryService
 	// Companies provides access to companies and company listings.
 	Companies *CompanyService
+	// Employees provides access to the NPC employees of companies.
+	Employees *EmployeeService
+	// Managers provides access to company managers and manager job offers.
+	Managers *ManagerService
 	// Battles provides access to battles and live battle data.
 	Battles *BattleService
 	// Articles provides access to news articles.
@@ -86,6 +90,8 @@ func NewClient(opts ...Option) *Client {
 
 	c.Countries = &CountryService{client: c}
 	c.Companies = &CompanyService{client: c}
+	c.Employees = &EmployeeService{client: c}
+	c.Managers = &ManagerService{client: c}
 	c.Battles = &BattleService{client: c}
 	c.Articles = &ArticleService{client: c}
 	c.Polls = &PollService{client: c}

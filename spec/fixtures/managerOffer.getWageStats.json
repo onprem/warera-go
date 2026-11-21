@@ -1,0 +1,10 @@
+{
+  "allowedRange": {
+    "min": 0.119738,
+    "max": 0.179608,
+    "average": 0.149673,
+    "source": "market"
+  },
+  "topOffer": 0.179608,
+  "topEligibleOffer": null
+}

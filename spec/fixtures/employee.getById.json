@@ -1,0 +1,281 @@
+{
+  "_id": "6ae431e5f2ae66f9678ae4cf",
+  "owner": "6ac9cdf9764132f636dd7f0f",
+  "company": "6aca0f7f738b0d71feca4d17",
+  "name": "Paola Venegas Piña",
+  "gender": "female",
+  "age": 57,
+  "base": {
+    "production": 7,
+    "luck": 9,
+    "responsibility": 3
+  },
+  "trained": {
+    "production": 4,
+    "luck": 5,
+    "responsibility": 0
+  },
+  "traits": [
+    {
+      "code": "homesick"
+    },
+    {
+      "code": "earlyBloomer"
+    },
+    {
+      "code": "handy"
+    },
+    {
+      "code": "foreman"
+    },
+    {
+      "code": "trainer"
+    }
+  ],
+  "potential": 8,
+  "potentialMax": 9,
+  "wage": 0.114822,
+  "wageExpectation": 0.725,
+  "nationality": "6813b6d546e731854c7ac85c",
+  "createdAt": "2026-10-30T05:57:57.513Z",
+  "updatedAt": "2026-11-21T00:04:54.924Z",
+  "__v": 0,
+  "lastSpecializedDay": "2026-11-21",
+  "specializations": {
+    "steel": 7,
+    "concrete": 7,
+    "petroleum": 1,
+    "iron": 8
+  },
+  "lastMovedAt": "2026-11-18T04:19:22.331Z",
+  "lastTrainedAt": "2026-11-20T03:12:24.234Z",
+  "trainingsToday": 1,
+  "trainingHistory": [
+    {
+      "card": "wildCard",
+      "rarity": "uncommon",
+      "outcome": {
+        "stat": "production",
+        "statGain": 1,
+        "gained": [
+          {
+            "code": "earlyBloomer",
+            "revealed": true
+          }
+        ]
+      },
+      "pickedAt": "2026-10-30T12:19:32.894Z"
+    },
+    {
+      "card": "wildCard",
+      "rarity": "uncommon",
+      "outcome": {
+        "stat": "luck",
+        "statGain": 1,
+        "gained": [
+          {
+            "code": "handy",
+            "revealed": true
+          }
+        ]
+      },
+      "pickedAt": "2026-10-31T06:38:51.836Z"
+    },
+    {
+      "card": "wildCard",
+      "rarity": "rare",
+      "outcome": {
+        "stat": "luck",
+        "statGain": 2,
+        "gained": [
+          {
+            "code": "foreman"
+          }
+        ]
+      },
+      "pickedAt": "2026-11-02T18:56:38.162Z"
+    },
+    {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+        "stat": "production",
+        "statGain": 1
+      },
+      "pickedAt": "2026-11-05T03:51:55.765Z"
+    },
+    {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+        "stat": "production",
+        "statGain": 1
+      },
+      "pickedAt": "2026-11-07T05:01:07.136Z"
+    },
+    {
+      "card": "wildCard",
+      "rarity": "rare",
+      "outcome": {
+        "stat": "luck",
+        "statGain": 2,
+        "gained": [
+          {
+            "code": "trainer"
+          }
+        ]
+      },
+      "pickedAt": "2026-11-14T04:21:24.434Z"
+    },
+    {
+      "card": "secondWind",
+      "rarity": "rare",
+      "delta": 2,
+      "outcome": {
+        "potentialMax": 9
+      },
+      "pickedAt": "2026-11-19T03:13:35.765Z"
+    },
+    {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+        "stat": "production",
+        "statGain": 1
+      },
+      "pickedAt": "2026-11-20T03:12:31.341Z"
+    }
+  ],
+  "retireInDays": 8,
+  "lastAgedDay": "2026-11-21",
+  "lastEventAt": "2026-11-13T13:08:58.747Z",
+  "charmLuck": {
+    "amount": 3,
+    "until": "2026-11-17T01:00:00.000Z"
+  },
+  "eventModifiers": [
+    {
+      "code": "officeRomance",
+      "kind": "happiness",
+      "delta": 5,
+      "until": "2026-11-16T13:08:58.747Z"
+    }
+  ],
+  "trainerSessionsUsed": 1,
+  "trainerSessionsUsedAt": "2026-11-20T14:14:41.616Z",
+  "tool": "6aecc63a15a4b6b5f44c134b",
+  "estimate": {
+    "production": 4.29,
+    "wage": 0.114822,
+    "itemCode": "steel"
+  },
+  "breakdown": {
+    "production": {
+      "base": 3,
+      "trained": 4,
+      "contributions": [
+        {
+          "code": "earlyBloomer",
+          "delta": 2
+        },
+        {
+          "code": "handy",
+          "delta": 40,
+          "percent": true
+        },
+        {
+          "code": "tool",
+          "delta": 19,
+          "percent": true
+        },
+        {
+          "code": "specialization",
+          "delta": 7,
+          "percent": true
+        }
+      ],
+      "total": 9
+    },
+    "luck": {
+      "base": 4,
+      "trained": 5,
+      "contributions": [],
+      "total": 9
+    },
+    "responsibility": {
+      "base": 3,
+      "trained": 0,
+      "contributions": [],
+      "total": 3
+    }
+  },
+  "happinessBreakdown": {
+    "base": 50,
+    "contributions": [
+      {
+        "reason": "responsibility",
+        "delta": 9
+      },
+      {
+        "reason": "incomeTax",
+        "delta": -4.48
+      }
+    ],
+    "mitigated": 0,
+    "value": 54.519999999999996,
+    "quitChance": 0
+  },
+  "toolStatus": {
+    "rolledPercent": 19,
+    "isUsable": true,
+    "isBroken": false,
+    "bonusPercent": 19
+  },
+  "toolItem": {
+    "_id": "6aecc63a15a4b6b5f44c134b",
+    "owner": "6ac9cdf9764132f636dd7f0f",
+    "code": "hammer3",
+    "skills": {
+      "production": 19
+    },
+    "state": 34,
+    "maxState": 100,
+    "createdAt": "2026-11-05T18:08:58.586Z",
+    "updatedAt": "2026-11-21T15:03:59.118Z",
+    "__v": 0,
+    "employee": "6ae431e5f2ae66f9678ae4cf"
+  },
+  "productionBonus": {
+    "total": 90.52,
+    "contributions": [
+      {
+        "source": "management",
+        "percent": 20
+      },
+      {
+        "source": "happiness",
+        "percent": 4.519999999999996
+      },
+      {
+        "source": "tool",
+        "percent": 19
+      },
+      {
+        "source": "specialization",
+        "percent": 7
+      },
+      {
+        "source": "handy",
+        "percent": 40
+      }
+    ]
+  },
+  "trainingsPerDay": 1,
+  "companyDisabled": false
+}

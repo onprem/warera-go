@@ -1,0 +1,1114 @@
+{
+  "employees": [
+    {
+      "_id": "6adf68caa9c02607d95223a4",
+      "owner": "681d8310470bf2a1423d8d16",
+      "company": "6a618860a787e81e043d3847",
+      "name": "Theresa Metz",
+      "gender": "female",
+      "age": 57,
+      "base": {
+        "production": 8,
+        "luck": 8,
+        "responsibility": 3
+      },
+      "trained": {
+        "production": 6,
+        "luck": 5,
+        "responsibility": 1
+      },
+      "traits": [
+        {
+          "code": "laborer"
+        },
+        {
+          "code": "rival"
+        },
+        {
+          "code": "sociable"
+        },
+        {
+          "code": "patriot"
+        },
+        {
+          "code": "foreman"
+        },
+        {
+          "code": "oldFriends",
+          "arg": "6adf9f9a9aa90ea2367d76f7"
+        }
+      ],
+      "potential": 13,
+      "potentialMax": 13,
+      "wage": 0.133216,
+      "wageExpectation": 0.736,
+      "nationality": "69614d0e5d798a861630c58e",
+      "createdAt": "2026-10-26T14:50:50.549Z",
+      "updatedAt": "2026-11-21T00:03:08.511Z",
+      "__v": 0,
+      "lastSpecializedDay": "2026-11-21",
+      "specializations": {
+        "steel": 2,
+        "iron": 1,
+        "cookedFish": 1,
+        "fish": 23
+      },
+      "lastTrainedAt": "2026-11-06T00:40:06.630Z",
+      "trainingsToday": 1,
+      "trainingHistory": [
+        {
+          "card": "secondWind",
+          "rarity": "rare",
+          "delta": 2,
+          "outcome": {
+            "potentialMax": 11
+          },
+          "pickedAt": "2026-10-27T02:51:49.403Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-10-28T00:26:57.637Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "rare",
+          "traitTo": "laborer",
+          "outcome": {
+            "gained": [
+              {
+                "code": "laborer",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-29T02:25:50.338Z"
+        },
+        {
+          "card": "wildCard",
+          "rarity": "uncommon",
+          "outcome": {
+            "stat": "responsibility",
+            "statGain": 1,
+            "gained": [
+              {
+                "code": "rival",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-30T00:24:17.017Z"
+        },
+        {
+          "card": "secondWind",
+          "rarity": "rare",
+          "delta": 2,
+          "outcome": {
+            "potentialMax": 13
+          },
+          "pickedAt": "2026-10-30T14:07:09.512Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "production",
+          "delta": 1,
+          "outcome": {
+            "stat": "production",
+            "statGain": 1
+          },
+          "pickedAt": "2026-10-31T01:17:01.274Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "production",
+          "delta": 1,
+          "outcome": {
+            "stat": "production",
+            "statGain": 1
+          },
+          "pickedAt": "2026-10-31T15:15:41.692Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "rare",
+          "traitTo": "sociable",
+          "outcome": {
+            "gained": [
+              {
+                "code": "sociable",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-11-01T02:01:52.030Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "epic",
+          "traitTo": "patriot",
+          "outcome": {
+            "gained": [
+              {
+                "code": "patriot",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-11-02T00:22:18.391Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "epic",
+          "traitTo": "foreman",
+          "outcome": {
+            "gained": [
+              {
+                "code": "foreman"
+              }
+            ]
+          },
+          "pickedAt": "2026-11-03T00:20:47.630Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "luck",
+          "delta": 2,
+          "outcome": {
+            "stat": "luck",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-04T02:06:30.196Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "epic",
+          "stat": "luck",
+          "delta": 3,
+          "outcome": {
+            "stat": "luck",
+            "statGain": 3
+          },
+          "pickedAt": "2026-11-05T03:42:33.906Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-06T00:40:17.813Z"
+        }
+      ],
+      "lastMovedAt": "2026-11-16T21:06:28.862Z",
+      "careBoosts": [
+        "2026-11-14T14:19:01.553Z",
+        "2026-11-15T14:31:12.360Z"
+      ],
+      "lastEventAt": "2026-11-18T11:58:31.040Z",
+      "eventModifiers": [
+        {
+          "code": "lunchThief",
+          "kind": "happiness",
+          "delta": 5,
+          "until": "2026-11-21T11:58:31.040Z"
+        }
+      ],
+      "tool": "6af9d5480b14d0945f2107c6",
+      "retireInDays": 8,
+      "lastAgedDay": "2026-11-21",
+      "estimate": {
+        "production": 9.6,
+        "wage": 0.133216,
+        "itemCode": "fish"
+      },
+      "breakdown": {
+        "production": {
+          "base": 2,
+          "trained": 6,
+          "contributions": [
+            {
+              "code": "laborer",
+              "delta": 3
+            },
+            {
+              "code": "rival",
+              "delta": 3
+            },
+            {
+              "code": "patriot",
+              "delta": 2
+            },
+            {
+              "code": "sociable",
+              "delta": 50,
+              "percent": true
+            },
+            {
+              "code": "oldFriends",
+              "delta": 15,
+              "percent": true
+            },
+            {
+              "code": "tool",
+              "delta": 20,
+              "percent": true
+            },
+            {
+              "code": "specialization",
+              "delta": 20,
+              "percent": true
+            }
+          ],
+          "total": 16
+        },
+        "luck": {
+          "base": 3,
+          "trained": 5,
+          "contributions": [],
+          "total": 8
+        },
+        "responsibility": {
+          "base": 2,
+          "trained": 1,
+          "contributions": [],
+          "total": 3
+        }
+      },
+      "happinessBreakdown": {
+        "base": 50,
+        "contributions": [
+          {
+            "reason": "responsibility",
+            "delta": 9
+          },
+          {
+            "reason": "trait",
+            "delta": 9,
+            "code": "foreman"
+          },
+          {
+            "reason": "trait",
+            "delta": 10,
+            "code": "patriot"
+          }
+        ],
+        "mitigated": 0,
+        "value": 78,
+        "quitChance": 0
+      },
+      "toolStatus": {
+        "rolledPercent": 20,
+        "isUsable": true,
+        "isBroken": false,
+        "bonusPercent": 20
+      },
+      "toolItem": {
+        "_id": "6af9d5480b14d0945f2107c6",
+        "owner": "681d8310470bf2a1423d8d16",
+        "code": "sickle3",
+        "skills": {
+          "production": 20
+        },
+        "state": 71.2,
+        "maxState": 100,
+        "createdAt": "2026-11-15T15:52:40.929Z",
+        "updatedAt": "2026-11-21T15:02:48.922Z",
+        "__v": 0,
+        "employee": "6adf68caa9c02607d95223a4"
+      },
+      "productionBonus": {
+        "total": 140,
+        "contributions": [
+          {
+            "source": "management",
+            "percent": 2
+          },
+          {
+            "source": "coreRegion",
+            "percent": 5
+          },
+          {
+            "source": "happiness",
+            "percent": 28
+          },
+          {
+            "source": "tool",
+            "percent": 20
+          },
+          {
+            "source": "specialization",
+            "percent": 20
+          },
+          {
+            "source": "sociable",
+            "percent": 50
+          },
+          {
+            "source": "oldFriends",
+            "percent": 15
+          }
+        ]
+      },
+      "trainingsPerDay": 1,
+      "companyDisabled": false
+    },
+    {
+      "_id": "6adf9f9a9aa90ea2367d76f7",
+      "owner": "681d8310470bf2a1423d8d16",
+      "company": "6a618860a787e81e043d3847",
+      "name": "Alexis Daniel",
+      "gender": "female",
+      "age": 66,
+      "base": {
+        "production": 17,
+        "luck": 6,
+        "responsibility": 4
+      },
+      "trained": {
+        "production": 13,
+        "luck": 3,
+        "responsibility": 0
+      },
+      "traits": [
+        {
+          "code": "loner"
+        },
+        {
+          "code": "laborer"
+        },
+        {
+          "code": "gambler"
+        },
+        {
+          "code": "nationalist"
+        },
+        {
+          "code": "lateBloomer"
+        },
+        {
+          "code": "oldFriends",
+          "arg": "6adf68caa9c02607d95223a4"
+        }
+      ],
+      "potential": 13,
+      "potentialMax": 13,
+      "wage": 0.27193,
+      "wageExpectation": 0.707,
+      "nationality": "69614d0e5d798a861630c58e",
+      "createdAt": "2026-10-26T18:44:42.841Z",
+      "updatedAt": "2026-11-21T00:03:08.511Z",
+      "__v": 0,
+      "lastSpecializedDay": "2026-11-21",
+      "specializations": {
+        "steel": 3,
+        "cookedFish": 2,
+        "fish": 22
+      },
+      "lastTrainedAt": "2026-11-06T00:40:23.742Z",
+      "trainingsToday": 1,
+      "trainingHistory": [
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "luck",
+          "delta": 1,
+          "outcome": {
+            "stat": "luck",
+            "statGain": 1
+          },
+          "pickedAt": "2026-10-27T02:52:29.452Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-10-28T00:26:14.759Z"
+        },
+        {
+          "card": "secondWind",
+          "rarity": "rare",
+          "delta": 2,
+          "outcome": {
+            "potentialMax": 11
+          },
+          "pickedAt": "2026-10-29T14:26:32.118Z"
+        },
+        {
+          "card": "wildCard",
+          "rarity": "uncommon",
+          "outcome": {
+            "stat": "luck",
+            "statGain": 1,
+            "gained": [
+              {
+                "code": "loner",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-30T00:25:34.596Z"
+        },
+        {
+          "card": "wildCard",
+          "rarity": "uncommon",
+          "outcome": {
+            "stat": "luck",
+            "statGain": 1,
+            "gained": [
+              {
+                "code": "laborer",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-30T14:10:48.432Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "rare",
+          "traitTo": "gambler",
+          "outcome": {
+            "gained": [
+              {
+                "code": "gambler",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-31T01:13:54.645Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "epic",
+          "stat": "production",
+          "delta": 3,
+          "outcome": {
+            "stat": "production",
+            "statGain": 3
+          },
+          "pickedAt": "2026-10-31T15:17:46.264Z"
+        },
+        {
+          "card": "secondWind",
+          "rarity": "rare",
+          "delta": 2,
+          "outcome": {
+            "potentialMax": 13
+          },
+          "pickedAt": "2026-11-01T02:02:06.366Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "production",
+          "delta": 1,
+          "outcome": {
+            "stat": "production",
+            "statGain": 1
+          },
+          "pickedAt": "2026-11-02T00:22:34.247Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "legendary",
+          "traitTo": "nationalist",
+          "traitTo2": "lateBloomer",
+          "outcome": {
+            "gained": [
+              {
+                "code": "nationalist"
+              },
+              {
+                "code": "lateBloomer"
+              }
+            ]
+          },
+          "pickedAt": "2026-11-03T00:21:08.426Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "epic",
+          "stat": "production",
+          "delta": 3,
+          "outcome": {
+            "stat": "production",
+            "statGain": 3
+          },
+          "pickedAt": "2026-11-04T02:06:46.651Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-05T03:42:52.989Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-06T00:40:29.519Z"
+        }
+      ],
+      "coworkerFiredAts": [
+        "2026-10-28T21:33:16.554Z"
+      ],
+      "lastMovedAt": "2026-10-31T15:26:08.573Z",
+      "careBoosts": [
+        "2026-11-16T08:40:53.019Z"
+      ],
+      "retireInDays": 9,
+      "lastAgedDay": "2026-11-21",
+      "lastEventAt": "2026-11-20T00:38:06.432Z",
+      "eventModifiers": [
+        {
+          "code": "cursedTool",
+          "kind": "happiness",
+          "delta": 10,
+          "until": "2026-11-22T12:58:36.561Z"
+        },
+        {
+          "code": "lunchThief",
+          "kind": "happiness",
+          "delta": 5,
+          "until": "2026-11-21T11:58:31.040Z"
+        },
+        {
+          "code": "retirement",
+          "kind": "happiness",
+          "delta": 10,
+          "until": "2026-11-27T00:38:06.432Z"
+        }
+      ],
+      "tool": "6afa482c8574ea71b960cfe9",
+      "estimate": {
+        "production": 12.06,
+        "wage": 0.27193,
+        "itemCode": "fish"
+      },
+      "breakdown": {
+        "production": {
+          "base": 4,
+          "trained": 13,
+          "contributions": [
+            {
+              "code": "laborer",
+              "delta": 3
+            },
+            {
+              "code": "lateBloomer",
+              "delta": 4
+            },
+            {
+              "code": "gambler",
+              "delta": -15,
+              "percent": true
+            },
+            {
+              "code": "oldFriends",
+              "delta": 15,
+              "percent": true
+            },
+            {
+              "code": "tool",
+              "delta": 24,
+              "percent": true
+            },
+            {
+              "code": "specialization",
+              "delta": 20,
+              "percent": true
+            }
+          ],
+          "total": 24
+        },
+        "luck": {
+          "base": 3,
+          "trained": 3,
+          "contributions": [
+            {
+              "code": "gambler",
+              "delta": 3
+            }
+          ],
+          "total": 9
+        },
+        "responsibility": {
+          "base": 4,
+          "trained": 0,
+          "contributions": [],
+          "total": 4
+        }
+      },
+      "happinessBreakdown": {
+        "base": 50,
+        "contributions": [
+          {
+            "reason": "responsibility",
+            "delta": 12
+          },
+          {
+            "reason": "event",
+            "delta": 10,
+            "until": "2026-11-22T12:58:36.561Z",
+            "eventCode": "cursedTool"
+          },
+          {
+            "reason": "event",
+            "delta": 10,
+            "until": "2026-11-27T00:38:06.432Z",
+            "eventCode": "retirement"
+          },
+          {
+            "reason": "trait",
+            "delta": 10,
+            "code": "nationalist"
+          },
+          {
+            "reason": "trait",
+            "delta": 9,
+            "code": "foreman"
+          },
+          {
+            "reason": "trait",
+            "delta": 9,
+            "code": "foreman"
+          }
+        ],
+        "mitigated": 0,
+        "value": 100,
+        "quitChance": 0
+      },
+      "toolStatus": {
+        "rolledPercent": 24,
+        "isUsable": true,
+        "isBroken": false,
+        "bonusPercent": 24
+      },
+      "toolItem": {
+        "_id": "6afa482c8574ea71b960cfe9",
+        "owner": "681d8310470bf2a1423d8d16",
+        "code": "sickle4",
+        "skills": {
+          "production": 24
+        },
+        "state": 80.2,
+        "maxState": 100,
+        "createdAt": "2026-11-16T00:02:52.084Z",
+        "updatedAt": "2026-11-21T15:02:48.922Z",
+        "__v": 0,
+        "employee": "6adf9f9a9aa90ea2367d76f7"
+      },
+      "productionBonus": {
+        "total": 101,
+        "contributions": [
+          {
+            "source": "management",
+            "percent": 2
+          },
+          {
+            "source": "coreRegion",
+            "percent": 5
+          },
+          {
+            "source": "happiness",
+            "percent": 50
+          },
+          {
+            "source": "tool",
+            "percent": 24
+          },
+          {
+            "source": "specialization",
+            "percent": 20
+          },
+          {
+            "source": "gambler",
+            "percent": -15
+          },
+          {
+            "source": "oldFriends",
+            "percent": 15
+          }
+        ]
+      },
+      "trainingsPerDay": 1,
+      "companyDisabled": false
+    },
+    {
+      "_id": "6ae26a892d4b608be38aba1e",
+      "owner": "681d8310470bf2a1423d8d16",
+      "company": "6a618860a787e81e043d3847",
+      "name": "Zenobio Doria",
+      "gender": "male",
+      "age": 46,
+      "base": {
+        "production": 11,
+        "luck": 9,
+        "responsibility": 2
+      },
+      "trained": {
+        "production": 10,
+        "luck": 7,
+        "responsibility": 0
+      },
+      "traits": [
+        {
+          "code": "foreman"
+        },
+        {
+          "code": "rival"
+        },
+        {
+          "code": "stockpiler"
+        },
+        {
+          "code": "specialist",
+          "arg": "fish"
+        }
+      ],
+      "potential": 14,
+      "potentialMax": 14,
+      "wage": 0.242404,
+      "wageExpectation": 0.974,
+      "nationality": "69614d0e5d798a861630c58e",
+      "createdAt": "2026-10-28T21:35:05.626Z",
+      "updatedAt": "2026-11-21T00:03:08.511Z",
+      "__v": 0,
+      "lastSpecializedDay": "2026-11-21",
+      "specializations": {
+        "fish": 29,
+        "cookedFish": 1
+      },
+      "lastTrainedAt": "2026-11-09T00:03:43.116Z",
+      "trainingsToday": 1,
+      "trainingHistory": [
+        {
+          "card": "secondWind",
+          "rarity": "epic",
+          "delta": 3,
+          "outcome": {
+            "potentialMax": 12
+          },
+          "pickedAt": "2026-10-29T02:25:16.429Z"
+        },
+        {
+          "card": "wildCard",
+          "rarity": "uncommon",
+          "outcome": {
+            "stat": "luck",
+            "statGain": 1,
+            "gained": [
+              {
+                "code": "rival",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-30T00:25:02.548Z"
+        },
+        {
+          "card": "negotiation",
+          "rarity": "common",
+          "delta": 0.05,
+          "outcome": {
+            "wageExpectation": 0.974
+          },
+          "pickedAt": "2026-10-30T16:16:25.415Z"
+        },
+        {
+          "card": "wildCard",
+          "rarity": "uncommon",
+          "outcome": {
+            "stat": "luck",
+            "statGain": 1,
+            "gained": [
+              {
+                "code": "stockpiler",
+                "revealed": true
+              }
+            ]
+          },
+          "pickedAt": "2026-10-31T01:15:21.214Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "production",
+          "delta": 1,
+          "outcome": {
+            "stat": "production",
+            "statGain": 1
+          },
+          "pickedAt": "2026-10-31T01:15:34.875Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "luck",
+          "delta": 2,
+          "outcome": {
+            "stat": "luck",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-01T02:02:44.869Z"
+        },
+        {
+          "card": "secondWind",
+          "rarity": "rare",
+          "delta": 2,
+          "outcome": {
+            "potentialMax": 14
+          },
+          "pickedAt": "2026-11-02T00:23:16.040Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "epic",
+          "stat": "luck",
+          "delta": 3,
+          "outcome": {
+            "stat": "luck",
+            "statGain": 3
+          },
+          "pickedAt": "2026-11-03T00:21:23.512Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "production",
+          "delta": 1,
+          "outcome": {
+            "stat": "production",
+            "statGain": 1
+          },
+          "pickedAt": "2026-11-04T02:06:55.050Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-05T03:42:59.455Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "uncommon",
+          "stat": "production",
+          "delta": 2,
+          "outcome": {
+            "stat": "production",
+            "statGain": 2
+          },
+          "pickedAt": "2026-11-06T00:40:49.537Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "epic",
+          "stat": "production",
+          "delta": 3,
+          "outcome": {
+            "stat": "production",
+            "statGain": 3
+          },
+          "pickedAt": "2026-11-07T00:10:06.118Z"
+        },
+        {
+          "card": "drill",
+          "rarity": "common",
+          "stat": "production",
+          "delta": 1,
+          "outcome": {
+            "stat": "production",
+            "statGain": 1
+          },
+          "pickedAt": "2026-11-08T04:31:18.183Z"
+        },
+        {
+          "card": "habit",
+          "rarity": "epic",
+          "traitTo": "specialist",
+          "outcome": {
+            "gained": [
+              {
+                "code": "specialist",
+                "arg": "fish"
+              }
+            ]
+          },
+          "pickedAt": "2026-11-09T00:03:55.751Z"
+        }
+      ],
+      "lastMovedAt": "2026-11-16T21:06:28.862Z",
+      "wageNegotiated": 0.05,
+      "retireInDays": 19,
+      "lastAgedDay": "2026-11-21",
+      "lastEventAt": "2026-11-18T11:58:31.040Z",
+      "eventModifiers": [
+        {
+          "code": "lunchThief",
+          "kind": "happiness",
+          "delta": 5,
+          "until": "2026-11-21T11:58:31.040Z"
+        }
+      ],
+      "careBoosts": [
+        "2026-11-06T07:27:39.188Z",
+        "2026-11-07T15:22:17.573Z"
+      ],
+      "tool": "6ae35723c92cc75e033cca96",
+      "estimate": {
+        "production": 6.72,
+        "wage": 0.242404,
+        "itemCode": "fish"
+      },
+      "breakdown": {
+        "production": {
+          "base": 1,
+          "trained": 10,
+          "contributions": [
+            {
+              "code": "rival",
+              "delta": 3
+            },
+            {
+              "code": "specialist",
+              "delta": 3
+            },
+            {
+              "code": "tool",
+              "delta": 11,
+              "percent": true
+            },
+            {
+              "code": "specialization",
+              "delta": 20,
+              "percent": true
+            }
+          ],
+          "total": 17
+        },
+        "luck": {
+          "base": 2,
+          "trained": 7,
+          "contributions": [],
+          "total": 9
+        },
+        "responsibility": {
+          "base": 2,
+          "trained": 0,
+          "contributions": [],
+          "total": 2
+        }
+      },
+      "happinessBreakdown": {
+        "base": 50,
+        "contributions": [
+          {
+            "reason": "responsibility",
+            "delta": 6
+          },
+          {
+            "reason": "trait",
+            "delta": 5,
+            "code": "specialist"
+          },
+          {
+            "reason": "trait",
+            "delta": 9,
+            "code": "foreman"
+          }
+        ],
+        "mitigated": 0,
+        "value": 70,
+        "quitChance": 0
+      },
+      "toolStatus": {
+        "rolledPercent": 11,
+        "isUsable": true,
+        "isBroken": false,
+        "bonusPercent": 11
+      },
+      "toolItem": {
+        "_id": "6ae35723c92cc75e033cca96",
+        "owner": "681d8310470bf2a1423d8d16",
+        "code": "sickle2",
+        "skills": {
+          "production": 11
+        },
+        "state": 57.2,
+        "maxState": 100,
+        "createdAt": "2026-10-29T14:24:35.032Z",
+        "updatedAt": "2026-11-21T15:02:48.922Z",
+        "__v": 0,
+        "employee": "6ae26a892d4b608be38aba1e"
+      },
+      "productionBonus": {
+        "total": 58,
+        "contributions": [
+          {
+            "source": "management",
+            "percent": 2
+          },
+          {
+            "source": "coreRegion",
+            "percent": 5
+          },
+          {
+            "source": "happiness",
+            "percent": 20
+          },
+          {
+            "source": "tool",
+            "percent": 11
+          },
+          {
+            "source": "specialization",
+            "percent": 20
+          }
+        ]
+      },
+      "trainingsPerDay": 1,
+      "companyDisabled": false
+    }
+  ],
+  "hourly": {
+    "itemCode": "fish",
+    "production": 28.38,
+    "toolboxes": 0.026000000000000002,
+    "wageCost": 0.64755,
+    "managerCost": 0,
+    "cap": 3,
+    "engineMultiplier": 1
+  }
+}

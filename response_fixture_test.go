@@ -30,6 +30,13 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"battle ranking", "battleRanking.getRanking.json", decodeFixtureAs[BattleRanking]},
 		{"company detail", "company.getById.json", decodeFixtureAs[Company]},
 		{"company IDs", "company.getCompanies.json", decodeFixtureAs[CursorPage[string]]},
+		{"company production bonus", "company.getProductionBonus.json", decodeFixtureAs[CompanyProductionBonus]},
+		{"company roster", "employee.getCompanyRoster.json", decodeFixtureAs[CompanyRoster]},
+		{"employee", "employee.getById.json", decodeFixtureAs[Employee]},
+		{"company manager", "manager.getByCompanyId.json", decodeFixtureAs[Manager]},
+		{"manager offer", "managerOffer.getByCompanyId.json", decodeFixtureAs[ManagerOffer]},
+		{"manager offers", "managerOffer.getManyPaginated.json", decodeFixtureAs[CursorPage[ManagerOffer]]},
+		{"manager wage stats", "managerOffer.getWageStats.json", decodeFixtureAs[ManagerWageStats]},
 		{"all countries", "country.getAllCountries.json", decodeFixtureAs[[]Country]},
 		{"country detail", "country.getCountryById.json", decodeFixtureAs[Country]},
 		{"events", "event.getEventsPaginated.json", decodeFixtureAs[CursorPage[Event]]},
@@ -238,5 +245,40 @@ func TestRankingPageFixtureFillsEmbeddedCursorPage(t *testing.T) {
 	}
 	if page.Ranking == nil || page.Ranking.Count != 181 || page.Ranking.TierValues.Master == 0 {
 		t.Fatalf("first-page ranking summary = %+v, want count 181 with tier values", page.Ranking)
+	}
+}
+
+func TestManagersGetByCompanyIDReportsMissingManagerAsNil(t *testing.T) {
+	for _, tt := range []struct {
+		name        string
+		data        json.RawMessage
+		wantManager bool
+	}{
+		{"company with a manager", loadFixture(t, "manager.getByCompanyId.json"), true},
+		{"company without a manager", json.RawMessage("null"), false},
+	} {
+		t.Run(tt.name, func(t *testing.T) {
+			client := NewClient(
+				WithHTTPClient(&http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+					return fixtureResponse(t, tt.data), nil
+				})}),
+				WithBatchWindow(0),
+				WithRateLimit(0),
+			)
+			defer client.Close()
+			manager, err := client.Managers.GetByCompanyID(context.Background(), "6a2e45271cbde97f9cc3422f")
+			if err != nil {
+				t.Fatalf("GetByCompanyID: %v", err)
+			}
+			if !tt.wantManager {
+				if manager != nil {
+					t.Fatalf("manager = %+v, want nil", manager)
+				}
+				return
+			}
+			if manager == nil || manager.UserID != "6997f39ec016842739f5dca1" || manager.ManagementLevel != 1 {
+				t.Fatalf("manager = %+v, want the recorded manager 6997f39ec016842739f5dca1 at level 1", manager)
+			}
+		})
 	}
 }

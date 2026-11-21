@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "_id": "6b01b3c92eea835530e6ec56",
+      "company": "6a04f7d1578457141eaeb49c",
+      "user": "69fcfd43c02ccf7626a6e934",
+      "region": "6813b7049403bc4170a5d720",
+      "rateManagement": 0.016328,
+      "maxHourlyWage": 0.179608,
+      "minManagement": 4,
+      "createdAt": "2026-11-21T15:07:53.289Z",
+      "updatedAt": "2026-11-21T15:07:53.289Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b3a391939320a7557231",
+      "company": "6a2294c02de168f32491a4d6",
+      "user": "69fcfd43c02ccf7626a6e934",
+      "region": "6813b7059403bc4170a5d75f",
+      "rateManagement": 0.016328,
+      "maxHourlyWage": 0.179608,
+      "minManagement": 4,
+      "createdAt": "2026-11-21T15:07:15.241Z",
+      "updatedAt": "2026-11-21T15:07:15.241Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b3700830428c4f17109a",
+      "company": "6abe8c8bb5f7a8fe97d608cb",
+      "user": "69fcfd43c02ccf7626a6e934",
+      "region": "6813b7059403bc4170a5d762",
+      "rateManagement": 0.016328,
+      "maxHourlyWage": 0.179608,
+      "minManagement": 4,
+      "createdAt": "2026-11-21T15:06:24.553Z",
+      "updatedAt": "2026-11-21T15:06:24.553Z",
+      "__v": 0
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6Im51bSIsInYiOjAuMTc5NjA4fSx7InQiOiJzdHIiLCJ2IjoiNmIwMWIzNzAwODMwNDI4YzRmMTcxMDlhIn1d"
+}

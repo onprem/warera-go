@@ -1,15 +1,18 @@
-// trader prints a read-only snapshot of a player's companies and current
-// market context. It prompts for a player handle. Set WARERA_API_KEY
-// when the API requires authentication, then run: go run ./examples/trader.
+// trader prints a read-only snapshot of a player's companies, their NPC
+// employees and managers, and current market context. It prompts for a player
+// handle. Set WARERA_API_KEY, which the employee procedures require, then run:
+// go run ./examples/trader.
 package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"os"
 	"os/signal"
 	"strings"
+	"sync"
 	"syscall"
 	"time"
 
@@ -72,6 +75,29 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("load reference prices: %w", err)
 	}
+	// Companies now run on NPC employees. Each roster also carries the game's
+	// own estimate of hourly output and costs, and a company can have one
+	// player manager. These calls are issued concurrently and the client
+	// batches them into a few HTTP requests.
+	rosters := make([]*warera.CompanyRoster, len(companies))
+	managers := make([]*warera.Manager, len(companies))
+	errs := make([]error, 2*len(companies))
+	var wg sync.WaitGroup
+	for i, company := range companies {
+		wg.Add(2)
+		go func() {
+			defer wg.Done()
+			rosters[i], errs[2*i] = client.Employees.GetCompanyRoster(ctx, company.ID)
+		}()
+		go func() {
+			defer wg.Done()
+			managers[i], errs[2*i+1] = client.Managers.GetByCompanyID(ctx, company.ID)
+		}()
+	}
+	wg.Wait()
+	if err := errors.Join(errs...); err != nil {
+		return fmt.Errorf("load employees and managers: %w", err)
+	}
 	captureFinishedAt := time.Now().UTC()
 
 	fmt.Printf("Capture window: %s to %s (UTC); records may change during collection.\n",
@@ -79,11 +105,28 @@ func run() error {
 	fmt.Printf("Companies for user %s (%d)\n", userID, len(companies))
 	// The price map provides current reference prices by item code; it is not a
 	// realized sale price and does not include this company's costs or taxes.
-	for _, company := range companies {
-		fmt.Printf("- %s [%s] product=%s production=%g region=%s\n",
+	for i, company := range companies {
+		fmt.Printf("- %s [%s] product=%s production=%.2f region=%s\n",
 			company.Name, company.ID, company.ItemCode, company.Production, company.Region)
 		if price, ok := prices[company.ItemCode]; ok {
 			fmt.Printf("  reference price for %s: %.4f\n", company.ItemCode, price)
+		}
+		roster, hourly := rosters[i], rosters[i].Hourly
+		fmt.Printf("  employees %d/%d; hourly estimate: production=%.2f wages=%.4f manager=%.4f\n",
+			len(roster.Employees), hourly.Cap, hourly.Production, hourly.WageCost, hourly.ManagerCost)
+		if enabled := hourly.IfEnabled; enabled != nil {
+			fmt.Printf("  company is disabled; once enabled: production=%.2f wages=%.4f manager=%.4f\n",
+				enabled.Production, enabled.WageCost, enabled.ManagerCost)
+		}
+		for _, employee := range roster.Employees {
+			fmt.Printf("    %s (age %d) production=%g luck=%g wage=%.4f happiness=%.1f bonus=%.1f%%\n",
+				employee.Name, employee.Age,
+				employee.Base.Production+employee.Trained.Production, employee.Base.Luck+employee.Trained.Luck,
+				employee.Wage, employee.HappinessBreakdown.Value, employee.ProductionBonus.Total)
+		}
+		if manager := managers[i]; manager != nil {
+			fmt.Printf("  manager %s: management level %d, +%g%% production, %.4f/hour\n",
+				manager.UserID, manager.ManagementLevel, manager.ProductionBonusPercent, manager.HourlyWage)
 		}
 	}
 
@@ -103,7 +146,7 @@ func run() error {
 		printOrders("sell", orders.SellOrders)
 	}
 
-	fmt.Println("\nAll values above are API records. This example does not estimate profit or rank products.")
+	fmt.Println("\nAll values above are API records and the game's own hourly estimates. This example does not estimate profit or rank products.")
 	return nil
 }
 

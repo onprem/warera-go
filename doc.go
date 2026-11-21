@@ -17,6 +17,11 @@
 // [Client.Batch] to submit an explicit batch, or [Client.RawCall] to invoke a
 // procedure without a typed service method.
 //
+// Most services wrap procedures from WarEra's published OpenAPI document. The
+// Employees and Managers services, Users.GetSkills, and
+// Companies.GetProductionBonus wrap procedures the API serves but does not
+// list there; they may change without notice and need an API key.
+//
 // API errors are available as [TRPCError] and transport failures as
 // [HTTPError]; use [errors.As] to inspect their fields. Bulk lookup methods
 // report failed entity IDs with [BatchLookupError].

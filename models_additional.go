@@ -186,6 +186,8 @@ type ItemSkills struct {
 	CriticalDamages float64 `json:"criticalDamages,omitempty"`
 	Dodge           float64 `json:"dodge,omitempty"`
 	Precision       float64 `json:"precision,omitempty"`
+	// Production is the employee production bonus percent of a tool.
+	Production float64 `json:"production,omitempty"`
 }
 
 // RankingPage is one page of ranking entries from ranking.getRankingPage.

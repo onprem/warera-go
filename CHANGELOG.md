@@ -4,6 +4,10 @@ All notable changes to this project are documented here. While the project is in
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-21
+
+This release is for tools that run for a long time: errors and rate limits behave the same whether or not calls were batched, inputs and timestamps are typed, and new helpers resume listings, cache names, and fake the API in tests. It also wraps the world map, the moderation log, and the API key owner's employees. Many changes are breaking; they are marked below.
+
 ### Added
 
 - Typed enums with constants for every value the API's inputs accept, generated from `spec/openapi.json`: `RankingType`, `TransactionType`, `EventType`, `BattleRankingDataType`, `BattleRankingType`, `BattleRankingSide`, `BattleSide`, `UpgradeType`, `MercenaryAuctionStatus`, `ArticleListType`, `BattleDirection`, and `BattleListFilter`; plus hand-written `RankingHistoryRange` and `StateArmyExpenseKind`. Filters, method parameters, and the matching response fields use them, so a typo fails to compile instead of returning a 400.

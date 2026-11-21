@@ -72,7 +72,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("iterator error: %v", err)
 		}
-		fmt.Printf("[%d] %s (by %s)\n", count+1, article.Title, article.Author)
+		fmt.Printf("[%d] %s (by %s)\n", count+1, article.Title, article.AuthorID)
 		count++
 		if count >= 5 { // Stop after five records even if more pages are available.
 			break

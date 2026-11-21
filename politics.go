@@ -90,7 +90,7 @@ func (s *WarService) GetMany(ctx context.Context, warIDs []string) ([]War, error
 // --- Party Service ---
 
 // PartyService handles political parties. Party IDs appear on countries as
-// Country.RulingParty and in party listings.
+// Country.RulingPartyID and in party listings.
 type PartyService struct {
 	client *Client
 }

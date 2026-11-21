@@ -72,10 +72,10 @@ func (b RegionActiveBattleValue) MarshalJSON() ([]byte, error) {
 
 // BattleLootPoolItem is one item in a battle loot pool.
 type BattleLootPoolItem struct {
-	Item  Item   `json:"item"`
-	Pool  string `json:"pool"`
-	Rank  int    `json:"rank"`
-	Round string `json:"round"`
+	Item    Item   `json:"item"`
+	Pool    string `json:"pool"`
+	Rank    int    `json:"rank"`
+	RoundID string `json:"round"`
 }
 
 // BattleRanking is the paginated response for a battle.
@@ -103,28 +103,28 @@ type BattleRankingEntry struct {
 
 // MercenaryContractAuction is a mercenary contract auction listing.
 type MercenaryContractAuction struct {
-	ID                string                        `json:"_id"`
-	BattleID          string                        `json:"battle"`
-	Bids              []MercenaryContractAuctionBid `json:"bids"`
-	Budget            float64                       `json:"budget"`
-	CountryID         string                        `json:"country"`
-	CreatedAt         Time                          `json:"createdAt"`
-	CreatedBy         string                        `json:"createdBy"`
-	CurrentPayout     float64                       `json:"currentPayout"`
-	CurrentPerK       float64                       `json:"currentPerK"`
-	CurrentWinner     *string                       `json:"currentWinner"`
-	CurrentWinnerUser *string                       `json:"currentWinnerUser"`
-	Duration          float64                       `json:"duration"`
-	ExpiresAt         Time                          `json:"expiresAt"`
-	ForCountry        string                        `json:"forCountry"`
-	ForCountrySide    string                        `json:"forCountrySide"`
-	InitialPerK       float64                       `json:"initialPerK"`
-	MinimumDamage     float64                       `json:"minimumDamage"`
-	ProfessionalsOnly bool                          `json:"professionalsOnly"`
-	RoundID           string                        `json:"round"`
-	RoundNumber       int                           `json:"roundNumber"`
-	Status            MercenaryAuctionStatus        `json:"status"`
-	UpdatedAt         Time                          `json:"updatedAt"`
+	ID                  string                        `json:"_id"`
+	BattleID            string                        `json:"battle"`
+	Bids                []MercenaryContractAuctionBid `json:"bids"`
+	Budget              float64                       `json:"budget"`
+	CountryID           string                        `json:"country"`
+	CreatedAt           Time                          `json:"createdAt"`
+	CreatedByID         string                        `json:"createdBy"`
+	CurrentPayout       float64                       `json:"currentPayout"`
+	CurrentPerK         float64                       `json:"currentPerK"`
+	CurrentWinnerID     *string                       `json:"currentWinner"`
+	CurrentWinnerUserID *string                       `json:"currentWinnerUser"`
+	Duration            float64                       `json:"duration"`
+	ExpiresAt           Time                          `json:"expiresAt"`
+	ForCountryID        string                        `json:"forCountry"`
+	ForCountrySide      string                        `json:"forCountrySide"`
+	InitialPerK         float64                       `json:"initialPerK"`
+	MinimumDamage       float64                       `json:"minimumDamage"`
+	ProfessionalsOnly   bool                          `json:"professionalsOnly"`
+	RoundID             string                        `json:"round"`
+	RoundNumber         int                           `json:"roundNumber"`
+	Status              MercenaryAuctionStatus        `json:"status"`
+	UpdatedAt           Time                          `json:"updatedAt"`
 }
 
 // MercenaryContractAuctionBid is a bid in a mercenary contract auction.

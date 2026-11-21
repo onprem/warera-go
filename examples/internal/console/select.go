@@ -143,7 +143,7 @@ func SelectMilitaryUnit(ctx context.Context, client *warera.Client, prompt *Prom
 		options := make([]string, len(units))
 		for i, unit := range units {
 			options[i] = fmt.Sprintf("%s | country %s | region %s | %d listed members | ID %s",
-				unit.Name, unit.CountryID, unit.Region, len(unit.Members), unit.ID)
+				unit.Name, unit.CountryID, unit.RegionID, len(unit.MemberIDs), unit.ID)
 		}
 		selected, err := chooseSingleOrPrompt(ctx, prompt, "Select the military unit:", options)
 		if err != nil {

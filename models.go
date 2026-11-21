@@ -44,7 +44,7 @@ func (b *Battle) DefenderCountry() string {
 
 // DefenderRegion returns the defender's region ID.
 func (b *Battle) DefenderRegion() string {
-	return b.Defender.Region
+	return b.Defender.RegionID
 }
 
 // List returns a sorted slice of ItemPrice from ItemPrices.

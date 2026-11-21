@@ -158,7 +158,7 @@ func run() error {
 		// The government record holds user IDs; load compact profiles in one
 		// batched request so office holders can be shown by name.
 		ids := []string{}
-		for _, id := range []string{government.President, government.VicePresident} {
+		for _, id := range []string{government.PresidentID, government.VicePresidentID} {
 			if id != "" {
 				ids = append(ids, id)
 			}
@@ -279,7 +279,7 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 
 	if country := snapshot.country; country != nil {
 		fmt.Printf("Country: %s (%s), government type=%s, reported population=%d, wars=%d, allies=%d\n",
-			country.Name, country.Code, country.GovType, country.CurrentPopulation, len(country.WarsWith), len(country.Allies))
+			country.Name, country.Code, country.GovType, country.CurrentPopulation, len(country.WarsWithIDs), len(country.AllyIDs))
 		if income := country.Income; income != nil {
 			fmt.Printf("Daily income estimate: total=%.2f (development=%.2f, employee income tax=%.2f, manager tax=%.2f, strategic resources=%.2f)\n",
 				income.Total, income.Development, income.EmployeeIncomeTax, income.ManagerIncomeTax, income.StrategicResourcesBonus)
@@ -287,7 +287,7 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 	}
 	if government := snapshot.government; government != nil {
 		fmt.Printf("Government: president=%s, vice-president=%s, congress members=%d\n",
-			resolveUser(government.President, snapshot.officials), resolveUser(government.VicePresident, snapshot.officials), len(government.CongressMembers))
+			resolveUser(government.PresidentID, snapshot.officials), resolveUser(government.VicePresidentID, snapshot.officials), len(government.CongressMemberIDs))
 		for _, minister := range government.Ministers {
 			title := minister.Title
 			if minister.CustomTitle != "" {

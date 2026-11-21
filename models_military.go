@@ -153,10 +153,10 @@ type LeagueReward struct {
 type MUSponsorship struct {
 	ID         string `json:"_id"`
 	AcceptedAt Time   `json:"acceptedAt"`
-	// AcceptedBy is the user who accepted the offer for the unit.
-	AcceptedBy string `json:"acceptedBy"`
-	CountryID  string `json:"country"`
-	CreatedAt  Time   `json:"createdAt"`
+	// AcceptedByID is the user who accepted the offer for the unit.
+	AcceptedByID string `json:"acceptedBy"`
+	CountryID    string `json:"country"`
+	CreatedAt    Time   `json:"createdAt"`
 	// EndReason explains why an ended sponsorship stopped, such as
 	// "citizenship" or "abandoned".
 	EndReason      string   `json:"endReason"`
@@ -246,11 +246,11 @@ type StateArmyExpense struct {
 type Tournament struct {
 	ID          string `json:"_id"`
 	ActiveRound int    `json:"activeRound"`
-	// AutoQualifyFirstRound lists the teams that skip the first round.
-	AutoQualifyFirstRound []string `json:"autoQualify1stRound"`
-	CreatedAt             Time     `json:"createdAt"`
-	Description           string   `json:"description"`
-	IsActive              bool     `json:"isActive"`
+	// AutoQualifyFirstRoundIDs lists the teams that skip the first round.
+	AutoQualifyFirstRoundIDs []string `json:"autoQualify1stRound"`
+	CreatedAt                Time     `json:"createdAt"`
+	Description              string   `json:"description"`
+	IsActive                 bool     `json:"isActive"`
 	// MaxRarity is the rarest equipment allowed.
 	MaxRarity  string                  `json:"maxRarity"`
 	Name       string                  `json:"name"`

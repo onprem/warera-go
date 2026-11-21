@@ -108,7 +108,7 @@ func run() error {
 	// realized sale price and does not include this company's costs or taxes.
 	for i, company := range companies {
 		fmt.Printf("- %s [%s] product=%s production=%.2f region=%s\n",
-			company.Name, company.ID, company.ItemCode, company.Production, company.Region)
+			company.Name, company.ID, company.ItemCode, company.Production, company.RegionID)
 		if price, ok := prices[company.ItemCode]; ok {
 			fmt.Printf("  reference price for %s: %.4f\n", company.ItemCode, price)
 		}

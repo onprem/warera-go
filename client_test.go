@@ -137,8 +137,8 @@ func TestClient_Countries_GetByID_Fixture(t *testing.T) {
 	if country.Money < 3.0 {
 		t.Errorf("expected money > 3.0, got %f", country.Money)
 	}
-	if len(country.DefensivePacts) != 7 {
-		t.Errorf("expected 7 defensive pacts, got %d", len(country.DefensivePacts))
+	if len(country.DefensivePactIDs) != 7 {
+		t.Errorf("expected 7 defensive pacts, got %d", len(country.DefensivePactIDs))
 	}
 	if popRank, ok := country.Rankings["countryActivePopulation"]; !ok || popRank.Rank != 92 {
 		t.Errorf("expected countryActivePopulation rank 92, got %+v", popRank)
@@ -777,17 +777,17 @@ func TestClient_Government_GetByCountryID_Fixture(t *testing.T) {
 	if gov.CountryID != "6813b6d446e731854c7ac7a6" {
 		t.Errorf("expected CountryID 6813b6d446e731854c7ac7a6, got %s", gov.CountryID)
 	}
-	if gov.President != "69b9b6302ebd7a671ed79c31" {
-		t.Errorf("expected President 69b9b6302ebd7a671ed79c31, got %s", gov.President)
+	if gov.PresidentID != "69b9b6302ebd7a671ed79c31" {
+		t.Errorf("expected President 69b9b6302ebd7a671ed79c31, got %s", gov.PresidentID)
 	}
-	if gov.VicePresident != "6a1308904b3dcd65ea510ac0" {
-		t.Errorf("expected VicePresident 6a1308904b3dcd65ea510ac0, got %s", gov.VicePresident)
+	if gov.VicePresidentID != "6a1308904b3dcd65ea510ac0" {
+		t.Errorf("expected VicePresident 6a1308904b3dcd65ea510ac0, got %s", gov.VicePresidentID)
 	}
 	if len(gov.Ministers) == 0 || gov.Ministers[0].UserID != "6a66539265620c6b4a736492" || gov.Ministers[0].Title != "minOfForeignAffairs" {
 		t.Errorf("expected first minister 6a66539265620c6b4a736492 (minOfForeignAffairs), got %+v", gov.Ministers)
 	}
-	if len(gov.CongressMembers) != 5 {
-		t.Errorf("expected 5 congress members, got %d", len(gov.CongressMembers))
+	if len(gov.CongressMemberIDs) != 5 {
+		t.Errorf("expected 5 congress members, got %d", len(gov.CongressMemberIDs))
 	}
 }
 

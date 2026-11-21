@@ -51,8 +51,8 @@ func run() error {
 
 	var pinnedArticle *warera.Article
 	var articleErr error
-	if country.PinnedArticle != "" {
-		pinnedArticle, articleErr = client.Articles.GetByID(ctx, country.PinnedArticle)
+	if country.PinnedArticleID != "" {
+		pinnedArticle, articleErr = client.Articles.GetByID(ctx, country.PinnedArticleID)
 	}
 	finishedAt := time.Now().UTC()
 
@@ -72,14 +72,14 @@ func run() error {
 		fmt.Printf("- event=%s at=%s priority=%s data=%s\n", event.ID, event.CreatedAt, event.Priority, data)
 	}
 
-	if country.PinnedArticle == "" {
+	if country.PinnedArticleID == "" {
 		fmt.Println("No pinned article ID was present on this country record.")
 	} else if articleErr != nil {
-		fmt.Fprintf(os.Stderr, "Pinned article %s could not be loaded: %v\n", country.PinnedArticle, articleErr)
+		fmt.Fprintf(os.Stderr, "Pinned article %s could not be loaded: %v\n", country.PinnedArticleID, articleErr)
 	} else {
 		fmt.Printf("\nPinned article: %s | category=%s language=%s author=%s published=%s slug=%s\n",
 			pinnedArticle.Title, pinnedArticle.Category, pinnedArticle.Language,
-			pinnedArticle.Author, pinnedArticle.PublishedAt, pinnedArticle.Slug)
+			pinnedArticle.AuthorID, pinnedArticle.PublishedAt, pinnedArticle.Slug)
 		content := strings.TrimSpace(pinnedArticle.Content)
 		if content == "" {
 			fmt.Println("Article body is empty in the returned record.")

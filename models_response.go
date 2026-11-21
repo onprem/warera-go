@@ -11,7 +11,7 @@ type ItemPrices map[string]float64
 // Article is a news article published in the WarEra game.
 type Article struct {
 	ID          string       `json:"_id"`
-	Author      string       `json:"author"`
+	AuthorID    string       `json:"author"`
 	Category    string       `json:"category"`
 	Content     string       `json:"content"`
 	CreatedAt   Time         `json:"createdAt"`
@@ -49,7 +49,7 @@ type Battle struct {
 	Defender        BattleSideSummary    `json:"defender"`
 	EndedAt         Time                 `json:"endedAt"`
 	IsActive        bool                 `json:"isActive"`
-	Rounds          []string             `json:"rounds"`
+	RoundIDs        []string             `json:"rounds"`
 	RoundsHistory   []BattleRoundHistory `json:"roundsHistory"`
 	RoundsToWin     int                  `json:"roundsToWin"`
 	Stats           BattleStats          `json:"stats"`
@@ -71,7 +71,7 @@ type BattleRoundHistory struct {
 // BattleOrder is an order assigned to a country or military unit on a battle side.
 type BattleOrder struct {
 	ID          string     `json:"_id"`
-	Battle      string     `json:"battle"`
+	BattleID    string     `json:"battle"`
 	CountryID   string     `json:"country"`
 	CreatedAt   Time       `json:"createdAt"`
 	IsActive    bool       `json:"isActive"`
@@ -89,7 +89,7 @@ type BattleOrder struct {
 type BattleRound struct {
 	ID        string               `json:"_id"`
 	Attacker  RoundSideCombatStats `json:"attacker"`
-	Battle    string               `json:"battle"`
+	BattleID  string               `json:"battle"`
 	CreatedAt Time                 `json:"createdAt"`
 	Defender  RoundSideCombatStats `json:"defender"`
 	IsActive  bool                 `json:"isActive"`
@@ -102,13 +102,13 @@ type BattleRound struct {
 type BattleSideSummary struct {
 	BountyEffectiveAt Time     `json:"bountyEffectiveAt"`
 	CountryID         string   `json:"country"`
-	CountryOrders     []string `json:"countryOrders"`
+	CountryOrderIDs   []string `json:"countryOrders"`
 	Damages           float64  `json:"damages"`
 	HitCount          int      `json:"hitCount"`
 	MoneyPer1kDamages float64  `json:"moneyPer1kDamages"`
 	MoneyPool         float64  `json:"moneyPool"`
-	MuOrders          []string `json:"muOrders"`
-	Region            string   `json:"region"`
+	MUOrderIDs        []string `json:"muOrders"`
+	RegionID          string   `json:"region"`
 	WonRoundsCount    int      `json:"wonRoundsCount"`
 }
 
@@ -129,7 +129,7 @@ type Company struct {
 	ItemCode            string                     `json:"itemCode"`
 	Name                string                     `json:"name"`
 	Production          float64                    `json:"production"`
-	Region              string                     `json:"region"`
+	RegionID            string                     `json:"region"`
 	UpdatedAt           Time                       `json:"updatedAt"`
 	UserID              string                     `json:"user"`
 }
@@ -143,37 +143,37 @@ type CompanyActiveUpgradeLevels struct {
 
 // Country is a game nation with political, economic, and diplomatic state.
 type Country struct {
-	ID                 string                         `json:"_id"`
-	AllianceID         string                         `json:"allianceId"`
-	Allies             []string                       `json:"allies"`
-	AverageDevelopment float64                        `json:"averageDevelopment"`
-	BordersOpenUntil   Time                           `json:"bordersOpenUntil"`
-	Code               string                         `json:"code"`
-	CoreDevelopment    float64                        `json:"coreDevelopment"`
-	CreatedAt          Time                           `json:"createdAt"`
-	CurrentBattleOrder string                         `json:"currentBattleOrder"`
-	CurrentDevelopment float64                        `json:"currentDevelopment"`
-	CurrentPopulation  int                            `json:"currentPopulation"`
-	Dates              CountryDates                   `json:"dates"`
-	DefensivePacts     []string                       `json:"defensivePacts"`
-	DiscordURL         string                         `json:"discordUrl"`
-	Enemy              string                         `json:"enemy"`
-	GovType            string                         `json:"govType"`
-	Income             *IncomeBreakdown               `json:"income"`
-	MapAccent          string                         `json:"mapAccent"`
-	Money              float64                        `json:"money"`
-	Name               string                         `json:"name"`
-	NonAggressionUntil map[string]Time                `json:"nonAggressionUntil"`
-	Orgs               []string                       `json:"orgs"`
-	PinnedArticle      string                         `json:"pinnedArticle"`
-	Rankings           map[string]RankingItem         `json:"rankings"`
-	RulingParty        string                         `json:"rulingParty"`
-	Scheme             string                         `json:"scheme"`
-	StrategicResources *CountryStrategicResourcesInfo `json:"strategicResources"`
-	Taxes              CountryTaxes                   `json:"taxes"`
-	Unrest             CountryUnrest                  `json:"unrest"`
-	UpdatedAt          Time                           `json:"updatedAt"`
-	WarsWith           []string                       `json:"warsWith"`
+	ID                   string                         `json:"_id"`
+	AllianceID           string                         `json:"allianceId"`
+	AllyIDs              []string                       `json:"allies"`
+	AverageDevelopment   float64                        `json:"averageDevelopment"`
+	BordersOpenUntil     Time                           `json:"bordersOpenUntil"`
+	Code                 string                         `json:"code"`
+	CoreDevelopment      float64                        `json:"coreDevelopment"`
+	CreatedAt            Time                           `json:"createdAt"`
+	CurrentBattleOrderID string                         `json:"currentBattleOrder"`
+	CurrentDevelopment   float64                        `json:"currentDevelopment"`
+	CurrentPopulation    int                            `json:"currentPopulation"`
+	Dates                CountryDates                   `json:"dates"`
+	DefensivePactIDs     []string                       `json:"defensivePacts"`
+	DiscordURL           string                         `json:"discordUrl"`
+	EnemyID              string                         `json:"enemy"`
+	GovType              string                         `json:"govType"`
+	Income               *IncomeBreakdown               `json:"income"`
+	MapAccent            string                         `json:"mapAccent"`
+	Money                float64                        `json:"money"`
+	Name                 string                         `json:"name"`
+	NonAggressionUntil   map[string]Time                `json:"nonAggressionUntil"`
+	OrgIDs               []string                       `json:"orgs"`
+	PinnedArticleID      string                         `json:"pinnedArticle"`
+	Rankings             map[string]RankingItem         `json:"rankings"`
+	RulingPartyID        string                         `json:"rulingParty"`
+	Scheme               string                         `json:"scheme"`
+	StrategicResources   *CountryStrategicResourcesInfo `json:"strategicResources"`
+	Taxes                CountryTaxes                   `json:"taxes"`
+	Unrest               CountryUnrest                  `json:"unrest"`
+	UpdatedAt            Time                           `json:"updatedAt"`
+	WarsWithIDs          []string                       `json:"warsWith"`
 }
 
 // CountryDates is a nested component of Country.
@@ -189,12 +189,12 @@ type CountryStrategicResourcesInfo struct {
 
 // CountryStrategicResourcesInfoResources is a nested component of CountryStrategicResourcesInfo.
 type CountryStrategicResourcesInfoResources struct {
-	Coal       []string `json:"coal"`
-	Diamonds   []string `json:"diamonds"`
-	Gold       []string `json:"gold"`
-	Lithium    []string `json:"lithium"`
-	RareEarths []string `json:"rareEarths"`
-	Uranium    []string `json:"uranium"`
+	CoalRegionIDs       []string `json:"coal"`
+	DiamondsRegionIDs   []string `json:"diamonds"`
+	GoldRegionIDs       []string `json:"gold"`
+	LithiumRegionIDs    []string `json:"lithium"`
+	RareEarthsRegionIDs []string `json:"rareEarths"`
+	UraniumRegionIDs    []string `json:"uranium"`
 }
 
 // CountryTaxes is a nested component of Country.
@@ -245,33 +245,33 @@ type EquipmentSkills struct {
 
 // Event is a world or country event with event-specific data.
 type Event struct {
-	ID        string    `json:"_id"`
-	Countries []string  `json:"countries"`
-	CreatedAt Time      `json:"createdAt"`
-	Data      EventData `json:"data"`
-	Priority  string    `json:"priority"`
-	UpdatedAt Time      `json:"updatedAt"`
+	ID         string    `json:"_id"`
+	CountryIDs []string  `json:"countries"`
+	CreatedAt  Time      `json:"createdAt"`
+	Data       EventData `json:"data"`
+	Priority   string    `json:"priority"`
+	UpdatedAt  Time      `json:"updatedAt"`
 }
 
 // EventData is a nested component of Event.
 type EventData struct {
-	AllianceID      string    `json:"allianceId"`
-	AllianceName    string    `json:"allianceName"`
-	AttackerCountry string    `json:"attackerCountry"`
-	AttackerRegion  string    `json:"attackerRegion"`
-	Battle          string    `json:"battle"`
-	BonusPercent    float64   `json:"bonusPercent"`
-	Countries       []string  `json:"countries"`
-	CountryID       string    `json:"country"`
-	DefenderCountry string    `json:"defenderCountry"`
-	DefenderRegion  string    `json:"defenderRegion"`
-	DurationDays    float64   `json:"durationDays"`
-	ItemCode        string    `json:"itemCode"`
-	Money           float64   `json:"money"`
-	Region          string    `json:"region"`
-	Type            EventType `json:"type"`
-	Wars            []string  `json:"wars"`
-	WonBy           string    `json:"wonBy"`
+	AllianceID        string    `json:"allianceId"`
+	AllianceName      string    `json:"allianceName"`
+	AttackerCountryID string    `json:"attackerCountry"`
+	AttackerRegionID  string    `json:"attackerRegion"`
+	BattleID          string    `json:"battle"`
+	BonusPercent      float64   `json:"bonusPercent"`
+	CountryIDs        []string  `json:"countries"`
+	CountryID         string    `json:"country"`
+	DefenderCountryID string    `json:"defenderCountry"`
+	DefenderRegionID  string    `json:"defenderRegion"`
+	DurationDays      float64   `json:"durationDays"`
+	ItemCode          string    `json:"itemCode"`
+	Money             float64   `json:"money"`
+	RegionID          string    `json:"region"`
+	Type              EventType `json:"type"`
+	WarIDs            []string  `json:"wars"`
+	WonBy             string    `json:"wonBy"`
 }
 
 // GameConfig contains server settings for game systems, skills, items, and rewards.
@@ -806,13 +806,13 @@ type GameDates struct {
 
 // Government contains the leadership and legislative positions for a country.
 type Government struct {
-	ID              string               `json:"_id"`
-	CongressMembers []string             `json:"congressMembers"`
-	CountryID       string               `json:"country"`
-	Dates           GovernmentDates      `json:"dates"`
-	Ministers       []GovernmentMinister `json:"ministers"`
-	President       string               `json:"president"`
-	VicePresident   string               `json:"vicePresident"`
+	ID                string               `json:"_id"`
+	CongressMemberIDs []string             `json:"congressMembers"`
+	CountryID         string               `json:"country"`
+	Dates             GovernmentDates      `json:"dates"`
+	Ministers         []GovernmentMinister `json:"ministers"`
+	PresidentID       string               `json:"president"`
+	VicePresidentID   string               `json:"vicePresident"`
 }
 
 // GovernmentDates is a nested component of Government.
@@ -835,7 +835,7 @@ type LiveBattleSummary struct {
 	DefenderMoneyPer1kDamages float64              `json:"defenderMoneyPer1kDamages"`
 	IsActive                  bool                 `json:"isActive"`
 	RoundHistory              []BattleRoundHistory `json:"roundHistory"`
-	RoundIds                  []string             `json:"roundIds"`
+	RoundIDs                  []string             `json:"roundIds"`
 }
 
 // LiveRoundSummary is a nested component of LiveBattleData.
@@ -858,8 +858,8 @@ type MULeveling struct {
 
 // MURoles is a nested component of MilitaryUnit.
 type MURoles struct {
-	Commanders []string `json:"commanders"`
-	Managers   []string `json:"managers"`
+	CommanderIDs []string `json:"commanders"`
+	ManagerIDs   []string `json:"managers"`
 }
 
 // MilitaryUnit is a player-managed military organization.
@@ -872,11 +872,11 @@ type MilitaryUnit struct {
 	InvestedMoneyByUsers map[string]float64              `json:"investedMoneyByUsers"`
 	LastAnnouncementAt   Time                            `json:"lastAnnouncementAt"`
 	Leveling             MULeveling                      `json:"leveling"`
-	Members              []string                        `json:"members"`
+	MemberIDs            []string                        `json:"members"`
 	MercenaryReputation  float64                         `json:"mercenaryReputation"`
 	Name                 string                          `json:"name"`
 	Rankings             map[string]RankingItem          `json:"rankings"`
-	Region               string                          `json:"region"`
+	RegionID             string                          `json:"region"`
 	Roles                MURoles                         `json:"roles"`
 	SponsorCountryID     string                          `json:"sponsorCountry"`
 	Type                 string                          `json:"type"`
@@ -949,7 +949,7 @@ type Region struct {
 	EmployeeCount                int                       `json:"employeeCount"`
 	HasCoast                     bool                      `json:"hasCoast"`
 	Income                       *IncomeBreakdown          `json:"income"`
-	InitialCountry               string                    `json:"initialCountry"`
+	InitialCountryID             string                    `json:"initialCountry"`
 	IsCapital                    bool                      `json:"isCapital"`
 	IsLinkedToCapital            bool                      `json:"isLinkedToCapital"`
 	LastBattleEndedAt            Time                      `json:"lastBattleEndedAt"`
@@ -957,7 +957,7 @@ type Region struct {
 	LastRevoltEndedAt            Time                      `json:"lastRevoltEndedAt"`
 	MainCity                     string                    `json:"mainCity"`
 	Name                         string                    `json:"name"`
-	Neighbors                    []string                  `json:"neighbors"`
+	NeighborIDs                  []string                  `json:"neighbors"`
 	Population                   int                       `json:"population"`
 	Position                     []float64                 `json:"position"`
 	Residents                    int                       `json:"residents"`
@@ -977,7 +977,7 @@ type RegionActiveBattle struct {
 	Defender      BattleSideSummary       `json:"defender"`
 	IsActive      bool                    `json:"isActive"`
 	IsBigBattle   bool                    `json:"isBigBattle"`
-	Rounds        []string                `json:"rounds"`
+	RoundIDs      []string                `json:"rounds"`
 	RoundsHistory []BattleRoundHistory    `json:"roundsHistory"`
 	RoundsToWin   int                     `json:"roundsToWin"`
 	Stats         RegionActiveBattleStats `json:"stats"`
@@ -1071,7 +1071,7 @@ type RegionUpgradesV2UpgradesBunkerLastConstructions = RegionUpgradeLastConstruc
 type Round struct {
 	ID        string               `json:"_id"`
 	Attacker  RoundSideCombatStats `json:"attacker"`
-	Battle    string               `json:"battle"`
+	BattleID  string               `json:"battle"`
 	CreatedAt Time                 `json:"createdAt"`
 	Defender  RoundSideCombatStats `json:"defender"`
 	IsActive  bool                 `json:"isActive"`
@@ -1181,7 +1181,7 @@ type Upgrade struct {
 	LastDowngradeAt     Time        `json:"lastDowngradeAt"`
 	LastUpgradeAt       Time        `json:"lastUpgradeAt"`
 	Level               int         `json:"level"`
-	Region              string      `json:"region"`
+	RegionID            string      `json:"region"`
 	Status              string      `json:"status"`
 	StatusChangedAt     Time        `json:"statusChangedAt"`
 	UpdatedAt           Time        `json:"updatedAt"`
@@ -1208,15 +1208,15 @@ type User struct {
 	Infos                 UserInfos              `json:"infos"`
 	IsActive              bool                   `json:"isActive"`
 	Leveling              UserLeveling           `json:"leveling"`
-	Location              string                 `json:"location"`
+	LocationID            string                 `json:"location"`
 	MilitaryRank          int                    `json:"militaryRank"`
 	Missions              UserMissions           `json:"missions"`
 	MUID                  string                 `json:"mu"`
 	MuMaxLevelRewarded    float64                `json:"muMaxLevelRewarded"`
-	Party                 string                 `json:"party"`
+	PartyID               string                 `json:"party"`
 	Preferences           UserPreferences        `json:"preferences"`
 	Rankings              map[string]RankingItem `json:"rankings"`
-	Region                string                 `json:"region"`
+	RegionID              string                 `json:"region"`
 	ShouldUpdateProfile   bool                   `json:"shouldUpdateProfile"`
 	Skills                UserSkills             `json:"skills"`
 	SkillVersion          int                    `json:"skillVersion"`
@@ -1253,13 +1253,13 @@ type UserDiscord struct {
 
 // UserEquipment is a nested component of User.
 type UserEquipment struct {
-	Ammo   string `json:"ammo"`
-	Boots  string `json:"boots"`
-	Chest  string `json:"chest"`
-	Gloves string `json:"gloves"`
-	Helmet string `json:"helmet"`
-	Pants  string `json:"pants"`
-	Weapon string `json:"weapon"`
+	Ammo     string `json:"ammo"`
+	BootsID  string `json:"boots"`
+	ChestID  string `json:"chest"`
+	GlovesID string `json:"gloves"`
+	HelmetID string `json:"helmet"`
+	PantsID  string `json:"pants"`
+	WeaponID string `json:"weapon"`
 }
 
 // UserFinishedTours is a nested component of User.
@@ -1539,14 +1539,14 @@ type UserEnergyGift struct {
 
 // UserInfos holds a player's profile cosmetics and government roles.
 type UserInfos struct {
-	ColorScheme        string `json:"colorScheme"`
-	CongressMemberOf   string `json:"congressMemberOf"`
-	Font               string `json:"font"`
-	IsPremium          bool   `json:"isPremium"`
-	MinisterOf         string `json:"ministerOf"`
-	MinisterTitle      string `json:"ministerTitle"`
-	PremiumMonthsCount int    `json:"premiumMonthsCount"`
-	UsernameEffect     string `json:"usernameEffect"`
+	ColorScheme               string `json:"colorScheme"`
+	CongressMemberOfCountryID string `json:"congressMemberOf"`
+	Font                      string `json:"font"`
+	IsPremium                 bool   `json:"isPremium"`
+	MinisterOfCountryID       string `json:"ministerOf"`
+	MinisterTitle             string `json:"ministerTitle"`
+	PremiumMonthsCount        int    `json:"premiumMonthsCount"`
+	UsernameEffect            string `json:"usernameEffect"`
 }
 
 // UserWarning is a moderation warning shown on a player's profile.

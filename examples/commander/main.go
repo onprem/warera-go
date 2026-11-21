@@ -40,20 +40,20 @@ func run() error {
 		return err
 	}
 	capturedAt := time.Now().UTC()
-	fmt.Printf("\nMilitary unit: %s [%s], country=%s, region=%s\n", unit.Name, unit.ID, unit.CountryID, unit.Region)
+	fmt.Printf("\nMilitary unit: %s [%s], country=%s, region=%s\n", unit.Name, unit.ID, unit.CountryID, unit.RegionID)
 
 	// The unit record contains member IDs; hydrate them in one bounded bulk
 	// lookup so the example demonstrates the common ID-to-profile join.
-	if len(unit.Members) == 0 {
+	if len(unit.MemberIDs) == 0 {
 		fmt.Println("The API returned no member IDs for this unit.")
 	} else {
-		members, err := client.Users.GetLiteMany(ctx, unit.Members)
+		members, err := client.Users.GetLiteMany(ctx, unit.MemberIDs)
 		if err != nil {
 			return fmt.Errorf("load unit member profiles: %w", err)
 		}
 		// Compact profiles no longer include skills, so load them separately in
 		// one batched request. Results come back in the same order as the IDs.
-		skills, err := client.Users.GetSkillsMany(ctx, unit.Members)
+		skills, err := client.Users.GetSkillsMany(ctx, unit.MemberIDs)
 		if err != nil {
 			return fmt.Errorf("load unit member skills: %w", err)
 		}

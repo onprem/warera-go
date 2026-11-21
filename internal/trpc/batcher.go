@@ -2,7 +2,10 @@ package trpc
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -11,7 +14,14 @@ type batchEntry struct {
 	method string
 	input  any
 	output any
-	doneCh chan error
+	doneCh chan batchResult
+}
+
+// batchResult carries undecoded response data so that the waiting caller, not
+// the batch worker, writes to the caller's output value.
+type batchResult struct {
+	data json.RawMessage
+	err  error
 }
 
 // Batcher coalesces concurrent procedure calls into single HTTP tRPC batches.
@@ -64,7 +74,7 @@ func (b *Batcher) submit(ctx context.Context, method string, input any, output a
 		method: method,
 		input:  input,
 		output: output,
-		doneCh: make(chan error, 1),
+		doneCh: make(chan batchResult, 1),
 	}
 
 	b.stateMu.Lock()
@@ -83,8 +93,16 @@ func (b *Batcher) submit(ctx context.Context, method string, input any, output a
 	select {
 	case <-ctx.Done():
 		return ctx.Err()
-	case err := <-entry.doneCh:
-		return err
+	case res := <-entry.doneCh:
+		if res.err != nil {
+			return res.err
+		}
+		if output != nil {
+			if err := json.Unmarshal(res.data, output); err != nil {
+				return fmt.Errorf("failed to decode response data: %w", err)
+			}
+		}
+		return nil
 	}
 }
 
@@ -152,7 +170,7 @@ func (b *Batcher) dispatchBatch(entries []*batchEntry) {
 	activeEntries := make([]*batchEntry, 0, len(entries))
 	for _, entry := range entries {
 		if err := entry.ctx.Err(); err != nil {
-			entry.doneCh <- err
+			entry.doneCh <- batchResult{err: err}
 		} else {
 			activeEntries = append(activeEntries, entry)
 		}
@@ -162,20 +180,35 @@ func (b *Batcher) dispatchBatch(entries []*batchEntry) {
 		return
 	}
 
+	results := make([]json.RawMessage, len(activeEntries))
 	calls := make([]BatchCall, len(activeEntries))
 	for i, entry := range activeEntries {
 		calls[i] = BatchCall{
 			Method: entry.method,
 			Input:  entry.input,
-			Output: entry.output,
+			Output: &results[i],
 		}
 	}
 
-	// Use the batcher's shared context so one caller's cancellation does not
-	// abort other calls, while Client.Close can still cancel outstanding I/O.
-	_ = b.client.CallBatch(b.ctx, calls)
+	// One caller's cancellation must not abort the others, so the request is
+	// canceled only once every caller has gone away, or when Client.Close
+	// cancels the batcher.
+	ctx, cancel := context.WithCancel(b.ctx)
+	defer cancel()
+	var waiting atomic.Int32
+	waiting.Store(int32(len(activeEntries)))
+	for _, entry := range activeEntries {
+		stop := context.AfterFunc(entry.ctx, func() {
+			if waiting.Add(-1) == 0 {
+				cancel()
+			}
+		})
+		defer stop()
+	}
+
+	_ = b.client.CallBatch(ctx, calls)
 
 	for i, entry := range activeEntries {
-		entry.doneCh <- calls[i].Err
+		entry.doneCh <- batchResult{data: results[i], err: calls[i].Err}
 	}
 }

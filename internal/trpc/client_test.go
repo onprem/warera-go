@@ -503,7 +503,7 @@ func TestClient_CloseCompletesAcceptedQueuedCall(t *testing.T) {
 		method: "procedure.queued",
 		input:  dummyInput{ID: "queued"},
 		output: &dummyOutput{},
-		doneCh: make(chan error, 1),
+		doneCh: make(chan batchResult, 1),
 	}
 	// Enqueue directly so Close deterministically starts with accepted work.
 	client.batcher.inCh <- entry
@@ -524,8 +524,8 @@ func TestClient_CloseCompletesAcceptedQueuedCall(t *testing.T) {
 		t.Fatal("Close did not finish after canceling the in-flight batch")
 	}
 	select {
-	case err := <-entry.doneCh:
-		if err == nil {
+	case res := <-entry.doneCh:
+		if res.err == nil {
 			t.Fatal("queued call error = nil, want cancellation from Close")
 		}
 	case <-time.After(time.Second):
@@ -594,6 +594,83 @@ func TestClient_CloseRacingWithSubmissionsDoesNotStrandCallers(t *testing.T) {
 	for err := range errs {
 		if err != nil && !errors.Is(err, context.Canceled) {
 			t.Errorf("call error = %v, want success or shutdown cancellation", err)
+		}
+	}
+}
+
+func TestClient_BatchedCallerCancellation(t *testing.T) {
+	t.Run("canceled caller output is not written after return", func(t *testing.T) {
+		client := NewClient(ClientConfig{
+			BaseURL: "https://mock.warera.io/trpc",
+			HTTPClient: &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+				time.Sleep(150 * time.Millisecond)
+				body := `[{"result":{"data":{"name":"late"}}},{"result":{"data":{"name":"other"}}}]`
+				return &http.Response{StatusCode: http.StatusOK, Status: "200 OK", Body: io.NopCloser(strings.NewReader(body))}, nil
+			})},
+			BatchWindow:        20 * time.Millisecond,
+			RateLimitPerMinute: 0,
+		})
+		defer client.Close()
+
+		otherDone := make(chan error, 1)
+		var other dummyOutput
+		go func() { otherDone <- client.Call(context.Background(), "proc.other", nil, &other) }()
+
+		ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
+		defer cancel()
+		var canceled dummyOutput
+		if err := client.Call(ctx, "proc.canceled", nil, &canceled); !errors.Is(err, context.DeadlineExceeded) {
+			t.Fatalf("canceled call error = %v, want context.DeadlineExceeded", err)
+		}
+		if err := <-otherDone; err != nil {
+			t.Fatalf("other call error = %v, want success", err)
+		}
+		if other.Name == "" {
+			t.Fatal("remaining caller did not receive its result")
+		}
+		if canceled.Name != "" {
+			t.Fatalf("canceled caller output = %+v, want untouched after return", canceled)
+		}
+	})
+
+	t.Run("request is canceled once every caller has gone", func(t *testing.T) {
+		requestCanceled := make(chan struct{})
+		client := NewClient(ClientConfig{
+			BaseURL: "https://mock.warera.io/trpc",
+			HTTPClient: &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+				<-r.Context().Done()
+				close(requestCanceled)
+				return nil, r.Context().Err()
+			})},
+			BatchWindow:        time.Millisecond,
+			RateLimitPerMinute: 0,
+		})
+		defer client.Close()
+
+		ctx, cancel := context.WithTimeout(context.Background(), 50*time.Millisecond)
+		defer cancel()
+		_ = client.Call(ctx, "proc.slow", nil, &dummyOutput{})
+		select {
+		case <-requestCanceled:
+		case <-time.After(time.Second):
+			t.Fatal("in-flight request kept running after its only caller's deadline")
+		}
+	})
+}
+
+func TestRateLimiterNeverExceedsLimitWithinWindow(t *testing.T) {
+	limiter := newRateLimiter(3, 200*time.Millisecond)
+	start := time.Now()
+	for i := 0; i < 4; i++ {
+		if err := limiter.Wait(context.Background()); err != nil {
+			t.Fatalf("Wait %d: %v", i, err)
+		}
+		elapsed := time.Since(start)
+		if i < 3 && elapsed > 50*time.Millisecond {
+			t.Fatalf("Wait %d took %v, want the first 3 calls immediately", i, elapsed)
+		}
+		if i == 3 && elapsed < 190*time.Millisecond {
+			t.Fatalf("4th call allowed after %v, want it held until the window passes", elapsed)
 		}
 	}
 }

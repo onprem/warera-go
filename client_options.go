@@ -53,9 +53,11 @@ func WithHTTPClient(client *http.Client) Option {
 	}
 }
 
-// WithRateLimit sets the request rate limit in requests per minute. A positive
-// value sets an explicit limit, 0 disables rate limiting, and a negative value
-// enables automatic selection (200 with an API key, 100 without one).
+// WithRateLimit sets the request rate limit in requests per minute: the client
+// never sends more than this many HTTP requests in any 60-second window. A
+// positive value sets an explicit limit, 0 disables rate limiting, and a
+// negative value enables automatic selection (200 with an API key, 100 without
+// one).
 func WithRateLimit(requestsPerMinute int) Option {
 	return func(o *options) {
 		o.rateLimitPerMinute = requestsPerMinute

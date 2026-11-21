@@ -4,6 +4,12 @@ All notable changes to this project are documented here. While the project is in
 
 ## [Unreleased]
 
+### Added
+
+- `analytics` packages: economy and character math on API records, with no requests of their own, each function documented as verified against the API, read from the game config, or a community model. Formulas and verification approach credit the community Warera Simulator. `production.Cost` and `RawMaterials` follow recipes down to raw resources; `production.Values` ranks items by what a production point earns, buying inputs or making them in-house (the latter matches the server's `GetPPMoneyValueByItem`); `company.ProfitPerHour` values a workforce such as `Me.GetWorkforceSummary` at market prices; `character.Build`, `SkillCost`, and `SkillPointsSpent` price skill builds (matching a player's spent points); `character.GradeEquipment` and `RollQuality` place rolled stats within their ranges; `upgrades.Cost` sums upgrade costs (matching invested steel); `market.BuyCost`, `SellProceeds`, `Spread`, and `SummarizeTrading` work on order books and price history.
+- `examples/planner`: a production planner built on the `analytics` packages.
+- `waretest.Fixture` decodes a recorded API response, for tests and examples of code that computes from records.
+
 ## [0.3.0] - 2026-11-21
 
 This release is for tools that run for a long time: errors and rate limits behave the same whether or not calls were batched, inputs and timestamps are typed, and new helpers resume listings, cache names, and fake the API in tests. It also wraps the world map, the moderation log, and the API key owner's employees. Many changes are breaking; they are marked below.

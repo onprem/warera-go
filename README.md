@@ -62,6 +62,7 @@ See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the p
 - `go run ./examples/commander` prompts for a military unit and shows each member's damage, the unit's league standing and sponsorship, and its orders in an active battle.
 - `go run ./examples/treasurer` prompts for a country and shows its treasury, taxes, strategic-resource bonuses, state army spending, donations, and one transaction page.
 - `go run ./examples/researcher` prompts for a country and follows its event feed and pinned-article reference.
+- `go run ./examples/planner` ranks what a production point earns on each item, quotes input costs from the order book, and values your own workforce per hour (with an API key).
 - `go run ./examples/collector` is a long-running collector that appends prices, new trades, and new events to JSON Lines files and resumes where it stopped.
 - `go run ./examples/basic` and `go run ./examples/batching` show basic client and batching usage.
 
@@ -72,6 +73,7 @@ See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the p
 - **Polling and resuming:** `Until` stops a newest-first listing at the last record you stored; `Pages` exposes cursors so a collector can resume after a restart.
 - **Names:** `GetMany` methods resolve many IDs at once, and `Directory` caches countries, regions, game config, and user profiles.
 - **Your own account:** `Me` reads the API key owner's employees, workforce totals, and employee events; create one client per player's key.
+- **Economy math:** the `analytics` packages compute production costs, money per production point, workforce profit, skill build costs, equipment roll quality, upgrade costs, and order-book fills from API records.
 - **Testing:** `waretest.NewServer(t)` is a fake API that answers every wrapped procedure with a recorded response; override procedures to simulate errors.
 
 Set `WARERA_API_KEY` in the environment; the persona examples use procedures that require it. They are read-only. [`CONTRIBUTING.md`](CONTRIBUTING.md) describes the development workflow.

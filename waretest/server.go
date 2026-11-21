@@ -35,6 +35,24 @@ import (
 //go:embed fixtures/*.json
 var fixtures embed.FS
 
+// Fixture returns the response recorded for procedure, such as
+// "gameConfig.getGameConfig", decoded into T. It lets tests and examples of
+// code that computes from API records, like the analytics packages, start
+// from real data without a server:
+//
+//	cfg, err := waretest.Fixture[*warera.GameConfig]("gameConfig.getGameConfig")
+func Fixture[T any](procedure string) (T, error) {
+	var v T
+	data, err := fixtures.ReadFile("fixtures/" + procedure + ".json")
+	if err != nil {
+		return v, fmt.Errorf("waretest: no recorded response for %s", procedure)
+	}
+	if err := json.Unmarshal(data, &v); err != nil {
+		return v, fmt.Errorf("waretest: decode %s: %w", procedure, err)
+	}
+	return v, nil
+}
+
 // A Handler answers one call to a procedure. input is the call's JSON input,
 // or nil for a call without input. A returned *[Error] becomes a tRPC error;
 // any other error becomes INTERNAL_SERVER_ERROR. A nil result is sent as null.

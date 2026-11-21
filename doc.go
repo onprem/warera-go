@@ -38,6 +38,10 @@
 // without one, at the lower rate limit. [MeService] reads the account that
 // owns the API key.
 //
+// The analytics packages compute production costs, money per production
+// point, skill build costs, equipment roll quality, and similar figures from
+// the records this package returns.
+//
 // API errors are available as [TRPCError] and transport failures as
 // [HTTPError]; use [errors.As] to inspect their fields. Bulk lookup methods
 // report failed entity IDs with [BatchLookupError]. [IsNotFound],

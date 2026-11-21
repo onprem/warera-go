@@ -280,7 +280,9 @@ type ManagerWageStats struct {
 	TopOffer         float64  `json:"topOffer"`
 }
 
-// ManagerWageRange bounds manager pay per Management point per hour.
+// ManagerWageRange bounds manager pay, as the hourly wage of a manager with
+// the highest Management value, 11. Divide by 11 for the range of a
+// [ManagerOffer.RateManagement], the pay per Management point per hour.
 type ManagerWageRange struct {
 	Average float64 `json:"average"`
 	Max     float64 `json:"max"`

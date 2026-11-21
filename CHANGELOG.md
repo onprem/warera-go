@@ -10,6 +10,10 @@ All notable changes to this project are documented here. While the project is in
 - `examples/planner`: a production planner built on the `analytics` packages.
 - `waretest.Fixture` decodes a recorded API response, for tests and examples of code that computes from records.
 
+### Fixed
+
+- `ManagerWageRange` documentation: its values are the hourly wage at Management value 11, not a rate per Management point.
+
 ## [0.3.0] - 2026-11-21
 
 This release is for tools that run for a long time: errors and rate limits behave the same whether or not calls were batched, inputs and timestamps are typed, and new helpers resume listings, cache names, and fake the API in tests. It also wraps the world map, the moderation log, and the API key owner's employees. Many changes are breaking; they are marked below.

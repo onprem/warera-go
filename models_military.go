@@ -8,13 +8,13 @@ package warera
 // MUMember is a member of a military unit and their damage and help in it.
 type MUMember struct {
 	ID                  string  `json:"_id,omitempty"`
-	CreatedAt           string  `json:"createdAt,omitempty"`
+	CreatedAt           Time    `json:"createdAt,omitempty"`
 	MUID                string  `json:"mu,omitempty"`
 	MonthlyDamagesCount float64 `json:"monthlyDamagesCount,omitempty"`
 	MonthlyHelpCount    int     `json:"monthlyHelpCount,omitempty"`
 	TotalDamagesCount   float64 `json:"totalDamagesCount,omitempty"`
 	TotalHelpCount      int     `json:"totalHelpCount,omitempty"`
-	UpdatedAt           string  `json:"updatedAt,omitempty"`
+	UpdatedAt           Time    `json:"updatedAt,omitempty"`
 	UserID              string  `json:"user,omitempty"`
 	WeeklyDamagesCount  float64 `json:"weeklyDamagesCount,omitempty"`
 	WeeklyHelpCount     int     `json:"weeklyHelpCount,omitempty"`
@@ -24,7 +24,7 @@ type MUMember struct {
 type MULeague struct {
 	// YearWeek identifies the league week, such as "2026-47".
 	YearWeek   string `json:"yearWeek,omitempty"`
-	WeekEndsAt string `json:"weekEndsAt,omitempty"`
+	WeekEndsAt Time   `json:"weekEndsAt,omitempty"`
 	// League and Me are nil when the unit is not in a league this week.
 	League *MULeagueGroup    `json:"league,omitempty"`
 	Me     *MULeagueStanding `json:"me,omitempty"`
@@ -103,7 +103,7 @@ type MULeagueDivisionCounts struct {
 type League struct {
 	// YearWeek identifies the league week, such as "2026-47".
 	YearWeek   string `json:"yearWeek,omitempty"`
-	WeekEndsAt string `json:"weekEndsAt,omitempty"`
+	WeekEndsAt Time   `json:"weekEndsAt,omitempty"`
 	// League and Me are nil when the user is not in a league this week.
 	League *LeagueGroup    `json:"league,omitempty"`
 	Me     *LeagueStanding `json:"me,omitempty"`
@@ -152,24 +152,24 @@ type LeagueReward struct {
 // through a law.
 type MUSponsorship struct {
 	ID         string `json:"_id,omitempty"`
-	AcceptedAt string `json:"acceptedAt,omitempty"`
+	AcceptedAt Time   `json:"acceptedAt,omitempty"`
 	// AcceptedBy is the user who accepted the offer for the unit.
 	AcceptedBy string `json:"acceptedBy,omitempty"`
 	CountryID  string `json:"country,omitempty"`
-	CreatedAt  string `json:"createdAt,omitempty"`
+	CreatedAt  Time   `json:"createdAt,omitempty"`
 	// EndReason explains why an ended sponsorship stopped, such as
 	// "citizenship" or "abandoned".
 	EndReason      string   `json:"endReason,omitempty"`
-	EndedAt        string   `json:"endedAt,omitempty"`
+	EndedAt        Time     `json:"endedAt,omitempty"`
 	KickedUserIDs  []string `json:"kickedUsers,omitempty"`
 	LawID          string   `json:"law,omitempty"`
 	Live           bool     `json:"live,omitempty"`
 	MUID           string   `json:"mu,omitempty"`
-	OfferExpiresAt string   `json:"offerExpiresAt,omitempty"`
-	OfferedAt      string   `json:"offeredAt,omitempty"`
+	OfferExpiresAt Time     `json:"offerExpiresAt,omitempty"`
+	OfferedAt      Time     `json:"offeredAt,omitempty"`
 	// Status is "offered", "active", or "ended".
 	Status    string `json:"status,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
+	UpdatedAt Time   `json:"updatedAt,omitempty"`
 }
 
 // MUSponsorshipsByCountry is a country's military unit sponsorships.
@@ -215,7 +215,7 @@ type StateArmyOverview struct {
 // StateArmyExpenseTotal is a total of state army spending. Day and MUID are
 // set only in per-day and per-unit totals.
 type StateArmyExpenseTotal struct {
-	Day  string               `json:"day,omitempty"`
+	Day  Date                 `json:"day,omitempty"`
 	Kind StateArmyExpenseKind `json:"kind,omitempty"`
 	MUID string               `json:"mu,omitempty"`
 	// Money is the money spent, and Quantity the items given.
@@ -228,10 +228,10 @@ type StateArmyExpenseTotal struct {
 // sponsorship law.
 type StateArmyExpense struct {
 	ID        string               `json:"_id,omitempty"`
-	At        string               `json:"at,omitempty"`
+	At        Time                 `json:"at,omitempty"`
 	CountryID string               `json:"country,omitempty"`
-	CreatedAt string               `json:"createdAt,omitempty"`
-	Day       string               `json:"day,omitempty"`
+	CreatedAt Time                 `json:"createdAt,omitempty"`
+	Day       Date                 `json:"day,omitempty"`
 	ItemCode  string               `json:"itemCode,omitempty"`
 	Kind      StateArmyExpenseKind `json:"kind,omitempty"`
 	MUID      string               `json:"mu,omitempty"`
@@ -239,7 +239,7 @@ type StateArmyExpense struct {
 	Quantity  int                  `json:"quantity,omitempty"`
 	// RefID is the contract or law the expense came from.
 	RefID     string `json:"refId,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
+	UpdatedAt Time   `json:"updatedAt,omitempty"`
 }
 
 // Tournament is an MU or country tournament and its bracket.
@@ -248,7 +248,7 @@ type Tournament struct {
 	ActiveRound int    `json:"activeRound,omitempty"`
 	// AutoQualifyFirstRound lists the teams that skip the first round.
 	AutoQualifyFirstRound []string `json:"autoQualify1stRound,omitempty"`
-	CreatedAt             string   `json:"createdAt,omitempty"`
+	CreatedAt             Time     `json:"createdAt,omitempty"`
 	Description           string   `json:"description,omitempty"`
 	IsActive              bool     `json:"isActive,omitempty"`
 	// MaxRarity is the rarest equipment allowed.
@@ -260,7 +260,7 @@ type Tournament struct {
 	RoundsCount int                        `json:"roundsCount,omitempty"`
 	// SkillKey is the skill the tournament's rounds limit.
 	SkillKey  string `json:"skillKey,omitempty"`
-	StartAt   string `json:"startAt,omitempty"`
+	StartAt   Time   `json:"startAt,omitempty"`
 	Status    string `json:"status,omitempty"`
 	TeamCount int    `json:"teamCount,omitempty"`
 	// TeamSize is the number of players per team in MU tournaments; country
@@ -268,7 +268,7 @@ type Tournament struct {
 	TeamSize float64 `json:"teamSize,omitempty"`
 	// Type is "mu" or "country".
 	Type         string `json:"type,omitempty"`
-	UpdatedAt    string `json:"updatedAt,omitempty"`
+	UpdatedAt    Time   `json:"updatedAt,omitempty"`
 	WinnerTeamID string `json:"winnerTournamentTeam,omitempty"`
 }
 
@@ -321,7 +321,7 @@ type TournamentTeam struct {
 	ID          string   `json:"_id,omitempty"`
 	ColorScheme string   `json:"colorScheme,omitempty"`
 	CountryIDs  []string `json:"countries,omitempty"`
-	CreatedAt   string   `json:"createdAt,omitempty"`
+	CreatedAt   Time     `json:"createdAt,omitempty"`
 	// DamageByEntity holds the damage dealt for the team, keyed by user,
 	// military unit, or country ID.
 	DamageByEntity map[string]float64 `json:"damageByEntity,omitempty"`
@@ -334,7 +334,7 @@ type TournamentTeam struct {
 	Status       string   `json:"status,omitempty"`
 	TotalDamage  float64  `json:"totalDamage,omitempty"`
 	TournamentID string   `json:"tournament,omitempty"`
-	UpdatedAt    string   `json:"updatedAt,omitempty"`
+	UpdatedAt    Time     `json:"updatedAt,omitempty"`
 	UserIDs      []string `json:"users,omitempty"`
 }
 
@@ -363,13 +363,13 @@ type Contribution struct {
 	// Amount is the points contributed; unrest contributions can be negative.
 	Amount    float64 `json:"amount,omitempty"`
 	CountryID string  `json:"country,omitempty"`
-	CreatedAt string  `json:"createdAt,omitempty"`
+	CreatedAt Time    `json:"createdAt,omitempty"`
 	RegionID  string  `json:"region,omitempty"`
 	// Resource is "health" or "energy".
 	Resource string `json:"resource,omitempty"`
 	// Type is "unrest" or "resistance".
 	Type      string `json:"type,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
+	UpdatedAt Time   `json:"updatedAt,omitempty"`
 	UserID    string `json:"user,omitempty"`
 }
 
@@ -377,7 +377,7 @@ type Contribution struct {
 type RankingSnapshot struct {
 	// Count is the number of entries in the ranking that day.
 	Count int     `json:"count,omitempty"`
-	Day   string  `json:"day,omitempty"`
+	Day   Date    `json:"day,omitempty"`
 	Rank  int     `json:"rank,omitempty"`
 	Value float64 `json:"value,omitempty"`
 }
@@ -385,7 +385,7 @@ type RankingSnapshot struct {
 // RankingSnapshotRecentRanks is an entity's daily ranks over recent days.
 type RankingSnapshotRecentRanks struct {
 	// Days lists the dates covered, oldest first.
-	Days []string `json:"days,omitempty"`
+	Days []Date `json:"days,omitempty"`
 	// Ranks holds, per ranking type, the entity's rank on each day in Days;
 	// an entry is nil when there is no rank for that day.
 	Ranks map[string][]*int `json:"ranks,omitempty"`

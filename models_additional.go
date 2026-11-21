@@ -16,13 +16,13 @@ type BattleLootSummary struct {
 	BattleID               string               `json:"battle,omitempty"`
 	Case1Count             int                  `json:"case1Count,omitempty"`
 	Case2Count             int                  `json:"case2Count,omitempty"`
-	CreatedAt              string               `json:"createdAt,omitempty"`
+	CreatedAt              Time                 `json:"createdAt,omitempty"`
 	Hits                   int                  `json:"hits,omitempty"`
 	PoolLoot               []BattleLootPoolItem `json:"poolLoot,omitempty"`
 	TotalDamage            float64              `json:"totalDmg,omitempty"`
 	TotalMoneyFromBounty   float64              `json:"totalMoneyFromBounty,omitempty"`
 	TotalMoneyFromContract float64              `json:"totalMoneyFromContract,omitempty"`
-	UpdatedAt              string               `json:"updatedAt,omitempty"`
+	UpdatedAt              Time                 `json:"updatedAt,omitempty"`
 	UserID                 string               `json:"user,omitempty"`
 }
 
@@ -96,8 +96,8 @@ type BattleRankingEntry struct {
 	Rank      int     `json:"rank,omitempty"`
 	Badge     string  `json:"badge,omitempty"`
 	Version   int     `json:"__v,omitempty"`
-	CreatedAt string  `json:"createdAt,omitempty"`
-	UpdatedAt string  `json:"updatedAt,omitempty"`
+	CreatedAt Time    `json:"createdAt,omitempty"`
+	UpdatedAt Time    `json:"updatedAt,omitempty"`
 	LootItem  *Item   `json:"lootItem,omitempty"`
 }
 
@@ -108,14 +108,14 @@ type MercenaryContractAuction struct {
 	Bids              []MercenaryContractAuctionBid `json:"bids,omitempty"`
 	Budget            float64                       `json:"budget,omitempty"`
 	CountryID         string                        `json:"country,omitempty"`
-	CreatedAt         string                        `json:"createdAt,omitempty"`
+	CreatedAt         Time                          `json:"createdAt,omitempty"`
 	CreatedBy         string                        `json:"createdBy,omitempty"`
 	CurrentPayout     float64                       `json:"currentPayout,omitempty"`
 	CurrentPerK       float64                       `json:"currentPerK,omitempty"`
 	CurrentWinner     *string                       `json:"currentWinner,omitempty"`
 	CurrentWinnerUser *string                       `json:"currentWinnerUser,omitempty"`
 	Duration          float64                       `json:"duration,omitempty"`
-	ExpiresAt         string                        `json:"expiresAt,omitempty"`
+	ExpiresAt         Time                          `json:"expiresAt,omitempty"`
 	ForCountry        string                        `json:"forCountry,omitempty"`
 	ForCountrySide    string                        `json:"forCountrySide,omitempty"`
 	InitialPerK       float64                       `json:"initialPerK,omitempty"`
@@ -124,12 +124,12 @@ type MercenaryContractAuction struct {
 	RoundID           string                        `json:"round,omitempty"`
 	RoundNumber       int                           `json:"roundNumber,omitempty"`
 	Status            MercenaryAuctionStatus        `json:"status,omitempty"`
-	UpdatedAt         string                        `json:"updatedAt,omitempty"`
+	UpdatedAt         Time                          `json:"updatedAt,omitempty"`
 }
 
 // MercenaryContractAuctionBid is a bid in a mercenary contract auction.
 type MercenaryContractAuctionBid struct {
-	BidAt  string  `json:"bidAt,omitempty"`
+	BidAt  Time    `json:"bidAt,omitempty"`
 	MUID   string  `json:"mu,omitempty"`
 	Payout float64 `json:"payout,omitempty"`
 	PerK   float64 `json:"perK,omitempty"`
@@ -140,17 +140,17 @@ type MercenaryContractAuctionBid struct {
 type TransactionListItem struct {
 	ID              string          `json:"_id,omitempty"`
 	BuyerID         string          `json:"buyerId,omitempty"`
-	CreatedAt       string          `json:"createdAt,omitempty"`
+	CreatedAt       Time            `json:"createdAt,omitempty"`
 	Item            *Item           `json:"item,omitempty"`
 	ItemCode        string          `json:"itemCode,omitempty"`
 	Money           float64         `json:"money,omitempty"`
-	OfferCreatedAt  string          `json:"offerCreatedAt,omitempty"`
+	OfferCreatedAt  Time            `json:"offerCreatedAt,omitempty"`
 	Quantity        int             `json:"quantity,omitempty"`
 	SellerCountryID string          `json:"sellerCountryId,omitempty"`
 	SellerID        string          `json:"sellerId,omitempty"`
 	SellerMUID      string          `json:"sellerMuId,omitempty"`
 	TransactionType TransactionType `json:"transactionType,omitempty"`
-	UpdatedAt       string          `json:"updatedAt,omitempty"`
+	UpdatedAt       Time            `json:"updatedAt,omitempty"`
 }
 
 // Item is a weapon or equipment item, as attached to a transaction or awarded
@@ -158,7 +158,7 @@ type TransactionListItem struct {
 type Item struct {
 	ID                string     `json:"_id,omitempty"`
 	Code              string     `json:"code,omitempty"`
-	LastAcquisitionAt string     `json:"lastAcquisitionAt,omitempty"`
+	LastAcquisitionAt Time       `json:"lastAcquisitionAt,omitempty"`
 	MaxState          float64    `json:"maxState,omitempty"`
 	Quantity          int        `json:"quantity,omitempty"`
 	Skills            ItemSkills `json:"skills,omitempty"`
@@ -194,18 +194,18 @@ type Poll struct {
 	AuthorID         string  `json:"author,omitempty"`
 	CanVote          bool    `json:"canVote,omitempty"`
 	CannotVoteReason string  `json:"cannotVoteReason,omitempty"`
-	CreatedAt        string  `json:"createdAt,omitempty"`
+	CreatedAt        Time    `json:"createdAt,omitempty"`
 	DurationHours    float64 `json:"durationHours,omitempty"`
-	EndsAt           string  `json:"endsAt,omitempty"`
+	EndsAt           Time    `json:"endsAt,omitempty"`
 	IsEnded          bool    `json:"isEnded,omitempty"`
 	// MyVote lists the option IDs the caller picked. It is empty when the
 	// caller has not voted or the request is not authenticated.
 	MyVote      []int        `json:"myVote,omitempty"`
 	Options     []PollOption `json:"options,omitempty"`
 	Question    string       `json:"question,omitempty"`
-	StartedAt   string       `json:"startedAt,omitempty"`
+	StartedAt   Time         `json:"startedAt,omitempty"`
 	TotalVoters int          `json:"totalVoters,omitempty"`
-	UpdatedAt   string       `json:"updatedAt,omitempty"`
+	UpdatedAt   Time         `json:"updatedAt,omitempty"`
 }
 
 // PollOption is one answer in a poll with its vote count.
@@ -218,10 +218,10 @@ type PollOption struct {
 // PollVote is one user's vote in a poll.
 type PollVote struct {
 	ID        string `json:"_id,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
+	CreatedAt Time   `json:"createdAt,omitempty"`
 	Options   []int  `json:"options,omitempty"`
 	PollID    string `json:"poll,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
+	UpdatedAt Time   `json:"updatedAt,omitempty"`
 	UserID    string `json:"user,omitempty"`
 	Version   int    `json:"version,omitempty"`
 }
@@ -273,5 +273,5 @@ type UserSkillProfile struct {
 // UserListItem is a citizen in a country's user listing.
 type UserListItem struct {
 	ID        string `json:"_id,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
+	CreatedAt Time   `json:"createdAt,omitempty"`
 }

@@ -30,7 +30,7 @@ type ItemTrading struct {
 // ItemTradingDay is one day of market trades for an item.
 type ItemTradingDay struct {
 	// ValueAt is the trading day as YYYY-MM-DD.
-	ValueAt string `json:"valueAt,omitempty"`
+	ValueAt Date `json:"valueAt,omitempty"`
 	// AvgValue is the volume-weighted average price: TotalValue divided by
 	// TotalQuantity.
 	AvgValue float64 `json:"avgValue,omitempty"`
@@ -97,8 +97,8 @@ type Donation struct {
 	PartyID   string  `json:"partyId,omitempty"`
 	Amount    float64 `json:"amount,omitempty"`
 	// CreatedAt is the time of the first donation and UpdatedAt of the latest.
-	CreatedAt string `json:"createdAt,omitempty"`
-	UpdatedAt string `json:"updatedAt,omitempty"`
+	CreatedAt Time `json:"createdAt,omitempty"`
+	UpdatedAt Time `json:"updatedAt,omitempty"`
 }
 
 // DonationTotal is the total donated to a recipient.

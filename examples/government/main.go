@@ -358,7 +358,7 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 	fmt.Printf("Citizens: %d; military units: %d; events: %d; active battles: %d\n",
 		len(snapshot.users), len(snapshot.units), len(snapshot.events), len(snapshot.battles))
 
-	sort.Slice(snapshot.events, func(i, j int) bool { return snapshot.events[i].CreatedAt > snapshot.events[j].CreatedAt })
+	sort.Slice(snapshot.events, func(i, j int) bool { return snapshot.events[i].CreatedAt.After(snapshot.events[j].CreatedAt.Time) })
 	// Keep terminal output compact while still showing representative records.
 	for i, event := range snapshot.events {
 		if i == 5 {

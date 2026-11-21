@@ -83,7 +83,7 @@ func run() error {
 		// The listing response is paginated by the API. Sort this page by its
 		// creation timestamp so the most recently created records appear first.
 		sort.SliceStable(battles, func(i, j int) bool {
-			return battles[i].CreatedAt > battles[j].CreatedAt
+			return battles[i].CreatedAt.After(battles[j].CreatedAt.Time)
 		})
 	}
 	if len(battles) == 0 {

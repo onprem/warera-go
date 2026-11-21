@@ -5,7 +5,6 @@ package warera
 import (
 	"encoding/json"
 	"sort"
-	"time"
 )
 
 // MU is a convenient alias for MilitaryUnit.
@@ -31,16 +30,6 @@ func (u *User) Level() int {
 // Level returns the player's level from Leveling.
 func (u *UserLite) Level() int {
 	return u.Leveling.Level
-}
-
-// NextDayTime parses NextDayAt as time.Time.
-func (d *GameDates) NextDayTime() (time.Time, error) {
-	return time.Parse(time.RFC3339, d.NextDayAt)
-}
-
-// NextRegenTime parses NextRegenAt as time.Time.
-func (d *GameDates) NextRegenTime() (time.Time, error) {
-	return time.Parse(time.RFC3339, d.NextRegenAt)
 }
 
 // AttackerCountry returns the attacker's country ID.

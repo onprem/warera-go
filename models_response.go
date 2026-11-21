@@ -14,16 +14,16 @@ type Article struct {
 	Author      string       `json:"author,omitempty"`
 	Category    string       `json:"category,omitempty"`
 	Content     string       `json:"content,omitempty"`
-	CreatedAt   string       `json:"createdAt,omitempty"`
+	CreatedAt   Time         `json:"createdAt,omitempty"`
 	IsDeleted   bool         `json:"isDeleted,omitempty"`
 	IsPublic    bool         `json:"isPublic,omitempty"`
 	IsPublished bool         `json:"isPublished,omitempty"`
 	Language    string       `json:"language,omitempty"`
-	PublishedAt string       `json:"publishedAt,omitempty"`
+	PublishedAt Time         `json:"publishedAt,omitempty"`
 	Slug        string       `json:"slug,omitempty"`
 	Stats       ArticleStats `json:"stats,omitempty"`
 	Title       string       `json:"title,omitempty"`
-	UpdatedAt   string       `json:"updatedAt,omitempty"`
+	UpdatedAt   Time         `json:"updatedAt,omitempty"`
 }
 
 // ArticleStats is a nested component of Article.
@@ -44,17 +44,17 @@ type Battle struct {
 	ID              string               `json:"_id,omitempty"`
 	Attacker        BattleSideSummary    `json:"attacker,omitempty"`
 	BadgesProcessed bool                 `json:"badgesProcessed,omitempty"`
-	CreatedAt       string               `json:"createdAt,omitempty"`
+	CreatedAt       Time                 `json:"createdAt,omitempty"`
 	CurrentRound    *BattleRound         `json:"currentRound,omitempty"`
 	Defender        BattleSideSummary    `json:"defender,omitempty"`
-	EndedAt         string               `json:"endedAt,omitempty"`
+	EndedAt         Time                 `json:"endedAt,omitempty"`
 	IsActive        bool                 `json:"isActive,omitempty"`
 	Rounds          []string             `json:"rounds,omitempty"`
 	RoundsHistory   []BattleRoundHistory `json:"roundsHistory,omitempty"`
 	RoundsToWin     int                  `json:"roundsToWin,omitempty"`
 	Stats           BattleStats          `json:"stats,omitempty"`
 	Type            string               `json:"type,omitempty"`
-	UpdatedAt       string               `json:"updatedAt,omitempty"`
+	UpdatedAt       Time                 `json:"updatedAt,omitempty"`
 	WarID           string               `json:"war,omitempty"`
 	WonBy           string               `json:"wonBy,omitempty"`
 }
@@ -73,7 +73,7 @@ type BattleOrder struct {
 	ID          string     `json:"_id,omitempty"`
 	Battle      string     `json:"battle,omitempty"`
 	CountryID   string     `json:"country,omitempty"`
-	CreatedAt   string     `json:"createdAt,omitempty"`
+	CreatedAt   Time       `json:"createdAt,omitempty"`
 	IsActive    bool       `json:"isActive,omitempty"`
 	MUID        string     `json:"mu,omitempty"`
 	Priority    string     `json:"priority,omitempty"`
@@ -81,7 +81,7 @@ type BattleOrder struct {
 	Side        BattleSide `json:"side,omitempty"`
 	SideCountry string     `json:"sideCountry,omitempty"`
 	Text        string     `json:"text,omitempty"`
-	UpdatedAt   string     `json:"updatedAt,omitempty"`
+	UpdatedAt   Time       `json:"updatedAt,omitempty"`
 	UserID      string     `json:"user,omitempty"`
 }
 
@@ -90,17 +90,17 @@ type BattleRound struct {
 	ID        string               `json:"_id,omitempty"`
 	Attacker  RoundSideCombatStats `json:"attacker,omitempty"`
 	Battle    string               `json:"battle,omitempty"`
-	CreatedAt string               `json:"createdAt,omitempty"`
+	CreatedAt Time                 `json:"createdAt,omitempty"`
 	Defender  RoundSideCombatStats `json:"defender,omitempty"`
 	IsActive  bool                 `json:"isActive,omitempty"`
 	Live      RoundLiveState       `json:"live,omitempty"`
 	Number    int                  `json:"number,omitempty"`
-	UpdatedAt string               `json:"updatedAt,omitempty"`
+	UpdatedAt Time                 `json:"updatedAt,omitempty"`
 }
 
 // BattleSideSummary is a nested component of Battle.
 type BattleSideSummary struct {
-	BountyEffectiveAt string   `json:"bountyEffectiveAt,omitempty"`
+	BountyEffectiveAt Time     `json:"bountyEffectiveAt,omitempty"`
 	CountryID         string   `json:"country,omitempty"`
 	CountryOrders     []string `json:"countryOrders,omitempty"`
 	Damages           float64  `json:"damages,omitempty"`
@@ -122,7 +122,7 @@ type Company struct {
 	ID                  string                     `json:"_id,omitempty"`
 	ActiveUpgradeLevels CompanyActiveUpgradeLevels `json:"activeUpgradeLevels,omitempty"`
 	ConcreteInvested    float64                    `json:"concreteInvested,omitempty"`
-	CreatedAt           string                     `json:"createdAt,omitempty"`
+	CreatedAt           Time                       `json:"createdAt,omitempty"`
 	EstimatedValue      float64                    `json:"estimatedValue,omitempty"`
 	FreeMoves           int                        `json:"freeMoves,omitempty"`
 	IsFull              bool                       `json:"isFull,omitempty"`
@@ -130,7 +130,7 @@ type Company struct {
 	Name                string                     `json:"name,omitempty"`
 	Production          float64                    `json:"production,omitempty"`
 	Region              string                     `json:"region,omitempty"`
-	UpdatedAt           string                     `json:"updatedAt,omitempty"`
+	UpdatedAt           Time                       `json:"updatedAt,omitempty"`
 	UserID              string                     `json:"user,omitempty"`
 }
 
@@ -147,10 +147,10 @@ type Country struct {
 	AllianceID         string                         `json:"allianceId,omitempty"`
 	Allies             []string                       `json:"allies,omitempty"`
 	AverageDevelopment float64                        `json:"averageDevelopment,omitempty"`
-	BordersOpenUntil   string                         `json:"bordersOpenUntil,omitempty"`
+	BordersOpenUntil   Time                           `json:"bordersOpenUntil,omitempty"`
 	Code               string                         `json:"code,omitempty"`
 	CoreDevelopment    float64                        `json:"coreDevelopment,omitempty"`
-	CreatedAt          string                         `json:"createdAt,omitempty"`
+	CreatedAt          Time                           `json:"createdAt,omitempty"`
 	CurrentBattleOrder string                         `json:"currentBattleOrder,omitempty"`
 	CurrentDevelopment float64                        `json:"currentDevelopment,omitempty"`
 	CurrentPopulation  int                            `json:"currentPopulation,omitempty"`
@@ -163,7 +163,7 @@ type Country struct {
 	MapAccent          string                         `json:"mapAccent,omitempty"`
 	Money              float64                        `json:"money,omitempty"`
 	Name               string                         `json:"name,omitempty"`
-	NonAggressionUntil map[string]string              `json:"nonAggressionUntil,omitempty"`
+	NonAggressionUntil map[string]Time                `json:"nonAggressionUntil,omitempty"`
 	Orgs               []string                       `json:"orgs,omitempty"`
 	PinnedArticle      string                         `json:"pinnedArticle,omitempty"`
 	Rankings           map[string]RankingItem         `json:"rankings,omitempty"`
@@ -172,14 +172,14 @@ type Country struct {
 	StrategicResources *CountryStrategicResourcesInfo `json:"strategicResources,omitempty"`
 	Taxes              CountryTaxes                   `json:"taxes,omitempty"`
 	Unrest             CountryUnrest                  `json:"unrest,omitempty"`
-	UpdatedAt          string                         `json:"updatedAt,omitempty"`
+	UpdatedAt          Time                           `json:"updatedAt,omitempty"`
 	WarsWith           []string                       `json:"warsWith,omitempty"`
 }
 
 // CountryDates is a nested component of Country.
 type CountryDates struct {
-	GovTypeChangedAt   string `json:"govTypeChangedAt,omitempty"`
-	LastAllianceLeftAt string `json:"lastAllianceLeftAt,omitempty"`
+	GovTypeChangedAt   Time `json:"govTypeChangedAt,omitempty"`
+	LastAllianceLeftAt Time `json:"lastAllianceLeftAt,omitempty"`
 }
 
 // CountryStrategicResourcesInfo is a nested component of Country.
@@ -208,8 +208,8 @@ type CountryTaxes struct {
 type CountryUnrest struct {
 	Bar                   float64 `json:"bar,omitempty"`
 	BarMax                float64 `json:"barMax,omitempty"`
-	LastContributionAt    string  `json:"lastContributionAt,omitempty"`
-	LastRevolutionEndedAt string  `json:"lastRevolutionEndedAt,omitempty"`
+	LastContributionAt    Time    `json:"lastContributionAt,omitempty"`
+	LastRevolutionEndedAt Time    `json:"lastRevolutionEndedAt,omitempty"`
 }
 
 // CurrentEquipment contains the equipment currently worn by a user.
@@ -227,7 +227,7 @@ type CurrentEquipment struct {
 type EquipmentItem struct {
 	ID                string          `json:"_id,omitempty"`
 	Code              string          `json:"code,omitempty"`
-	LastAcquisitionAt string          `json:"lastAcquisitionAt,omitempty"`
+	LastAcquisitionAt Time            `json:"lastAcquisitionAt,omitempty"`
 	MaxState          float64         `json:"maxState,omitempty"`
 	Quantity          int             `json:"quantity,omitempty"`
 	Skills            EquipmentSkills `json:"skills,omitempty"`
@@ -247,10 +247,10 @@ type EquipmentSkills struct {
 type Event struct {
 	ID        string    `json:"_id,omitempty"`
 	Countries []string  `json:"countries,omitempty"`
-	CreatedAt string    `json:"createdAt,omitempty"`
+	CreatedAt Time      `json:"createdAt,omitempty"`
 	Data      EventData `json:"data,omitempty"`
 	Priority  string    `json:"priority,omitempty"`
-	UpdatedAt string    `json:"updatedAt,omitempty"`
+	UpdatedAt Time      `json:"updatedAt,omitempty"`
 }
 
 // EventData is a nested component of Event.
@@ -309,7 +309,7 @@ type GameConfig struct {
 // GameConfigAlliance is a nested component of GameConfig.
 type GameConfigAlliance struct {
 	LeaveCooldownDays          float64 `json:"leaveCooldownDays,omitempty"`
-	LeaveCooldownDisabledUntil string  `json:"leaveCooldownDisabledUntil,omitempty"`
+	LeaveCooldownDisabledUntil Time    `json:"leaveCooldownDisabledUntil,omitempty"`
 }
 
 // GameConfigAnnouncement is a nested component of GameConfig.
@@ -622,7 +622,7 @@ type GameConfigSkillLevel struct {
 
 // GameConfigSubSkinReward is a nested component of GameConfig.
 type GameConfigSubSkinReward struct {
-	Deadline string `json:"deadline,omitempty"`
+	Deadline Time   `json:"deadline,omitempty"`
 	SkinKey  string `json:"skinKey,omitempty"`
 }
 
@@ -793,15 +793,15 @@ type GameConfigUserPrestige struct {
 
 // GameDates contains server timestamps for daily rollover and energy regeneration.
 type GameDates struct {
-	DailyMissionRegenAt         string `json:"dailyMissionRegenAt,omitempty"`
-	MonthlyMissionRegenAt       string `json:"monthlyMissionRegenAt,omitempty"`
-	NextCongressElectionsAt     string `json:"nextCongressElectionsAt,omitempty"`
-	NextDayAt                   string `json:"nextDayAt,omitempty"`
-	NextMonthAt                 string `json:"nextMonthAt,omitempty"`
-	NextPresidentialElectionsAt string `json:"nextPresidentialElectionsAt,omitempty"`
-	NextRegenAt                 string `json:"nextRegenAt,omitempty"`
-	PreviousDayAt               string `json:"previousDayAt,omitempty"`
-	WeeklyMissionRegenAt        string `json:"weeklyMissionRegenAt,omitempty"`
+	DailyMissionRegenAt         Time `json:"dailyMissionRegenAt,omitempty"`
+	MonthlyMissionRegenAt       Time `json:"monthlyMissionRegenAt,omitempty"`
+	NextCongressElectionsAt     Time `json:"nextCongressElectionsAt,omitempty"`
+	NextDayAt                   Time `json:"nextDayAt,omitempty"`
+	NextMonthAt                 Time `json:"nextMonthAt,omitempty"`
+	NextPresidentialElectionsAt Time `json:"nextPresidentialElectionsAt,omitempty"`
+	NextRegenAt                 Time `json:"nextRegenAt,omitempty"`
+	PreviousDayAt               Time `json:"previousDayAt,omitempty"`
+	WeeklyMissionRegenAt        Time `json:"weeklyMissionRegenAt,omitempty"`
 }
 
 // Government contains the leadership and legislative positions for a country.
@@ -817,8 +817,8 @@ type Government struct {
 
 // GovernmentDates is a nested component of Government.
 type GovernmentDates struct {
-	AnnouncementCreatedAts []string `json:"announcementCreatedAts,omitempty"`
-	LastAnnouncementAt     string   `json:"lastAnnouncementAt,omitempty"`
+	AnnouncementCreatedAts []Time `json:"announcementCreatedAts,omitempty"`
+	LastAnnouncementAt     Time   `json:"lastAnnouncementAt,omitempty"`
 }
 
 // LiveBattleData represents data returned by the WarEra API.
@@ -846,7 +846,7 @@ type LiveRoundSummary struct {
 	DefenderDamages  float64 `json:"defenderDamages,omitempty"`
 	DefenderPoints   float64 `json:"defenderPoints,omitempty"`
 	IsActive         bool    `json:"isActive,omitempty"`
-	NextTickAt       string  `json:"nextTickAt,omitempty"`
+	NextTickAt       Time    `json:"nextTickAt,omitempty"`
 	RoundID          string  `json:"roundId,omitempty"`
 }
 
@@ -868,9 +868,9 @@ type MilitaryUnit struct {
 	ActiveUpgradeLevels  MilitaryUnitActiveUpgradeLevels `json:"activeUpgradeLevels,omitempty"`
 	AvatarURL            string                          `json:"avatarUrl,omitempty"`
 	CountryID            string                          `json:"country,omitempty"`
-	CreatedAt            string                          `json:"createdAt,omitempty"`
+	CreatedAt            Time                            `json:"createdAt,omitempty"`
 	InvestedMoneyByUsers map[string]float64              `json:"investedMoneyByUsers,omitempty"`
-	LastAnnouncementAt   string                          `json:"lastAnnouncementAt,omitempty"`
+	LastAnnouncementAt   Time                            `json:"lastAnnouncementAt,omitempty"`
 	Leveling             MULeveling                      `json:"leveling,omitempty"`
 	Members              []string                        `json:"members,omitempty"`
 	MercenaryReputation  float64                         `json:"mercenaryReputation,omitempty"`
@@ -880,7 +880,7 @@ type MilitaryUnit struct {
 	Roles                MURoles                         `json:"roles,omitempty"`
 	SponsorCountryID     string                          `json:"sponsorCountry,omitempty"`
 	Type                 string                          `json:"type,omitempty"`
-	UpdatedAt            string                          `json:"updatedAt,omitempty"`
+	UpdatedAt            Time                            `json:"updatedAt,omitempty"`
 	UserID               string                          `json:"user,omitempty"`
 }
 
@@ -896,7 +896,7 @@ type Ranking struct {
 	Items      []RankingEntry    `json:"items,omitempty"`
 	TierValues RankingTierValues `json:"tierValues,omitempty"`
 	Type       string            `json:"type,omitempty"`
-	UpdatedAt  string            `json:"updatedAt,omitempty"`
+	UpdatedAt  Time              `json:"updatedAt,omitempty"`
 }
 
 // RankingItem represents a tiered leaderboard rank entry.
@@ -952,9 +952,9 @@ type Region struct {
 	InitialCountry               string                    `json:"initialCountry,omitempty"`
 	IsCapital                    bool                      `json:"isCapital,omitempty"`
 	IsLinkedToCapital            bool                      `json:"isLinkedToCapital,omitempty"`
-	LastBattleEndedAt            string                    `json:"lastBattleEndedAt,omitempty"`
-	LastResistanceContributionAt string                    `json:"lastResistanceContributionAt,omitempty"`
-	LastRevoltEndedAt            string                    `json:"lastRevoltEndedAt,omitempty"`
+	LastBattleEndedAt            Time                      `json:"lastBattleEndedAt,omitempty"`
+	LastResistanceContributionAt Time                      `json:"lastResistanceContributionAt,omitempty"`
+	LastRevoltEndedAt            Time                      `json:"lastRevoltEndedAt,omitempty"`
 	MainCity                     string                    `json:"mainCity,omitempty"`
 	Name                         string                    `json:"name,omitempty"`
 	Neighbors                    []string                  `json:"neighbors,omitempty"`
@@ -972,7 +972,7 @@ type Region struct {
 type RegionActiveBattle struct {
 	ID            string                  `json:"_id,omitempty"`
 	Attacker      BattleSideSummary       `json:"attacker,omitempty"`
-	CreatedAt     string                  `json:"createdAt,omitempty"`
+	CreatedAt     Time                    `json:"createdAt,omitempty"`
 	CurrentRound  *BattleRound            `json:"currentRound,omitempty"`
 	Defender      BattleSideSummary       `json:"defender,omitempty"`
 	IsActive      bool                    `json:"isActive,omitempty"`
@@ -982,7 +982,7 @@ type RegionActiveBattle struct {
 	RoundsToWin   int                     `json:"roundsToWin,omitempty"`
 	Stats         RegionActiveBattleStats `json:"stats,omitempty"`
 	Type          string                  `json:"type,omitempty"`
-	UpdatedAt     string                  `json:"updatedAt,omitempty"`
+	UpdatedAt     Time                    `json:"updatedAt,omitempty"`
 	WarID         string                  `json:"war,omitempty"`
 }
 
@@ -1003,14 +1003,14 @@ type RegionActiveUpgradeLevels struct {
 
 // RegionDates is a nested component of Region.
 type RegionDates struct {
-	LastOwnershipChangeAt string `json:"lastOwnershipChangeAt,omitempty"`
+	LastOwnershipChangeAt Time `json:"lastOwnershipChangeAt,omitempty"`
 }
 
 // RegionDeposit is a nested component of Region.
 type RegionDeposit struct {
 	BonusPercent float64 `json:"bonusPercent,omitempty"`
-	EndsAt       string  `json:"endsAt,omitempty"`
-	StartsAt     string  `json:"startsAt,omitempty"`
+	EndsAt       Time    `json:"endsAt,omitempty"`
+	StartsAt     Time    `json:"startsAt,omitempty"`
 	Type         string  `json:"type,omitempty"`
 }
 
@@ -1033,34 +1033,34 @@ type RegionUpgradesV2Upgrades struct {
 
 // RegionUpgradesV2UpgradesBase is a nested component of RegionUpgradesV2Upgrades.
 type RegionUpgradesV2UpgradesBase struct {
-	ConstructionEndedAt   string                          `json:"constructionEndedAt,omitempty"`
+	ConstructionEndedAt   Time                            `json:"constructionEndedAt,omitempty"`
 	ConstructionPoints    float64                         `json:"constructionPoints,omitempty"`
-	ConstructionStartedAt string                          `json:"constructionStartedAt,omitempty"`
+	ConstructionStartedAt Time                            `json:"constructionStartedAt,omitempty"`
 	InvestedMoney         float64                         `json:"investedMoney,omitempty"`
 	IsUnderConstruction   *bool                           `json:"isUnderConstruction,omitempty"`
 	LastConstructions     []RegionUpgradeLastConstruction `json:"lastConstructions,omitempty"`
 	Level                 int                             `json:"level,omitempty"`
 	Status                string                          `json:"status,omitempty"`
-	StatusChangedAt       string                          `json:"statusChangedAt,omitempty"`
+	StatusChangedAt       Time                            `json:"statusChangedAt,omitempty"`
 }
 
 // RegionUpgradesV2UpgradesBunker is a nested component of RegionUpgradesV2Upgrades.
 type RegionUpgradesV2UpgradesBunker struct {
-	ConstructionEndedAt   string                          `json:"constructionEndedAt,omitempty"`
+	ConstructionEndedAt   Time                            `json:"constructionEndedAt,omitempty"`
 	ConstructionPoints    float64                         `json:"constructionPoints,omitempty"`
-	ConstructionStartedAt string                          `json:"constructionStartedAt,omitempty"`
+	ConstructionStartedAt Time                            `json:"constructionStartedAt,omitempty"`
 	InvestedMoney         float64                         `json:"investedMoney,omitempty"`
 	IsUnderConstruction   *bool                           `json:"isUnderConstruction,omitempty"`
 	LastConstructions     []RegionUpgradeLastConstruction `json:"lastConstructions,omitempty"`
 	Level                 int                             `json:"level,omitempty"`
 	Status                string                          `json:"status,omitempty"`
-	StatusChangedAt       string                          `json:"statusChangedAt,omitempty"`
+	StatusChangedAt       Time                            `json:"statusChangedAt,omitempty"`
 }
 
 // RegionUpgradeLastConstruction records a completed upgrade construction.
 type RegionUpgradeLastConstruction struct {
 	Construction   float64 `json:"construction,omitempty"`
-	ConstructionAt string  `json:"constructionAt,omitempty"`
+	ConstructionAt Time    `json:"constructionAt,omitempty"`
 	UserID         string  `json:"user,omitempty"`
 }
 
@@ -1072,19 +1072,19 @@ type Round struct {
 	ID        string               `json:"_id,omitempty"`
 	Attacker  RoundSideCombatStats `json:"attacker,omitempty"`
 	Battle    string               `json:"battle,omitempty"`
-	CreatedAt string               `json:"createdAt,omitempty"`
+	CreatedAt Time                 `json:"createdAt,omitempty"`
 	Defender  RoundSideCombatStats `json:"defender,omitempty"`
 	IsActive  bool                 `json:"isActive,omitempty"`
 	Live      RoundLiveState       `json:"live,omitempty"`
 	Number    int                  `json:"number,omitempty"`
-	UpdatedAt string               `json:"updatedAt,omitempty"`
+	UpdatedAt Time                 `json:"updatedAt,omitempty"`
 }
 
 // RoundEquipment is a nested component of RoundLastHit.
 type RoundEquipment struct {
 	ID                string          `json:"_id,omitempty"`
 	Code              string          `json:"code,omitempty"`
-	LastAcquisitionAt string          `json:"lastAcquisitionAt,omitempty"`
+	LastAcquisitionAt Time            `json:"lastAcquisitionAt,omitempty"`
 	MaxState          float64         `json:"maxState,omitempty"`
 	Quantity          int             `json:"quantity,omitempty"`
 	Skills            EquipmentSkills `json:"skills,omitempty"`
@@ -1098,7 +1098,7 @@ type RoundLastHit struct {
 	Ammo          string           `json:"ammo,omitempty"`
 	Damages       float64          `json:"damages,omitempty"`
 	Equipments    []RoundEquipment `json:"equipments,omitempty"`
-	HitAt         string           `json:"hitAt,omitempty"`
+	HitAt         Time             `json:"hitAt,omitempty"`
 	IsCriticalHit bool             `json:"isCriticalHit,omitempty"`
 	IsMissed      bool             `json:"isMissed,omitempty"`
 	MUID          string           `json:"mu,omitempty"`
@@ -1115,7 +1115,7 @@ type RoundLastHits struct {
 // RoundLiveState is a nested component of BattleRound.
 type RoundLiveState struct {
 	ActualTickPoints float64 `json:"actualTickPoints,omitempty"`
-	NextTickAt       string  `json:"nextTickAt,omitempty"`
+	NextTickAt       Time    `json:"nextTickAt,omitempty"`
 	TicksCount       int     `json:"ticksCount,omitempty"`
 }
 
@@ -1132,7 +1132,7 @@ type RoundSideCombatStats struct {
 type RoundWeapon struct {
 	ID                string       `json:"_id,omitempty"`
 	Code              string       `json:"code,omitempty"`
-	LastAcquisitionAt string       `json:"lastAcquisitionAt,omitempty"`
+	LastAcquisitionAt Time         `json:"lastAcquisitionAt,omitempty"`
 	MaxState          float64      `json:"maxState,omitempty"`
 	Quantity          int          `json:"quantity,omitempty"`
 	Skills            WeaponSkills `json:"skills,omitempty"`
@@ -1156,7 +1156,7 @@ type TopOrder struct {
 	CountryID string  `json:"country,omitempty"`
 	ItemCode  string  `json:"itemCode,omitempty"`
 	MUID      string  `json:"mu,omitempty"`
-	OfferAt   string  `json:"offerAt,omitempty"`
+	OfferAt   Time    `json:"offerAt,omitempty"`
 	PartyID   string  `json:"party,omitempty"`
 	Price     float64 `json:"price,omitempty"`
 	Quantity  int     `json:"quantity,omitempty"`
@@ -1173,20 +1173,20 @@ type TopOrders struct {
 // Upgrade represents data returned by the WarEra API.
 type Upgrade struct {
 	ID                  string      `json:"_id,omitempty"`
-	CreatedAt           string      `json:"createdAt,omitempty"`
+	CreatedAt           Time        `json:"createdAt,omitempty"`
 	DependantUsersCount int         `json:"dependantUsersCount,omitempty"`
 	InvestedConcrete    float64     `json:"investedConcrete,omitempty"`
 	InvestedMoney       float64     `json:"investedMoney,omitempty"`
 	InvestedSteel       float64     `json:"investedSteel,omitempty"`
-	LastDowngradeAt     string      `json:"lastDowngradeAt,omitempty"`
-	LastUpgradeAt       string      `json:"lastUpgradeAt,omitempty"`
+	LastDowngradeAt     Time        `json:"lastDowngradeAt,omitempty"`
+	LastUpgradeAt       Time        `json:"lastUpgradeAt,omitempty"`
 	Level               int         `json:"level,omitempty"`
 	Region              string      `json:"region,omitempty"`
 	Status              string      `json:"status,omitempty"`
-	StatusChangedAt     string      `json:"statusChangedAt,omitempty"`
-	UpdatedAt           string      `json:"updatedAt,omitempty"`
+	StatusChangedAt     Time        `json:"statusChangedAt,omitempty"`
+	UpdatedAt           Time        `json:"updatedAt,omitempty"`
 	UpgradeType         UpgradeType `json:"upgradeType,omitempty"`
-	WillBeActiveAt      string      `json:"willBeActiveAt,omitempty"`
+	WillBeActiveAt      Time        `json:"willBeActiveAt,omitempty"`
 }
 
 // User is a full player profile, including skills, statistics, and equipment.
@@ -1197,7 +1197,7 @@ type User struct {
 	Buffs                 *UserBuffs             `json:"buffs,omitempty"`
 	CanOnboard            bool                   `json:"canOnboard,omitempty"`
 	CountryID             string                 `json:"country,omitempty"`
-	CreatedAt             string                 `json:"createdAt,omitempty"`
+	CreatedAt             Time                   `json:"createdAt,omitempty"`
 	Dates                 UserDates              `json:"dates,omitempty"`
 	Discord               UserDiscord            `json:"discord,omitempty"`
 	EmailVerified         bool                   `json:"emailVerified,omitempty"`
@@ -1221,7 +1221,7 @@ type User struct {
 	Skills                UserSkills             `json:"skills,omitempty"`
 	SkillVersion          int                    `json:"skillVersion,omitempty"`
 	Stats                 UserStats              `json:"stats,omitempty"`
-	UpdatedAt             string                 `json:"updatedAt,omitempty"`
+	UpdatedAt             Time                   `json:"updatedAt,omitempty"`
 	Username              string                 `json:"username,omitempty"`
 	UsernameLower         string                 `json:"usernameLower,omitempty"`
 	Warning               *UserWarning           `json:"warning,omitempty"`
@@ -1229,21 +1229,21 @@ type User struct {
 
 // UserDates is a nested component of User.
 type UserDates struct {
-	CitizenSince               string `json:"citizenSince,omitempty"`
-	LastCitizenshipChangeAt    string `json:"lastCitizenshipChangeAt,omitempty"`
-	LastConnectionAt           string `json:"lastConnectionAt,omitempty"`
-	LastCountryMessageCheckAt  string `json:"lastCountryMessageCheckAt,omitempty"`
-	LastDailyCalendarClaimedAt string `json:"lastDailyCalendarClaimedAt,omitempty"`
-	LastEventsCheckAt          string `json:"lastEventsCheckAt,omitempty"`
-	LastFiredFromGovAt         string `json:"lastFiredFromGovAt,omitempty"`
-	LastFreeTravelHomeAt       string `json:"lastFreeTravelHomeAt,omitempty"`
-	LastGlobalMessageCheckAt   string `json:"lastGlobalMessageCheckAt,omitempty"`
-	LastHelpAskedAt            string `json:"lastHelpAskedAt,omitempty"`
-	LastManagerCareAt          string `json:"lastManagerCareAt,omitempty"`
-	LastNotificationsCheckAt   string `json:"lastNotificationsCheckAt,omitempty"`
-	LastSeenAnnouncementAt     string `json:"lastSeenAnnouncementAt,omitempty"`
-	LastSkillsResetAt          string `json:"lastSkillsResetAt,omitempty"`
-	LastWorkAt                 string `json:"lastWorkAt,omitempty"`
+	CitizenSince               Time `json:"citizenSince,omitempty"`
+	LastCitizenshipChangeAt    Time `json:"lastCitizenshipChangeAt,omitempty"`
+	LastConnectionAt           Time `json:"lastConnectionAt,omitempty"`
+	LastCountryMessageCheckAt  Time `json:"lastCountryMessageCheckAt,omitempty"`
+	LastDailyCalendarClaimedAt Time `json:"lastDailyCalendarClaimedAt,omitempty"`
+	LastEventsCheckAt          Time `json:"lastEventsCheckAt,omitempty"`
+	LastFiredFromGovAt         Time `json:"lastFiredFromGovAt,omitempty"`
+	LastFreeTravelHomeAt       Time `json:"lastFreeTravelHomeAt,omitempty"`
+	LastGlobalMessageCheckAt   Time `json:"lastGlobalMessageCheckAt,omitempty"`
+	LastHelpAskedAt            Time `json:"lastHelpAskedAt,omitempty"`
+	LastManagerCareAt          Time `json:"lastManagerCareAt,omitempty"`
+	LastNotificationsCheckAt   Time `json:"lastNotificationsCheckAt,omitempty"`
+	LastSeenAnnouncementAt     Time `json:"lastSeenAnnouncementAt,omitempty"`
+	LastSkillsResetAt          Time `json:"lastSkillsResetAt,omitempty"`
+	LastWorkAt                 Time `json:"lastWorkAt,omitempty"`
 }
 
 // UserDiscord is a nested component of User.
@@ -1287,7 +1287,7 @@ type UserLite struct {
 	AvatarURL        string                 `json:"avatarUrl,omitempty"`
 	Buffs            *UserBuffs             `json:"buffs,omitempty"`
 	CountryID        string                 `json:"country,omitempty"`
-	CreatedAt        string                 `json:"createdAt,omitempty"`
+	CreatedAt        Time                   `json:"createdAt,omitempty"`
 	Dates            UserDates              `json:"dates,omitempty"`
 	EquippedSkinKeys json.RawMessage        `json:"equippedSkinKeys,omitempty"`
 	Infos            UserInfos              `json:"infos,omitempty"`
@@ -1313,10 +1313,10 @@ type UserMissions struct {
 
 // UserMissionsClaimedAt is a nested component of UserMissions.
 type UserMissionsClaimedAt struct {
-	Daily    string `json:"daily,omitempty"`
-	Monthly  string `json:"monthly,omitempty"`
-	Starting string `json:"starting,omitempty"`
-	Weekly   string `json:"weekly,omitempty"`
+	Daily    Time `json:"daily,omitempty"`
+	Monthly  Time `json:"monthly,omitempty"`
+	Starting Time `json:"starting,omitempty"`
+	Weekly   Time `json:"weekly,omitempty"`
 }
 
 // UserPreferences is a nested component of User.
@@ -1438,7 +1438,7 @@ type UserStatsWoodenCaseByItem struct {
 type WeaponItem struct {
 	ID                string       `json:"_id,omitempty"`
 	Code              string       `json:"code,omitempty"`
-	LastAcquisitionAt string       `json:"lastAcquisitionAt,omitempty"`
+	LastAcquisitionAt Time         `json:"lastAcquisitionAt,omitempty"`
 	MaxState          float64      `json:"maxState,omitempty"`
 	Quantity          int          `json:"quantity,omitempty"`
 	Skills            WeaponSkills `json:"skills,omitempty"`
@@ -1486,8 +1486,8 @@ type IncomeBreakdown struct {
 
 // GovernmentMinister is a minister appointed to a country's government.
 type GovernmentMinister struct {
-	AppointedAt    string `json:"appointedAt,omitempty"`
-	BadgeGrantedAt string `json:"badgeGrantedAt,omitempty"`
+	AppointedAt    Time `json:"appointedAt,omitempty"`
+	BadgeGrantedAt Time `json:"badgeGrantedAt,omitempty"`
 	// CustomTitle is a display title the president gave the minister.
 	CustomTitle string   `json:"customTitle,omitempty"`
 	Rights      []string `json:"rights,omitempty"`
@@ -1527,14 +1527,14 @@ type GameConfigSkillPresets struct {
 // UserBuffs lists a player's active debuffs.
 type UserBuffs struct {
 	DebuffCodes []string `json:"debuffCodes,omitempty"`
-	DebuffEndAt string   `json:"debuffEndAt,omitempty"`
+	DebuffEndAt Time     `json:"debuffEndAt,omitempty"`
 }
 
 // UserEnergyGift is an energy gift granted to a player.
 type UserEnergyGift struct {
 	Amount    float64 `json:"amount,omitempty"`
-	ClaimedAt string  `json:"claimedAt,omitempty"`
-	GrantedAt string  `json:"grantedAt,omitempty"`
+	ClaimedAt Time    `json:"claimedAt,omitempty"`
+	GrantedAt Time    `json:"grantedAt,omitempty"`
 }
 
 // UserInfos holds a player's profile cosmetics and government roles.
@@ -1557,8 +1557,8 @@ type UserWarning struct {
 
 // UserMissionsGeneratedAt records when each mission set was generated.
 type UserMissionsGeneratedAt struct {
-	Daily  string `json:"daily,omitempty"`
-	Weekly string `json:"weekly,omitempty"`
+	Daily  Time `json:"daily,omitempty"`
+	Weekly Time `json:"weekly,omitempty"`
 }
 
 // UserStatsToolbox counts the toolboxes a player opened.

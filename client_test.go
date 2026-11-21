@@ -228,11 +228,8 @@ func TestClient_TransparentBatching_MultiService(t *testing.T) {
 	if country == nil || country.Name != "Switzerland" {
 		t.Errorf("expected Switzerland, got %+v", country)
 	}
-	if dates == nil || dates.NextDayAt == "" {
+	if dates == nil || dates.NextDayAt.IsZero() {
 		t.Errorf("expected dates populated, got %+v", dates)
-	}
-	if _, err := dates.NextDayTime(); err != nil {
-		t.Errorf("failed to parse NextDayTime: %v", err)
 	}
 	if prices == nil || prices["ammo"] <= 0 {
 		t.Errorf("expected ammo price > 0, got %v", prices)
@@ -585,20 +582,12 @@ func TestClient_GameConfig_GetDates_Fixture(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	nextDay, err := dates.NextDayTime()
-	if err != nil {
-		t.Fatalf("unexpected error parsing NextDayTime: %v", err)
+	// Timestamps decode to UTC times, not strings to parse.
+	if want := time.Date(2026, 11, 22, 0, 0, 0, 0, time.UTC); !dates.NextDayAt.Equal(want) {
+		t.Errorf("NextDayAt = %v, want %v", dates.NextDayAt, want)
 	}
-	if nextDay.IsZero() {
-		t.Errorf("expected valid non-zero time")
-	}
-
-	nextRegen, err := dates.NextRegenTime()
-	if err != nil {
-		t.Fatalf("unexpected error parsing NextRegenTime: %v", err)
-	}
-	if nextRegen.IsZero() {
-		t.Errorf("expected valid non-zero time")
+	if want := time.Date(2026, 11, 21, 16, 0, 0, 0, time.UTC); !dates.NextRegenAt.Equal(want) {
+		t.Errorf("NextRegenAt = %v, want %v", dates.NextRegenAt, want)
 	}
 }
 

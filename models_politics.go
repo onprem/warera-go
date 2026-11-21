@@ -10,7 +10,7 @@ type Alliance struct {
 	AvatarURL          string  `json:"avatarUrl,omitempty"`
 	AverageDevelopment float64 `json:"averageDevelopment,omitempty"`
 	CoreDevelopment    float64 `json:"coreDevelopment,omitempty"`
-	CreatedAt          string  `json:"createdAt,omitempty"`
+	CreatedAt          Time    `json:"createdAt,omitempty"`
 	CurrentDevelopment float64 `json:"currentDevelopment,omitempty"`
 	// LeaderID is the user ID of the alliance's leader.
 	LeaderID        string                 `json:"leader,omitempty"`
@@ -19,7 +19,7 @@ type Alliance struct {
 	Name            string                 `json:"name,omitempty"`
 	Rankings        map[string]RankingItem `json:"rankings,omitempty"`
 	Scheme          string                 `json:"scheme,omitempty"`
-	UpdatedAt       string                 `json:"updatedAt,omitempty"`
+	UpdatedAt       Time                   `json:"updatedAt,omitempty"`
 }
 
 // AllianceMember is a country in an alliance.
@@ -56,14 +56,14 @@ type War struct {
 	Attacker WarSide `json:"attacker,omitempty"`
 	// BattleIDs has been empty in every recorded response.
 	BattleIDs []string `json:"battles,omitempty"`
-	CreatedAt string   `json:"createdAt,omitempty"`
+	CreatedAt Time     `json:"createdAt,omitempty"`
 	Defender  WarSide  `json:"defender,omitempty"`
 	IsActive  bool     `json:"isActive,omitempty"`
 	// PriorityCountryID is the attacker or defender country holding priority
 	// until PriorityEndAt.
 	PriorityCountryID string `json:"priority,omitempty"`
-	PriorityEndAt     string `json:"priorityEndAt,omitempty"`
-	UpdatedAt         string `json:"updatedAt,omitempty"`
+	PriorityEndAt     Time   `json:"priorityEndAt,omitempty"`
+	UpdatedAt         Time   `json:"updatedAt,omitempty"`
 }
 
 // WarSide is one side's results in a war.
@@ -81,11 +81,11 @@ type Party struct {
 	AvatarURL string `json:"avatarUrl,omitempty"`
 	// CongressListIDs is the party's ordered list of congress candidates.
 	CongressListIDs         []string `json:"congressList,omitempty"`
-	CongressListUpdatedAt   string   `json:"congressListUpdatedAt,omitempty"`
+	CongressListUpdatedAt   Time     `json:"congressListUpdatedAt,omitempty"`
 	CongressListUpdatedByID string   `json:"congressListUpdatedBy,omitempty"`
 	CouncilMemberIDs        []string `json:"councilMembers,omitempty"`
 	CountryID               string   `json:"country,omitempty"`
-	CreatedAt               string   `json:"createdAt,omitempty"`
+	CreatedAt               Time     `json:"createdAt,omitempty"`
 	Description             string   `json:"description,omitempty"`
 	FavoriteGovType         string   `json:"favoriteGovType,omitempty"`
 	LeaderID                string   `json:"leader,omitempty"`
@@ -96,7 +96,7 @@ type Party struct {
 	PrimaryWinnerID string `json:"primaryWinner,omitempty"`
 	RegionID        string `json:"region,omitempty"`
 	TreasurerID     string `json:"treasurer,omitempty"`
-	UpdatedAt       string `json:"updatedAt,omitempty"`
+	UpdatedAt       Time   `json:"updatedAt,omitempty"`
 }
 
 // CongressSeat is a seat in a country's congress.
@@ -138,8 +138,8 @@ type UnrestStatus struct {
 	BarMax                   float64 `json:"barMax,omitempty"`
 	IsFull                   bool    `json:"isFull,omitempty"`
 	IsOnRevolutionCooldown   bool    `json:"isOnRevolutionCooldown,omitempty"`
-	LastContributionAt       string  `json:"lastContributionAt,omitempty"`
-	RevolutionCooldownEndsAt string  `json:"revolutionCooldownEndsAt,omitempty"`
+	LastContributionAt       Time    `json:"lastContributionAt,omitempty"`
+	RevolutionCooldownEndsAt Time    `json:"revolutionCooldownEndsAt,omitempty"`
 }
 
 // Election is a country election (Type "president", "congress", or
@@ -151,7 +151,7 @@ type Election struct {
 	// CountryID is set for country elections and PartyID for party
 	// elections.
 	CountryID           string         `json:"country,omitempty"`
-	CreatedAt           string         `json:"createdAt,omitempty"`
+	CreatedAt           Time           `json:"createdAt,omitempty"`
 	ElectedCandidateIDs []string       `json:"electedCandidates,omitempty"`
 	ElectedCount        int            `json:"electedCount,omitempty"`
 	IsActive            bool           `json:"isActive,omitempty"`
@@ -164,8 +164,8 @@ type Election struct {
 	// Votes holds vote counts keyed by candidate user ID.
 	Votes        map[string]int `json:"votes,omitempty"`
 	VotesCount   int            `json:"votesCount,omitempty"`
-	VotesEndAt   string         `json:"votesEndAt,omitempty"`
-	VotesStartAt string         `json:"votesStartAt,omitempty"`
+	VotesEndAt   Time           `json:"votesEndAt,omitempty"`
+	VotesStartAt Time           `json:"votesStartAt,omitempty"`
 }
 
 // ElectionCandidate is a candidate in an election.
@@ -185,7 +185,7 @@ type ElectionList struct {
 	ArticleID      string   `json:"article,omitempty"`
 	MemberIDs      []string `json:"members,omitempty"`
 	PartyID        string   `json:"party,omitempty"`
-	RegisteredAt   string   `json:"registeredAt,omitempty"`
+	RegisteredAt   Time     `json:"registeredAt,omitempty"`
 	RegisteredByID string   `json:"registeredBy,omitempty"`
 	Seats          int      `json:"seats,omitempty"`
 }

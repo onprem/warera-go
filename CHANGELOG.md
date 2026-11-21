@@ -7,6 +7,7 @@ All notable changes to this project are documented here. While the project is in
 ### Added
 
 - Typed enums with constants for every value the API's inputs accept, generated from `spec/openapi.json`: `RankingType`, `TransactionType`, `EventType`, `BattleRankingDataType`, `BattleRankingType`, `BattleRankingSide`, `BattleSide`, `UpgradeType`, `MercenaryAuctionStatus`, `ArticleListType`, `BattleDirection`, and `BattleListFilter`; plus hand-written `RankingHistoryRange` and `StateArmyExpenseKind`. Filters, method parameters, and the matching response fields use them, so a typo fails to compile instead of returning a 400.
+- `Time` and `Date` types for API timestamps and `YYYY-MM-DD` days. They embed `time.Time`, decode empty strings and null as the zero value, print as RFC 3339, and encode back to the API's formats.
 - `WithHooks` observes every HTTP attempt (procedures, status, duration, remaining server quota) and every pause for a retry or rate limit, for logging and metrics.
 - `WithUserAgent` identifies your tool to the API. Requests now send a `warera-go/<version>` User-Agent instead of Go's default.
 - `WithMaxRetryWait` caps how long one retry waits for the server.
@@ -17,6 +18,7 @@ All notable changes to this project are documented here. While the project is in
 - The client follows the server's rate-limit headers: when the server reports its quota exhausted, every request waits until the window resets, so several processes sharing a key slow down instead of failing. Rate-limited and unavailable responses are retried after the server's `Retry-After` or reset time (capped at one minute) instead of a fixed backoff of about 2 seconds.
 - The automatic rate limit with an API key is now 500 requests a minute, the API's own limit (was 200).
 - 409 Conflict responses are no longer retried.
+- **Breaking:** Every timestamp field in the response models is now a `Time` (and every day field, such as `ItemTradingDay.ValueAt`, a `Date`) instead of a string, so tools can sort, compare, and bucket times without parsing. `GameDates.NextDayTime` and `NextRegenTime` are removed; use the `NextDayAt` and `NextRegenAt` fields.
 - **Breaking:** `TransactionFilter.TransactionType *StringOrStrings` is now `TransactionTypes []TransactionType`; `StringOrStrings`, `SingleString`, and `StringList` are removed.
 - **Breaking:** `BattleOrders.GetByBattle` takes a `BattleSide` and `Rankings.GetRanking` a `RankingType`; `RankingHistoryFilter`, `StateArmyLedgerFilter`, and the generated filters use the new enum types.
 - **Breaking:** `Countries.GetStrategicResourceBonuses` returns nil and no error for a country with no strategic resources; the API returns null for these.

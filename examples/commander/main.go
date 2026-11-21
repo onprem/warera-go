@@ -70,9 +70,9 @@ func run() error {
 		fmt.Printf("Listed roster: %d members\n", len(members))
 		modeCounts := map[skillmix.Mode]int{}
 		for i, member := range members {
-			lastSeen := member.Dates.LastConnectionAt
-			if lastSeen == "" {
-				lastSeen = "not reported"
+			lastSeen := "not reported"
+			if at := member.Dates.LastConnectionAt; !at.IsZero() {
+				lastSeen = at.Format(time.RFC3339)
 			}
 			mix := skillmix.Analyze(skills[i].Skills)
 			modeCounts[mix.Mode()]++

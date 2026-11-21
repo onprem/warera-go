@@ -38,13 +38,13 @@ type Employee struct {
 	Age             int    `json:"age,omitempty"`
 	CompanyDisabled bool   `json:"companyDisabled,omitempty"`
 	CompanyID       string `json:"company,omitempty"`
-	CompanyMovedAt  string `json:"companyMovedAt,omitempty"`
-	CreatedAt       string `json:"createdAt,omitempty"`
+	CompanyMovedAt  Time   `json:"companyMovedAt,omitempty"`
+	CreatedAt       Time   `json:"createdAt,omitempty"`
 	Gender          string `json:"gender,omitempty"`
 	Name            string `json:"name,omitempty"`
 	NationalityID   string `json:"nationality,omitempty"`
 	OwnerID         string `json:"owner,omitempty"`
-	UpdatedAt       string `json:"updatedAt,omitempty"`
+	UpdatedAt       Time   `json:"updatedAt,omitempty"`
 
 	// Base holds the stats the employee was hired with, and Trained the
 	// points added by training.
@@ -69,8 +69,8 @@ type Employee struct {
 	EventModifiers     []EmployeeEventModifier `json:"eventModifiers,omitempty"`
 	CharmLuck          *EmployeeCharmLuck      `json:"charmLuck,omitempty"`
 	// CareBoosts lists when a manager's daily care boosted this employee.
-	CareBoosts       []string `json:"careBoosts,omitempty"`
-	CoworkerFiredAts []string `json:"coworkerFiredAts,omitempty"`
+	CareBoosts       []Time `json:"careBoosts,omitempty"`
+	CoworkerFiredAts []Time `json:"coworkerFiredAts,omitempty"`
 
 	ToolID     string              `json:"tool,omitempty"`
 	ToolItem   *EmployeeTool       `json:"toolItem,omitempty"`
@@ -80,13 +80,13 @@ type Employee struct {
 	TrainingsPerDay       int                `json:"trainingsPerDay,omitempty"`
 	TrainingsToday        int                `json:"trainingsToday,omitempty"`
 	TrainerSessionsUsed   int                `json:"trainerSessionsUsed,omitempty"`
-	TrainerSessionsUsedAt string             `json:"trainerSessionsUsedAt,omitempty"`
+	TrainerSessionsUsedAt Time               `json:"trainerSessionsUsedAt,omitempty"`
 
-	LastAgedDay        string `json:"lastAgedDay,omitempty"`
-	LastEventAt        string `json:"lastEventAt,omitempty"`
-	LastMovedAt        string `json:"lastMovedAt,omitempty"`
-	LastSpecializedDay string `json:"lastSpecializedDay,omitempty"`
-	LastTrainedAt      string `json:"lastTrainedAt,omitempty"`
+	LastAgedDay        Date `json:"lastAgedDay,omitempty"`
+	LastEventAt        Time `json:"lastEventAt,omitempty"`
+	LastMovedAt        Time `json:"lastMovedAt,omitempty"`
+	LastSpecializedDay Date `json:"lastSpecializedDay,omitempty"`
+	LastTrainedAt      Time `json:"lastTrainedAt,omitempty"`
 }
 
 // EmployeeStats are an employee's production, luck, and responsibility.
@@ -141,7 +141,7 @@ type EmployeeBonusSource struct {
 	EventCode string  `json:"eventCode,omitempty"`
 	Percent   float64 `json:"percent,omitempty"`
 	Source    string  `json:"source,omitempty"`
-	Until     string  `json:"until,omitempty"`
+	Until     Time    `json:"until,omitempty"`
 }
 
 // EmployeeHappiness is an employee's happiness by source, and the chance they
@@ -162,7 +162,7 @@ type EmployeeHappinessReason struct {
 	// EventCode and Until identify a temporary change from an employee event.
 	EventCode string `json:"eventCode,omitempty"`
 	Reason    string `json:"reason,omitempty"`
-	Until     string `json:"until,omitempty"`
+	Until     Time   `json:"until,omitempty"`
 }
 
 // EmployeeEventModifier is a temporary effect from an employee event.
@@ -170,22 +170,22 @@ type EmployeeEventModifier struct {
 	Code  string  `json:"code,omitempty"`
 	Delta float64 `json:"delta,omitempty"`
 	Kind  string  `json:"kind,omitempty"`
-	Until string  `json:"until,omitempty"`
+	Until Time    `json:"until,omitempty"`
 }
 
 // EmployeeCharmLuck is a temporary luck bonus.
 type EmployeeCharmLuck struct {
 	Amount float64 `json:"amount,omitempty"`
-	Until  string  `json:"until,omitempty"`
+	Until  Time    `json:"until,omitempty"`
 }
 
 // EmployeeTool is the tool an employee holds.
 type EmployeeTool struct {
 	Item
-	CreatedAt  string `json:"createdAt,omitempty"`
+	CreatedAt  Time   `json:"createdAt,omitempty"`
 	EmployeeID string `json:"employee,omitempty"`
 	OwnerID    string `json:"owner,omitempty"`
-	UpdatedAt  string `json:"updatedAt,omitempty"`
+	UpdatedAt  Time   `json:"updatedAt,omitempty"`
 }
 
 // EmployeeToolStatus reports whether an employee's tool works and the bonus
@@ -202,7 +202,7 @@ type EmployeeTraining struct {
 	Card     string                  `json:"card,omitempty"`
 	Delta    float64                 `json:"delta,omitempty"`
 	Outcome  EmployeeTrainingOutcome `json:"outcome,omitempty"`
-	PickedAt string                  `json:"pickedAt,omitempty"`
+	PickedAt Time                    `json:"pickedAt,omitempty"`
 	Rarity   string                  `json:"rarity,omitempty"`
 	Stat     string                  `json:"stat,omitempty"`
 	// Trait is the trait a card removes or changes; TraitTo and TraitTo2 are
@@ -226,16 +226,16 @@ type EmployeeTrainingOutcome struct {
 type Manager struct {
 	ID                      string  `json:"_id,omitempty"`
 	Accrued                 float64 `json:"accrued,omitempty"`
-	CanEndAt                string  `json:"canEndAt,omitempty"`
+	CanEndAt                Time    `json:"canEndAt,omitempty"`
 	CompanyID               string  `json:"company,omitempty"`
-	CreatedAt               string  `json:"createdAt,omitempty"`
+	CreatedAt               Time    `json:"createdAt,omitempty"`
 	EmployerID              string  `json:"employer,omitempty"`
 	HasPendingRateReduction bool    `json:"hasPendingRateReduction,omitempty"`
-	HiredAt                 string  `json:"hiredAt,omitempty"`
+	HiredAt                 Time    `json:"hiredAt,omitempty"`
 	HourlyWage              float64 `json:"hourlyWage,omitempty"`
 	IsInactive              bool    `json:"isInactive,omitempty"`
-	LastAccruedAt           string  `json:"lastAccruedAt,omitempty"`
-	LockedUntil             string  `json:"lockedUntil,omitempty"`
+	LastAccruedAt           Time    `json:"lastAccruedAt,omitempty"`
+	LockedUntil             Time    `json:"lockedUntil,omitempty"`
 	ManagementLevel         int     `json:"managementLevel,omitempty"`
 	MaxHourlyWage           float64 `json:"maxHourlyWage,omitempty"`
 	ProductionBonusPercent  float64 `json:"productionBonusPercent,omitempty"`
@@ -243,7 +243,7 @@ type Manager struct {
 	RateManagement float64 `json:"rateManagement,omitempty"`
 	TotalEarned    float64 `json:"totalEarned,omitempty"`
 	UnpaidHours    float64 `json:"unpaidHours,omitempty"`
-	UpdatedAt      string  `json:"updatedAt,omitempty"`
+	UpdatedAt      Time    `json:"updatedAt,omitempty"`
 	UserID         string  `json:"user,omitempty"`
 }
 
@@ -251,13 +251,13 @@ type Manager struct {
 type ManagerOffer struct {
 	ID            string  `json:"_id,omitempty"`
 	CompanyID     string  `json:"company,omitempty"`
-	CreatedAt     string  `json:"createdAt,omitempty"`
+	CreatedAt     Time    `json:"createdAt,omitempty"`
 	MaxHourlyWage float64 `json:"maxHourlyWage,omitempty"`
 	MinManagement float64 `json:"minManagement,omitempty"`
 	// RateManagement is the pay per Management point per hour.
 	RateManagement float64 `json:"rateManagement,omitempty"`
 	RegionID       string  `json:"region,omitempty"`
-	UpdatedAt      string  `json:"updatedAt,omitempty"`
+	UpdatedAt      Time    `json:"updatedAt,omitempty"`
 	UserID         string  `json:"user,omitempty"`
 }
 

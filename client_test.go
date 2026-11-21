@@ -646,7 +646,7 @@ func TestClient_Companies_GetByID_Fixture(t *testing.T) {
 		t.Errorf("expected ItemCode lead, got %s", company.ItemCode)
 	}
 	if company.ConcreteInvested != 400 {
-		t.Errorf("expected ConcreteInvested 400, got %d", company.ConcreteInvested)
+		t.Errorf("expected ConcreteInvested 400, got %v", company.ConcreteInvested)
 	}
 	if company.Production <= 0 {
 		t.Errorf("expected Production > 0, got %f", company.Production)
@@ -898,13 +898,13 @@ func TestClient_Battles_GetLiveBattleData_Fixture(t *testing.T) {
 		t.Errorf("expected 3 attacker orders, got %d", len(live.Battle.AttackerCountryOrders))
 	}
 	if live.Round.AttackerDamages != 5063172 {
-		t.Errorf("expected AttackerDamages 5063172, got %d", live.Round.AttackerDamages)
+		t.Errorf("expected AttackerDamages 5063172, got %v", live.Round.AttackerDamages)
 	}
 	if live.Round.DefenderDamages != 143523 {
-		t.Errorf("expected DefenderDamages 143523, got %d", live.Round.DefenderDamages)
+		t.Errorf("expected DefenderDamages 143523, got %v", live.Round.DefenderDamages)
 	}
 	if live.Round.ActualTickPoints != 1 {
-		t.Errorf("expected ActualTickPoints 1, got %d", live.Round.ActualTickPoints)
+		t.Errorf("expected ActualTickPoints 1, got %v", live.Round.ActualTickPoints)
 	}
 }
 

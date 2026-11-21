@@ -126,18 +126,18 @@ func run() error {
 		fmt.Printf("Categorized regular points=%d; profile reports %d spent points.\n",
 			mix.ClassifiedPoints, profile.Leveling.SpentSkillPoints)
 	}
-	fmt.Printf("Combat skills: attack=%d criticalChance=%d criticalDamage=%d precision=%d armor=%d\n",
+	fmt.Printf("Combat skills: attack=%g criticalChance=%g criticalDamage=%g precision=%g armor=%g\n",
 		profile.Skills.Attack.Total, profile.Skills.CriticalChance.Total,
 		profile.Skills.CriticalDamages.Total, profile.Skills.Precision.Total, profile.Skills.Armor.Total)
 	fmt.Printf("Current equipment: weapon=%s helmet=%s chest=%s gloves=%s pants=%s ammo=%s\n",
 		weapon, equipment.Helmet.Code, equipment.Chest.Code, equipment.Gloves.Code, equipment.Pants.Code, equipment.Ammo)
-	fmt.Printf("Battle %s, round %d (%s): active=%t nextTick=%s attackerDamage=%d defenderDamage=%d\n",
+	fmt.Printf("Battle %s, round %d (%s): active=%t nextTick=%s attackerDamage=%.0f defenderDamage=%.0f\n",
 		battleID, roundNumber, side, live.Round.IsActive, live.Round.NextTickAt,
 		live.Round.AttackerDamages, live.Round.DefenderDamages)
 	if contributionErr != nil {
 		fmt.Fprintf(os.Stderr, "Battle contribution summary unavailable: %v\n", contributionErr)
 	} else {
-		fmt.Printf("User battle summary: hits=%d damage=%d bounty=%.4f contract=%.4f\n",
+		fmt.Printf("User battle summary: hits=%d damage=%.0f bounty=%.4f contract=%.4f\n",
 			contribution.Hits, contribution.TotalDamage, contribution.TotalMoneyFromBounty, contribution.TotalMoneyFromContract)
 	}
 
@@ -160,7 +160,7 @@ func run() error {
 		if hit.Weapon != nil {
 			weaponCode = hit.Weapon.Code
 		}
-		fmt.Printf("- %s damage=%d critical=%t missed=%t weapon=%s\n",
+		fmt.Printf("- %s damage=%.0f critical=%t missed=%t weapon=%s\n",
 			hit.HitAt, hit.Damages, hit.IsCriticalHit, hit.IsMissed, weaponCode)
 	}
 	if !foundHit {

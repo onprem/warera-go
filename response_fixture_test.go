@@ -141,9 +141,41 @@ func TestUserSkillFixtureRetainsNullAndNumericValues(t *testing.T) {
 	}
 }
 
+// decodeFixtureAs decodes a fixture strictly, so a field the API returns but the
+// model lacks (or has renamed) fails the test instead of silently decoding to
+// a zero value. MongoDB's "__v" document version is dropped first because it is
+// not part of any model's contract. Custom UnmarshalJSON methods decode their
+// own subtree leniently.
 func decodeFixtureAs[T any](data json.RawMessage) error {
+	dec := json.NewDecoder(bytes.NewReader(data))
+	dec.UseNumber()
+	var raw any
+	if err := dec.Decode(&raw); err != nil {
+		return err
+	}
+	stripped, err := json.Marshal(withoutDocumentVersions(raw))
+	if err != nil {
+		return err
+	}
+	dec = json.NewDecoder(bytes.NewReader(stripped))
+	dec.DisallowUnknownFields()
 	var got T
-	return json.Unmarshal(data, &got)
+	return dec.Decode(&got)
+}
+
+func withoutDocumentVersions(value any) any {
+	switch v := value.(type) {
+	case map[string]any:
+		delete(v, "__v")
+		for key, child := range v {
+			v[key] = withoutDocumentVersions(child)
+		}
+	case []any:
+		for i, child := range v {
+			v[i] = withoutDocumentVersions(child)
+		}
+	}
+	return value
 }
 
 func TestGameConfigService_GetGameConfigFixture(t *testing.T) {

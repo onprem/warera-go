@@ -19,7 +19,7 @@ type BattleLootSummary struct {
 	CreatedAt              string               `json:"createdAt,omitempty"`
 	Hits                   int                  `json:"hits,omitempty"`
 	PoolLoot               []BattleLootPoolItem `json:"poolLoot,omitempty"`
-	TotalDamage            int64                `json:"totalDmg,omitempty"`
+	TotalDamage            float64              `json:"totalDmg,omitempty"`
 	TotalMoneyFromBounty   float64              `json:"totalMoneyFromBounty,omitempty"`
 	TotalMoneyFromContract float64              `json:"totalMoneyFromContract,omitempty"`
 	UpdatedAt              string               `json:"updatedAt,omitempty"`
@@ -72,10 +72,10 @@ func (b RegionActiveBattleValue) MarshalJSON() ([]byte, error) {
 
 // BattleLootPoolItem is one item in a battle loot pool.
 type BattleLootPoolItem struct {
-	Item  RoundWeapon `json:"item"`
-	Pool  string      `json:"pool"`
-	Rank  int         `json:"rank"`
-	Round string      `json:"round,omitempty"`
+	Item  Item   `json:"item"`
+	Pool  string `json:"pool"`
+	Rank  int    `json:"rank"`
+	Round string `json:"round,omitempty"`
 }
 
 // BattleRanking is the paginated response for a battle.
@@ -87,18 +87,18 @@ type BattleRanking struct {
 
 // BattleRankingEntry is one battle ranking result.
 type BattleRankingEntry struct {
-	ID        string       `json:"_id,omitempty"`
-	Ranking   string       `json:"ranking,omitempty"`
-	UserID    string       `json:"user,omitempty"`
-	CountryID string       `json:"country,omitempty"`
-	MUID      string       `json:"mu,omitempty"`
-	Value     float64      `json:"value,omitempty"`
-	Rank      int          `json:"rank,omitempty"`
-	Badge     string       `json:"badge,omitempty"`
-	Version   int          `json:"__v,omitempty"`
-	CreatedAt string       `json:"createdAt,omitempty"`
-	UpdatedAt string       `json:"updatedAt,omitempty"`
-	LootItem  *RoundWeapon `json:"lootItem,omitempty"`
+	ID        string  `json:"_id,omitempty"`
+	Ranking   string  `json:"ranking,omitempty"`
+	UserID    string  `json:"user,omitempty"`
+	CountryID string  `json:"country,omitempty"`
+	MUID      string  `json:"mu,omitempty"`
+	Value     float64 `json:"value,omitempty"`
+	Rank      int     `json:"rank,omitempty"`
+	Badge     string  `json:"badge,omitempty"`
+	Version   int     `json:"__v,omitempty"`
+	CreatedAt string  `json:"createdAt,omitempty"`
+	UpdatedAt string  `json:"updatedAt,omitempty"`
+	LootItem  *Item   `json:"lootItem,omitempty"`
 }
 
 // ItemOffer is a market offer for an item.
@@ -126,12 +126,12 @@ type MercenaryContractAuction struct {
 	CurrentPerK       float64                       `json:"currentPerK,omitempty"`
 	CurrentWinner     *string                       `json:"currentWinner,omitempty"`
 	CurrentWinnerUser *string                       `json:"currentWinnerUser,omitempty"`
-	Duration          int                           `json:"duration,omitempty"`
+	Duration          float64                       `json:"duration,omitempty"`
 	ExpiresAt         string                        `json:"expiresAt,omitempty"`
 	ForCountry        string                        `json:"forCountry,omitempty"`
 	ForCountrySide    string                        `json:"forCountrySide,omitempty"`
 	InitialPerK       float64                       `json:"initialPerK,omitempty"`
-	MinimumDamage     int64                         `json:"minimumDamage,omitempty"`
+	MinimumDamage     float64                       `json:"minimumDamage,omitempty"`
 	ProfessionalsOnly bool                          `json:"professionalsOnly,omitempty"`
 	RoundID           string                        `json:"round,omitempty"`
 	RoundNumber       int                           `json:"roundNumber,omitempty"`
@@ -150,41 +150,42 @@ type MercenaryContractAuctionBid struct {
 
 // TransactionListItem is one transaction history entry.
 type TransactionListItem struct {
-	ID              string           `json:"_id,omitempty"`
-	BuyerID         string           `json:"buyerId,omitempty"`
-	CreatedAt       string           `json:"createdAt,omitempty"`
-	Item            *TransactionItem `json:"item,omitempty"`
-	ItemCode        string           `json:"itemCode,omitempty"`
-	Money           float64          `json:"money,omitempty"`
-	OfferCreatedAt  string           `json:"offerCreatedAt,omitempty"`
-	Quantity        int              `json:"quantity,omitempty"`
-	SellerCountryID string           `json:"sellerCountryId,omitempty"`
-	SellerID        string           `json:"sellerId,omitempty"`
-	SellerMUID      string           `json:"sellerMuId,omitempty"`
-	TransactionType string           `json:"transactionType,omitempty"`
-	UpdatedAt       string           `json:"updatedAt,omitempty"`
+	ID              string  `json:"_id,omitempty"`
+	BuyerID         string  `json:"buyerId,omitempty"`
+	CreatedAt       string  `json:"createdAt,omitempty"`
+	Item            *Item   `json:"item,omitempty"`
+	ItemCode        string  `json:"itemCode,omitempty"`
+	Money           float64 `json:"money,omitempty"`
+	OfferCreatedAt  string  `json:"offerCreatedAt,omitempty"`
+	Quantity        int     `json:"quantity,omitempty"`
+	SellerCountryID string  `json:"sellerCountryId,omitempty"`
+	SellerID        string  `json:"sellerId,omitempty"`
+	SellerMUID      string  `json:"sellerMuId,omitempty"`
+	TransactionType string  `json:"transactionType,omitempty"`
+	UpdatedAt       string  `json:"updatedAt,omitempty"`
 }
 
-// TransactionItem describes the item attached to a transaction.
-type TransactionItem struct {
-	ID                string                `json:"_id,omitempty"`
-	Code              string                `json:"code,omitempty"`
-	LastAcquisitionAt string                `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int                   `json:"maxState,omitempty"`
-	Quantity          int                   `json:"quantity,omitempty"`
-	Skills            TransactionItemSkills `json:"skills,omitempty"`
-	State             int                   `json:"state,omitempty"`
-	Type              string                `json:"type,omitempty"`
+// Item is a weapon or equipment item, as attached to a transaction or awarded
+// as battle loot.
+type Item struct {
+	ID                string     `json:"_id,omitempty"`
+	Code              string     `json:"code,omitempty"`
+	LastAcquisitionAt string     `json:"lastAcquisitionAt,omitempty"`
+	MaxState          float64    `json:"maxState,omitempty"`
+	Quantity          int        `json:"quantity,omitempty"`
+	Skills            ItemSkills `json:"skills,omitempty"`
+	State             float64    `json:"state,omitempty"`
+	Type              string     `json:"type,omitempty"`
 }
 
-// TransactionItemSkills contains item skill modifiers in a transaction.
-type TransactionItemSkills struct {
-	Armor           int `json:"armor,omitempty"`
-	Attack          int `json:"attack,omitempty"`
-	CriticalChance  int `json:"criticalChance,omitempty"`
-	CriticalDamages int `json:"criticalDamages,omitempty"`
-	Dodge           int `json:"dodge,omitempty"`
-	Precision       int `json:"precision,omitempty"`
+// ItemSkills contains an item's skill modifiers.
+type ItemSkills struct {
+	Armor           float64 `json:"armor,omitempty"`
+	Attack          float64 `json:"attack,omitempty"`
+	CriticalChance  float64 `json:"criticalChance,omitempty"`
+	CriticalDamages float64 `json:"criticalDamages,omitempty"`
+	Dodge           float64 `json:"dodge,omitempty"`
+	Precision       float64 `json:"precision,omitempty"`
 }
 
 // WorkOffer is an offer to work for a company. It includes wageAfterTax and
@@ -227,7 +228,7 @@ type Worker struct {
 	EmployerID             string  `json:"employer,omitempty"`
 	Wage                   float64 `json:"wage,omitempty"`
 	JoinedAt               string  `json:"joinedAt,omitempty"`
-	Fidelity               int     `json:"fidelity,omitempty"`
+	Fidelity               float64 `json:"fidelity,omitempty"`
 	LastFidelityIncreaseAt string  `json:"lastFidelityIncreaseAt,omitempty"`
 	CreatedAt              string  `json:"createdAt,omitempty"`
 	UpdatedAt              string  `json:"updatedAt,omitempty"`

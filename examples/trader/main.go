@@ -100,7 +100,7 @@ func run() error {
 		fmt.Printf("- %s [%s], product=%s: %d workers\n",
 			group.Company.Name, group.Company.ID, group.Company.ItemCode, len(group.Workers))
 		for _, worker := range group.Workers {
-			fmt.Printf("  user=%s wage=%.4f fidelity=%d joined=%s\n",
+			fmt.Printf("  user=%s wage=%.4f fidelity=%g joined=%s\n",
 				worker.UserID, worker.Wage, worker.Fidelity, worker.JoinedAt)
 		}
 	}

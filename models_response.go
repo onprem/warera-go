@@ -28,14 +28,14 @@ type Article struct {
 
 // ArticleStats is a nested component of Article.
 type ArticleStats struct {
-	Comments int `json:"comments,omitempty"`
-	Dislikes int `json:"dislikes,omitempty"`
-	GemTips  int `json:"gemTips,omitempty"`
-	Likes    int `json:"likes,omitempty"`
-	Score    int `json:"score,omitempty"`
-	Subs     int `json:"subs,omitempty"`
-	Tips     int `json:"tips,omitempty"`
-	Views    int `json:"views,omitempty"`
+	Comments int     `json:"comments,omitempty"`
+	Dislikes int     `json:"dislikes,omitempty"`
+	GemTips  float64 `json:"gemTips,omitempty"`
+	Likes    int     `json:"likes,omitempty"`
+	Score    float64 `json:"score,omitempty"`
+	Subs     int     `json:"subs,omitempty"`
+	Tips     float64 `json:"tips,omitempty"`
+	Views    int     `json:"views,omitempty"`
 }
 
 // Battle is a military conflict between attacker and defender sides.
@@ -57,11 +57,11 @@ type Battle struct {
 
 // BattleRoundHistory summarizes the outcome of a completed battle round.
 type BattleRoundHistory struct {
-	AttackerDamages int    `json:"attackerDamages,omitempty"`
-	AttackerPoints  int    `json:"attackerPoints,omitempty"`
-	DefenderDamages int    `json:"defenderDamages,omitempty"`
-	DefenderPoints  int    `json:"defenderPoints,omitempty"`
-	WonBy           string `json:"wonBy,omitempty"`
+	AttackerDamages float64 `json:"attackerDamages,omitempty"`
+	AttackerPoints  float64 `json:"attackerPoints,omitempty"`
+	DefenderDamages float64 `json:"defenderDamages,omitempty"`
+	DefenderPoints  float64 `json:"defenderPoints,omitempty"`
+	WonBy           string  `json:"wonBy,omitempty"`
 }
 
 // BattleOrder is an order assigned to a country or military unit on a battle side.
@@ -99,7 +99,7 @@ type BattleSideSummary struct {
 	BountyEffectiveAt string   `json:"bountyEffectiveAt,omitempty"`
 	CountryID         string   `json:"country,omitempty"`
 	CountryOrders     []string `json:"countryOrders,omitempty"`
-	Damages           int      `json:"damages,omitempty"`
+	Damages           float64  `json:"damages,omitempty"`
 	HitCount          int      `json:"hitCount,omitempty"`
 	MoneyPer1kDamages float64  `json:"moneyPer1kDamages,omitempty"`
 	MoneyPool         float64  `json:"moneyPool,omitempty"`
@@ -117,7 +117,7 @@ type BattleStats struct {
 type Company struct {
 	ID                  string                     `json:"_id,omitempty"`
 	ActiveUpgradeLevels CompanyActiveUpgradeLevels `json:"activeUpgradeLevels,omitempty"`
-	ConcreteInvested    int                        `json:"concreteInvested,omitempty"`
+	ConcreteInvested    float64                    `json:"concreteInvested,omitempty"`
 	CreatedAt           string                     `json:"createdAt,omitempty"`
 	EstimatedValue      float64                    `json:"estimatedValue,omitempty"`
 	IsFull              bool                       `json:"isFull,omitempty"`
@@ -207,10 +207,10 @@ type CountryTaxes struct {
 
 // CountryUnrest is a nested component of Country.
 type CountryUnrest struct {
-	Bar                   int    `json:"bar,omitempty"`
-	BarMax                int    `json:"barMax,omitempty"`
-	LastContributionAt    string `json:"lastContributionAt,omitempty"`
-	LastRevolutionEndedAt string `json:"lastRevolutionEndedAt,omitempty"`
+	Bar                   float64 `json:"bar,omitempty"`
+	BarMax                float64 `json:"barMax,omitempty"`
+	LastContributionAt    string  `json:"lastContributionAt,omitempty"`
+	LastRevolutionEndedAt string  `json:"lastRevolutionEndedAt,omitempty"`
 }
 
 // CurrentEquipment contains the equipment currently worn by a user.
@@ -229,19 +229,19 @@ type EquipmentItem struct {
 	ID                string          `json:"_id,omitempty"`
 	Code              string          `json:"code,omitempty"`
 	LastAcquisitionAt string          `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int             `json:"maxState,omitempty"`
+	MaxState          float64         `json:"maxState,omitempty"`
 	Quantity          int             `json:"quantity,omitempty"`
 	Skills            EquipmentSkills `json:"skills,omitempty"`
-	State             int             `json:"state,omitempty"`
+	State             float64         `json:"state,omitempty"`
 	Type              string          `json:"type,omitempty"`
 }
 
 // EquipmentSkills is a nested component of RoundEquipment.
 type EquipmentSkills struct {
-	Armor           int `json:"armor,omitempty"`
-	CriticalDamages int `json:"criticalDamages,omitempty"`
-	Dodge           int `json:"dodge,omitempty"`
-	Precision       int `json:"precision,omitempty"`
+	Armor           float64 `json:"armor,omitempty"`
+	CriticalDamages float64 `json:"criticalDamages,omitempty"`
+	Dodge           float64 `json:"dodge,omitempty"`
+	Precision       float64 `json:"precision,omitempty"`
 }
 
 // Event is a world or country event with event-specific data.
@@ -261,12 +261,12 @@ type EventData struct {
 	AttackerCountry string   `json:"attackerCountry,omitempty"`
 	AttackerRegion  string   `json:"attackerRegion,omitempty"`
 	Battle          string   `json:"battle,omitempty"`
-	BonusPercent    int      `json:"bonusPercent,omitempty"`
+	BonusPercent    float64  `json:"bonusPercent,omitempty"`
 	Countries       []string `json:"countries,omitempty"`
 	CountryID       string   `json:"country,omitempty"`
 	DefenderCountry string   `json:"defenderCountry,omitempty"`
 	DefenderRegion  string   `json:"defenderRegion,omitempty"`
-	DurationDays    int      `json:"durationDays,omitempty"`
+	DurationDays    float64  `json:"durationDays,omitempty"`
 	ItemCode        string   `json:"itemCode,omitempty"`
 	Region          string   `json:"region,omitempty"`
 	Type            string   `json:"type,omitempty"`
@@ -308,15 +308,15 @@ type GameConfig struct {
 
 // GameConfigAlliance is a nested component of GameConfig.
 type GameConfigAlliance struct {
-	LeaveCooldownDays          int    `json:"leaveCooldownDays,omitempty"`
-	LeaveCooldownDisabledUntil string `json:"leaveCooldownDisabledUntil,omitempty"`
+	LeaveCooldownDays          float64 `json:"leaveCooldownDays,omitempty"`
+	LeaveCooldownDisabledUntil string  `json:"leaveCooldownDisabledUntil,omitempty"`
 }
 
 // GameConfigAnnouncement is a nested component of GameConfig.
 type GameConfigAnnouncement struct {
-	DurationHours int `json:"durationHours,omitempty"`
-	MaxLength     int `json:"maxLength,omitempty"`
-	MaxPerHour    int `json:"maxPerHour,omitempty"`
+	DurationHours float64 `json:"durationHours,omitempty"`
+	MaxLength     int     `json:"maxLength,omitempty"`
+	MaxPerHour    float64 `json:"maxPerHour,omitempty"`
 }
 
 // GameConfigBadge is a nested component of GameConfig.
@@ -355,114 +355,114 @@ type GameConfigBadge struct {
 type GameConfigBadgeAlphaTester struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeBabyBoomer is a nested component of GameConfigBadge.
 type GameConfigBadgeBabyBoomer struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeBattleTerrainTop1 is a nested component of GameConfigBadge.
 type GameConfigBadgeBattleTerrainTop1 struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeBattleTop1 is a nested component of GameConfigBadge.
 type GameConfigBadgeBattleTop1 struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeBugFinder is a nested component of GameConfigBadge.
 type GameConfigBadgeBugFinder struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeCoffee is a nested component of GameConfigBadge.
 type GameConfigBadgeCoffee struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeCongressMember is a nested component of GameConfigBadge.
 type GameConfigBadgeCongressMember struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeCountryPresident is a nested component of GameConfigBadge.
 type GameConfigBadgeCountryPresident struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	CooldownDays   int      `json:"cooldownDays,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	CooldownDays   float64  `json:"cooldownDays,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeCountryTournamentWinner is a nested component of GameConfigBadge.
 type GameConfigBadgeCountryTournamentWinner struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeExploitFinder is a nested component of GameConfigBadge.
 type GameConfigBadgeExploitFinder struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeFoundingFather is a nested component of GameConfigBadge.
 type GameConfigBadgeFoundingFather struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeGiftPremium is a nested component of GameConfigBadge.
 type GameConfigBadgeGiftPremium struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeGiveawayWinner is a nested component of GameConfigBadge.
 type GameConfigBadgeGiveawayWinner struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeGovMember is a nested component of GameConfigBadge.
 type GameConfigBadgeGovMember struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	CooldownDays   int      `json:"cooldownDays,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	CooldownDays   float64  `json:"cooldownDays,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeHardWorker is a nested component of GameConfigBadge.
 type GameConfigBadgeHardWorker struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeMuTournamentWinner is a nested component of GameConfigBadge.
 type GameConfigBadgeMuTournamentWinner struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgePopularArticle is a nested component of GameConfigBadge.
 type GameConfigBadgePopularArticle struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 	UniqueMetadataKey    string   `json:"uniqueMetadataKey,omitempty"`
 }
 
@@ -470,135 +470,135 @@ type GameConfigBadgePopularArticle struct {
 type GameConfigBadgePremium struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgePrestige is a nested component of GameConfigBadge.
 type GameConfigBadgePrestige struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeReferral is a nested component of GameConfigBadge.
 type GameConfigBadgeReferral struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeResetSurvivor is a nested component of GameConfigBadge.
 type GameConfigBadgeResetSurvivor struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeRoundTerrainTop1 is a nested component of GameConfigBadge.
 type GameConfigBadgeRoundTerrainTop1 struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeRoundTop1 is a nested component of GameConfigBadge.
 type GameConfigBadgeRoundTop1 struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeStaff is a nested component of GameConfigBadge.
 type GameConfigBadgeStaff struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeSugarDaddy is a nested component of GameConfigBadge.
 type GameConfigBadgeSugarDaddy struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeTranslator is a nested component of GameConfigBadge.
 type GameConfigBadgeTranslator struct {
 	Availabilities       []string `json:"availabilities,omitempty"`
 	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
-	Reward               int      `json:"reward,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeVicePresident is a nested component of GameConfigBadge.
 type GameConfigBadgeVicePresident struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	CooldownDays   int      `json:"cooldownDays,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	CooldownDays   float64  `json:"cooldownDays,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBadgeVoted is a nested component of GameConfigBadge.
 type GameConfigBadgeVoted struct {
 	Availabilities []string `json:"availabilities,omitempty"`
-	Reward         int      `json:"reward,omitempty"`
+	Reward         float64  `json:"reward,omitempty"`
 }
 
 // GameConfigBattle is a nested component of GameConfig.
 type GameConfigBattle struct {
-	AllianceDamagesBonusPercent          int            `json:"allianceDamagesBonusPercent,omitempty"`
-	CasesPer1kDamagesInPool              int            `json:"casesPer1kDamagesInPool,omitempty"`
-	CountryOrderBonusPercent             int            `json:"countryOrderBonusPercent,omitempty"`
-	EnemyDamagesBonusPercent             int            `json:"enemyDamagesBonusPercent,omitempty"`
-	GovMemberBountyRewardPercent         int            `json:"govMemberBountyRewardPercent,omitempty"`
-	HealthCost                           int            `json:"healthCost,omitempty"`
-	HitFor1CaseInPool                    int            `json:"hitFor1CaseInPool,omitempty"`
-	LostAttackingRegionMalusPercent      int            `json:"lostAttackingRegionMalusPercent,omitempty"`
+	AllianceDamagesBonusPercent          float64        `json:"allianceDamagesBonusPercent,omitempty"`
+	CasesPer1kDamagesInPool              float64        `json:"casesPer1kDamagesInPool,omitempty"`
+	CountryOrderBonusPercent             float64        `json:"countryOrderBonusPercent,omitempty"`
+	EnemyDamagesBonusPercent             float64        `json:"enemyDamagesBonusPercent,omitempty"`
+	GovMemberBountyRewardPercent         float64        `json:"govMemberBountyRewardPercent,omitempty"`
+	HealthCost                           float64        `json:"healthCost,omitempty"`
+	HitFor1CaseInPool                    float64        `json:"hitFor1CaseInPool,omitempty"`
+	LostAttackingRegionMalusPercent      float64        `json:"lostAttackingRegionMalusPercent,omitempty"`
 	MaxRounds                            int            `json:"maxRounds,omitempty"`
-	MuOrderBonusPercent                  int            `json:"muOrderBonusPercent,omitempty"`
-	OccupyingYourRegionsMalusPercent     int            `json:"occupyingYourRegionsMalusPercent,omitempty"`
-	PatrioticBonusPercent                int            `json:"patrioticBonusPercent,omitempty"`
-	PointsToWinRound                     int            `json:"pointsToWinRound,omitempty"`
+	MuOrderBonusPercent                  float64        `json:"muOrderBonusPercent,omitempty"`
+	OccupyingYourRegionsMalusPercent     float64        `json:"occupyingYourRegionsMalusPercent,omitempty"`
+	PatrioticBonusPercent                float64        `json:"patrioticBonusPercent,omitempty"`
+	PointsToWinRound                     float64        `json:"pointsToWinRound,omitempty"`
 	RankingsLootPercentPer1kDmg          float64        `json:"rankingsLootPercentPer1kDmg,omitempty"`
-	RegionNotLinkedToCapitalMalusPercent int            `json:"regionNotLinkedToCapitalMalusPercent,omitempty"`
+	RegionNotLinkedToCapitalMalusPercent float64        `json:"regionNotLinkedToCapitalMalusPercent,omitempty"`
 	RoundsToWin                          int            `json:"roundsToWin,omitempty"`
-	SetCountryOrderMoneyCost             int            `json:"setCountryOrderMoneyCost,omitempty"`
-	SetMuOrderMoneyCost                  int            `json:"setMuOrderMoneyCost,omitempty"`
-	SetOrderMoneyCost                    int            `json:"setOrderMoneyCost,omitempty"`
+	SetCountryOrderMoneyCost             float64        `json:"setCountryOrderMoneyCost,omitempty"`
+	SetMuOrderMoneyCost                  float64        `json:"setMuOrderMoneyCost,omitempty"`
+	SetOrderMoneyCost                    float64        `json:"setOrderMoneyCost,omitempty"`
 	TickPoints                           map[string]int `json:"tickPoints,omitempty"`
 }
 
 // GameConfigCitizenshipApplication is a nested component of GameConfig.
 type GameConfigCitizenshipApplication struct {
-	AutoApprovalEnabled       bool `json:"autoApprovalEnabled,omitempty"`
-	AutoApprovalMaxPopulation int  `json:"autoApprovalMaxPopulation,omitempty"`
+	AutoApprovalEnabled       bool    `json:"autoApprovalEnabled,omitempty"`
+	AutoApprovalMaxPopulation float64 `json:"autoApprovalMaxPopulation,omitempty"`
 }
 
 // GameConfigCompany is a nested component of GameConfig.
 type GameConfigCompany struct {
-	ChangeItemCost                     int `json:"changeItemCost,omitempty"`
-	ConstructionCostIncreasePerCompany int `json:"constructionCostIncreasePerCompany,omitempty"`
-	DepositResourceBonus               int `json:"depositResourceBonus,omitempty"`
-	DestructionValuePercent            int `json:"destructionValuePercent,omitempty"`
-	MoveCost                           int `json:"moveCost,omitempty"`
+	ChangeItemCost                     float64 `json:"changeItemCost,omitempty"`
+	ConstructionCostIncreasePerCompany float64 `json:"constructionCostIncreasePerCompany,omitempty"`
+	DepositResourceBonus               float64 `json:"depositResourceBonus,omitempty"`
+	DestructionValuePercent            float64 `json:"destructionValuePercent,omitempty"`
+	MoveCost                           float64 `json:"moveCost,omitempty"`
 }
 
 // GameConfigCountry is a nested component of GameConfig.
 type GameConfigCountry struct {
-	MaxTaxAmount int `json:"maxTaxAmount,omitempty"`
+	MaxTaxAmount float64 `json:"maxTaxAmount,omitempty"`
 }
 
 // GameConfigElection is a nested component of GameConfig.
 type GameConfigElection struct {
-	CandidateDurationHours            int `json:"candidateDurationHours,omitempty"`
-	CandidateMinLevel                 int `json:"candidateMinLevel,omitempty"`
-	ElectionVoteDurationHours         int `json:"electionVoteDurationHours,omitempty"`
-	VoteMinDaysSinceCitizenshipChange int `json:"voteMinDaysSinceCitizenshipChange,omitempty"`
-	VoteMinLevel                      int `json:"voteMinLevel,omitempty"`
+	CandidateDurationHours            float64 `json:"candidateDurationHours,omitempty"`
+	CandidateMinLevel                 int     `json:"candidateMinLevel,omitempty"`
+	ElectionVoteDurationHours         float64 `json:"electionVoteDurationHours,omitempty"`
+	VoteMinDaysSinceCitizenshipChange float64 `json:"voteMinDaysSinceCitizenshipChange,omitempty"`
+	VoteMinLevel                      int     `json:"voteMinLevel,omitempty"`
 }
 
 // GameConfigGovernment is a nested component of GameConfig.
 type GameConfigGovernment struct {
-	MemberWagePercent                  int `json:"memberWagePercent,omitempty"`
-	NominationCooldownDays             int `json:"nominationCooldownDays,omitempty"`
-	PresidentWagePercent               int `json:"presidentWagePercent,omitempty"`
-	ResistanceDecreasedCooldownInHours int `json:"resistanceDecreasedCooldownInHours,omitempty"`
-	ResistanceIncreasedCooldownInHours int `json:"resistanceIncreasedCooldownInHours,omitempty"`
+	MemberWagePercent                  float64 `json:"memberWagePercent,omitempty"`
+	NominationCooldownDays             float64 `json:"nominationCooldownDays,omitempty"`
+	PresidentWagePercent               float64 `json:"presidentWagePercent,omitempty"`
+	ResistanceDecreasedCooldownInHours float64 `json:"resistanceDecreasedCooldownInHours,omitempty"`
+	ResistanceIncreasedCooldownInHours float64 `json:"resistanceIncreasedCooldownInHours,omitempty"`
 }
 
 // GameConfigItems is a nested component of GameConfig.
@@ -671,7 +671,7 @@ type GameConfigItemsAmmo struct {
 	FlatStats        GameConfigItemsAmmoFlatStats       `json:"flatStats,omitempty"`
 	IsTradable       bool                               `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsAmmoProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                `json:"productionPoints,omitempty"`
+	ProductionPoints float64                            `json:"productionPoints,omitempty"`
 	Rarity           string                             `json:"rarity,omitempty"`
 	SkinSlot         string                             `json:"skinSlot,omitempty"`
 	Type             string                             `json:"type,omitempty"`
@@ -680,12 +680,12 @@ type GameConfigItemsAmmo struct {
 
 // GameConfigItemsAmmoFlatStats is a nested component of GameConfigItemsAmmo.
 type GameConfigItemsAmmoFlatStats struct {
-	PercentAttack int `json:"percentAttack,omitempty"`
+	PercentAttack float64 `json:"percentAttack,omitempty"`
 }
 
 // GameConfigItemsAmmoProductionNeeds is a nested component of GameConfigItemsAmmo.
 type GameConfigItemsAmmoProductionNeeds struct {
-	Lead int `json:"lead,omitempty"`
+	Lead float64 `json:"lead,omitempty"`
 }
 
 // GameConfigItemsBoots1 is a nested component of GameConfigItems.
@@ -793,14 +793,14 @@ type GameConfigItemsBread struct {
 	IsConsumable     bool                                `json:"isConsumable,omitempty"`
 	IsTradable       bool                                `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsBreadProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                 `json:"productionPoints,omitempty"`
+	ProductionPoints float64                             `json:"productionPoints,omitempty"`
 	Rarity           string                              `json:"rarity,omitempty"`
 	Type             string                              `json:"type,omitempty"`
 }
 
 // GameConfigItemsBreadFlatStats is a nested component of GameConfigItemsBread.
 type GameConfigItemsBreadFlatStats struct {
-	HealthRegenPercent int `json:"healthRegenPercent,omitempty"`
+	HealthRegenPercent float64 `json:"healthRegenPercent,omitempty"`
 }
 
 // GameConfigItemsBreadIconComponent is a nested component of GameConfigItemsBread.
@@ -810,7 +810,7 @@ type GameConfigItemsBreadIconComponent struct {
 
 // GameConfigItemsBreadProductionNeeds is a nested component of GameConfigItemsBread.
 type GameConfigItemsBreadProductionNeeds struct {
-	Grain int `json:"grain,omitempty"`
+	Grain float64 `json:"grain,omitempty"`
 }
 
 // GameConfigItemsCase1 is a nested component of GameConfigItems.
@@ -934,7 +934,7 @@ type GameConfigItemsCoca struct {
 	Code             string                           `json:"code,omitempty"`
 	IsDeposit        bool                             `json:"isDeposit,omitempty"`
 	IsTradable       bool                             `json:"isTradable,omitempty"`
-	ProductionPoints int                              `json:"productionPoints,omitempty"`
+	ProductionPoints float64                          `json:"productionPoints,omitempty"`
 	Rarity           string                           `json:"rarity,omitempty"`
 	Type             string                           `json:"type,omitempty"`
 }
@@ -951,16 +951,16 @@ type GameConfigItemsCocain struct {
 	FlatStats        GameConfigItemsCocainFlatStats       `json:"flatStats,omitempty"`
 	IsTradable       bool                                 `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsCocainProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                  `json:"productionPoints,omitempty"`
+	ProductionPoints float64                              `json:"productionPoints,omitempty"`
 	Rarity           string                               `json:"rarity,omitempty"`
 	Type             string                               `json:"type,omitempty"`
 }
 
 // GameConfigItemsCocainFlatStats is a nested component of GameConfigItemsCocain.
 type GameConfigItemsCocainFlatStats struct {
-	BuffDurationHours   int     `json:"buffDurationHours,omitempty"`
+	BuffDurationHours   float64 `json:"buffDurationHours,omitempty"`
 	DebuffDurationHours float64 `json:"debuffDurationHours,omitempty"`
-	PercentAttack       int     `json:"percentAttack,omitempty"`
+	PercentAttack       float64 `json:"percentAttack,omitempty"`
 }
 
 // GameConfigItemsCocainIconComponent is a nested component of GameConfigItemsCocain.
@@ -970,7 +970,7 @@ type GameConfigItemsCocainIconComponent struct {
 
 // GameConfigItemsCocainProductionNeeds is a nested component of GameConfigItemsCocain.
 type GameConfigItemsCocainProductionNeeds struct {
-	Coca int `json:"coca,omitempty"`
+	Coca float64 `json:"coca,omitempty"`
 }
 
 // GameConfigItemsConcrete is a nested component of GameConfigItems.
@@ -978,14 +978,14 @@ type GameConfigItemsConcrete struct {
 	Code             string                                 `json:"code,omitempty"`
 	IsTradable       bool                                   `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsConcreteProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                    `json:"productionPoints,omitempty"`
+	ProductionPoints float64                                `json:"productionPoints,omitempty"`
 	Rarity           string                                 `json:"rarity,omitempty"`
 	Type             string                                 `json:"type,omitempty"`
 }
 
 // GameConfigItemsConcreteProductionNeeds is a nested component of GameConfigItemsConcrete.
 type GameConfigItemsConcreteProductionNeeds struct {
-	Limestone int `json:"limestone,omitempty"`
+	Limestone float64 `json:"limestone,omitempty"`
 }
 
 // GameConfigItemsCookedFish is a nested component of GameConfigItems.
@@ -995,19 +995,19 @@ type GameConfigItemsCookedFish struct {
 	IsConsumable     bool                                     `json:"isConsumable,omitempty"`
 	IsTradable       bool                                     `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsCookedFishProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                      `json:"productionPoints,omitempty"`
+	ProductionPoints float64                                  `json:"productionPoints,omitempty"`
 	Rarity           string                                   `json:"rarity,omitempty"`
 	Type             string                                   `json:"type,omitempty"`
 }
 
 // GameConfigItemsCookedFishFlatStats is a nested component of GameConfigItemsCookedFish.
 type GameConfigItemsCookedFishFlatStats struct {
-	HealthRegenPercent int `json:"healthRegenPercent,omitempty"`
+	HealthRegenPercent float64 `json:"healthRegenPercent,omitempty"`
 }
 
 // GameConfigItemsCookedFishProductionNeeds is a nested component of GameConfigItemsCookedFish.
 type GameConfigItemsCookedFishProductionNeeds struct {
-	Fish int `json:"fish,omitempty"`
+	Fish float64 `json:"fish,omitempty"`
 }
 
 // GameConfigItemsFish is a nested component of GameConfigItems.
@@ -1017,7 +1017,7 @@ type GameConfigItemsFish struct {
 	Code             string                           `json:"code,omitempty"`
 	IsDeposit        bool                             `json:"isDeposit,omitempty"`
 	IsTradable       bool                             `json:"isTradable,omitempty"`
-	ProductionPoints int                              `json:"productionPoints,omitempty"`
+	ProductionPoints float64                          `json:"productionPoints,omitempty"`
 	Rarity           string                           `json:"rarity,omitempty"`
 	Type             string                           `json:"type,omitempty"`
 }
@@ -1130,7 +1130,7 @@ type GameConfigItemsGrain struct {
 	Code             string                            `json:"code,omitempty"`
 	IsDeposit        bool                              `json:"isDeposit,omitempty"`
 	IsTradable       bool                              `json:"isTradable,omitempty"`
-	ProductionPoints int                               `json:"productionPoints,omitempty"`
+	ProductionPoints float64                           `json:"productionPoints,omitempty"`
 	Rarity           string                            `json:"rarity,omitempty"`
 	Type             string                            `json:"type,omitempty"`
 }
@@ -1169,7 +1169,7 @@ type GameConfigItemsHeavyAmmo struct {
 	FlatStats        GameConfigItemsHeavyAmmoFlatStats       `json:"flatStats,omitempty"`
 	IsTradable       bool                                    `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsHeavyAmmoProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                     `json:"productionPoints,omitempty"`
+	ProductionPoints float64                                 `json:"productionPoints,omitempty"`
 	Rarity           string                                  `json:"rarity,omitempty"`
 	SkinSlot         string                                  `json:"skinSlot,omitempty"`
 	Type             string                                  `json:"type,omitempty"`
@@ -1178,7 +1178,7 @@ type GameConfigItemsHeavyAmmo struct {
 
 // GameConfigItemsHeavyAmmoFlatStats is a nested component of GameConfigItemsHeavyAmmo.
 type GameConfigItemsHeavyAmmoFlatStats struct {
-	PercentAttack int `json:"percentAttack,omitempty"`
+	PercentAttack float64 `json:"percentAttack,omitempty"`
 }
 
 // GameConfigItemsHeavyAmmoIconComponent is a nested component of GameConfigItemsHeavyAmmo.
@@ -1188,7 +1188,7 @@ type GameConfigItemsHeavyAmmoIconComponent struct {
 
 // GameConfigItemsHeavyAmmoProductionNeeds is a nested component of GameConfigItemsHeavyAmmo.
 type GameConfigItemsHeavyAmmoProductionNeeds struct {
-	Lead int `json:"lead,omitempty"`
+	Lead float64 `json:"lead,omitempty"`
 }
 
 // GameConfigItemsHelmet1 is a nested component of GameConfigItems.
@@ -1293,7 +1293,7 @@ type GameConfigItemsIron struct {
 	Code             string   `json:"code,omitempty"`
 	IsDeposit        bool     `json:"isDeposit,omitempty"`
 	IsTradable       bool     `json:"isTradable,omitempty"`
-	ProductionPoints int      `json:"productionPoints,omitempty"`
+	ProductionPoints float64  `json:"productionPoints,omitempty"`
 	Rarity           string   `json:"rarity,omitempty"`
 	Type             string   `json:"type,omitempty"`
 }
@@ -1342,7 +1342,7 @@ type GameConfigItemsLead struct {
 	Code             string   `json:"code,omitempty"`
 	IsDeposit        bool     `json:"isDeposit,omitempty"`
 	IsTradable       bool     `json:"isTradable,omitempty"`
-	ProductionPoints int      `json:"productionPoints,omitempty"`
+	ProductionPoints float64  `json:"productionPoints,omitempty"`
 	Rarity           string   `json:"rarity,omitempty"`
 	Type             string   `json:"type,omitempty"`
 }
@@ -1353,7 +1353,7 @@ type GameConfigItemsLightAmmo struct {
 	FlatStats        GameConfigItemsLightAmmoFlatStats       `json:"flatStats,omitempty"`
 	IsTradable       bool                                    `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsLightAmmoProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                     `json:"productionPoints,omitempty"`
+	ProductionPoints float64                                 `json:"productionPoints,omitempty"`
 	Rarity           string                                  `json:"rarity,omitempty"`
 	SkinSlot         string                                  `json:"skinSlot,omitempty"`
 	Type             string                                  `json:"type,omitempty"`
@@ -1362,12 +1362,12 @@ type GameConfigItemsLightAmmo struct {
 
 // GameConfigItemsLightAmmoFlatStats is a nested component of GameConfigItemsLightAmmo.
 type GameConfigItemsLightAmmoFlatStats struct {
-	PercentAttack int `json:"percentAttack,omitempty"`
+	PercentAttack float64 `json:"percentAttack,omitempty"`
 }
 
 // GameConfigItemsLightAmmoProductionNeeds is a nested component of GameConfigItemsLightAmmo.
 type GameConfigItemsLightAmmoProductionNeeds struct {
-	Lead int `json:"lead,omitempty"`
+	Lead float64 `json:"lead,omitempty"`
 }
 
 // GameConfigItemsLimestone is a nested component of GameConfigItems.
@@ -1376,7 +1376,7 @@ type GameConfigItemsLimestone struct {
 	Code             string   `json:"code,omitempty"`
 	IsDeposit        bool     `json:"isDeposit,omitempty"`
 	IsTradable       bool     `json:"isTradable,omitempty"`
-	ProductionPoints int      `json:"productionPoints,omitempty"`
+	ProductionPoints float64  `json:"productionPoints,omitempty"`
 	Rarity           string   `json:"rarity,omitempty"`
 	Type             string   `json:"type,omitempty"`
 }
@@ -1388,7 +1388,7 @@ type GameConfigItemsLivestock struct {
 	Code             string                                `json:"code,omitempty"`
 	IsDeposit        bool                                  `json:"isDeposit,omitempty"`
 	IsTradable       bool                                  `json:"isTradable,omitempty"`
-	ProductionPoints int                                   `json:"productionPoints,omitempty"`
+	ProductionPoints float64                               `json:"productionPoints,omitempty"`
 	Rarity           string                                `json:"rarity,omitempty"`
 	Type             string                                `json:"type,omitempty"`
 }
@@ -1404,7 +1404,7 @@ type GameConfigItemsOil struct {
 	Code             string                            `json:"code,omitempty"`
 	IsTradable       bool                              `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsOilProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                               `json:"productionPoints,omitempty"`
+	ProductionPoints float64                           `json:"productionPoints,omitempty"`
 	Rarity           string                            `json:"rarity,omitempty"`
 	Type             string                            `json:"type,omitempty"`
 }
@@ -1416,7 +1416,7 @@ type GameConfigItemsOilIconComponent struct {
 
 // GameConfigItemsOilProductionNeeds is a nested component of GameConfigItemsOil.
 type GameConfigItemsOilProductionNeeds struct {
-	Petroleum int `json:"petroleum,omitempty"`
+	Petroleum float64 `json:"petroleum,omitempty"`
 }
 
 // GameConfigItemsPants1 is a nested component of GameConfigItems.
@@ -1521,7 +1521,7 @@ type GameConfigItemsPaper struct {
 	Code             string                              `json:"code,omitempty"`
 	IsTradable       bool                                `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsPaperProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                 `json:"productionPoints,omitempty"`
+	ProductionPoints float64                             `json:"productionPoints,omitempty"`
 	Rarity           string                              `json:"rarity,omitempty"`
 	Type             string                              `json:"type,omitempty"`
 }
@@ -1533,7 +1533,7 @@ type GameConfigItemsPaperIconComponent struct {
 
 // GameConfigItemsPaperProductionNeeds is a nested component of GameConfigItemsPaper.
 type GameConfigItemsPaperProductionNeeds struct {
-	Wood int `json:"wood,omitempty"`
+	Wood float64 `json:"wood,omitempty"`
 }
 
 // GameConfigItemsPetroleum is a nested component of GameConfigItems.
@@ -1543,7 +1543,7 @@ type GameConfigItemsPetroleum struct {
 	Code             string                                `json:"code,omitempty"`
 	IsDeposit        bool                                  `json:"isDeposit,omitempty"`
 	IsTradable       bool                                  `json:"isTradable,omitempty"`
-	ProductionPoints int                                   `json:"productionPoints,omitempty"`
+	ProductionPoints float64                               `json:"productionPoints,omitempty"`
 	Rarity           string                                `json:"rarity,omitempty"`
 	Type             string                                `json:"type,omitempty"`
 }
@@ -1601,14 +1601,14 @@ type GameConfigItemsSteak struct {
 	IsConsumable     bool                                `json:"isConsumable,omitempty"`
 	IsTradable       bool                                `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsSteakProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                 `json:"productionPoints,omitempty"`
+	ProductionPoints float64                             `json:"productionPoints,omitempty"`
 	Rarity           string                              `json:"rarity,omitempty"`
 	Type             string                              `json:"type,omitempty"`
 }
 
 // GameConfigItemsSteakFlatStats is a nested component of GameConfigItemsSteak.
 type GameConfigItemsSteakFlatStats struct {
-	HealthRegenPercent int `json:"healthRegenPercent,omitempty"`
+	HealthRegenPercent float64 `json:"healthRegenPercent,omitempty"`
 }
 
 // GameConfigItemsSteakIconComponent is a nested component of GameConfigItemsSteak.
@@ -1618,7 +1618,7 @@ type GameConfigItemsSteakIconComponent struct {
 
 // GameConfigItemsSteakProductionNeeds is a nested component of GameConfigItemsSteak.
 type GameConfigItemsSteakProductionNeeds struct {
-	Livestock int `json:"livestock,omitempty"`
+	Livestock float64 `json:"livestock,omitempty"`
 }
 
 // GameConfigItemsSteel is a nested component of GameConfigItems.
@@ -1626,14 +1626,14 @@ type GameConfigItemsSteel struct {
 	Code             string                              `json:"code,omitempty"`
 	IsTradable       bool                                `json:"isTradable,omitempty"`
 	ProductionNeeds  GameConfigItemsSteelProductionNeeds `json:"productionNeeds,omitempty"`
-	ProductionPoints int                                 `json:"productionPoints,omitempty"`
+	ProductionPoints float64                             `json:"productionPoints,omitempty"`
 	Rarity           string                              `json:"rarity,omitempty"`
 	Type             string                              `json:"type,omitempty"`
 }
 
 // GameConfigItemsSteelProductionNeeds is a nested component of GameConfigItemsSteel.
 type GameConfigItemsSteelProductionNeeds struct {
-	Iron int `json:"iron,omitempty"`
+	Iron float64 `json:"iron,omitempty"`
 }
 
 // GameConfigItemsTank is a nested component of GameConfigItems.
@@ -1665,7 +1665,7 @@ type GameConfigItemsWood struct {
 	Code             string                           `json:"code,omitempty"`
 	IsDeposit        bool                             `json:"isDeposit,omitempty"`
 	IsTradable       bool                             `json:"isTradable,omitempty"`
-	ProductionPoints int                              `json:"productionPoints,omitempty"`
+	ProductionPoints float64                          `json:"productionPoints,omitempty"`
 	Rarity           string                           `json:"rarity,omitempty"`
 	Type             string                           `json:"type,omitempty"`
 }
@@ -1686,12 +1686,12 @@ type GameConfigItemsWoodenCase struct {
 
 // GameConfigLaw is a nested component of GameConfig.
 type GameConfigLaw struct {
-	AbusiveLawPossibleVotersNeeded int                               `json:"abusiveLawPossibleVotersNeeded,omitempty"`
-	AbusiveLawsCooldownInDays      int                               `json:"abusiveLawsCooldownInDays,omitempty"`
+	AbusiveLawPossibleVotersNeeded float64                           `json:"abusiveLawPossibleVotersNeeded,omitempty"`
+	AbusiveLawsCooldownInDays      float64                           `json:"abusiveLawsCooldownInDays,omitempty"`
 	Accept_join_alliance           GameConfigLawAccept_join_alliance `json:"accept_join_alliance,omitempty"`
 	Create_alliance                GameConfigLawCreate_alliance      `json:"create_alliance,omitempty"`
 	Define_enemy_country           GameConfigLawDefine_enemy_country `json:"define_enemy_country,omitempty"`
-	LawVotesDurationHours          int                               `json:"lawVotesDurationHours,omitempty"`
+	LawVotesDurationHours          float64                           `json:"lawVotesDurationHours,omitempty"`
 	Leave_alliance                 GameConfigLawLeave_alliance       `json:"leave_alliance,omitempty"`
 	SendMoneyToCountry             GameConfigLawSendMoneyToCountry   `json:"sendMoneyToCountry,omitempty"`
 	Set_color_scheme               GameConfigLawSet_color_scheme     `json:"set_color_scheme,omitempty"`
@@ -1700,90 +1700,90 @@ type GameConfigLaw struct {
 
 // GameConfigLawAccept_join_alliance is a nested component of GameConfigLaw.
 type GameConfigLawAccept_join_alliance struct {
-	Cost int `json:"cost,omitempty"`
+	Cost float64 `json:"cost,omitempty"`
 }
 
 // GameConfigLawCreate_alliance is a nested component of GameConfigLaw.
 type GameConfigLawCreate_alliance struct {
-	Cost            int `json:"cost,omitempty"`
-	MaintenanceCost int `json:"maintenanceCost,omitempty"`
+	Cost            float64 `json:"cost,omitempty"`
+	MaintenanceCost float64 `json:"maintenanceCost,omitempty"`
 }
 
 // GameConfigLawDefine_enemy_country is a nested component of GameConfigLaw.
 type GameConfigLawDefine_enemy_country struct {
-	Cost            int `json:"cost,omitempty"`
-	MaintenanceCost int `json:"maintenanceCost,omitempty"`
+	Cost            float64 `json:"cost,omitempty"`
+	MaintenanceCost float64 `json:"maintenanceCost,omitempty"`
 }
 
 // GameConfigLawLeave_alliance is a nested component of GameConfigLaw.
 type GameConfigLawLeave_alliance struct {
-	Cost int `json:"cost,omitempty"`
+	Cost float64 `json:"cost,omitempty"`
 }
 
 // GameConfigLawSendMoneyToCountry is a nested component of GameConfigLaw.
 type GameConfigLawSendMoneyToCountry struct {
 	AllianceTaxRate float64 `json:"allianceTaxRate,omitempty"`
-	ExternalTaxRate int     `json:"externalTaxRate,omitempty"`
+	ExternalTaxRate float64 `json:"externalTaxRate,omitempty"`
 }
 
 // GameConfigLawSet_color_scheme is a nested component of GameConfigLaw.
 type GameConfigLawSet_color_scheme struct {
-	Cost int `json:"cost,omitempty"`
+	Cost float64 `json:"cost,omitempty"`
 }
 
 // GameConfigLoot is a nested component of GameConfig.
 type GameConfigLoot struct {
-	BattleLootDamagePerLootItem int `json:"battleLootDamagePerLootItem,omitempty"`
-	DamagePerLootItem           int `json:"damagePerLootItem,omitempty"`
-	WeaponChancePercent         int `json:"weaponChancePercent,omitempty"`
+	BattleLootDamagePerLootItem float64 `json:"battleLootDamagePerLootItem,omitempty"`
+	DamagePerLootItem           float64 `json:"damagePerLootItem,omitempty"`
+	WeaponChancePercent         float64 `json:"weaponChancePercent,omitempty"`
 }
 
 // GameConfigMercenaryContract is a nested component of GameConfig.
 type GameConfigMercenaryContract struct {
-	AcceptanceFeePercent            int                                   `json:"acceptanceFeePercent,omitempty"`
+	AcceptanceFeePercent            float64                               `json:"acceptanceFeePercent,omitempty"`
 	Auction                         GameConfigMercenaryContractAuction    `json:"auction,omitempty"`
-	BountyCooldownMinutes           int                                   `json:"bountyCooldownMinutes,omitempty"`
-	BountyMinActiveCitizens         int                                   `json:"bountyMinActiveCitizens,omitempty"`
-	CancellationPenaltyPercent      int                                   `json:"cancellationPenaltyPercent,omitempty"`
+	BountyCooldownMinutes           float64                               `json:"bountyCooldownMinutes,omitempty"`
+	BountyMinActiveCitizens         float64                               `json:"bountyMinActiveCitizens,omitempty"`
+	CancellationPenaltyPercent      float64                               `json:"cancellationPenaltyPercent,omitempty"`
 	Enabled                         bool                                  `json:"enabled,omitempty"`
-	MaxBountyWageMultiplier         int                                   `json:"maxBountyWageMultiplier,omitempty"`
+	MaxBountyWageMultiplier         float64                               `json:"maxBountyWageMultiplier,omitempty"`
 	NationalBountyEnabled           bool                                  `json:"nationalBountyEnabled,omitempty"`
-	NationalBountyMinActiveCitizens int                                   `json:"nationalBountyMinActiveCitizens,omitempty"`
+	NationalBountyMinActiveCitizens float64                               `json:"nationalBountyMinActiveCitizens,omitempty"`
 	Reputation                      GameConfigMercenaryContractReputation `json:"reputation,omitempty"`
 }
 
 // GameConfigMercenaryContractAuction is a nested component of GameConfigMercenaryContract.
 type GameConfigMercenaryContractAuction struct {
 	BidStep                 float64 `json:"bidStep,omitempty"`
-	MaxDamagePerContract    int     `json:"maxDamagePerContract,omitempty"`
-	MaxDuration             int     `json:"maxDuration,omitempty"`
-	MaxPerKMultiplier       int     `json:"maxPerKMultiplier,omitempty"`
-	MinDuration             int     `json:"minDuration,omitempty"`
+	MaxDamagePerContract    float64 `json:"maxDamagePerContract,omitempty"`
+	MaxDuration             float64 `json:"maxDuration,omitempty"`
+	MaxPerKMultiplier       float64 `json:"maxPerKMultiplier,omitempty"`
+	MinDuration             float64 `json:"minDuration,omitempty"`
 	MinPerK                 float64 `json:"minPerK,omitempty"`
-	TimerExtensionAmount    int     `json:"timerExtensionAmount,omitempty"`
-	TimerExtensionThreshold int     `json:"timerExtensionThreshold,omitempty"`
+	TimerExtensionAmount    float64 `json:"timerExtensionAmount,omitempty"`
+	TimerExtensionThreshold float64 `json:"timerExtensionThreshold,omitempty"`
 }
 
 // GameConfigMercenaryContractReputation is a nested component of GameConfigMercenaryContract.
 type GameConfigMercenaryContractReputation struct {
-	FailurePerDamage           int `json:"failurePerDamage,omitempty"`
-	FailurePerDollar           int `json:"failurePerDollar,omitempty"`
-	NegativeBuyAmount          int `json:"negativeBuyAmount,omitempty"`
-	NegativeBuyCooldownHours   int `json:"negativeBuyCooldownHours,omitempty"`
-	NegativeBuyCost            int `json:"negativeBuyCost,omitempty"`
-	ProfessionalsOnlyThreshold int `json:"professionalsOnlyThreshold,omitempty"`
-	SuccessPerDollar           int `json:"successPerDollar,omitempty"`
-	WeeklyDecayPercent         int `json:"weeklyDecayPercent,omitempty"`
+	FailurePerDamage           float64 `json:"failurePerDamage,omitempty"`
+	FailurePerDollar           float64 `json:"failurePerDollar,omitempty"`
+	NegativeBuyAmount          float64 `json:"negativeBuyAmount,omitempty"`
+	NegativeBuyCooldownHours   float64 `json:"negativeBuyCooldownHours,omitempty"`
+	NegativeBuyCost            float64 `json:"negativeBuyCost,omitempty"`
+	ProfessionalsOnlyThreshold float64 `json:"professionalsOnlyThreshold,omitempty"`
+	SuccessPerDollar           float64 `json:"successPerDollar,omitempty"`
+	WeeklyDecayPercent         float64 `json:"weeklyDecayPercent,omitempty"`
 }
 
 // GameConfigMergingCost is a nested component of GameConfig.
 type GameConfigMergingCost struct {
-	Common    int `json:"common,omitempty"`
-	Epic      int `json:"epic,omitempty"`
-	Legendary int `json:"legendary,omitempty"`
-	Mythic    int `json:"mythic,omitempty"`
-	Rare      int `json:"rare,omitempty"`
-	Uncommon  int `json:"uncommon,omitempty"`
+	Common    float64 `json:"common,omitempty"`
+	Epic      float64 `json:"epic,omitempty"`
+	Legendary float64 `json:"legendary,omitempty"`
+	Mythic    float64 `json:"mythic,omitempty"`
+	Rare      float64 `json:"rare,omitempty"`
+	Uncommon  float64 `json:"uncommon,omitempty"`
 }
 
 // GameConfigMission is a nested component of GameConfig.
@@ -1802,112 +1802,112 @@ type GameConfigMissionReward struct {
 
 // GameConfigMissionRewardDaily is a nested component of GameConfigMissionReward.
 type GameConfigMissionRewardDaily struct {
-	Cases          int `json:"cases,omitempty"`
-	Money          int `json:"money,omitempty"`
-	XP             int `json:"xp,omitempty"`
-	XpWhenFinished int `json:"xpWhenFinished,omitempty"`
+	Cases          float64 `json:"cases,omitempty"`
+	Money          float64 `json:"money,omitempty"`
+	XP             float64 `json:"xp,omitempty"`
+	XpWhenFinished float64 `json:"xpWhenFinished,omitempty"`
 }
 
 // GameConfigMissionRewardMonthly is a nested component of GameConfigMissionReward.
 type GameConfigMissionRewardMonthly struct {
-	Cases          int `json:"cases,omitempty"`
-	Money          int `json:"money,omitempty"`
-	XP             int `json:"xp,omitempty"`
-	XpWhenFinished int `json:"xpWhenFinished,omitempty"`
+	Cases          float64 `json:"cases,omitempty"`
+	Money          float64 `json:"money,omitempty"`
+	XP             float64 `json:"xp,omitempty"`
+	XpWhenFinished float64 `json:"xpWhenFinished,omitempty"`
 }
 
 // GameConfigMissionRewardStarting is a nested component of GameConfigMissionReward.
 type GameConfigMissionRewardStarting struct {
-	Cases          int `json:"cases,omitempty"`
-	Money          int `json:"money,omitempty"`
-	XP             int `json:"xp,omitempty"`
-	XpWhenFinished int `json:"xpWhenFinished,omitempty"`
+	Cases          float64 `json:"cases,omitempty"`
+	Money          float64 `json:"money,omitempty"`
+	XP             float64 `json:"xp,omitempty"`
+	XpWhenFinished float64 `json:"xpWhenFinished,omitempty"`
 }
 
 // GameConfigMissionRewardWeekly is a nested component of GameConfigMissionReward.
 type GameConfigMissionRewardWeekly struct {
-	Cases          int `json:"cases,omitempty"`
-	Money          int `json:"money,omitempty"`
-	XP             int `json:"xp,omitempty"`
-	XpWhenFinished int `json:"xpWhenFinished,omitempty"`
+	Cases          float64 `json:"cases,omitempty"`
+	Money          float64 `json:"money,omitempty"`
+	XP             float64 `json:"xp,omitempty"`
+	XpWhenFinished float64 `json:"xpWhenFinished,omitempty"`
 }
 
 // GameConfigMu is a nested component of GameConfig.
 type GameConfigMu struct {
-	ConstructionCost              int `json:"constructionCost,omitempty"`
-	DestructionValuePercent       int `json:"destructionValuePercent,omitempty"`
-	HealthPerHelp                 int `json:"healthPerHelp,omitempty"`
-	HelpCooldownHours             int `json:"helpCooldownHours,omitempty"`
-	HelpValue                     int `json:"helpValue,omitempty"`
-	MaxOwnedMus                   int `json:"maxOwnedMus,omitempty"`
-	MoveCost                      int `json:"moveCost,omitempty"`
-	NationalityChangeCooldownDays int `json:"nationalityChangeCooldownDays,omitempty"`
+	ConstructionCost              float64 `json:"constructionCost,omitempty"`
+	DestructionValuePercent       float64 `json:"destructionValuePercent,omitempty"`
+	HealthPerHelp                 float64 `json:"healthPerHelp,omitempty"`
+	HelpCooldownHours             float64 `json:"helpCooldownHours,omitempty"`
+	HelpValue                     float64 `json:"helpValue,omitempty"`
+	MaxOwnedMus                   int     `json:"maxOwnedMus,omitempty"`
+	MoveCost                      float64 `json:"moveCost,omitempty"`
+	NationalityChangeCooldownDays float64 `json:"nationalityChangeCooldownDays,omitempty"`
 }
 
 // GameConfigNewspaper is a nested component of GameConfig.
 type GameConfigNewspaper struct {
-	CommentMinLevel       int `json:"commentMinLevel,omitempty"`
-	CreateArticleMinLevel int `json:"createArticleMinLevel,omitempty"`
-	GemTipValue           int `json:"gemTipValue,omitempty"`
-	PublishCost           int `json:"publishCost,omitempty"`
-	TipMinLevel           int `json:"tipMinLevel,omitempty"`
-	TipValue              int `json:"tipValue,omitempty"`
+	CommentMinLevel       int     `json:"commentMinLevel,omitempty"`
+	CreateArticleMinLevel int     `json:"createArticleMinLevel,omitempty"`
+	GemTipValue           float64 `json:"gemTipValue,omitempty"`
+	PublishCost           float64 `json:"publishCost,omitempty"`
+	TipMinLevel           int     `json:"tipMinLevel,omitempty"`
+	TipValue              float64 `json:"tipValue,omitempty"`
 }
 
 // GameConfigOrg is a nested component of GameConfig.
 type GameConfigOrg struct {
-	ConstructionCost int `json:"constructionCost,omitempty"`
-	MoveCost         int `json:"moveCost,omitempty"`
+	ConstructionCost float64 `json:"constructionCost,omitempty"`
+	MoveCost         float64 `json:"moveCost,omitempty"`
 }
 
 // GameConfigParty is a nested component of GameConfig.
 type GameConfigParty struct {
-	CreateCost int `json:"createCost,omitempty"`
+	CreateCost float64 `json:"createCost,omitempty"`
 }
 
 // GameConfigReferral is a nested component of GameConfig.
 type GameConfigReferral struct {
-	CanSetReferrerBeforeOrAtLevel  int `json:"canSetReferrerBeforeOrAtLevel,omitempty"`
-	LevelNeededForBadge            int `json:"levelNeededForBadge,omitempty"`
-	LifeTimeBadgeMoneySharePercent int `json:"lifeTimeBadgeMoneySharePercent,omitempty"`
-	MoneyForBeingReferred          int `json:"moneyForBeingReferred,omitempty"`
+	CanSetReferrerBeforeOrAtLevel  int     `json:"canSetReferrerBeforeOrAtLevel,omitempty"`
+	LevelNeededForBadge            float64 `json:"levelNeededForBadge,omitempty"`
+	LifeTimeBadgeMoneySharePercent float64 `json:"lifeTimeBadgeMoneySharePercent,omitempty"`
+	MoneyForBeingReferred          float64 `json:"moneyForBeingReferred,omitempty"`
 }
 
 // GameConfigRegion is a nested component of GameConfig.
 type GameConfigRegion struct {
-	BattleCooldownHours                             int                `json:"battleCooldownHours,omitempty"`
-	CitizenIncomeTaxPercent                         int                `json:"citizenIncomeTaxPercent,omitempty"`
-	DecreaseBy                                      int                `json:"decreaseBy,omitempty"`
-	DecreaseResistanceCost                          int                `json:"decreaseResistanceCost,omitempty"`
+	BattleCooldownHours                             float64            `json:"battleCooldownHours,omitempty"`
+	CitizenIncomeTaxPercent                         float64            `json:"citizenIncomeTaxPercent,omitempty"`
+	DecreaseBy                                      float64            `json:"decreaseBy,omitempty"`
+	DecreaseResistanceCost                          float64            `json:"decreaseResistanceCost,omitempty"`
 	DepleteHourlyPercent                            float64            `json:"depleteHourlyPercent,omitempty"`
-	FreeTravelHomeCooldownHours                     int                `json:"freeTravelHomeCooldownHours,omitempty"`
-	HomeMoveConcreteCost                            int                `json:"homeMoveConcreteCost,omitempty"`
-	IncreaseBy                                      int                `json:"increaseBy,omitempty"`
-	IncreaseResistanceCost                          int                `json:"increaseResistanceCost,omitempty"`
-	LiberationDaysCooldown                          int                `json:"liberationDaysCooldown,omitempty"`
-	MaxDailyResistance                              int                `json:"maxDailyResistance,omitempty"`
-	MaxResistance                                   int                `json:"maxResistance,omitempty"`
-	MinDailyResistance                              int                `json:"minDailyResistance,omitempty"`
-	NonAggressionHoursAfterLiberation               int                `json:"nonAggressionHoursAfterLiberation,omitempty"`
-	NonAggressionHoursAfterPeace                    int                `json:"nonAggressionHoursAfterPeace,omitempty"`
-	RegionNotLinkedToCapitalMalusDevelopmentPercent int                `json:"regionNotLinkedToCapitalMalusDevelopmentPercent,omitempty"`
-	ResistanceAllyBonusPercent                      int                `json:"resistanceAllyBonusPercent,omitempty"`
-	ResistanceBarMultiplier                         int                `json:"resistanceBarMultiplier,omitempty"`
-	ResistanceBattleCooldownHours                   int                `json:"resistanceBattleCooldownHours,omitempty"`
-	ResistanceBattleStartCostMultiplier             int                `json:"resistanceBattleStartCostMultiplier,omitempty"`
-	ResistanceCitizenBonus                          int                `json:"resistanceCitizenBonus,omitempty"`
-	ResistanceCitizenBonusPercent                   int                `json:"resistanceCitizenBonusPercent,omitempty"`
-	ResistanceContributionCooldownAfterRevoltHours  int                `json:"resistanceContributionCooldownAfterRevoltHours,omitempty"`
-	ResistanceContributionCost                      int                `json:"resistanceContributionCost,omitempty"`
+	FreeTravelHomeCooldownHours                     float64            `json:"freeTravelHomeCooldownHours,omitempty"`
+	HomeMoveConcreteCost                            float64            `json:"homeMoveConcreteCost,omitempty"`
+	IncreaseBy                                      float64            `json:"increaseBy,omitempty"`
+	IncreaseResistanceCost                          float64            `json:"increaseResistanceCost,omitempty"`
+	LiberationDaysCooldown                          float64            `json:"liberationDaysCooldown,omitempty"`
+	MaxDailyResistance                              float64            `json:"maxDailyResistance,omitempty"`
+	MaxResistance                                   float64            `json:"maxResistance,omitempty"`
+	MinDailyResistance                              float64            `json:"minDailyResistance,omitempty"`
+	NonAggressionHoursAfterLiberation               float64            `json:"nonAggressionHoursAfterLiberation,omitempty"`
+	NonAggressionHoursAfterPeace                    float64            `json:"nonAggressionHoursAfterPeace,omitempty"`
+	RegionNotLinkedToCapitalMalusDevelopmentPercent float64            `json:"regionNotLinkedToCapitalMalusDevelopmentPercent,omitempty"`
+	ResistanceAllyBonusPercent                      float64            `json:"resistanceAllyBonusPercent,omitempty"`
+	ResistanceBarMultiplier                         float64            `json:"resistanceBarMultiplier,omitempty"`
+	ResistanceBattleCooldownHours                   float64            `json:"resistanceBattleCooldownHours,omitempty"`
+	ResistanceBattleStartCostMultiplier             float64            `json:"resistanceBattleStartCostMultiplier,omitempty"`
+	ResistanceCitizenBonus                          float64            `json:"resistanceCitizenBonus,omitempty"`
+	ResistanceCitizenBonusPercent                   float64            `json:"resistanceCitizenBonusPercent,omitempty"`
+	ResistanceContributionCooldownAfterRevoltHours  float64            `json:"resistanceContributionCooldownAfterRevoltHours,omitempty"`
+	ResistanceContributionCost                      float64            `json:"resistanceContributionCost,omitempty"`
 	ResistanceContributionMinLevel                  int                `json:"resistanceContributionMinLevel,omitempty"`
-	ResistanceContributionValue                     int                `json:"resistanceContributionValue,omitempty"`
+	ResistanceContributionValue                     float64            `json:"resistanceContributionValue,omitempty"`
 	ResistanceDecayPercent                          float64            `json:"resistanceDecayPercent,omitempty"`
-	ResistanceForeignGovCostMultiplier              int                `json:"resistanceForeignGovCostMultiplier,omitempty"`
+	ResistanceForeignGovCostMultiplier              float64            `json:"resistanceForeignGovCostMultiplier,omitempty"`
 	ResistanceGrowthPercentMax                      float64            `json:"resistanceGrowthPercentMax,omitempty"`
 	ResistanceGrowthPercentMin                      float64            `json:"resistanceGrowthPercentMin,omitempty"`
 	ResistancePassiveGrowthPercent                  float64            `json:"resistancePassiveGrowthPercent,omitempty"`
 	ResourcesBonus                                  map[string]float64 `json:"resourcesBonus,omitempty"`
-	TransferDaysCooldown                            int                `json:"transferDaysCooldown,omitempty"`
+	TransferDaysCooldown                            float64            `json:"transferDaysCooldown,omitempty"`
 }
 
 // GameConfigSkills is a nested component of GameConfig.
@@ -1941,7 +1941,7 @@ type GameConfigSkillLevel struct {
 // GameConfigSkillsArmor is a nested component of GameConfigSkills.
 type GameConfigSkillsArmor struct {
 	Levels  map[string]GameConfigSkillLevel `json:"levels,omitempty"`
-	SoftCap int                             `json:"softCap,omitempty"`
+	SoftCap float64                         `json:"softCap,omitempty"`
 }
 
 // GameConfigSkillsAttack is a nested component of GameConfigSkills.
@@ -1958,7 +1958,7 @@ type GameConfigSkillsCompanies struct {
 type GameConfigSkillsCriticalChance struct {
 	Levels             map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 	SkillOverflow      string                          `json:"skillOverflow,omitempty"`
-	SkillOverflowValue int                             `json:"skillOverflowValue,omitempty"`
+	SkillOverflowValue float64                         `json:"skillOverflowValue,omitempty"`
 }
 
 // GameConfigSkillsCriticalDamages is a nested component of GameConfigSkills.
@@ -1969,7 +1969,7 @@ type GameConfigSkillsCriticalDamages struct {
 // GameConfigSkillsDodge is a nested component of GameConfigSkills.
 type GameConfigSkillsDodge struct {
 	Levels  map[string]GameConfigSkillLevel `json:"levels,omitempty"`
-	SoftCap int                             `json:"softCap,omitempty"`
+	SoftCap float64                         `json:"softCap,omitempty"`
 }
 
 // GameConfigSkillsEnergy is a nested component of GameConfigSkills.
@@ -2006,7 +2006,7 @@ type GameConfigSkillsManagement struct {
 type GameConfigSkillsPrecision struct {
 	Levels             map[string]GameConfigSkillLevel `json:"levels,omitempty"`
 	SkillOverflow      string                          `json:"skillOverflow,omitempty"`
-	SkillOverflowValue int                             `json:"skillOverflowValue,omitempty"`
+	SkillOverflowValue float64                         `json:"skillOverflowValue,omitempty"`
 }
 
 // GameConfigSkillsProduction is a nested component of GameConfigSkills.
@@ -2027,24 +2027,24 @@ type GameConfigSubSkinReward struct {
 
 // GameConfigUnrest is a nested component of GameConfig.
 type GameConfigUnrest struct {
-	BarMultiplier                            int `json:"barMultiplier,omitempty"`
-	BattleCooldownHours                      int `json:"battleCooldownHours,omitempty"`
-	BattleStartCost                          int `json:"battleStartCost,omitempty"`
-	BordersOpenDays                          int `json:"bordersOpenDays,omitempty"`
-	ContributionCooldownAfterRevolutionHours int `json:"contributionCooldownAfterRevolutionHours,omitempty"`
-	ContributionCost                         int `json:"contributionCost,omitempty"`
-	ContributionMinLevel                     int `json:"contributionMinLevel,omitempty"`
-	ContributionValue                        int `json:"contributionValue,omitempty"`
-	NominationPeriodHours                    int `json:"nominationPeriodHours,omitempty"`
+	BarMultiplier                            float64 `json:"barMultiplier,omitempty"`
+	BattleCooldownHours                      float64 `json:"battleCooldownHours,omitempty"`
+	BattleStartCost                          float64 `json:"battleStartCost,omitempty"`
+	BordersOpenDays                          float64 `json:"bordersOpenDays,omitempty"`
+	ContributionCooldownAfterRevolutionHours float64 `json:"contributionCooldownAfterRevolutionHours,omitempty"`
+	ContributionCost                         float64 `json:"contributionCost,omitempty"`
+	ContributionMinLevel                     int     `json:"contributionMinLevel,omitempty"`
+	ContributionValue                        float64 `json:"contributionValue,omitempty"`
+	NominationPeriodHours                    float64 `json:"nominationPeriodHours,omitempty"`
 }
 
 // GameConfigUpgrade is a nested component of GameConfig.
 type GameConfigUpgrade struct {
-	ConstructionContributionMinLevel  int `json:"constructionContributionMinLevel,omitempty"`
-	ConstructionPointsPerContribution int `json:"constructionPointsPerContribution,omitempty"`
-	RefundPercent                     int `json:"refundPercent,omitempty"`
-	RegionDowngradeCooldownHours      int `json:"regionDowngradeCooldownHours,omitempty"`
-	RegionUpgradeCooldownHours        int `json:"regionUpgradeCooldownHours,omitempty"`
+	ConstructionContributionMinLevel  int     `json:"constructionContributionMinLevel,omitempty"`
+	ConstructionPointsPerContribution float64 `json:"constructionPointsPerContribution,omitempty"`
+	RefundPercent                     float64 `json:"refundPercent,omitempty"`
+	RegionDowngradeCooldownHours      float64 `json:"regionDowngradeCooldownHours,omitempty"`
+	RegionUpgradeCooldownHours        float64 `json:"regionUpgradeCooldownHours,omitempty"`
 }
 
 // GameConfigUpgradesConfig is a nested component of GameConfig.
@@ -2075,7 +2075,7 @@ type GameConfigUpgradeLevel struct {
 type GameConfigUpgradesConfigAutomatedEngine struct {
 	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
 	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
-	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
+	PendingDurationHours float64                           `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigBase is a nested component of GameConfigUpgradesConfig.
@@ -2084,7 +2084,7 @@ type GameConfigUpgradesConfigBase struct {
 	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
 	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
 	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
-	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
+	PendingDurationHours float64                           `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigBreakRoom is a nested component of GameConfigUpgradesConfig.
@@ -2099,7 +2099,7 @@ type GameConfigUpgradesConfigBunker struct {
 	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
 	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
 	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
-	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
+	PendingDurationHours float64                           `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigDormitories is a nested component of GameConfigUpgradesConfig.
@@ -2113,7 +2113,7 @@ type GameConfigUpgradesConfigHeadquarters struct {
 	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
 	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
 	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
-	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
+	PendingDurationHours float64                           `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigPacificationCenter is a nested component of GameConfigUpgradesConfig.
@@ -2122,14 +2122,14 @@ type GameConfigUpgradesConfigPacificationCenter struct {
 	CanBeDisabled        bool                              `json:"canBeDisabled,omitempty"`
 	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
 	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
-	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
+	PendingDurationHours float64                           `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUpgradesConfigStorage is a nested component of GameConfigUpgradesConfig.
 type GameConfigUpgradesConfigStorage struct {
 	CanDowngrade         bool                              `json:"canDowngrade,omitempty"`
 	Levels               map[string]GameConfigUpgradeLevel `json:"levels,omitempty"`
-	PendingDurationHours int                               `json:"pendingDurationHours,omitempty"`
+	PendingDurationHours float64                           `json:"pendingDurationHours,omitempty"`
 }
 
 // GameConfigUser is a nested component of GameConfig.
@@ -2137,61 +2137,61 @@ type GameConfigUser struct {
 	ActiveCitizenMinLevel     int                         `json:"activeCitizenMinLevel,omitempty"`
 	CanTakeControlAtLevel     int                         `json:"canTakeControlAtLevel,omitempty"`
 	ChatMinLevel              int                         `json:"chatMinLevel,omitempty"`
-	CitizenshipDaysCooldown   int                         `json:"citizenshipDaysCooldown,omitempty"`
-	ConstructionEnergyCost    int                         `json:"constructionEnergyCost,omitempty"`
+	CitizenshipDaysCooldown   float64                     `json:"citizenshipDaysCooldown,omitempty"`
+	ConstructionEnergyCost    float64                     `json:"constructionEnergyCost,omitempty"`
 	DailyReward               GameConfigUserDailyReward   `json:"dailyReward,omitempty"`
-	DailyXp                   int                         `json:"dailyXp,omitempty"`
+	DailyXp                   float64                     `json:"dailyXp,omitempty"`
 	DonationMinLevel          int                         `json:"donationMinLevel,omitempty"`
-	EnergyCostPerAction       int                         `json:"energyCostPerAction,omitempty"`
+	EnergyCostPerAction       float64                     `json:"energyCostPerAction,omitempty"`
 	EquipmentSets             GameConfigUserEquipmentSets `json:"equipmentSets,omitempty"`
 	FieldsToPopulate          string                      `json:"fieldsToPopulate,omitempty"`
-	IsInactiveAfterDays       int                         `json:"isInactiveAfterDays,omitempty"`
+	IsInactiveAfterDays       float64                     `json:"isInactiveAfterDays,omitempty"`
 	Kits                      GameConfigUserKits          `json:"kits,omitempty"`
 	MarketMinLevel            int                         `json:"marketMinLevel,omitempty"`
-	MaxConstructionPoints     int                         `json:"maxConstructionPoints,omitempty"`
-	MaxEnergy                 int                         `json:"maxEnergy,omitempty"`
-	MaxHunger                 int                         `json:"maxHunger,omitempty"`
+	MaxConstructionPoints     float64                     `json:"maxConstructionPoints,omitempty"`
+	MaxEnergy                 float64                     `json:"maxEnergy,omitempty"`
+	MaxHunger                 float64                     `json:"maxHunger,omitempty"`
 	Prestige                  GameConfigUserPrestige      `json:"prestige,omitempty"`
-	RegenDividedBy            int                         `json:"regenDividedBy,omitempty"`
-	ResetSkillDaysCooldown    int                         `json:"resetSkillDaysCooldown,omitempty"`
+	RegenDividedBy            float64                     `json:"regenDividedBy,omitempty"`
+	ResetSkillDaysCooldown    float64                     `json:"resetSkillDaysCooldown,omitempty"`
 	ResetSkillsCostPerPoint   float64                     `json:"resetSkillsCostPerPoint,omitempty"`
-	TakeControlCooldownInDays int                         `json:"takeControlCooldownInDays,omitempty"`
-	XpPerAction               int                         `json:"xpPerAction,omitempty"`
+	TakeControlCooldownInDays float64                     `json:"takeControlCooldownInDays,omitempty"`
+	XpPerAction               float64                     `json:"xpPerAction,omitempty"`
 }
 
 // GameConfigUserDailyReward is a nested component of GameConfigUser.
 type GameConfigUserDailyReward struct {
-	Case1 int `json:"case1,omitempty"`
-	Money int `json:"money,omitempty"`
-	XP    int `json:"xp,omitempty"`
+	Case1 float64 `json:"case1,omitempty"`
+	Money float64 `json:"money,omitempty"`
+	XP    float64 `json:"xp,omitempty"`
 }
 
 // GameConfigUserEquipmentSets is a nested component of GameConfigUser.
 type GameConfigUserEquipmentSets struct {
-	NonPremiumMax int `json:"nonPremiumMax,omitempty"`
-	PremiumMax    int `json:"premiumMax,omitempty"`
+	NonPremiumMax float64 `json:"nonPremiumMax,omitempty"`
+	PremiumMax    float64 `json:"premiumMax,omitempty"`
 }
 
 // GameConfigUserKits is a nested component of GameConfigUser.
 type GameConfigUserKits struct {
-	NonPremiumMax int `json:"nonPremiumMax,omitempty"`
-	PremiumMax    int `json:"premiumMax,omitempty"`
+	NonPremiumMax float64 `json:"nonPremiumMax,omitempty"`
+	PremiumMax    float64 `json:"premiumMax,omitempty"`
 }
 
 // GameConfigUserPrestige is a nested component of GameConfigUser.
 type GameConfigUserPrestige struct {
-	Enabled                     bool `json:"enabled,omitempty"`
-	EnabledLevel                int  `json:"enabledLevel,omitempty"`
-	SkillBonusLevels            int  `json:"skillBonusLevels,omitempty"`
-	XpMultiplierPerLevelPercent int  `json:"xpMultiplierPerLevelPercent,omitempty"`
-	XpMultiplierPercent         int  `json:"xpMultiplierPercent,omitempty"`
-	XpPenalty                   int  `json:"xpPenalty,omitempty"`
+	Enabled                     bool    `json:"enabled,omitempty"`
+	EnabledLevel                int     `json:"enabledLevel,omitempty"`
+	SkillBonusLevels            int     `json:"skillBonusLevels,omitempty"`
+	XpMultiplierPerLevelPercent float64 `json:"xpMultiplierPerLevelPercent,omitempty"`
+	XpMultiplierPercent         float64 `json:"xpMultiplierPercent,omitempty"`
+	XpPenalty                   float64 `json:"xpPenalty,omitempty"`
 }
 
 // GameConfigWorker is a nested component of GameConfig.
 type GameConfigWorker struct {
-	FidelityProductionBonusPercent int `json:"fidelityProductionBonusPercent,omitempty"`
-	MaxFidelity                    int `json:"maxFidelity,omitempty"`
+	FidelityProductionBonusPercent float64 `json:"fidelityProductionBonusPercent,omitempty"`
+	MaxFidelity                    float64 `json:"maxFidelity,omitempty"`
 }
 
 // GameDates contains server timestamps for daily rollover and energy regeneration.
@@ -2244,20 +2244,20 @@ type LiveBattleSummary struct {
 
 // LiveRoundSummary is a nested component of LiveBattleData.
 type LiveRoundSummary struct {
-	ActualTickPoints int    `json:"actualTickPoints,omitempty"`
-	AttackerDamages  int    `json:"attackerDamages,omitempty"`
-	AttackerPoints   int    `json:"attackerPoints,omitempty"`
-	DefenderDamages  int    `json:"defenderDamages,omitempty"`
-	DefenderPoints   int    `json:"defenderPoints,omitempty"`
-	IsActive         bool   `json:"isActive,omitempty"`
-	NextTickAt       string `json:"nextTickAt,omitempty"`
-	RoundID          string `json:"roundId,omitempty"`
+	ActualTickPoints float64 `json:"actualTickPoints,omitempty"`
+	AttackerDamages  float64 `json:"attackerDamages,omitempty"`
+	AttackerPoints   float64 `json:"attackerPoints,omitempty"`
+	DefenderDamages  float64 `json:"defenderDamages,omitempty"`
+	DefenderPoints   float64 `json:"defenderPoints,omitempty"`
+	IsActive         bool    `json:"isActive,omitempty"`
+	NextTickAt       string  `json:"nextTickAt,omitempty"`
+	RoundID          string  `json:"roundId,omitempty"`
 }
 
 // MULeveling is a nested component of MilitaryUnit.
 type MULeveling struct {
-	Level          int `json:"level,omitempty"`
-	MonthlyDamages int `json:"monthlyDamages,omitempty"`
+	Level          int     `json:"level,omitempty"`
+	MonthlyDamages float64 `json:"monthlyDamages,omitempty"`
 }
 
 // MURoles is a nested component of MilitaryUnit.
@@ -2307,21 +2307,21 @@ type RankingItem struct {
 
 // RankingItems is a nested component of Ranking.
 type RankingItems struct {
-	ID        string `json:"_id,omitempty"`
-	CountryID string `json:"country,omitempty"`
-	Rank      int    `json:"rank,omitempty"`
-	Tier      string `json:"tier,omitempty"`
-	Value     int64  `json:"value,omitempty"`
+	ID        string  `json:"_id,omitempty"`
+	CountryID string  `json:"country,omitempty"`
+	Rank      int     `json:"rank,omitempty"`
+	Tier      string  `json:"tier,omitempty"`
+	Value     float64 `json:"value,omitempty"`
 }
 
 // RankingTierValues is a nested component of Ranking.
 type RankingTierValues struct {
-	Bronze   int   `json:"bronze,omitempty"`
-	Diamond  int64 `json:"diamond,omitempty"`
-	Gold     int   `json:"gold,omitempty"`
-	Master   int64 `json:"master,omitempty"`
-	Platinum int64 `json:"platinum,omitempty"`
-	Silver   int   `json:"silver,omitempty"`
+	Bronze   float64 `json:"bronze,omitempty"`
+	Diamond  float64 `json:"diamond,omitempty"`
+	Gold     float64 `json:"gold,omitempty"`
+	Master   float64 `json:"master,omitempty"`
+	Platinum float64 `json:"platinum,omitempty"`
+	Silver   float64 `json:"silver,omitempty"`
 }
 
 // Region is a map area with economic, geographic, and military state.
@@ -2353,7 +2353,7 @@ type Region struct {
 	Position                     []float64                 `json:"position,omitempty"`
 	Residents                    int                       `json:"residents,omitempty"`
 	Resistance                   float64                   `json:"resistance,omitempty"`
-	ResistanceMax                int                       `json:"resistanceMax,omitempty"`
+	ResistanceMax                float64                   `json:"resistanceMax,omitempty"`
 	Stats                        RegionStats               `json:"stats,omitempty"`
 	StrategicResource            string                    `json:"strategicResource,omitempty"`
 	UpgradesV2                   RegionUpgradesV2          `json:"upgradesV2,omitempty"`
@@ -2399,15 +2399,15 @@ type RegionDates struct {
 
 // RegionDeposit is a nested component of Region.
 type RegionDeposit struct {
-	BonusPercent int    `json:"bonusPercent,omitempty"`
-	EndsAt       string `json:"endsAt,omitempty"`
-	StartsAt     string `json:"startsAt,omitempty"`
-	Type         string `json:"type,omitempty"`
+	BonusPercent float64 `json:"bonusPercent,omitempty"`
+	EndsAt       string  `json:"endsAt,omitempty"`
+	StartsAt     string  `json:"startsAt,omitempty"`
+	Type         string  `json:"type,omitempty"`
 }
 
 // RegionStats is a nested component of Region.
 type RegionStats struct {
-	InvestedMoney int `json:"investedMoney,omitempty"`
+	InvestedMoney float64 `json:"investedMoney,omitempty"`
 }
 
 // RegionUpgradesV2 is a nested component of Region.
@@ -2425,9 +2425,9 @@ type RegionUpgradesV2Upgrades struct {
 // RegionUpgradesV2UpgradesBase is a nested component of RegionUpgradesV2Upgrades.
 type RegionUpgradesV2UpgradesBase struct {
 	ConstructionEndedAt   string                          `json:"constructionEndedAt,omitempty"`
-	ConstructionPoints    int                             `json:"constructionPoints,omitempty"`
+	ConstructionPoints    float64                         `json:"constructionPoints,omitempty"`
 	ConstructionStartedAt string                          `json:"constructionStartedAt,omitempty"`
-	InvestedMoney         int                             `json:"investedMoney,omitempty"`
+	InvestedMoney         float64                         `json:"investedMoney,omitempty"`
 	IsUnderConstruction   *bool                           `json:"isUnderConstruction,omitempty"`
 	LastConstructions     []RegionUpgradeLastConstruction `json:"lastConstructions,omitempty"`
 	Level                 int                             `json:"level,omitempty"`
@@ -2438,9 +2438,9 @@ type RegionUpgradesV2UpgradesBase struct {
 // RegionUpgradesV2UpgradesBunker is a nested component of RegionUpgradesV2Upgrades.
 type RegionUpgradesV2UpgradesBunker struct {
 	ConstructionEndedAt   string                          `json:"constructionEndedAt,omitempty"`
-	ConstructionPoints    int                             `json:"constructionPoints,omitempty"`
+	ConstructionPoints    float64                         `json:"constructionPoints,omitempty"`
 	ConstructionStartedAt string                          `json:"constructionStartedAt,omitempty"`
-	InvestedMoney         int                             `json:"investedMoney,omitempty"`
+	InvestedMoney         float64                         `json:"investedMoney,omitempty"`
 	IsUnderConstruction   *bool                           `json:"isUnderConstruction,omitempty"`
 	LastConstructions     []RegionUpgradeLastConstruction `json:"lastConstructions,omitempty"`
 	Level                 int                             `json:"level,omitempty"`
@@ -2450,9 +2450,9 @@ type RegionUpgradesV2UpgradesBunker struct {
 
 // RegionUpgradeLastConstruction records a completed upgrade construction.
 type RegionUpgradeLastConstruction struct {
-	Construction   int    `json:"construction,omitempty"`
-	ConstructionAt string `json:"constructionAt,omitempty"`
-	UserID         string `json:"user,omitempty"`
+	Construction   float64 `json:"construction,omitempty"`
+	ConstructionAt string  `json:"constructionAt,omitempty"`
+	UserID         string  `json:"user,omitempty"`
 }
 
 // RegionUpgradesV2UpgradesBunkerLastConstructions is an alias for [RegionUpgradeLastConstruction].
@@ -2476,10 +2476,10 @@ type RoundEquipment struct {
 	ID                string          `json:"_id,omitempty"`
 	Code              string          `json:"code,omitempty"`
 	LastAcquisitionAt string          `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int             `json:"maxState,omitempty"`
+	MaxState          float64         `json:"maxState,omitempty"`
 	Quantity          int             `json:"quantity,omitempty"`
 	Skills            EquipmentSkills `json:"skills,omitempty"`
-	State             int             `json:"state,omitempty"`
+	State             float64         `json:"state,omitempty"`
 	Type              string          `json:"type,omitempty"`
 }
 
@@ -2487,7 +2487,7 @@ type RoundEquipment struct {
 type RoundLastHit struct {
 	ID            string           `json:"_id,omitempty"`
 	Ammo          string           `json:"ammo,omitempty"`
-	Damages       int              `json:"damages,omitempty"`
+	Damages       float64          `json:"damages,omitempty"`
 	Equipments    []RoundEquipment `json:"equipments,omitempty"`
 	HitAt         string           `json:"hitAt,omitempty"`
 	IsCriticalHit bool             `json:"isCriticalHit,omitempty"`
@@ -2505,18 +2505,18 @@ type RoundLastHits struct {
 
 // RoundLiveState is a nested component of BattleRound.
 type RoundLiveState struct {
-	ActualTickPoints int    `json:"actualTickPoints,omitempty"`
-	NextTickAt       string `json:"nextTickAt,omitempty"`
-	TicksCount       int    `json:"ticksCount,omitempty"`
+	ActualTickPoints float64 `json:"actualTickPoints,omitempty"`
+	NextTickAt       string  `json:"nextTickAt,omitempty"`
+	TicksCount       int     `json:"ticksCount,omitempty"`
 }
 
 // RoundSideCombatStats is a nested component of BattleRound.
 type RoundSideCombatStats struct {
 	CountryID string         `json:"country,omitempty"`
-	Damages   int            `json:"damages,omitempty"`
+	Damages   float64        `json:"damages,omitempty"`
 	HitCount  int            `json:"hitCount,omitempty"`
 	LastHits  []RoundLastHit `json:"lastHits,omitempty"`
-	Points    int            `json:"points,omitempty"`
+	Points    float64        `json:"points,omitempty"`
 }
 
 // RoundWeapon is a nested component of RoundLastHit.
@@ -2524,10 +2524,10 @@ type RoundWeapon struct {
 	ID                string       `json:"_id,omitempty"`
 	Code              string       `json:"code,omitempty"`
 	LastAcquisitionAt string       `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int          `json:"maxState,omitempty"`
+	MaxState          float64      `json:"maxState,omitempty"`
 	Quantity          int          `json:"quantity,omitempty"`
 	Skills            WeaponSkills `json:"skills,omitempty"`
-	State             int          `json:"state,omitempty"`
+	State             float64      `json:"state,omitempty"`
 }
 
 // SearchResult contains matching entity IDs grouped by entity type.
@@ -2562,21 +2562,21 @@ type TopOrders struct {
 
 // Upgrade represents data returned by the WarEra API.
 type Upgrade struct {
-	ID                  string `json:"_id,omitempty"`
-	CreatedAt           string `json:"createdAt,omitempty"`
-	DependantUsersCount int    `json:"dependantUsersCount,omitempty"`
-	InvestedConcrete    int    `json:"investedConcrete,omitempty"`
-	InvestedMoney       int    `json:"investedMoney,omitempty"`
-	InvestedSteel       int    `json:"investedSteel,omitempty"`
-	LastDowngradeAt     string `json:"lastDowngradeAt,omitempty"`
-	LastUpgradeAt       string `json:"lastUpgradeAt,omitempty"`
-	Level               int    `json:"level,omitempty"`
-	Region              string `json:"region,omitempty"`
-	Status              string `json:"status,omitempty"`
-	StatusChangedAt     string `json:"statusChangedAt,omitempty"`
-	UpdatedAt           string `json:"updatedAt,omitempty"`
-	UpgradeType         string `json:"upgradeType,omitempty"`
-	WillBeActiveAt      string `json:"willBeActiveAt,omitempty"`
+	ID                  string  `json:"_id,omitempty"`
+	CreatedAt           string  `json:"createdAt,omitempty"`
+	DependantUsersCount int     `json:"dependantUsersCount,omitempty"`
+	InvestedConcrete    float64 `json:"investedConcrete,omitempty"`
+	InvestedMoney       float64 `json:"investedMoney,omitempty"`
+	InvestedSteel       float64 `json:"investedSteel,omitempty"`
+	LastDowngradeAt     string  `json:"lastDowngradeAt,omitempty"`
+	LastUpgradeAt       string  `json:"lastUpgradeAt,omitempty"`
+	Level               int     `json:"level,omitempty"`
+	Region              string  `json:"region,omitempty"`
+	Status              string  `json:"status,omitempty"`
+	StatusChangedAt     string  `json:"statusChangedAt,omitempty"`
+	UpdatedAt           string  `json:"updatedAt,omitempty"`
+	UpgradeType         string  `json:"upgradeType,omitempty"`
+	WillBeActiveAt      string  `json:"willBeActiveAt,omitempty"`
 }
 
 // User is a full player profile, including skills, statistics, and equipment.
@@ -2599,7 +2599,7 @@ type User struct {
 	MilitaryRank          int                    `json:"militaryRank,omitempty"`
 	Missions              UserMissions           `json:"missions,omitempty"`
 	MUID                  string                 `json:"mu,omitempty"`
-	MuMaxLevelRewarded    int                    `json:"muMaxLevelRewarded,omitempty"`
+	MuMaxLevelRewarded    float64                `json:"muMaxLevelRewarded,omitempty"`
 	Party                 string                 `json:"party,omitempty"`
 	Preferences           UserPreferences        `json:"preferences,omitempty"`
 	Rankings              map[string]RankingItem `json:"rankings,omitempty"`
@@ -2652,16 +2652,16 @@ type UserFinishedTours struct {
 
 // UserLeveling is a nested component of User.
 type UserLeveling struct {
-	AvailableSkillPoints int `json:"availableSkillPoints,omitempty"`
-	DailyXPLeft          int `json:"dailyXpLeft,omitempty"`
-	FreeReset            int `json:"freeReset,omitempty"`
-	Level                int `json:"level,omitempty"`
-	Prestige             int `json:"prestige,omitempty"`
-	PrestigeLevel        int `json:"prestigeLevel,omitempty"`
-	SpentSkillPoints     int `json:"spentSkillPoints,omitempty"`
-	TotalSkillPoints     int `json:"totalSkillPoints,omitempty"`
-	TotalXP              int `json:"totalXp,omitempty"`
-	XP                   int `json:"xp,omitempty"`
+	AvailableSkillPoints int     `json:"availableSkillPoints,omitempty"`
+	DailyXPLeft          float64 `json:"dailyXpLeft,omitempty"`
+	FreeReset            float64 `json:"freeReset,omitempty"`
+	Level                int     `json:"level,omitempty"`
+	Prestige             int     `json:"prestige,omitempty"`
+	PrestigeLevel        int     `json:"prestigeLevel,omitempty"`
+	SpentSkillPoints     int     `json:"spentSkillPoints,omitempty"`
+	TotalSkillPoints     int     `json:"totalSkillPoints,omitempty"`
+	TotalXP              float64 `json:"totalXp,omitempty"`
+	XP                   float64 `json:"xp,omitempty"`
 }
 
 // UserLite is a compact player profile for listings and search results.
@@ -2688,7 +2688,7 @@ type UserMissions struct {
 	RerolledDailyMissions   int                   `json:"rerolledDailyMissions,omitempty"`
 	RerolledMonthlyMissions int                   `json:"rerolledMonthlyMissions,omitempty"`
 	RerolledWeeklyMissions  int                   `json:"rerolledWeeklyMissions,omitempty"`
-	TotalXpClaimed          int                   `json:"totalXpClaimed,omitempty"`
+	TotalXpClaimed          float64               `json:"totalXpClaimed,omitempty"`
 }
 
 // UserMissionsClaimedAt is a nested component of UserMissions.
@@ -2731,32 +2731,32 @@ type UserSkills struct {
 
 // UserSkillsArmor is a nested component of UserSkills.
 type UserSkillsArmor struct {
-	Equipment         int             `json:"equipment,omitempty"`
+	Equipment         float64         `json:"equipment,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
-	TotalAfterSoftCap int             `json:"totalAfterSoftCap,omitempty"`
+	Total             float64         `json:"total,omitempty"`
+	TotalAfterSoftCap float64         `json:"totalAfterSoftCap,omitempty"`
 	Value             *float64        `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsAttack is a nested component of UserSkills.
 type UserSkillsAttack struct {
-	AmmoPercent         int             `json:"ammoPercent,omitempty"`
-	BuffsPercent        int             `json:"buffsPercent,omitempty"`
-	DebuffsPercent      int             `json:"debuffsPercent,omitempty"`
+	AmmoPercent         float64         `json:"ammoPercent,omitempty"`
+	BuffsPercent        float64         `json:"buffsPercent,omitempty"`
+	DebuffsPercent      float64         `json:"debuffsPercent,omitempty"`
 	Equipment           *float64        `json:"equipment,omitempty"`
 	Level               int             `json:"level,omitempty"`
 	Limited             json.RawMessage `json:"limited,omitempty"`
 	MilitaryRankPercent float64         `json:"militaryRankPercent,omitempty"`
 	Overflow            json.RawMessage `json:"overflow,omitempty"`
 	Prestige            int             `json:"prestige,omitempty"`
-	Total               int             `json:"total,omitempty"`
+	Total               float64         `json:"total,omitempty"`
 	TotalAfterSoftCap   *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value               int             `json:"value,omitempty"`
-	Weapon              int             `json:"weapon,omitempty"`
+	Value               float64         `json:"value,omitempty"`
+	Weapon              float64         `json:"weapon,omitempty"`
 }
 
 // UserSkillsCompanies is a nested component of UserSkills.
@@ -2766,9 +2766,9 @@ type UserSkillsCompanies struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2779,34 +2779,34 @@ type UserSkillsCriticalChance struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
-	Weapon            int             `json:"weapon,omitempty"`
+	Value             float64         `json:"value,omitempty"`
+	Weapon            float64         `json:"weapon,omitempty"`
 }
 
 // UserSkillsCriticalDamages is a nested component of UserSkills.
 type UserSkillsCriticalDamages struct {
-	Equipment         int             `json:"equipment,omitempty"`
+	Equipment         float64         `json:"equipment,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsDodge is a nested component of UserSkills.
 type UserSkillsDodge struct {
-	Equipment         int             `json:"equipment,omitempty"`
+	Equipment         float64         `json:"equipment,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
-	TotalAfterSoftCap int             `json:"totalAfterSoftCap,omitempty"`
+	Total             float64         `json:"total,omitempty"`
+	TotalAfterSoftCap float64         `json:"totalAfterSoftCap,omitempty"`
 	Value             *float64        `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
@@ -2820,9 +2820,9 @@ type UserSkillsEnergy struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2835,9 +2835,9 @@ type UserSkillsEntrepreneurship struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2850,9 +2850,9 @@ type UserSkillsHealth struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2865,9 +2865,9 @@ type UserSkillsHunger struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2878,9 +2878,9 @@ type UserSkillsLootChance struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2891,22 +2891,22 @@ type UserSkillsManagement struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
 // UserSkillsPrecision is a nested component of UserSkills.
 type UserSkillsPrecision struct {
-	Equipment         int             `json:"equipment,omitempty"`
+	Equipment         float64         `json:"equipment,omitempty"`
 	Level             int             `json:"level,omitempty"`
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2919,9 +2919,9 @@ type UserSkillsProduction struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2934,9 +2934,9 @@ type UserSkillsStamina struct {
 	Limited           json.RawMessage `json:"limited,omitempty"`
 	Overflow          json.RawMessage `json:"overflow,omitempty"`
 	Prestige          int             `json:"prestige,omitempty"`
-	Total             int             `json:"total,omitempty"`
+	Total             float64         `json:"total,omitempty"`
 	TotalAfterSoftCap *float64        `json:"totalAfterSoftCap,omitempty"`
-	Value             int             `json:"value,omitempty"`
+	Value             float64         `json:"value,omitempty"`
 	Weapon            *float64        `json:"weapon,omitempty"`
 }
 
@@ -2948,7 +2948,7 @@ type UserStats struct {
 	DailyRewardStreak     int                 `json:"dailyRewardStreak,omitempty"`
 	DamagesCount          int                 `json:"damagesCount,omitempty"`
 	MilestoneTiersClaimed int                 `json:"milestoneTiersClaimed,omitempty"`
-	MilestoneXpClaimed    int                 `json:"milestoneXpClaimed,omitempty"`
+	MilestoneXpClaimed    float64             `json:"milestoneXpClaimed,omitempty"`
 	Wealth                UserStatsWealth     `json:"wealth,omitempty"`
 	WoodenCase            UserStatsWoodenCase `json:"woodenCase,omitempty"`
 	WorksCount            int                 `json:"worksCount,omitempty"`
@@ -2962,9 +2962,9 @@ type UserStatsCase1 struct {
 
 // UserStatsCase1ByRarity is a nested component of UserStatsCase1.
 type UserStatsCase1ByRarity struct {
-	Common   int `json:"common,omitempty"`
-	Rare     int `json:"rare,omitempty"`
-	Uncommon int `json:"uncommon,omitempty"`
+	Common   float64 `json:"common,omitempty"`
+	Rare     float64 `json:"rare,omitempty"`
+	Uncommon float64 `json:"uncommon,omitempty"`
 }
 
 // UserStatsCase2 is a nested component of UserStats.
@@ -2975,8 +2975,8 @@ type UserStatsCase2 struct {
 
 // UserStatsCase2ByRarity is a nested component of UserStatsCase2.
 type UserStatsCase2ByRarity struct {
-	Rare     int `json:"rare,omitempty"`
-	Uncommon int `json:"uncommon,omitempty"`
+	Rare     float64 `json:"rare,omitempty"`
+	Uncommon float64 `json:"uncommon,omitempty"`
 }
 
 // UserStatsWealth is a nested component of UserStats.
@@ -2997,25 +2997,25 @@ type UserStatsWoodenCase struct {
 
 // UserStatsWoodenCaseByItem is a nested component of UserStatsWoodenCase.
 type UserStatsWoodenCaseByItem struct {
-	Ammo       int `json:"ammo,omitempty"`
-	Bread      int `json:"bread,omitempty"`
-	Coca       int `json:"coca,omitempty"`
-	Cocain     int `json:"cocain,omitempty"`
-	Concrete   int `json:"concrete,omitempty"`
-	CookedFish int `json:"cookedFish,omitempty"`
-	Fish       int `json:"fish,omitempty"`
-	Grain      int `json:"grain,omitempty"`
-	Iron       int `json:"iron,omitempty"`
-	Lead       int `json:"lead,omitempty"`
-	LightAmmo  int `json:"lightAmmo,omitempty"`
-	Limestone  int `json:"limestone,omitempty"`
-	Livestock  int `json:"livestock,omitempty"`
-	Oil        int `json:"oil,omitempty"`
-	Paper      int `json:"paper,omitempty"`
-	Petroleum  int `json:"petroleum,omitempty"`
-	Steak      int `json:"steak,omitempty"`
-	Steel      int `json:"steel,omitempty"`
-	Wood       int `json:"wood,omitempty"`
+	Ammo       float64 `json:"ammo,omitempty"`
+	Bread      float64 `json:"bread,omitempty"`
+	Coca       float64 `json:"coca,omitempty"`
+	Cocain     float64 `json:"cocain,omitempty"`
+	Concrete   float64 `json:"concrete,omitempty"`
+	CookedFish float64 `json:"cookedFish,omitempty"`
+	Fish       float64 `json:"fish,omitempty"`
+	Grain      float64 `json:"grain,omitempty"`
+	Iron       float64 `json:"iron,omitempty"`
+	Lead       float64 `json:"lead,omitempty"`
+	LightAmmo  float64 `json:"lightAmmo,omitempty"`
+	Limestone  float64 `json:"limestone,omitempty"`
+	Livestock  float64 `json:"livestock,omitempty"`
+	Oil        float64 `json:"oil,omitempty"`
+	Paper      float64 `json:"paper,omitempty"`
+	Petroleum  float64 `json:"petroleum,omitempty"`
+	Steak      float64 `json:"steak,omitempty"`
+	Steel      float64 `json:"steel,omitempty"`
+	Wood       float64 `json:"wood,omitempty"`
 }
 
 // WeaponItem is a nested component of CurrentEquipment.
@@ -3023,14 +3023,14 @@ type WeaponItem struct {
 	ID                string       `json:"_id,omitempty"`
 	Code              string       `json:"code,omitempty"`
 	LastAcquisitionAt string       `json:"lastAcquisitionAt,omitempty"`
-	MaxState          int          `json:"maxState,omitempty"`
+	MaxState          float64      `json:"maxState,omitempty"`
 	Quantity          int          `json:"quantity,omitempty"`
 	Skills            WeaponSkills `json:"skills,omitempty"`
-	State             int          `json:"state,omitempty"`
+	State             float64      `json:"state,omitempty"`
 }
 
 // WeaponSkills is a nested component of RoundWeapon.
 type WeaponSkills struct {
-	Attack         int `json:"attack,omitempty"`
-	CriticalChance int `json:"criticalChance,omitempty"`
+	Attack         float64 `json:"attack,omitempty"`
+	CriticalChance float64 `json:"criticalChance,omitempty"`
 }

@@ -20,3 +20,6 @@ go.work
 # OS specific files
 .DS_Store
 .env
+
+# Local planning and long-term context
+/docs/

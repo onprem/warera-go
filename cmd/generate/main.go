@@ -31,6 +31,7 @@ type OpenAPISpec struct {
 }
 
 type OpenAPIProperty struct {
+	Ref         string            `json:"$ref"`
 	Type        string            `json:"type"`
 	Description string            `json:"description"`
 	Enum        []string          `json:"enum"`
@@ -178,6 +179,10 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 				return nil, fmt.Errorf("operation %s properties %q and %q both map to Go field %s", opID, previous, name, fieldName)
 			}
 			fieldNames[fieldName] = name
+			property, err := resolveLocalRef(property, props)
+			if err != nil {
+				return nil, fmt.Errorf("operation %s property %s: %w", opID, name, err)
+			}
 			goType, err := goTypeFromOpenAPI(property)
 			if err != nil {
 				return nil, fmt.Errorf("operation %s property %s: %w", opID, name, err)
@@ -206,6 +211,24 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 		return nil, fmt.Errorf("format generated source: %w", err)
 	}
 	return formatted, nil
+}
+
+// resolveLocalRef replaces a "#/properties/<name>" reference, which the spec
+// uses to share a sibling property's schema, with that schema. The property's
+// own description wins over the referenced one.
+func resolveLocalRef(property OpenAPIProperty, siblings map[string]OpenAPIProperty) (OpenAPIProperty, error) {
+	if property.Ref == "" {
+		return property, nil
+	}
+	name, ok := strings.CutPrefix(property.Ref, "#/properties/")
+	target, found := siblings[name]
+	if !ok || !found || target.Ref != "" {
+		return OpenAPIProperty{}, fmt.Errorf("unsupported $ref %q", property.Ref)
+	}
+	if property.Description != "" {
+		target.Description = property.Description
+	}
+	return target, nil
 }
 
 func deriveFilterName(opID string) string {

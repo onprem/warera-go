@@ -28,7 +28,8 @@ func TestGenerateSourcePreservesSchemaSemantics(t *testing.T) {
 							"enabled": {"type": "boolean"},
 							"kind": {"anyOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
 							"dynamic": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-							"tags": {"type": "array", "items": {"type": "string"}}
+							"tags": {"type": "array", "items": {"type": "string"}},
+							"enabledToo": {"$ref": "#/properties/enabled", "description": "Shares enabled's schema"}
 						}
 					}}}}
 				}
@@ -47,6 +48,7 @@ func TestGenerateSourcePreservesSchemaSemantics(t *testing.T) {
 		"Kind":       {"*StringOrStrings", "`json:\"kind,omitempty\"`"},
 		"Dynamic":    {"any", "`json:\"dynamic,omitempty\"`"},
 		"Tags":       {"[]string", "`json:\"tags,omitempty\"`"},
+		"EnabledToo": {"*bool", "`json:\"enabledToo,omitempty\"` // Shares enabled's schema"},
 	}
 	for field, want := range wantFields {
 		var fieldLine string

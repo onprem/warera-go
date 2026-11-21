@@ -11,22 +11,11 @@ import (
 // SkillLevels returns a player's skill levels keyed by skill name, the names
 // [warera.GameConfig.Skills] uses, such as "attack" or "criticalChance".
 func SkillLevels(skills warera.UserSkills) map[string]int {
-	return map[string]int{
-		"armor":           skills.Armor.Level,
-		"attack":          skills.Attack.Level,
-		"companies":       skills.Companies.Level,
-		"criticalChance":  skills.CriticalChance.Level,
-		"criticalDamages": skills.CriticalDamages.Level,
-		"dodge":           skills.Dodge.Level,
-		"energy":          skills.Energy.Level,
-		"health":          skills.Health.Level,
-		"hunger":          skills.Hunger.Level,
-		"lootChance":      skills.LootChance.Level,
-		"management":      skills.Management.Level,
-		"precision":       skills.Precision.Level,
-		"production":      skills.Production.Level,
-		"stamina":         skills.Stamina.Level,
+	levels := map[string]int{}
+	for name, s := range userSkills(skills) {
+		levels[name] = s.Level
 	}
+	return levels
 }
 
 // SkillLevel returns the configuration of one level of a skill: its value,

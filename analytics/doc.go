@@ -9,7 +9,9 @@
 //   - [github.com/onprem/warera-go/analytics/company]: what companies and a
 //     workforce make per hour.
 //   - [github.com/onprem/warera-go/analytics/character]: skill builds and their
-//     cost, and equipment roll quality.
+//     cost, fight stats, and equipment roll quality.
+//   - [github.com/onprem/warera-go/analytics/combat]: expected damage, how far
+//     health and food last, what a fight costs and earns, and battle bonuses.
 //   - [github.com/onprem/warera-go/analytics/upgrades]: what region and
 //     company upgrades cost.
 //

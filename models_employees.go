@@ -68,6 +68,9 @@ type Employee struct {
 	HappinessBreakdown EmployeeHappiness       `json:"happinessBreakdown"`
 	EventModifiers     []EmployeeEventModifier `json:"eventModifiers"`
 	CharmLuck          *EmployeeCharmLuck      `json:"charmLuck"`
+	// FoundToolboxes counts toolboxes this employee found that wait to be
+	// collected; only Me.GetEmployees reports it.
+	FoundToolboxes int `json:"foundToolboxes"`
 	// CareBoosts lists when a manager's daily care boosted this employee.
 	CareBoosts       []Time `json:"careBoosts"`
 	CoworkerFiredAts []Time `json:"coworkerFiredAts"`
@@ -290,4 +293,127 @@ type CompanyProductionBonus struct {
 	DepositBonus            float64 `json:"depositBonus"`
 	StrategicResourcesBonus float64 `json:"strategicResourcesBonus"`
 	Total                   float64 `json:"total"`
+}
+
+// WorkforceSummary totals the API key owner's employees and their hourly
+// output and costs.
+type WorkforceSummary struct {
+	EmployeeCount  int `json:"employeeCount"`
+	TrainableCount int `json:"trainableCount"`
+	ManagerCount   int `json:"managerCount"`
+	// FoundToolboxes counts toolboxes employees found that wait to be
+	// collected.
+	FoundToolboxes int `json:"foundToolboxes"`
+	// Production is production points per hour, also keyed by item code in
+	// ProductionByItem.
+	Production       float64            `json:"production"`
+	ProductionByItem map[string]float64 `json:"productionByItem"`
+	ToolboxesPerHour float64            `json:"toolboxesPerHour"`
+	// WageCost and ManagerCost are money per hour.
+	WageCost    float64 `json:"wageCost"`
+	ManagerCost float64 `json:"managerCost"`
+}
+
+// EmployeeEvent is a story event involving the API key owner's employees,
+// such as an office romance or a found toolbox, with the choices it offered
+// and, once resolved, its outcome.
+type EmployeeEvent struct {
+	ID      string `json:"_id"`
+	OwnerID string `json:"owner"`
+	// Code names the event, such as "officeRomance" or "warRationing".
+	Code string `json:"code"`
+	// Status is "scheduled", "pending", "resolved", or "cancelled".
+	Status         string                    `json:"status"`
+	ParticipantIDs []string                  `json:"participants"`
+	Cast           []EmployeeEventCastMember `json:"cast"`
+	// Params holds event-specific values such as itemCode, wage, or
+	// toolFamily.
+	Params  map[string]any        `json:"params"`
+	Options []EmployeeEventOption `json:"options"`
+	// DefaultOption is the index in Options the game picks when the owner
+	// does not choose before ExpiresAt.
+	DefaultOption int `json:"defaultOption"`
+	// ChainParentID is the event that scheduled this one, if any.
+	ChainParentID string `json:"chainParent"`
+	ActivateAt    Time   `json:"activateAt"`
+	ExpiresAt     Time   `json:"expiresAt"`
+	ResolvedAt    Time   `json:"resolvedAt"`
+	// Outcome is set once the event is resolved.
+	Outcome   *EmployeeEventOutcome `json:"outcome"`
+	CreatedAt Time                  `json:"createdAt"`
+	UpdatedAt Time                  `json:"updatedAt"`
+}
+
+// EmployeeEventCastMember is an employee taking part in an event.
+type EmployeeEventCastMember struct {
+	EmployeeID    string `json:"employee"`
+	Name          string `json:"name"`
+	Gender        string `json:"gender"`
+	NationalityID string `json:"nationality"`
+	CompanyID     string `json:"company"`
+}
+
+// EmployeeEventOption is one choice an event offers.
+type EmployeeEventOption struct {
+	Costs []EmployeeEventCost `json:"costs"`
+	// Chance is the success chance in percent, explained by Lines; it is
+	// zero for options without a roll.
+	Chance float64                   `json:"chance"`
+	Lines  []EmployeeEventChanceLine `json:"lines"`
+	// A roll below CritBelow is a critical success, and one from
+	// CritFailFrom up a critical failure.
+	CritBelow    float64 `json:"critBelow"`
+	CritFailFrom float64 `json:"critFailFrom"`
+	// Hidden options are not shown to the owner, and Locked ones could not
+	// be picked.
+	Hidden bool `json:"hidden"`
+	Locked bool `json:"locked"`
+}
+
+// EmployeeEventCost is what an option costs, such as money.
+type EmployeeEventCost struct {
+	Type   string  `json:"type"`
+	Amount float64 `json:"amount"`
+}
+
+// EmployeeEventChanceLine is one term of an option's success chance.
+type EmployeeEventChanceLine struct {
+	// Source is "base", "happiness", "leadership", "management", "stat", or
+	// "trait".
+	Source string  `json:"source"`
+	Value  float64 `json:"value"`
+	Input  float64 `json:"input"`
+	Stat   string  `json:"stat"`
+	Trait  string  `json:"trait"`
+}
+
+// EmployeeEventOutcome is how a resolved event turned out.
+type EmployeeEventOutcome struct {
+	// Option is the index in Options that was picked, and Auto reports
+	// whether the game picked it.
+	Option int  `json:"option"`
+	Auto   bool `json:"auto"`
+	// Band is "crit", "success", "fail", or "critFail".
+	Band    string                       `json:"band"`
+	Roll    float64                      `json:"roll"`
+	Applied []EmployeeEventAppliedEffect `json:"applied"`
+}
+
+// EmployeeEventAppliedEffect is one effect of an outcome. Type is
+// "happiness", "production", "stat", "potentialMax", "away", "gainTrait",
+// "item", "money", or "schedule", and decides which other fields are set.
+type EmployeeEventAppliedEffect struct {
+	Type       string  `json:"type"`
+	EmployeeID string  `json:"employee"`
+	Delta      float64 `json:"delta"`
+	Until      Time    `json:"until"`
+	Stat       string  `json:"stat"`
+	Value      float64 `json:"value"`
+	Amount     float64 `json:"amount"`
+	Trait      string  `json:"trait"`
+	ItemCode   string  `json:"itemCode"`
+	Quantity   int     `json:"quantity"`
+	// Code and ActivateAt name the follow-up event a schedule effect queued.
+	Code       string `json:"code"`
+	ActivateAt Time   `json:"activateAt"`
 }

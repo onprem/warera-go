@@ -1,0 +1,657 @@
+[
+  {
+    "_id": "6af65a12fb49e11fa40ca21e",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "burningOut",
+    "status": "resolved",
+    "participants": [
+      "6ae3fcfa01db7f77276696aa"
+    ],
+    "cast": [
+      {
+        "employee": "6ae3fcfa01db7f77276696aa",
+        "name": "Adhrit Verma",
+        "gender": "male",
+        "nationality": "6813b6d546e731854c7ac862",
+        "company": "aaaaaaaaaaaaaaaaaaaa0104"
+      }
+    ],
+    "params": {
+      "itemCode": "lead",
+      "wage": 0.197616,
+      "toolFamily": "pickaxe"
+    },
+    "options": [
+      {
+        "costs": []
+      },
+      {
+        "chance": 75,
+        "lines": [
+          {
+            "source": "base",
+            "value": 50
+          },
+          {
+            "source": "management",
+            "value": 6,
+            "input": 3
+          },
+          {
+            "source": "happiness",
+            "value": 3,
+            "input": 64
+          },
+          {
+            "source": "stat",
+            "value": 16,
+            "input": 8,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 7.5,
+        "critFailFrom": 97.5,
+        "costs": [
+          {
+            "type": "money",
+            "amount": 14.23
+          }
+        ],
+        "locked": true,
+        "hidden": true
+      },
+      {
+        "chance": 75,
+        "lines": [
+          {
+            "source": "base",
+            "value": 50
+          },
+          {
+            "source": "management",
+            "value": 6,
+            "input": 3
+          },
+          {
+            "source": "happiness",
+            "value": 3,
+            "input": 64
+          },
+          {
+            "source": "stat",
+            "value": 16,
+            "input": 8,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 7.5,
+        "critFailFrom": 97.5,
+        "costs": []
+      },
+      {
+        "chance": 90,
+        "lines": [
+          {
+            "source": "base",
+            "value": 70
+          },
+          {
+            "source": "stat",
+            "value": 32,
+            "input": 8,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 9,
+        "critFailFrom": 99,
+        "costs": []
+      }
+    ],
+    "defaultOption": 3,
+    "expiresAt": "2026-11-14T12:30:02.252Z",
+    "resolvedAt": "2026-11-13T00:48:34.444Z",
+    "outcome": {
+      "option": 2,
+      "band": "fail",
+      "roll": 96.72,
+      "auto": false,
+      "applied": [
+        {
+          "type": "happiness",
+          "employee": "6ae3fcfa01db7f77276696aa",
+          "delta": -10,
+          "until": "2026-11-16T00:48:34.444Z"
+        }
+      ]
+    },
+    "createdAt": "2026-11-13T00:30:10.593Z",
+    "updatedAt": "2026-11-13T00:48:34.449Z"
+  },
+  {
+    "_id": "6af57912249a2fc75f6f53b5",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "eureka",
+    "status": "resolved",
+    "participants": [
+      "6aecd07ac52a11cbe817c5d1"
+    ],
+    "cast": [
+      {
+        "employee": "6aecd07ac52a11cbe817c5d1",
+        "name": "Bhadrak Tagore",
+        "gender": "male",
+        "nationality": "6813b6d546e731854c7ac862",
+        "company": "aaaaaaaaaaaaaaaaaaaa0106"
+      }
+    ],
+    "params": {
+      "itemCode": "steel",
+      "wage": 0.140624,
+      "toolFamily": "hammer"
+    },
+    "options": [
+      {
+        "chance": 62,
+        "lines": [
+          {
+            "source": "base",
+            "value": 45
+          },
+          {
+            "source": "management",
+            "value": 6,
+            "input": 3
+          },
+          {
+            "source": "happiness",
+            "value": 5,
+            "input": 74
+          },
+          {
+            "source": "stat",
+            "value": 6,
+            "input": 3,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 6.2,
+        "critFailFrom": 96.2,
+        "costs": [
+          {
+            "type": "money",
+            "amount": 2.53
+          }
+        ]
+      },
+      {
+        "chance": 77,
+        "lines": [
+          {
+            "source": "base",
+            "value": 60
+          },
+          {
+            "source": "management",
+            "value": 6,
+            "input": 3
+          },
+          {
+            "source": "happiness",
+            "value": 5,
+            "input": 74
+          },
+          {
+            "source": "stat",
+            "value": 6,
+            "input": 3,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 7.7,
+        "critFailFrom": 97.7,
+        "costs": []
+      },
+      {
+        "costs": []
+      }
+    ],
+    "defaultOption": 2,
+    "expiresAt": "2026-11-13T20:30:02.036Z",
+    "resolvedAt": "2026-11-12T12:02:36.782Z",
+    "outcome": {
+      "option": 0,
+      "band": "success",
+      "roll": 21.86,
+      "auto": false,
+      "applied": [
+        {
+          "type": "stat",
+          "employee": "6aecd07ac52a11cbe817c5d1",
+          "stat": "production",
+          "delta": 1
+        }
+      ]
+    },
+    "createdAt": "2026-11-12T08:30:10.451Z",
+    "updatedAt": "2026-11-12T12:02:36.790Z"
+  },
+  {
+    "_id": "6af4de5e005717b0b66f0178",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "sameHaircut",
+    "status": "resolved",
+    "participants": [
+      "6af49b281695ca5d8e38a9a0",
+      "6adf7cf3dfe24e5144450239"
+    ],
+    "cast": [
+      {
+        "employee": "6af49b281695ca5d8e38a9a0",
+        "name": "Omana Guha",
+        "gender": "female",
+        "nationality": "6813b6d546e731854c7ac862",
+        "company": "aaaaaaaaaaaaaaaaaaaa0105"
+      },
+      {
+        "employee": "6adf7cf3dfe24e5144450239",
+        "name": "Murilo Melo",
+        "gender": "male",
+        "nationality": "6813b6d546e731854c7ac82f",
+        "company": "aaaaaaaaaaaaaaaaaaaa0105"
+      }
+    ],
+    "params": {
+      "itemCode": "iron",
+      "wage": 0.089741,
+      "toolFamily": "pickaxe"
+    },
+    "options": [
+      {
+        "chance": 54,
+        "lines": [
+          {
+            "source": "base",
+            "value": 50
+          },
+          {
+            "source": "stat",
+            "value": 4,
+            "input": 1,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 5.4,
+        "critFailFrom": 95.4,
+        "costs": []
+      },
+      {
+        "costs": [
+          {
+            "type": "money",
+            "amount": 4.95
+          }
+        ]
+      },
+      {
+        "costs": []
+      }
+    ],
+    "defaultOption": 2,
+    "expiresAt": "2026-11-13T09:30:02.322Z",
+    "resolvedAt": "2026-11-11T22:07:03.226Z",
+    "outcome": {
+      "option": 0,
+      "band": "success",
+      "roll": 48.97,
+      "auto": false,
+      "applied": [
+        {
+          "type": "gainTrait",
+          "employee": "6af49b281695ca5d8e38a9a0",
+          "trait": "oldFriends"
+        },
+        {
+          "type": "gainTrait",
+          "employee": "6adf7cf3dfe24e5144450239",
+          "trait": "oldFriends"
+        }
+      ]
+    },
+    "createdAt": "2026-11-11T21:30:06.914Z",
+    "updatedAt": "2026-11-11T22:07:03.232Z"
+  },
+  {
+    "_id": "6af273a19845bf2326a36012",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "headRub",
+    "status": "resolved",
+    "participants": [
+      "6aeccfd673ca93cb731c2f89"
+    ],
+    "cast": [
+      {
+        "employee": "6aeccfd673ca93cb731c2f89",
+        "name": "Nidia Petrea",
+        "gender": "female",
+        "nationality": "6813b6d546e731854c7ac86b",
+        "company": "aaaaaaaaaaaaaaaaaaaa0104"
+      }
+    ],
+    "params": {
+      "itemCode": "lead",
+      "wage": 0.125983,
+      "toolFamily": "pickaxe"
+    },
+    "options": [
+      {
+        "costs": []
+      },
+      {
+        "costs": []
+      },
+      {
+        "costs": []
+      }
+    ],
+    "defaultOption": 1,
+    "expiresAt": "2026-11-11T13:30:01.593Z",
+    "resolvedAt": "2026-11-10T06:36:33.218Z",
+    "outcome": {
+      "option": 0,
+      "band": "success",
+      "auto": false,
+      "applied": [
+        {
+          "type": "money",
+          "amount": 3.02
+        },
+        {
+          "type": "happiness",
+          "employee": "6aeccfd673ca93cb731c2f89",
+          "delta": -10,
+          "until": "2026-11-13T06:36:33.218Z"
+        }
+      ]
+    },
+    "createdAt": "2026-11-10T01:30:09.014Z",
+    "updatedAt": "2026-11-10T06:36:33.227Z"
+  },
+  {
+    "_id": "6ae473ea5c8377721bad76e0",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "geraldApplies",
+    "status": "resolved",
+    "participants": [
+      "6ae03e1c5fb359af6cbd0a1f"
+    ],
+    "cast": [
+      {
+        "employee": "6ae03e1c5fb359af6cbd0a1f",
+        "name": "Aaryan Marar",
+        "gender": "male",
+        "nationality": "6813b6d546e731854c7ac862",
+        "company": "aaaaaaaaaaaaaaaaaaaa0101"
+      }
+    ],
+    "params": {
+      "itemCode": "lead",
+      "wage": 0.122537,
+      "toolFamily": "pickaxe"
+    },
+    "options": [
+      {
+        "chance": 61,
+        "lines": [
+          {
+            "source": "base",
+            "value": 50
+          },
+          {
+            "source": "management",
+            "value": 0,
+            "input": 0
+          },
+          {
+            "source": "happiness",
+            "value": 3,
+            "input": 65
+          },
+          {
+            "source": "stat",
+            "value": 8,
+            "input": 4,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 6.1,
+        "critFailFrom": 96.1,
+        "costs": []
+      },
+      {
+        "costs": []
+      }
+    ],
+    "defaultOption": 1,
+    "chainParent": "6ae4396d407126dd30e11e73",
+    "activateAt": "2026-11-06T10:39:38.815Z",
+    "expiresAt": "2026-11-08T11:30:01.677Z",
+    "resolvedAt": "2026-11-06T11:30:58.399Z",
+    "outcome": {
+      "option": 0,
+      "band": "success",
+      "roll": 17.02,
+      "auto": false,
+      "applied": [
+        {
+          "type": "happiness",
+          "employee": "6ae03e1c5fb359af6cbd0a1f",
+          "delta": 5,
+          "until": "2026-11-11T11:30:58.399Z"
+        },
+        {
+          "type": "happiness",
+          "employee": "6ae7666147018473889c13fb",
+          "delta": 5,
+          "until": "2026-11-11T11:30:58.399Z"
+        },
+        {
+          "type": "happiness",
+          "employee": "6aecd1221820a3d62b0045b4",
+          "delta": 5,
+          "until": "2026-11-11T11:30:58.399Z"
+        }
+      ]
+    },
+    "createdAt": "2026-10-30T10:39:38.825Z",
+    "updatedAt": "2026-11-06T11:30:58.404Z"
+  },
+  {
+    "_id": "6aed57cf0470c4eb9c02f523",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "nightClasses",
+    "status": "resolved",
+    "participants": [
+      "6aeccfd673ca93cb731c2f89"
+    ],
+    "cast": [
+      {
+        "employee": "6aeccfd673ca93cb731c2f89",
+        "name": "Nidia Petrea",
+        "gender": "female",
+        "nationality": "6813b6d546e731854c7ac86b",
+        "company": "aaaaaaaaaaaaaaaaaaaa0104"
+      }
+    ],
+    "params": {
+      "itemCode": "lead",
+      "wage": 0.066996,
+      "toolFamily": "pickaxe"
+    },
+    "options": [
+      {
+        "chance": 61,
+        "lines": [
+          {
+            "source": "base",
+            "value": 55
+          },
+          {
+            "source": "management",
+            "value": 0,
+            "input": 0
+          },
+          {
+            "source": "happiness",
+            "value": 2,
+            "input": 58
+          },
+          {
+            "source": "stat",
+            "value": 4,
+            "input": 2,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 6.1,
+        "critFailFrom": 96.1,
+        "costs": [
+          {
+            "type": "money",
+            "amount": 0.72
+          }
+        ]
+      },
+      {
+        "chance": 66,
+        "lines": [
+          {
+            "source": "base",
+            "value": 60
+          },
+          {
+            "source": "management",
+            "value": 0,
+            "input": 0
+          },
+          {
+            "source": "happiness",
+            "value": 2,
+            "input": 58
+          },
+          {
+            "source": "stat",
+            "value": 4,
+            "input": 2,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 6.6,
+        "critFailFrom": 96.6,
+        "costs": [
+          {
+            "type": "energy",
+            "amount": 3
+          }
+        ]
+      },
+      {
+        "costs": []
+      }
+    ],
+    "defaultOption": 2,
+    "expiresAt": "2026-11-07T16:30:01.916Z",
+    "resolvedAt": "2026-11-06T06:42:19.987Z",
+    "outcome": {
+      "option": 0,
+      "band": "success",
+      "roll": 31.93,
+      "auto": false,
+      "applied": [
+        {
+          "type": "potentialMax",
+          "employee": "6aeccfd673ca93cb731c2f89",
+          "value": 5
+        }
+      ]
+    },
+    "createdAt": "2026-11-06T04:30:07.461Z",
+    "updatedAt": "2026-11-06T06:42:19.994Z"
+  },
+  {
+    "_id": "6ae4396d407126dd30e11e73",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "code": "suggestionBox",
+    "status": "resolved",
+    "participants": [
+      "6ae03e1c5fb359af6cbd0a1f"
+    ],
+    "cast": [
+      {
+        "employee": "6ae03e1c5fb359af6cbd0a1f",
+        "name": "Aaryan Marar",
+        "gender": "male",
+        "nationality": "6813b6d546e731854c7ac862",
+        "company": "aaaaaaaaaaaaaaaaaaaa0104"
+      }
+    ],
+    "params": {
+      "itemCode": "lead",
+      "wage": 0.122537,
+      "toolFamily": "pickaxe"
+    },
+    "options": [
+      {
+        "costs": [
+          {
+            "type": "money",
+            "amount": 2.94
+          }
+        ]
+      },
+      {
+        "chance": 43,
+        "lines": [
+          {
+            "source": "base",
+            "value": 35
+          },
+          {
+            "source": "stat",
+            "value": 8,
+            "input": 2,
+            "stat": "luck"
+          }
+        ],
+        "critBelow": 4.3,
+        "critFailFrom": 94.3,
+        "costs": []
+      },
+      {
+        "costs": []
+      }
+    ],
+    "defaultOption": 2,
+    "expiresAt": "2026-10-31T18:30:01.627Z",
+    "resolvedAt": "2026-10-30T10:39:38.815Z",
+    "outcome": {
+      "option": 1,
+      "band": "success",
+      "roll": 15.28,
+      "auto": false,
+      "applied": [
+        {
+          "type": "item",
+          "itemCode": "woodenCase",
+          "quantity": 1
+        },
+        {
+          "type": "schedule",
+          "code": "geraldApplies",
+          "activateAt": "2026-11-06T10:39:38.815Z"
+        }
+      ]
+    },
+    "createdAt": "2026-10-30T06:30:05.796Z",
+    "updatedAt": "2026-10-30T10:39:38.826Z"
+  }
+]

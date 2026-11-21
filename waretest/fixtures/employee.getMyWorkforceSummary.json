@@ -1,0 +1,15 @@
+{
+  "employeeCount": 19,
+  "trainableCount": 0,
+  "managerCount": 0,
+  "foundToolboxes": 1,
+  "production": 60.86,
+  "productionByItem": {
+    "iron": 32.92,
+    "lead": 12.46,
+    "lightAmmo": 15.48
+  },
+  "toolboxesPerHour": 0.044,
+  "wageCost": 1.870749,
+  "managerCost": 0
+}

@@ -390,3 +390,21 @@ type RankingSnapshotRecentRanks struct {
 	// an entry is nil when there is no rank for that day.
 	Ranks map[string][]*int `json:"ranks"`
 }
+
+// MercenaryBidEligibility reports whether a military unit may bid on a
+// mercenary contract auction.
+type MercenaryBidEligibility struct {
+	// BlockedReason is empty when the unit may bid, or names why not, such
+	// as "ally".
+	BlockedReason string `json:"blockedReason"`
+}
+
+// MUReputationBuyStatus is what buying mercenary reputation for a military
+// unit costs.
+type MUReputationBuyStatus struct {
+	// CanBuy reports whether the API key owner may buy now.
+	CanBuy            bool    `json:"canBuy"`
+	Cost              float64 `json:"cost"`
+	Amount            float64 `json:"amount"`
+	CurrentReputation float64 `json:"currentReputation"`
+}

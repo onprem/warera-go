@@ -30,6 +30,18 @@ func (s *MilitaryUnitService) GetLeague(ctx context.Context, muID string) (*MULe
 	return &league, nil
 }
 
+// GetReputationBuyStatus returns what buying mercenary reputation for a
+// military unit costs, and whether the API key owner may buy it now.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
+func (s *MilitaryUnitService) GetReputationBuyStatus(ctx context.Context, muID string) (*MUReputationBuyStatus, error) {
+	var status MUReputationBuyStatus
+	if err := s.client.trpc.Call(ctx, "mu.getReputationBuyStatus", getMilitaryUnitByIDInput{MUID: muID}, &status); err != nil {
+		return nil, err
+	}
+	return &status, nil
+}
+
 // GetLeagueDivisionCounts returns how many military units are in each MU
 // league division this week.
 //

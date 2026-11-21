@@ -81,6 +81,8 @@ type Client struct {
 	Transactions *TransactionService
 	// Sanctions reads the public moderation log.
 	Sanctions *SanctionService
+	// Me reads the account that owns the API key.
+	Me *MeService
 }
 
 // NewClient creates a client for the WarEra API. It uses the default API
@@ -146,6 +148,7 @@ func NewClient(opts ...Option) *Client {
 	c.MercenaryAuctions = &MercenaryAuctionService{client: c}
 	c.Transactions = &TransactionService{client: c}
 	c.Sanctions = &SanctionService{client: c}
+	c.Me = &MeService{client: c}
 
 	return c
 }

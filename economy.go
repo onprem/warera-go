@@ -121,6 +121,23 @@ func (s *MercenaryAuctionService) All(ctx context.Context, filter MercenaryAucti
 	})
 }
 
+type bidEligibilityInput struct {
+	MUID       string   `json:"muId"`
+	AuctionIDs []string `json:"auctionIds"`
+}
+
+// GetBidEligibility reports, for each auction, whether a military unit may
+// bid on it. Auction IDs the API does not report on are absent from the map.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
+func (s *MercenaryAuctionService) GetBidEligibility(ctx context.Context, muID string, auctionIDs []string) (map[string]MercenaryBidEligibility, error) {
+	var eligibility map[string]MercenaryBidEligibility
+	if err := s.client.trpc.Call(ctx, "mercenaryContractAuction.getBidEligibility", bidEligibilityInput{MUID: muID, AuctionIDs: auctionIDs}, &eligibility); err != nil {
+		return nil, err
+	}
+	return eligibility, nil
+}
+
 // TransactionService handles paginated transaction history.
 type TransactionService struct {
 	client *Client

@@ -35,7 +35,8 @@
 // others wrap procedures the API serves but does not list there; their
 // documentation starts a paragraph with "Unstable:", because they may change
 // without notice. Methods that need an API key say so; the rest also work
-// without one, at the lower rate limit.
+// without one, at the lower rate limit. [MeService] reads the account that
+// owns the API key.
 //
 // API errors are available as [TRPCError] and transport failures as
 // [HTTPError]; use [errors.As] to inspect their fields. Bulk lookup methods

@@ -1,0 +1,603 @@
+[
+  {
+    "_id": "6ae03e1c5fb359af6cbd0a1f",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "company": "aaaaaaaaaaaaaaaaaaaa0101",
+    "name": "Aaryan Marar",
+    "gender": "male",
+    "age": 48,
+    "base": {
+      "production": 7,
+      "luck": 4,
+      "responsibility": 2
+    },
+    "trained": {
+      "production": 5,
+      "luck": 2,
+      "responsibility": 1
+    },
+    "traits": [
+      {
+        "code": "laborer"
+      },
+      {
+        "code": "xenophobe"
+      },
+      {
+        "code": "improviser"
+      },
+      {
+        "code": "nationalist"
+      }
+    ],
+    "potential": 9,
+    "potentialMax": 9,
+    "wage": 0.13256,
+    "wageExpectation": 0.837,
+    "nationality": "6813b6d546e731854c7ac862",
+    "createdAt": "2026-10-27T06:01:00.913Z",
+    "updatedAt": "2026-11-21T20:03:52.929Z",
+    "__v": 0,
+    "lastTrainedAt": "2026-11-04T06:25:03.954Z",
+    "trainingsToday": 1,
+    "trainingHistory": [
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-10-27T06:01:33.873Z"
+      },
+      {
+        "card": "habit",
+        "rarity": "rare",
+        "traitTo": "laborer",
+        "outcome": {
+          "gained": [
+            {
+              "code": "laborer",
+              "revealed": true
+            }
+          ]
+        },
+        "pickedAt": "2026-10-28T04:23:16.678Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-10-29T05:46:58.577Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "uncommon",
+        "stat": "production",
+        "delta": 2,
+        "outcome": {
+          "stat": "production",
+          "statGain": 2
+        },
+        "pickedAt": "2026-10-30T00:17:36.761Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "luck",
+        "delta": 1,
+        "outcome": {
+          "stat": "luck",
+          "statGain": 1
+        },
+        "pickedAt": "2026-10-31T05:45:24.572Z"
+      },
+      {
+        "card": "wildCard",
+        "rarity": "uncommon",
+        "outcome": {
+          "stat": "responsibility",
+          "statGain": 1,
+          "gained": [
+            {
+              "code": "xenophobe",
+              "revealed": true
+            }
+          ]
+        },
+        "pickedAt": "2026-11-01T04:03:54.993Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "luck",
+        "delta": 1,
+        "outcome": {
+          "stat": "luck",
+          "statGain": 1
+        },
+        "pickedAt": "2026-11-02T03:42:54.003Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-11-03T08:12:04.607Z"
+      },
+      {
+        "card": "habit",
+        "rarity": "legendary",
+        "traitTo": "improviser",
+        "traitTo2": "nationalist",
+        "outcome": {
+          "gained": [
+            {
+              "code": "improviser"
+            },
+            {
+              "code": "nationalist"
+            }
+          ]
+        },
+        "pickedAt": "2026-11-04T06:25:22.996Z"
+      }
+    ],
+    "lastSpecializedDay": "2026-11-21",
+    "specializations": {
+      "steel": 2,
+      "lead": 4,
+      "iron": 20
+    },
+    "lastMovedAt": "2026-11-01T07:38:17.774Z",
+    "eventModifiers": [
+      {
+        "code": "kittens",
+        "kind": "happiness",
+        "delta": 5,
+        "until": "2026-12-02T13:42:02.010Z"
+      },
+      {
+        "code": "tattoo",
+        "kind": "happiness",
+        "delta": 15,
+        "until": "2026-11-27T08:43:12.845Z"
+      },
+      {
+        "code": "warRationing",
+        "kind": "happiness",
+        "delta": 5,
+        "until": "2026-11-24T12:33:18.555Z"
+      }
+    ],
+    "lastEventAt": "2026-11-21T12:33:18.555Z",
+    "retireInDays": 17,
+    "lastAgedDay": "2026-11-21",
+    "foundToolboxes": 1,
+    "estimate": {
+      "production": 4.78,
+      "wage": 0.13256,
+      "itemCode": "iron"
+    },
+    "breakdown": {
+      "production": {
+        "base": 2,
+        "trained": 5,
+        "contributions": [
+          {
+            "code": "laborer",
+            "delta": 3
+          },
+          {
+            "code": "improviser",
+            "delta": 25,
+            "percent": true
+          },
+          {
+            "code": "specialization",
+            "delta": 20,
+            "percent": true
+          }
+        ],
+        "total": 10
+      },
+      "luck": {
+        "base": 2,
+        "trained": 2,
+        "contributions": [],
+        "total": 4
+      },
+      "responsibility": {
+        "base": 1,
+        "trained": 1,
+        "contributions": [],
+        "total": 2
+      }
+    },
+    "happinessBreakdown": {
+      "base": 50,
+      "contributions": [
+        {
+          "reason": "responsibility",
+          "delta": 6
+        },
+        {
+          "reason": "incomeTax",
+          "delta": -3.75
+        },
+        {
+          "reason": "event",
+          "delta": 5,
+          "until": "2026-11-24T12:33:18.555Z",
+          "eventCode": "warRationing"
+        },
+        {
+          "reason": "event",
+          "delta": 15,
+          "until": "2026-11-27T08:43:12.845Z",
+          "eventCode": "tattoo"
+        },
+        {
+          "reason": "event",
+          "delta": 5,
+          "until": "2026-12-02T13:42:02.010Z",
+          "eventCode": "kittens"
+        },
+        {
+          "reason": "trait",
+          "delta": 10,
+          "code": "nationalist"
+        }
+      ],
+      "mitigated": 0,
+      "value": 87.25,
+      "quitChance": 0
+    },
+    "productionBonus": {
+      "total": 91.25,
+      "contributions": [
+        {
+          "source": "management",
+          "percent": 4
+        },
+        {
+          "source": "coreRegion",
+          "percent": 5
+        },
+        {
+          "source": "happiness",
+          "percent": 37.25
+        },
+        {
+          "source": "specialization",
+          "percent": 20
+        },
+        {
+          "source": "improviser",
+          "percent": 25
+        }
+      ]
+    },
+    "trainingsPerDay": 1,
+    "companyDisabled": false
+  },
+  {
+    "_id": "6ae7666147018473889c13fb",
+    "owner": "aaaaaaaaaaaaaaaaaaaa0001",
+    "company": "aaaaaaaaaaaaaaaaaaaa0101",
+    "name": "Rajiv Arora",
+    "gender": "male",
+    "age": 62,
+    "base": {
+      "production": 20,
+      "luck": 6,
+      "responsibility": 2
+    },
+    "trained": {
+      "production": 16,
+      "luck": 2,
+      "responsibility": 0
+    },
+    "traits": [
+      {
+        "code": "improviser"
+      },
+      {
+        "code": "laborer"
+      }
+    ],
+    "potential": 13,
+    "potentialMax": 13,
+    "wage": 0.324895,
+    "wageExpectation": 0.718,
+    "nationality": "6813b6d546e731854c7ac862",
+    "createdAt": "2026-11-01T16:18:41.816Z",
+    "updatedAt": "2026-11-21T12:33:18.560Z",
+    "__v": 0,
+    "lastTrainedAt": "2026-11-13T00:51:33.663Z",
+    "trainingsToday": 1,
+    "trainingHistory": [
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-11-01T16:19:12.066Z"
+      },
+      {
+        "card": "habit",
+        "rarity": "rare",
+        "traitTo": "laborer",
+        "outcome": {
+          "gained": [
+            {
+              "code": "laborer",
+              "revealed": true
+            }
+          ]
+        },
+        "pickedAt": "2026-11-02T03:43:33.032Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-11-03T08:11:44.123Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "uncommon",
+        "stat": "production",
+        "delta": 2,
+        "outcome": {
+          "stat": "production",
+          "statGain": 2
+        },
+        "pickedAt": "2026-11-04T06:26:53.273Z"
+      },
+      {
+        "card": "secondWind",
+        "rarity": "legendary",
+        "delta": 4,
+        "outcome": {
+          "potentialMax": 10
+        },
+        "pickedAt": "2026-11-05T04:58:01.439Z"
+      },
+      {
+        "card": "secondWind",
+        "rarity": "epic",
+        "delta": 3,
+        "outcome": {
+          "potentialMax": 13
+        },
+        "pickedAt": "2026-11-06T06:57:22.520Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "legendary",
+        "stat": "production",
+        "delta": 4,
+        "outcome": {
+          "stat": "production",
+          "statGain": 4
+        },
+        "pickedAt": "2026-11-07T01:30:03.001Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "uncommon",
+        "stat": "luck",
+        "delta": 2,
+        "outcome": {
+          "stat": "luck",
+          "statGain": 2
+        },
+        "pickedAt": "2026-11-08T04:31:36.927Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "uncommon",
+        "stat": "production",
+        "delta": 2,
+        "outcome": {
+          "stat": "production",
+          "statGain": 2
+        },
+        "pickedAt": "2026-11-09T08:09:56.602Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-11-10T06:36:59.978Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "common",
+        "stat": "production",
+        "delta": 1,
+        "outcome": {
+          "stat": "production",
+          "statGain": 1
+        },
+        "pickedAt": "2026-11-11T06:25:17.269Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "uncommon",
+        "stat": "production",
+        "delta": 2,
+        "outcome": {
+          "stat": "production",
+          "statGain": 2
+        },
+        "pickedAt": "2026-11-12T06:24:21.635Z"
+      },
+      {
+        "card": "drill",
+        "rarity": "uncommon",
+        "stat": "production",
+        "delta": 2,
+        "outcome": {
+          "stat": "production",
+          "statGain": 2
+        },
+        "pickedAt": "2026-11-13T00:51:38.393Z"
+      }
+    ],
+    "lastSpecializedDay": "2026-11-21",
+    "specializations": {
+      "iron": 21
+    },
+    "retireInDays": 3,
+    "lastAgedDay": "2026-11-21",
+    "lastEventAt": "2026-11-20T08:44:26.833Z",
+    "eventModifiers": [
+      {
+        "code": "kittens",
+        "kind": "happiness",
+        "delta": 5,
+        "until": "2026-12-02T13:42:02.010Z"
+      },
+      {
+        "code": "soupDebate",
+        "kind": "happiness",
+        "delta": 10,
+        "until": "2026-11-23T08:44:26.833Z"
+      },
+      {
+        "code": "warRationing",
+        "kind": "happiness",
+        "delta": 5,
+        "until": "2026-11-24T12:33:18.555Z"
+      }
+    ],
+    "estimate": {
+      "production": 10.13,
+      "wage": 0.324895,
+      "itemCode": "iron"
+    },
+    "breakdown": {
+      "production": {
+        "base": 4,
+        "trained": 16,
+        "contributions": [
+          {
+            "code": "laborer",
+            "delta": 3
+          },
+          {
+            "code": "improviser",
+            "delta": 25,
+            "percent": true
+          },
+          {
+            "code": "specialization",
+            "delta": 20,
+            "percent": true
+          }
+        ],
+        "total": 23
+      },
+      "luck": {
+        "base": 4,
+        "trained": 2,
+        "contributions": [],
+        "total": 6
+      },
+      "responsibility": {
+        "base": 2,
+        "trained": 0,
+        "contributions": [],
+        "total": 2
+      }
+    },
+    "happinessBreakdown": {
+      "base": 50,
+      "contributions": [
+        {
+          "reason": "responsibility",
+          "delta": 6
+        },
+        {
+          "reason": "incomeTax",
+          "delta": -3.75
+        },
+        {
+          "reason": "event",
+          "delta": 10,
+          "until": "2026-11-23T08:44:26.833Z",
+          "eventCode": "soupDebate"
+        },
+        {
+          "reason": "event",
+          "delta": 5,
+          "until": "2026-11-24T12:33:18.555Z",
+          "eventCode": "warRationing"
+        },
+        {
+          "reason": "event",
+          "delta": 5,
+          "until": "2026-12-02T13:42:02.010Z",
+          "eventCode": "kittens"
+        }
+      ],
+      "mitigated": 0,
+      "value": 72.25,
+      "quitChance": 0
+    },
+    "productionBonus": {
+      "total": 76.25,
+      "contributions": [
+        {
+          "source": "management",
+          "percent": 4
+        },
+        {
+          "source": "coreRegion",
+          "percent": 5
+        },
+        {
+          "source": "happiness",
+          "percent": 22.25
+        },
+        {
+          "source": "specialization",
+          "percent": 20
+        },
+        {
+          "source": "improviser",
+          "percent": 25
+        }
+      ]
+    },
+    "trainingsPerDay": 1,
+    "companyDisabled": false
+  }
+]

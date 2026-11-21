@@ -50,7 +50,7 @@ The client exposes one service per area of the game:
 | Players and community | `Users`, `Search`, `Articles`, `Polls`, `Events`, `Rankings` (including history), `Leagues` |
 | Game data | `GameConfig`, `Upgrades`, `Inventory` |
 
-Most procedures come from WarEra's [published OpenAPI document](https://api2.warera.io/openapi.json). Employees, managers, politics, markets beyond prices and top orders, the map, the moderation log, and the newer military procedures are served by the API without being listed there; their documentation is marked `Unstable:` because they may change without notice. Only the employee procedures need an API key. The SDK does not wrap procedures that act on the caller's own account or that API keys are not allowed to call.
+Most procedures come from WarEra's [published OpenAPI document](https://api2.warera.io/openapi.json). Employees, managers, politics, markets beyond prices and top orders, the map, the moderation log, and the newer military procedures are served by the API without being listed there; their documentation is marked `Unstable:` because they may change without notice. Only the employee procedures and `Me` need an API key. `Me` reads the key owner's own employees and their events; the SDK does not wrap procedures that change the account or that API keys are not allowed to call.
 
 ## Documentation and examples
 
@@ -71,6 +71,7 @@ See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the p
 - **Rate limits:** the client keeps to the API's limits, waits when the server says its quota is used up, and reports requests and waits through `WithHooks`.
 - **Polling and resuming:** `Until` stops a newest-first listing at the last record you stored; `Pages` exposes cursors so a collector can resume after a restart.
 - **Names:** `GetMany` methods resolve many IDs at once, and `Directory` caches countries, regions, game config, and user profiles.
+- **Your own account:** `Me` reads the API key owner's employees, workforce totals, and employee events; create one client per player's key.
 - **Testing:** `waretest.NewServer(t)` is a fake API that answers every wrapped procedure with a recorded response; override procedures to simulate errors.
 
 Set `WARERA_API_KEY` in the environment; the persona examples use procedures that require it. They are read-only. [`CONTRIBUTING.md`](CONTRIBUTING.md) describes the development workflow.

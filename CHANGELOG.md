@@ -22,6 +22,8 @@ All notable changes to this project are documented here. While the project is in
 - `Upgrades.GetMapUpgrades` returns every region's bunker, base, and pacification center with its level and status in one call.
 - `Sanctions` service (`List`, `All`) reads the public moderation log: bans, mutes, warnings, fines, and username resets, filterable by player and `SanctionType`.
 - `Managers.GetPointValue` returns how much a company produces per manager point.
+- `Me` service reads the account that owns the API key: `GetEmployees` (all its employees, with `Employee.FoundToolboxes`), `GetWorkforceSummary` (hourly production and costs), `GetPendingEmployeeEvents`, `GetPendingEmployeeEventCount`, and `GetEmployeeEventHistory` (an employee's story events with their choices, success chances, and outcomes). They need an API key; the API forbids keys from the owner's other data, such as the profile and inventory.
+- `MercenaryAuctions.GetBidEligibility` reports whether a military unit may bid on each auction, and `MilitaryUnits.GetReputationBuyStatus` what buying mercenary reputation costs.
 - `UserBuffs.BuffCodes` and `BuffEndAt` report a player's active boosts, such as pills; only the after-effects were modelled before. `User` and `UserLite` also gain `AnimatedAvatarURL`, `Infos.IsBanned`, `Infos.Description`, `Infos.BannerID`, `Mute`, and newer `Dates` fields, and `UserStats` gains `EstimatedWealth`, `EstimatedInventoryValue`, `EstimatedCompanyValues`, `DamagesRanking`, `CasesOpenedCount`, and `GemsPurchased`. Checked by strictly decoding 66 live profiles, including banned and muted players.
 
 ### Changed

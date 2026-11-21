@@ -111,6 +111,21 @@ var serviceCases = []struct {
 		return ret(warera.Collect(c.Managers.AllOffers(ctx, warera.ManagerOfferFilter{CountryID: "c1"}), 1))
 	}},
 	{"Managers.GetWageStats", "managerOffer.getWageStats", "{}", func(ctx context.Context, c *warera.Client) error { return ret(c.Managers.GetWageStats(ctx)) }},
+	{"Me.GetEmployees", "employee.getMyEmployees", "", func(ctx context.Context, c *warera.Client) error { return ret(c.Me.GetEmployees(ctx)) }},
+	{"Me.GetWorkforceSummary", "employee.getMyWorkforceSummary", "", func(ctx context.Context, c *warera.Client) error { return ret(c.Me.GetWorkforceSummary(ctx)) }},
+	{"Me.GetPendingEmployeeEvents", "employeeEvent.getMine", "", func(ctx context.Context, c *warera.Client) error { return ret(c.Me.GetPendingEmployeeEvents(ctx)) }},
+	{"Me.GetPendingEmployeeEventCount", "employeeEvent.getPendingCount", "", func(ctx context.Context, c *warera.Client) error {
+		return ret(c.Me.GetPendingEmployeeEventCount(ctx))
+	}},
+	{"Me.GetEmployeeEventHistory", "employeeEvent.getHistory", `{"employeeId":"e1"}`, func(ctx context.Context, c *warera.Client) error {
+		return ret(c.Me.GetEmployeeEventHistory(ctx, "e1"))
+	}},
+	{"MercenaryAuctions.GetBidEligibility", "mercenaryContractAuction.getBidEligibility", `{"muId":"mu1","auctionIds":["a1","a2"]}`, func(ctx context.Context, c *warera.Client) error {
+		return ret(c.MercenaryAuctions.GetBidEligibility(ctx, "mu1", []string{"a1", "a2"}))
+	}},
+	{"MilitaryUnits.GetReputationBuyStatus", "mu.getReputationBuyStatus", `{"muId":"mu1"}`, func(ctx context.Context, c *warera.Client) error {
+		return ret(c.MilitaryUnits.GetReputationBuyStatus(ctx, "mu1"))
+	}},
 	{"Managers.GetPointValue", "employee.getManagerPointValue", `{"companyId":"co1"}`, func(ctx context.Context, c *warera.Client) error { return ret(c.Managers.GetPointValue(ctx, "co1")) }},
 	{"Sanctions.List", "sanction.getPaginated", `{"targetUserId":"u1","type":"BAN","limit":5}`, func(ctx context.Context, c *warera.Client) error {
 		return ret(c.Sanctions.List(ctx, warera.SanctionFilter{TargetUserID: "u1", Type: warera.SanctionBan, Limit: 5}))

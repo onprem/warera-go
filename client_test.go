@@ -953,3 +953,23 @@ func TestClient_Battles_GetByID_Fixture(t *testing.T) {
 		t.Errorf("expected CurrentRound with ID 6ad38aa5b45be57841a8f974, got %+v", b.CurrentRound)
 	}
 }
+
+func TestClient_SendsUserAgent(t *testing.T) {
+	var got string
+	client := NewClient(
+		WithBaseURL("https://mock.warera.io/trpc"),
+		WithUserAgent("market-bot/1.2"),
+		WithBatchWindow(0),
+		WithHTTPClient(&http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+			got = r.Header.Get("User-Agent")
+			return &http.Response{StatusCode: 200, Body: io.NopCloser(strings.NewReader(`{"result":{"data":{}}}`))}, nil
+		})}),
+	)
+	defer client.Close()
+	if _, err := client.GameConfig.GetDates(context.Background()); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.HasPrefix(got, "market-bot/1.2 warera-go") {
+		t.Errorf("User-Agent = %q, want market-bot/1.2 followed by warera-go", got)
+	}
+}

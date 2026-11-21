@@ -100,6 +100,9 @@ func NewClient(opts ...Option) *Client {
 		BatchWindow:        o.batchWindow,
 		MaxBatchSize:       o.maxBatchSize,
 		MaxRetries:         o.maxRetries,
+		UserAgent:          userAgent(o.userAgent),
+		MaxRetryWait:       o.maxRetryWait,
+		Hooks:              o.hooks,
 	})
 
 	c := &Client{

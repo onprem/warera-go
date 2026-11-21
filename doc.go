@@ -13,7 +13,12 @@
 // lazily iterate across pages. All returns an [iter.Seq2], so check each error
 // yielded by the iterator.
 //
-// Concurrent calls made through a client are batched automatically. Use
+// Concurrent calls made through a client are batched automatically, and the
+// API counts a batch as one request against its rate limit. The client keeps
+// to the API's limit (500 requests a minute with a key, 100 without), waits
+// when the server reports its quota exhausted, and retries rate-limited and
+// transient failures after the delay the server asks for. Use [WithHooks] to
+// log or measure requests, retries, and waits. Use
 // [Client.Batch] to submit an explicit batch, or [Client.RawCall] to invoke a
 // procedure without a typed service method.
 //

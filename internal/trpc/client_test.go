@@ -694,3 +694,82 @@ func TestNilRateLimiterWait(t *testing.T) {
 		t.Fatalf("nil limiter Wait error = %v, want nil", err)
 	}
 }
+
+// scriptedClient answers each request with the next response in order.
+func scriptedClient(t *testing.T, cfg ClientConfig, responses ...func() *http.Response) (*Client, *atomic.Int32) {
+	t.Helper()
+	var count atomic.Int32
+	cfg.BaseURL = "https://mock.warera.io/trpc"
+	cfg.HTTPClient = &http.Client{Transport: roundTripFunc(func(*http.Request) (*http.Response, error) {
+		i := int(count.Add(1)) - 1
+		if i >= len(responses) {
+			t.Fatalf("unexpected request %d", i+1)
+		}
+		return responses[i](), nil
+	})}
+	return NewClient(cfg), &count
+}
+
+func respond(status int, header http.Header, body string) func() *http.Response {
+	return func() *http.Response {
+		return &http.Response{StatusCode: status, Status: http.StatusText(status), Header: header, Body: io.NopCloser(strings.NewReader(body))}
+	}
+}
+
+const okBody = `{"result":{"data":{"name":"ok"}}}`
+
+// A 429 must be retried after the server's Retry-After, which is longer than
+// the client's own backoff (250ms for the first retry).
+func TestClient_RetryHonorsRetryAfter(t *testing.T) {
+	var waits []WaitInfo
+	client, count := scriptedClient(t, ClientConfig{MaxRetries: 1, Hooks: Hooks{OnWait: func(w WaitInfo) { waits = append(waits, w) }}},
+		respond(http.StatusTooManyRequests, http.Header{"Retry-After": {"1"}}, `{"error":{"message":"slow down","code":-32029}}`),
+		respond(http.StatusOK, nil, okBody),
+	)
+	started := time.Now()
+	var out dummyOutput
+	if err := client.CallDirect(context.Background(), "country.getById", nil, &out); err != nil || out.Name != "ok" {
+		t.Fatalf("CallDirect = %+v, %v; want ok after retry", out, err)
+	}
+	if elapsed := time.Since(started); elapsed < time.Second {
+		t.Errorf("retried after %v, want at least the 1s Retry-After", elapsed)
+	}
+	if count.Load() != 2 || len(waits) != 1 || waits[0].Reason != "retry" || waits[0].Duration < time.Second {
+		t.Errorf("requests = %d, waits = %+v; want 2 requests and one retry wait of at least 1s", count.Load(), waits)
+	}
+}
+
+// When a response reports the quota exhausted, the next request waits for the
+// server's window to reset even though the client's own limiter is disabled.
+func TestClient_PausesWhenServerQuotaIsExhausted(t *testing.T) {
+	var waits []WaitInfo
+	client, _ := scriptedClient(t, ClientConfig{Hooks: Hooks{OnWait: func(w WaitInfo) { waits = append(waits, w) }}},
+		respond(http.StatusOK, http.Header{"Ratelimit-Remaining": {"0"}, "Ratelimit-Reset": {"1"}}, okBody),
+		respond(http.StatusOK, http.Header{"Ratelimit-Remaining": {"499"}, "Ratelimit-Reset": {"60"}}, okBody),
+	)
+	var out dummyOutput
+	if err := client.CallDirect(context.Background(), "a.b", nil, &out); err != nil {
+		t.Fatal(err)
+	}
+	started := time.Now()
+	if err := client.CallDirect(context.Background(), "a.b", nil, &out); err != nil {
+		t.Fatal(err)
+	}
+	if elapsed := time.Since(started); elapsed < 900*time.Millisecond {
+		t.Errorf("second request waited %v, want about the 1s reset", elapsed)
+	}
+	if len(waits) != 1 || waits[0].Reason != "server-rate-limit" {
+		t.Errorf("waits = %+v, want one server-rate-limit wait", waits)
+	}
+}
+
+func TestClient_DoesNotRetryConflict(t *testing.T) {
+	client, count := scriptedClient(t, ClientConfig{MaxRetries: 3},
+		respond(http.StatusConflict, nil, `conflict`),
+	)
+	err := client.CallDirect(context.Background(), "a.b", nil, &dummyOutput{})
+	var httpErr *HTTPError
+	if !errors.As(err, &httpErr) || httpErr.StatusCode != http.StatusConflict || count.Load() != 1 {
+		t.Fatalf("error = %v after %d requests, want one 409 HTTPError", err, count.Load())
+	}
+}

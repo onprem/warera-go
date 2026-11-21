@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -24,6 +25,7 @@ const (
 	DefaultInitialDelay = 250 * time.Millisecond
 	DefaultMaxDelay     = 5 * time.Second
 	DefaultMaxURLLength = 2048
+	DefaultMaxRetryWait = time.Minute
 )
 
 // VoidInputProcedures contains endpoints where the server rejects `{}` and requires void/no input.
@@ -44,6 +46,49 @@ type ClientConfig struct {
 	MaxRetries          int
 	MaxURLLength        int
 	VoidInputProcedures map[string]bool
+	// UserAgent is sent with every request.
+	UserAgent string
+	// MaxRetryWait caps how long one retry waits for the server's rate limit
+	// to reset; 0 selects DefaultMaxRetryWait.
+	MaxRetryWait time.Duration
+	Hooks        Hooks
+}
+
+// Hooks observe the client's HTTP traffic. Hooks run synchronously on the
+// requesting goroutine and must be safe for concurrent use.
+type Hooks struct {
+	// OnRequest is called after every HTTP attempt, including retries.
+	OnRequest func(RequestInfo)
+	// OnWait is called before the client sleeps, either to back off before a
+	// retry or because the server's rate limit is exhausted.
+	OnWait func(WaitInfo)
+}
+
+// RequestInfo describes one HTTP attempt.
+type RequestInfo struct {
+	// Procedures lists the procedures in the request; more than one for a
+	// batch.
+	Procedures []string
+	// Attempt is 0 for the first try and counts retries after it.
+	Attempt int
+	// StatusCode is the HTTP status, or 0 when no response arrived.
+	StatusCode int
+	Duration   time.Duration
+	// Err is the transport error when no response arrived.
+	Err error
+	// RateLimitRemaining is the server's remaining request quota, or -1 when
+	// the response did not report it.
+	RateLimitRemaining int
+}
+
+// WaitInfo describes a pause before a request.
+type WaitInfo struct {
+	// Reason is "retry" for a backoff before retrying, "server-rate-limit" when
+	// the server reported its quota exhausted, or "rate-limit" when the
+	// client's own limiter delayed the request.
+	Reason     string
+	Procedures []string
+	Duration   time.Duration
 }
 
 // Client is a low-level tRPC client that handles query encoding, batching, rate limiting, and retries.
@@ -58,6 +103,12 @@ type Client struct {
 	maxURLLength        int
 	voidInputProcedures map[string]bool
 	mu                  sync.RWMutex
+	userAgent           string
+	maxRetryWait        time.Duration
+	hooks               Hooks
+
+	pauseMu    sync.Mutex
+	pauseUntil time.Time // set when the server reports its quota exhausted
 }
 
 // BatchCall describes a single query within an explicit batch.
@@ -85,7 +136,7 @@ func NewClient(cfg ClientConfig) *Client {
 	rateLimit := cfg.RateLimitPerMinute
 	if rateLimit < 0 {
 		if cfg.APIKey != "" {
-			rateLimit = 200
+			rateLimit = 500
 		} else {
 			rateLimit = 100
 		}
@@ -123,6 +174,12 @@ func NewClient(cfg ClientConfig) *Client {
 		maxBatchSize:        maxBatchSize,
 		maxURLLength:        maxURLLength,
 		voidInputProcedures: voidProcs,
+		userAgent:           cfg.UserAgent,
+		maxRetryWait:        cfg.MaxRetryWait,
+		hooks:               cfg.Hooks,
+	}
+	if c.maxRetryWait <= 0 {
+		c.maxRetryWait = DefaultMaxRetryWait
 	}
 
 	if cfg.BatchWindow > 0 {
@@ -182,7 +239,7 @@ func (c *Client) CallDirect(ctx context.Context, method string, input any, outpu
 
 	c.setHeaders(req)
 
-	body, err := c.doWithRetry(req)
+	body, err := c.doWithRetry(req, []string{method})
 	if err != nil {
 		return err
 	}
@@ -260,7 +317,7 @@ func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 
 	c.setHeaders(req)
 
-	body, err := c.doWithRetry(req)
+	body, err := c.doWithRetry(req, methods)
 	if err != nil {
 		for i := range calls {
 			calls[i].Err = err
@@ -357,12 +414,16 @@ func acceptsNull(output any) bool {
 
 func (c *Client) setHeaders(req *http.Request) {
 	req.Header.Set("Accept", "application/json")
+	if c.userAgent != "" {
+		req.Header.Set("User-Agent", c.userAgent)
+	}
 	if c.apiKey != "" {
 		req.Header.Set("x-api-key", c.apiKey)
 	}
 }
 
-func (c *Client) doWithRetry(req *http.Request) ([]byte, error) {
+func (c *Client) doWithRetry(req *http.Request, procedures []string) ([]byte, error) {
+	ctx := req.Context()
 	var bodyBytes []byte
 	if req.Body != nil {
 		var err error
@@ -374,40 +435,49 @@ func (c *Client) doWithRetry(req *http.Request) ([]byte, error) {
 	}
 
 	var lastErr error
+	var serverWait time.Duration // how long the last response asked us to wait
 	for attempt := 0; attempt <= c.maxRetries; attempt++ {
 		if attempt > 0 {
-			delay := c.getBackoffDelay(attempt)
-			select {
-			case <-req.Context().Done():
-				return nil, req.Context().Err()
-			case <-time.After(delay):
-			}
-		}
-
-		if c.limiter != nil {
-			if err := c.limiter.Wait(req.Context()); err != nil {
+			delay := max(c.getBackoffDelay(attempt), min(serverWait, c.maxRetryWait))
+			if err := c.sleep(ctx, WaitInfo{Reason: "retry", Procedures: procedures, Duration: delay}); err != nil {
 				return nil, err
 			}
 		}
 
-		var reqToSend *http.Request
-		if len(bodyBytes) > 0 {
-			reqToSend = req.Clone(req.Context())
-			reqToSend.Body = io.NopCloser(bytes.NewReader(bodyBytes))
-		} else {
-			reqToSend = req.Clone(req.Context())
+		if err := c.waitForServerQuota(ctx, procedures); err != nil {
+			return nil, err
+		}
+		if c.limiter != nil {
+			started := time.Now()
+			if err := c.limiter.Wait(ctx); err != nil {
+				return nil, err
+			}
+			if waited := time.Since(started); waited >= time.Millisecond && c.hooks.OnWait != nil {
+				c.hooks.OnWait(WaitInfo{Reason: "rate-limit", Procedures: procedures, Duration: waited})
+			}
 		}
 
+		reqToSend := req.Clone(ctx)
+		if len(bodyBytes) > 0 {
+			reqToSend.Body = io.NopCloser(bytes.NewReader(bodyBytes))
+		}
+
+		started := time.Now()
 		resp, err := c.httpClient.Do(reqToSend)
 		if err != nil {
+			c.reportRequest(procedures, attempt, 0, started, err, -1)
 			lastErr = err
+			serverWait = 0
 			continue
 		}
 
 		respBody, err := io.ReadAll(resp.Body)
 		resp.Body.Close()
+		remaining, reset := c.observeRateLimit(resp.Header)
+		c.reportRequest(procedures, attempt, resp.StatusCode, started, err, remaining)
 		if err != nil {
 			lastErr = err
+			serverWait = 0
 			continue
 		}
 
@@ -420,6 +490,10 @@ func (c *Client) doWithRetry(req *http.Request) ([]byte, error) {
 				StatusCode: resp.StatusCode,
 				StatusText: resp.Status,
 				Body:       respBody,
+			}
+			serverWait = retryAfter(resp.Header)
+			if resp.StatusCode == http.StatusTooManyRequests && reset > serverWait {
+				serverWait = reset
 			}
 			continue
 		}
@@ -447,10 +521,87 @@ func (c *Client) doWithRetry(req *http.Request) ([]byte, error) {
 	return nil, fmt.Errorf("request failed after %d attempts: %w", c.maxRetries+1, lastErr)
 }
 
+func (c *Client) sleep(ctx context.Context, info WaitInfo) error {
+	if c.hooks.OnWait != nil {
+		c.hooks.OnWait(info)
+	}
+	timer := time.NewTimer(info.Duration)
+	defer timer.Stop()
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	case <-timer.C:
+		return nil
+	}
+}
+
+func (c *Client) reportRequest(procedures []string, attempt, status int, started time.Time, err error, remaining int) {
+	if c.hooks.OnRequest == nil {
+		return
+	}
+	c.hooks.OnRequest(RequestInfo{
+		Procedures:         procedures,
+		Attempt:            attempt,
+		StatusCode:         status,
+		Duration:           time.Since(started),
+		Err:                err,
+		RateLimitRemaining: remaining,
+	})
+}
+
+// observeRateLimit reads the server's ratelimit-remaining and ratelimit-reset
+// headers. When the quota is exhausted, it pauses all requests from this client
+// until the server's window resets, which also keeps several processes sharing
+// one API key from failing. It returns the remaining quota (-1 when absent)
+// and the time until reset.
+func (c *Client) observeRateLimit(h http.Header) (int, time.Duration) {
+	remaining, err := strconv.Atoi(h.Get("Ratelimit-Remaining"))
+	if err != nil {
+		remaining = -1
+	}
+	var reset time.Duration
+	if seconds, err := strconv.Atoi(h.Get("Ratelimit-Reset")); err == nil && seconds > 0 {
+		reset = time.Duration(seconds) * time.Second
+	}
+	if remaining == 0 && reset > 0 {
+		until := time.Now().Add(min(reset, c.maxRetryWait))
+		c.pauseMu.Lock()
+		if until.After(c.pauseUntil) {
+			c.pauseUntil = until
+		}
+		c.pauseMu.Unlock()
+	}
+	return remaining, reset
+}
+
+func (c *Client) waitForServerQuota(ctx context.Context, procedures []string) error {
+	c.pauseMu.Lock()
+	wait := time.Until(c.pauseUntil)
+	c.pauseMu.Unlock()
+	if wait <= 0 {
+		return nil
+	}
+	return c.sleep(ctx, WaitInfo{Reason: "server-rate-limit", Procedures: procedures, Duration: wait})
+}
+
+// retryAfter parses a Retry-After header given in seconds or as an HTTP date.
+func retryAfter(h http.Header) time.Duration {
+	value := h.Get("Retry-After")
+	if value == "" {
+		return 0
+	}
+	if seconds, err := strconv.Atoi(value); err == nil && seconds > 0 {
+		return time.Duration(seconds) * time.Second
+	}
+	if at, err := http.ParseTime(value); err == nil {
+		return time.Until(at)
+	}
+	return 0
+}
+
 func isRetryableStatusCode(code int) bool {
 	switch code {
 	case http.StatusRequestTimeout, // 408
-		http.StatusConflict,            // 409
 		http.StatusTooEarly,            // 425
 		http.StatusTooManyRequests,     // 429
 		http.StatusInternalServerError, // 500

@@ -8,36 +8,36 @@ import "encoding/json"
 
 // ItemTrading is an item's daily market trading history.
 type ItemTrading struct {
-	ID       string `json:"_id,omitempty"`
-	ItemCode string `json:"itemCode,omitempty"`
+	ID       string `json:"_id"`
+	ItemCode string `json:"itemCode"`
 	// CurrentValue is the average price of the most recent trading day, the
 	// same value [TradingService.GetPrices] reports for the item.
-	CurrentValue float64 `json:"currentValue,omitempty"`
+	CurrentValue float64 `json:"currentValue"`
 	// MinPrice and MaxPrice are price bounds stored for some items (zero when
 	// absent). Market prices are not held within them.
-	MinPrice float64 `json:"minPrice,omitempty"`
-	MaxPrice float64 `json:"maxPrice,omitempty"`
+	MinPrice float64 `json:"minPrice"`
+	MaxPrice float64 `json:"maxPrice"`
 	// Values holds up to 30 of the most recent trading days, oldest first.
 	// The last day is usually the current, still incomplete, day.
-	Values []ItemTradingDay `json:"values,omitempty"`
+	Values []ItemTradingDay `json:"values"`
 	// BuyOrders and SellOrders have been empty in every observed response, so
 	// their element shape is unknown. Use [TradingService.GetTopOrders] for
 	// the order book.
-	BuyOrders  []json.RawMessage `json:"buyOrders,omitempty"`
-	SellOrders []json.RawMessage `json:"sellOrders,omitempty"`
+	BuyOrders  []json.RawMessage `json:"buyOrders"`
+	SellOrders []json.RawMessage `json:"sellOrders"`
 }
 
 // ItemTradingDay is one day of market trades for an item.
 type ItemTradingDay struct {
 	// ValueAt is the trading day as YYYY-MM-DD.
-	ValueAt Date `json:"valueAt,omitempty"`
+	ValueAt Date `json:"valueAt"`
 	// AvgValue is the volume-weighted average price: TotalValue divided by
 	// TotalQuantity.
-	AvgValue float64 `json:"avgValue,omitempty"`
+	AvgValue float64 `json:"avgValue"`
 	// TotalValue is the money that changed hands.
-	TotalValue        float64 `json:"totalValue,omitempty"`
-	TotalQuantity     int     `json:"totalQuantity,omitempty"`
-	TransactionsCount int     `json:"transactionsCount,omitempty"`
+	TotalValue        float64 `json:"totalValue"`
+	TotalQuantity     int     `json:"totalQuantity"`
+	TransactionsCount int     `json:"transactionsCount"`
 }
 
 // OwnerOrdersFilter selects whose open market orders
@@ -52,16 +52,16 @@ type OwnerOrdersFilter struct {
 
 // OwnerOrders is an owner's open market orders and their totals.
 type OwnerOrders struct {
-	BuyOrders  []TopOrder `json:"buyOrders,omitempty"`
-	SellOrders []TopOrder `json:"sellOrders,omitempty"`
+	BuyOrders  []TopOrder `json:"buyOrders"`
+	SellOrders []TopOrder `json:"sellOrders"`
 	// AllOrders holds the buy orders followed by the sell orders.
-	AllOrders []TopOrder `json:"allOrders,omitempty"`
+	AllOrders []TopOrder `json:"allOrders"`
 	// TotalBuyMoneyInvested is the money locked in the buy orders.
-	TotalBuyMoneyInvested float64 `json:"totalBuyMoneyInvested,omitempty"`
+	TotalBuyMoneyInvested float64 `json:"totalBuyMoneyInvested"`
 	// TotalSellMoneyExpected is the money the sell orders would earn if filled.
-	TotalSellMoneyExpected float64 `json:"totalSellMoneyExpected,omitempty"`
+	TotalSellMoneyExpected float64 `json:"totalSellMoneyExpected"`
 	// TotalSellQuantities is the quantity offered for sale, keyed by item code.
-	TotalSellQuantities map[string]int `json:"totalSellQuantities,omitempty"`
+	TotalSellQuantities map[string]int `json:"totalSellQuantities"`
 }
 
 // PPValueByItem is the money one production point earns when spent
@@ -90,19 +90,19 @@ type DonationTotalFilter struct {
 // Donation is one user's cumulative money donations to one country, military
 // unit, or party. Only the recipient's ID field is set.
 type Donation struct {
-	ID        string  `json:"_id,omitempty"`
-	UserID    string  `json:"userId,omitempty"`
-	CountryID string  `json:"countryId,omitempty"`
-	MUID      string  `json:"muId,omitempty"`
-	PartyID   string  `json:"partyId,omitempty"`
-	Amount    float64 `json:"amount,omitempty"`
+	ID        string  `json:"_id"`
+	UserID    string  `json:"userId"`
+	CountryID string  `json:"countryId"`
+	MUID      string  `json:"muId"`
+	PartyID   string  `json:"partyId"`
+	Amount    float64 `json:"amount"`
 	// CreatedAt is the time of the first donation and UpdatedAt of the latest.
-	CreatedAt Time `json:"createdAt,omitempty"`
-	UpdatedAt Time `json:"updatedAt,omitempty"`
+	CreatedAt Time `json:"createdAt"`
+	UpdatedAt Time `json:"updatedAt"`
 }
 
 // DonationTotal is the total donated to a recipient.
 type DonationTotal struct {
-	TotalAmount float64 `json:"totalAmount,omitempty"`
-	DonorCount  int     `json:"donorCount,omitempty"`
+	TotalAmount float64 `json:"totalAmount"`
+	DonorCount  int     `json:"donorCount"`
 }

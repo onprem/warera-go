@@ -14,7 +14,7 @@ type MU = MilitaryUnit
 type ItemPrice struct {
 	ItemCode string  `json:"itemCode"`
 	Price    float64 `json:"price"`
-	Currency string  `json:"currency,omitempty"`
+	Currency string  `json:"currency"`
 }
 
 // HasNext reports whether there is a subsequent page.

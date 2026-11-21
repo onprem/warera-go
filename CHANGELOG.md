@@ -19,6 +19,7 @@ All notable changes to this project are documented here. While the project is in
 - The automatic rate limit with an API key is now 500 requests a minute, the API's own limit (was 200).
 - 409 Conflict responses are no longer retried.
 - **Breaking:** Every timestamp field in the response models is now a `Time` (and every day field, such as `ItemTradingDay.ValueAt`, a `Date`) instead of a string, so tools can sort, compare, and bucket times without parsing. `GameDates.NextDayTime` and `NextRegenTime` are removed; use the `NextDayAt` and `NextRegenAt` fields.
+- **Breaking:** Response models no longer use `omitempty`, so re-encoding a record (for example to store it) keeps `false`, `0`, and empty values instead of dropping them. Request filters keep it.
 - **Breaking:** `TransactionFilter.TransactionType *StringOrStrings` is now `TransactionTypes []TransactionType`; `StringOrStrings`, `SingleString`, and `StringList` are removed.
 - **Breaking:** `BattleOrders.GetByBattle` takes a `BattleSide` and `Rankings.GetRanking` a `RankingType`; `RankingHistoryFilter`, `StateArmyLedgerFilter`, and the generated filters use the new enum types.
 - **Breaking:** `Countries.GetStrategicResourceBonuses` returns nil and no error for a country with no strategic resources; the API returns null for these.

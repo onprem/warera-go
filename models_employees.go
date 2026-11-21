@@ -6,259 +6,259 @@ package warera
 
 // CompanyRoster is a company's employees and its hourly output.
 type CompanyRoster struct {
-	Employees []Employee          `json:"employees,omitempty"`
-	Hourly    CompanyHourlyOutput `json:"hourly,omitempty"`
+	Employees []Employee          `json:"employees"`
+	Hourly    CompanyHourlyOutput `json:"hourly"`
 }
 
 // CompanyHourlyOutput is a company's estimated output and costs per hour.
 type CompanyHourlyOutput struct {
 	// Cap is the number of employees the company's break room allows.
-	Cap              int     `json:"cap,omitempty"`
-	EngineMultiplier float64 `json:"engineMultiplier,omitempty"`
-	ItemCode         string  `json:"itemCode,omitempty"`
-	ManagerCost      float64 `json:"managerCost,omitempty"`
-	Production       float64 `json:"production,omitempty"`
-	Toolboxes        float64 `json:"toolboxes,omitempty"`
-	WageCost         float64 `json:"wageCost,omitempty"`
+	Cap              int     `json:"cap"`
+	EngineMultiplier float64 `json:"engineMultiplier"`
+	ItemCode         string  `json:"itemCode"`
+	ManagerCost      float64 `json:"managerCost"`
+	Production       float64 `json:"production"`
+	Toolboxes        float64 `json:"toolboxes"`
+	WageCost         float64 `json:"wageCost"`
 	// IfEnabled is the output a disabled company would have once enabled.
-	IfEnabled *CompanyHourlyEstimate `json:"ifEnabled,omitempty"`
+	IfEnabled *CompanyHourlyEstimate `json:"ifEnabled"`
 }
 
 // CompanyHourlyEstimate is an estimated hourly output and cost.
 type CompanyHourlyEstimate struct {
-	ManagerCost float64 `json:"managerCost,omitempty"`
-	Production  float64 `json:"production,omitempty"`
-	Toolboxes   float64 `json:"toolboxes,omitempty"`
-	WageCost    float64 `json:"wageCost,omitempty"`
+	ManagerCost float64 `json:"managerCost"`
+	Production  float64 `json:"production"`
+	Toolboxes   float64 `json:"toolboxes"`
+	WageCost    float64 `json:"wageCost"`
 }
 
 // Employee is an NPC employee working in a player's company.
 type Employee struct {
-	ID              string `json:"_id,omitempty"`
-	Age             int    `json:"age,omitempty"`
-	CompanyDisabled bool   `json:"companyDisabled,omitempty"`
-	CompanyID       string `json:"company,omitempty"`
-	CompanyMovedAt  Time   `json:"companyMovedAt,omitempty"`
-	CreatedAt       Time   `json:"createdAt,omitempty"`
-	Gender          string `json:"gender,omitempty"`
-	Name            string `json:"name,omitempty"`
-	NationalityID   string `json:"nationality,omitempty"`
-	OwnerID         string `json:"owner,omitempty"`
-	UpdatedAt       Time   `json:"updatedAt,omitempty"`
+	ID              string `json:"_id"`
+	Age             int    `json:"age"`
+	CompanyDisabled bool   `json:"companyDisabled"`
+	CompanyID       string `json:"company"`
+	CompanyMovedAt  Time   `json:"companyMovedAt"`
+	CreatedAt       Time   `json:"createdAt"`
+	Gender          string `json:"gender"`
+	Name            string `json:"name"`
+	NationalityID   string `json:"nationality"`
+	OwnerID         string `json:"owner"`
+	UpdatedAt       Time   `json:"updatedAt"`
 
 	// Base holds the stats the employee was hired with, and Trained the
 	// points added by training.
-	Base    EmployeeStats   `json:"base,omitempty"`
-	Trained EmployeeStats   `json:"trained,omitempty"`
-	Traits  []EmployeeTrait `json:"traits,omitempty"`
+	Base    EmployeeStats   `json:"base"`
+	Trained EmployeeStats   `json:"trained"`
+	Traits  []EmployeeTrait `json:"traits"`
 	// Breakdown explains each stat's total by source, keyed by stat name.
-	Breakdown       map[string]EmployeeStatBreakdown `json:"breakdown,omitempty"`
-	Potential       int                              `json:"potential,omitempty"`
-	PotentialMax    int                              `json:"potentialMax,omitempty"`
-	Specializations map[string]float64               `json:"specializations,omitempty"`
-	RetireInDays    float64                          `json:"retireInDays,omitempty"`
+	Breakdown       map[string]EmployeeStatBreakdown `json:"breakdown"`
+	Potential       int                              `json:"potential"`
+	PotentialMax    int                              `json:"potentialMax"`
+	Specializations map[string]float64               `json:"specializations"`
+	RetireInDays    float64                          `json:"retireInDays"`
 
-	Wage            float64 `json:"wage,omitempty"`
-	WageExpectation float64 `json:"wageExpectation,omitempty"`
+	Wage            float64 `json:"wage"`
+	WageExpectation float64 `json:"wageExpectation"`
 	// WageNegotiated is the wage reduction won through training, if any.
-	WageNegotiated  float64                 `json:"wageNegotiated,omitempty"`
-	Estimate        EmployeeEstimate        `json:"estimate,omitempty"`
-	ProductionBonus EmployeeProductionBonus `json:"productionBonus,omitempty"`
+	WageNegotiated  float64                 `json:"wageNegotiated"`
+	Estimate        EmployeeEstimate        `json:"estimate"`
+	ProductionBonus EmployeeProductionBonus `json:"productionBonus"`
 
-	HappinessBreakdown EmployeeHappiness       `json:"happinessBreakdown,omitempty"`
-	EventModifiers     []EmployeeEventModifier `json:"eventModifiers,omitempty"`
-	CharmLuck          *EmployeeCharmLuck      `json:"charmLuck,omitempty"`
+	HappinessBreakdown EmployeeHappiness       `json:"happinessBreakdown"`
+	EventModifiers     []EmployeeEventModifier `json:"eventModifiers"`
+	CharmLuck          *EmployeeCharmLuck      `json:"charmLuck"`
 	// CareBoosts lists when a manager's daily care boosted this employee.
-	CareBoosts       []Time `json:"careBoosts,omitempty"`
-	CoworkerFiredAts []Time `json:"coworkerFiredAts,omitempty"`
+	CareBoosts       []Time `json:"careBoosts"`
+	CoworkerFiredAts []Time `json:"coworkerFiredAts"`
 
-	ToolID     string              `json:"tool,omitempty"`
-	ToolItem   *EmployeeTool       `json:"toolItem,omitempty"`
-	ToolStatus *EmployeeToolStatus `json:"toolStatus,omitempty"`
+	ToolID     string              `json:"tool"`
+	ToolItem   *EmployeeTool       `json:"toolItem"`
+	ToolStatus *EmployeeToolStatus `json:"toolStatus"`
 
-	TrainingHistory       []EmployeeTraining `json:"trainingHistory,omitempty"`
-	TrainingsPerDay       int                `json:"trainingsPerDay,omitempty"`
-	TrainingsToday        int                `json:"trainingsToday,omitempty"`
-	TrainerSessionsUsed   int                `json:"trainerSessionsUsed,omitempty"`
-	TrainerSessionsUsedAt Time               `json:"trainerSessionsUsedAt,omitempty"`
+	TrainingHistory       []EmployeeTraining `json:"trainingHistory"`
+	TrainingsPerDay       int                `json:"trainingsPerDay"`
+	TrainingsToday        int                `json:"trainingsToday"`
+	TrainerSessionsUsed   int                `json:"trainerSessionsUsed"`
+	TrainerSessionsUsedAt Time               `json:"trainerSessionsUsedAt"`
 
-	LastAgedDay        Date `json:"lastAgedDay,omitempty"`
-	LastEventAt        Time `json:"lastEventAt,omitempty"`
-	LastMovedAt        Time `json:"lastMovedAt,omitempty"`
-	LastSpecializedDay Date `json:"lastSpecializedDay,omitempty"`
-	LastTrainedAt      Time `json:"lastTrainedAt,omitempty"`
+	LastAgedDay        Date `json:"lastAgedDay"`
+	LastEventAt        Time `json:"lastEventAt"`
+	LastMovedAt        Time `json:"lastMovedAt"`
+	LastSpecializedDay Date `json:"lastSpecializedDay"`
+	LastTrainedAt      Time `json:"lastTrainedAt"`
 }
 
 // EmployeeStats are an employee's production, luck, and responsibility.
 type EmployeeStats struct {
-	Luck           float64 `json:"luck,omitempty"`
-	Production     float64 `json:"production,omitempty"`
-	Responsibility float64 `json:"responsibility,omitempty"`
+	Luck           float64 `json:"luck"`
+	Production     float64 `json:"production"`
+	Responsibility float64 `json:"responsibility"`
 }
 
 // EmployeeTrait is a personality trait. Revealed is reported when training
 // uncovers a hidden trait.
 type EmployeeTrait struct {
 	// Arg parameterizes some traits, such as the item code a trait refers to.
-	Arg      string `json:"arg,omitempty"`
-	Code     string `json:"code,omitempty"`
-	Revealed bool   `json:"revealed,omitempty"`
+	Arg      string `json:"arg"`
+	Code     string `json:"code"`
+	Revealed bool   `json:"revealed"`
 }
 
 // EmployeeStatBreakdown explains one stat's total.
 type EmployeeStatBreakdown struct {
-	Base          float64                `json:"base,omitempty"`
-	Contributions []EmployeeContribution `json:"contributions,omitempty"`
-	Total         float64                `json:"total,omitempty"`
-	Trained       float64                `json:"trained,omitempty"`
+	Base          float64                `json:"base"`
+	Contributions []EmployeeContribution `json:"contributions"`
+	Total         float64                `json:"total"`
+	Trained       float64                `json:"trained"`
 }
 
 // EmployeeContribution is one source of a stat change. Percent reports
 // whether Delta is a percentage rather than flat points.
 type EmployeeContribution struct {
-	Code    string  `json:"code,omitempty"`
-	Delta   float64 `json:"delta,omitempty"`
-	Percent bool    `json:"percent,omitempty"`
+	Code    string  `json:"code"`
+	Delta   float64 `json:"delta"`
+	Percent bool    `json:"percent"`
 }
 
 // EmployeeEstimate is an employee's estimated hourly production and wage.
 type EmployeeEstimate struct {
-	ItemCode   string  `json:"itemCode,omitempty"`
-	Production float64 `json:"production,omitempty"`
-	Wage       float64 `json:"wage,omitempty"`
+	ItemCode   string  `json:"itemCode"`
+	Production float64 `json:"production"`
+	Wage       float64 `json:"wage"`
 }
 
 // EmployeeProductionBonus is an employee's total production bonus percent by
 // source.
 type EmployeeProductionBonus struct {
-	Contributions []EmployeeBonusSource `json:"contributions,omitempty"`
-	Total         float64               `json:"total,omitempty"`
+	Contributions []EmployeeBonusSource `json:"contributions"`
+	Total         float64               `json:"total"`
 }
 
 // EmployeeBonusSource is one source of a production bonus.
 type EmployeeBonusSource struct {
 	// EventCode and Until identify a temporary bonus from an employee event.
-	EventCode string  `json:"eventCode,omitempty"`
-	Percent   float64 `json:"percent,omitempty"`
-	Source    string  `json:"source,omitempty"`
-	Until     Time    `json:"until,omitempty"`
+	EventCode string  `json:"eventCode"`
+	Percent   float64 `json:"percent"`
+	Source    string  `json:"source"`
+	Until     Time    `json:"until"`
 }
 
 // EmployeeHappiness is an employee's happiness by source, and the chance they
 // quit.
 type EmployeeHappiness struct {
-	Base          float64                   `json:"base,omitempty"`
-	Contributions []EmployeeHappinessReason `json:"contributions,omitempty"`
-	Mitigated     float64                   `json:"mitigated,omitempty"`
-	QuitChance    float64                   `json:"quitChance,omitempty"`
-	Value         float64                   `json:"value,omitempty"`
+	Base          float64                   `json:"base"`
+	Contributions []EmployeeHappinessReason `json:"contributions"`
+	Mitigated     float64                   `json:"mitigated"`
+	QuitChance    float64                   `json:"quitChance"`
+	Value         float64                   `json:"value"`
 }
 
 // EmployeeHappinessReason is one source of a happiness change: a general
 // Reason such as income tax, or the Code of a trait.
 type EmployeeHappinessReason struct {
-	Code  string  `json:"code,omitempty"`
-	Delta float64 `json:"delta,omitempty"`
+	Code  string  `json:"code"`
+	Delta float64 `json:"delta"`
 	// EventCode and Until identify a temporary change from an employee event.
-	EventCode string `json:"eventCode,omitempty"`
-	Reason    string `json:"reason,omitempty"`
-	Until     Time   `json:"until,omitempty"`
+	EventCode string `json:"eventCode"`
+	Reason    string `json:"reason"`
+	Until     Time   `json:"until"`
 }
 
 // EmployeeEventModifier is a temporary effect from an employee event.
 type EmployeeEventModifier struct {
-	Code  string  `json:"code,omitempty"`
-	Delta float64 `json:"delta,omitempty"`
-	Kind  string  `json:"kind,omitempty"`
-	Until Time    `json:"until,omitempty"`
+	Code  string  `json:"code"`
+	Delta float64 `json:"delta"`
+	Kind  string  `json:"kind"`
+	Until Time    `json:"until"`
 }
 
 // EmployeeCharmLuck is a temporary luck bonus.
 type EmployeeCharmLuck struct {
-	Amount float64 `json:"amount,omitempty"`
-	Until  Time    `json:"until,omitempty"`
+	Amount float64 `json:"amount"`
+	Until  Time    `json:"until"`
 }
 
 // EmployeeTool is the tool an employee holds.
 type EmployeeTool struct {
 	Item
-	CreatedAt  Time   `json:"createdAt,omitempty"`
-	EmployeeID string `json:"employee,omitempty"`
-	OwnerID    string `json:"owner,omitempty"`
-	UpdatedAt  Time   `json:"updatedAt,omitempty"`
+	CreatedAt  Time   `json:"createdAt"`
+	EmployeeID string `json:"employee"`
+	OwnerID    string `json:"owner"`
+	UpdatedAt  Time   `json:"updatedAt"`
 }
 
 // EmployeeToolStatus reports whether an employee's tool works and the bonus
 // it gives.
 type EmployeeToolStatus struct {
-	BonusPercent  float64 `json:"bonusPercent,omitempty"`
-	IsBroken      bool    `json:"isBroken,omitempty"`
-	IsUsable      bool    `json:"isUsable,omitempty"`
-	RolledPercent float64 `json:"rolledPercent,omitempty"`
+	BonusPercent  float64 `json:"bonusPercent"`
+	IsBroken      bool    `json:"isBroken"`
+	IsUsable      bool    `json:"isUsable"`
+	RolledPercent float64 `json:"rolledPercent"`
 }
 
 // EmployeeTraining is one training card an employee received.
 type EmployeeTraining struct {
-	Card     string                  `json:"card,omitempty"`
-	Delta    float64                 `json:"delta,omitempty"`
-	Outcome  EmployeeTrainingOutcome `json:"outcome,omitempty"`
-	PickedAt Time                    `json:"pickedAt,omitempty"`
-	Rarity   string                  `json:"rarity,omitempty"`
-	Stat     string                  `json:"stat,omitempty"`
+	Card     string                  `json:"card"`
+	Delta    float64                 `json:"delta"`
+	Outcome  EmployeeTrainingOutcome `json:"outcome"`
+	PickedAt Time                    `json:"pickedAt"`
+	Rarity   string                  `json:"rarity"`
+	Stat     string                  `json:"stat"`
 	// Trait is the trait a card removes or changes; TraitTo and TraitTo2 are
 	// the traits it offers instead.
-	Trait    string `json:"trait,omitempty"`
-	TraitTo  string `json:"traitTo,omitempty"`
-	TraitTo2 string `json:"traitTo2,omitempty"`
+	Trait    string `json:"trait"`
+	TraitTo  string `json:"traitTo"`
+	TraitTo2 string `json:"traitTo2"`
 }
 
 // EmployeeTrainingOutcome is the result of a training card.
 type EmployeeTrainingOutcome struct {
-	Gained          []EmployeeTrait `json:"gained,omitempty"`
-	Lost            []string        `json:"lost,omitempty"`
-	PotentialMax    int             `json:"potentialMax,omitempty"`
-	Stat            string          `json:"stat,omitempty"`
-	StatGain        float64         `json:"statGain,omitempty"`
-	WageExpectation float64         `json:"wageExpectation,omitempty"`
+	Gained          []EmployeeTrait `json:"gained"`
+	Lost            []string        `json:"lost"`
+	PotentialMax    int             `json:"potentialMax"`
+	Stat            string          `json:"stat"`
+	StatGain        float64         `json:"statGain"`
+	WageExpectation float64         `json:"wageExpectation"`
 }
 
 // Manager is a player hired to run another player's company.
 type Manager struct {
-	ID                      string  `json:"_id,omitempty"`
-	Accrued                 float64 `json:"accrued,omitempty"`
-	CanEndAt                Time    `json:"canEndAt,omitempty"`
-	CompanyID               string  `json:"company,omitempty"`
-	CreatedAt               Time    `json:"createdAt,omitempty"`
-	EmployerID              string  `json:"employer,omitempty"`
-	HasPendingRateReduction bool    `json:"hasPendingRateReduction,omitempty"`
-	HiredAt                 Time    `json:"hiredAt,omitempty"`
-	HourlyWage              float64 `json:"hourlyWage,omitempty"`
-	IsInactive              bool    `json:"isInactive,omitempty"`
-	LastAccruedAt           Time    `json:"lastAccruedAt,omitempty"`
-	LockedUntil             Time    `json:"lockedUntil,omitempty"`
-	ManagementLevel         int     `json:"managementLevel,omitempty"`
-	MaxHourlyWage           float64 `json:"maxHourlyWage,omitempty"`
-	ProductionBonusPercent  float64 `json:"productionBonusPercent,omitempty"`
+	ID                      string  `json:"_id"`
+	Accrued                 float64 `json:"accrued"`
+	CanEndAt                Time    `json:"canEndAt"`
+	CompanyID               string  `json:"company"`
+	CreatedAt               Time    `json:"createdAt"`
+	EmployerID              string  `json:"employer"`
+	HasPendingRateReduction bool    `json:"hasPendingRateReduction"`
+	HiredAt                 Time    `json:"hiredAt"`
+	HourlyWage              float64 `json:"hourlyWage"`
+	IsInactive              bool    `json:"isInactive"`
+	LastAccruedAt           Time    `json:"lastAccruedAt"`
+	LockedUntil             Time    `json:"lockedUntil"`
+	ManagementLevel         int     `json:"managementLevel"`
+	MaxHourlyWage           float64 `json:"maxHourlyWage"`
+	ProductionBonusPercent  float64 `json:"productionBonusPercent"`
 	// RateManagement is the pay per Management point per hour.
-	RateManagement float64 `json:"rateManagement,omitempty"`
-	TotalEarned    float64 `json:"totalEarned,omitempty"`
-	UnpaidHours    float64 `json:"unpaidHours,omitempty"`
-	UpdatedAt      Time    `json:"updatedAt,omitempty"`
-	UserID         string  `json:"user,omitempty"`
+	RateManagement float64 `json:"rateManagement"`
+	TotalEarned    float64 `json:"totalEarned"`
+	UnpaidHours    float64 `json:"unpaidHours"`
+	UpdatedAt      Time    `json:"updatedAt"`
+	UserID         string  `json:"user"`
 }
 
 // ManagerOffer is an open manager job at a company.
 type ManagerOffer struct {
-	ID            string  `json:"_id,omitempty"`
-	CompanyID     string  `json:"company,omitempty"`
-	CreatedAt     Time    `json:"createdAt,omitempty"`
-	MaxHourlyWage float64 `json:"maxHourlyWage,omitempty"`
-	MinManagement float64 `json:"minManagement,omitempty"`
+	ID            string  `json:"_id"`
+	CompanyID     string  `json:"company"`
+	CreatedAt     Time    `json:"createdAt"`
+	MaxHourlyWage float64 `json:"maxHourlyWage"`
+	MinManagement float64 `json:"minManagement"`
 	// RateManagement is the pay per Management point per hour.
-	RateManagement float64 `json:"rateManagement,omitempty"`
-	RegionID       string  `json:"region,omitempty"`
-	UpdatedAt      Time    `json:"updatedAt,omitempty"`
-	UserID         string  `json:"user,omitempty"`
+	RateManagement float64 `json:"rateManagement"`
+	RegionID       string  `json:"region"`
+	UpdatedAt      Time    `json:"updatedAt"`
+	UserID         string  `json:"user"`
 }
 
 // ManagerOfferFilter specifies options for listing manager offers.
@@ -271,23 +271,23 @@ type ManagerOfferFilter struct {
 
 // ManagerWageStats is the allowed range of manager pay rates.
 type ManagerWageStats struct {
-	AllowedRange ManagerWageRange `json:"allowedRange,omitempty"`
+	AllowedRange ManagerWageRange `json:"allowedRange"`
 	// TopEligibleOffer is the best offer the caller qualifies for, when known.
-	TopEligibleOffer *float64 `json:"topEligibleOffer,omitempty"`
-	TopOffer         float64  `json:"topOffer,omitempty"`
+	TopEligibleOffer *float64 `json:"topEligibleOffer"`
+	TopOffer         float64  `json:"topOffer"`
 }
 
 // ManagerWageRange bounds manager pay per Management point per hour.
 type ManagerWageRange struct {
-	Average float64 `json:"average,omitempty"`
-	Max     float64 `json:"max,omitempty"`
-	Min     float64 `json:"min,omitempty"`
-	Source  string  `json:"source,omitempty"`
+	Average float64 `json:"average"`
+	Max     float64 `json:"max"`
+	Min     float64 `json:"min"`
+	Source  string  `json:"source"`
 }
 
 // CompanyProductionBonus is a company's production bonus percent by source.
 type CompanyProductionBonus struct {
-	DepositBonus            float64 `json:"depositBonus,omitempty"`
-	StrategicResourcesBonus float64 `json:"strategicResourcesBonus,omitempty"`
-	Total                   float64 `json:"total,omitempty"`
+	DepositBonus            float64 `json:"depositBonus"`
+	StrategicResourcesBonus float64 `json:"strategicResourcesBonus"`
+	Total                   float64 `json:"total"`
 }

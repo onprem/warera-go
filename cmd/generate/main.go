@@ -109,7 +109,7 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 	b.WriteString("// CursorPage represents a generic cursor-paginated page of items.\n")
 	b.WriteString("type CursorPage[T any] struct {\n")
 	b.WriteString("\tItems []T `json:\"items\"`\n")
-	b.WriteString("\tNextCursor string `json:\"nextCursor,omitempty\"`\n")
+	b.WriteString("\tNextCursor string `json:\"nextCursor\"`\n")
 	b.WriteString("}\n\n")
 	b.WriteString("// Request and filter models generated from spec/openapi.json.\n\n")
 

@@ -5,7 +5,7 @@ package warera
 // CursorPage represents a generic cursor-paginated page of items.
 type CursorPage[T any] struct {
 	Items      []T    `json:"items"`
-	NextCursor string `json:"nextCursor,omitempty"`
+	NextCursor string `json:"nextCursor"`
 }
 
 // Request and filter models generated from spec/openapi.json.

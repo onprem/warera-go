@@ -151,9 +151,10 @@ func (s *UserService) GetSkillsMany(ctx context.Context, userIDs []string) ([]Us
 	})
 }
 
-// List returns one page of users matching the filter.
-func (s *UserService) List(ctx context.Context, filter UserFilter) (*CursorPage[User], error) {
-	var page CursorPage[User]
+// List returns one page of the citizens of a country, newest first. Entries
+// carry only the user ID and join date; load profiles with [UserService.GetLiteMany].
+func (s *UserService) List(ctx context.Context, filter UserFilter) (*CursorPage[UserListItem], error) {
+	var page CursorPage[UserListItem]
 	err := s.client.trpc.Call(ctx, "user.getUsersByCountry", filter, &page)
 	if err != nil {
 		return nil, err
@@ -161,9 +162,9 @@ func (s *UserService) List(ctx context.Context, filter UserFilter) (*CursorPage[
 	return &page, nil
 }
 
-// All returns an iterator over all users matching the filter across pages.
-func (s *UserService) All(ctx context.Context, filter UserFilter) iter.Seq2[User, error] {
-	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[User], error) {
+// All returns an iterator over all citizens of a country across pages.
+func (s *UserService) All(ctx context.Context, filter UserFilter) iter.Seq2[UserListItem, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cur string) (*CursorPage[UserListItem], error) {
 		f := filter
 		f.Cursor = cur
 		return s.List(c, f)

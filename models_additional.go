@@ -269,3 +269,9 @@ type UserSkillProfile struct {
 	Leveling UserLeveling `json:"leveling,omitempty"`
 	Skills   UserSkills   `json:"skills,omitempty"`
 }
+
+// UserListItem is a citizen in a country's user listing.
+type UserListItem struct {
+	ID        string `json:"_id,omitempty"`
+	CreatedAt string `json:"createdAt,omitempty"`
+}

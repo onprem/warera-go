@@ -26,7 +26,8 @@ type countrySnapshot struct {
 	country    *warera.Country
 	government *warera.Government
 	regions    []warera.Region
-	users      []warera.User
+	users      []warera.UserListItem
+	officials  map[string]string // user ID to username
 	units      []warera.MilitaryUnit
 	events     []warera.Event
 	battles    []warera.Battle
@@ -102,6 +103,25 @@ func run() error {
 		// the country record with office holders and congress membership.
 		government, err := client.Government.GetByCountryID(ctx, countryID)
 		snapshot.government = government
+		if err != nil {
+			return err
+		}
+		// The government record holds user IDs; load compact profiles in one
+		// batched request so office holders can be shown by name.
+		ids := []string{}
+		for _, id := range []string{government.President, government.VicePresident} {
+			if id != "" {
+				ids = append(ids, id)
+			}
+		}
+		for _, minister := range government.Ministers {
+			ids = append(ids, minister.UserID)
+		}
+		profiles, err := client.Users.GetLiteMany(ctx, ids)
+		snapshot.officials = map[string]string{}
+		for _, profile := range profiles {
+			snapshot.officials[profile.ID] = profile.Username
+		}
 		return err
 	})
 	launch("regions", func(ctx context.Context) error {
@@ -119,8 +139,8 @@ func run() error {
 		return nil
 	})
 	launch("users", func(ctx context.Context) error {
-		// All consumes the iterator across pages. collect keeps the example's
-		// snapshot easy to print while preserving partial results on an error.
+		// All consumes the iterator across pages; entries carry only user IDs.
+		// collect keeps partial results on an error.
 		users, err := collect(client.Users.All(ctx, warera.UserFilter{CountryID: countryID, Limit: 100}))
 		snapshot.users = users
 		return err
@@ -195,14 +215,23 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 	fmt.Println("Sections are fetched concurrently and may reflect slightly different server times.")
 
 	if country := snapshot.country; country != nil {
-		fmt.Printf("Country: %s (%s), reported population=%d, wars=%d, allies=%d\n",
-			country.Name, country.Code, country.CurrentPopulation, len(country.WarsWith), len(country.Allies))
+		fmt.Printf("Country: %s (%s), government type=%s, reported population=%d, wars=%d, allies=%d\n",
+			country.Name, country.Code, country.GovType, country.CurrentPopulation, len(country.WarsWith), len(country.Allies))
+		if income := country.Income; income != nil {
+			fmt.Printf("Daily income estimate: total=%.2f (development=%.2f, employee income tax=%.2f, manager tax=%.2f, strategic resources=%.2f)\n",
+				income.Total, income.Development, income.EmployeeIncomeTax, income.ManagerIncomeTax, income.StrategicResourcesBonus)
+		}
 	}
 	if government := snapshot.government; government != nil {
-		// Resolve office holders against the country-filtered user list when
-		// possible; retain the ID if a profile was absent from that response.
 		fmt.Printf("Government: president=%s, vice-president=%s, congress members=%d\n",
-			resolveUser(government.President, snapshot.users), resolveUser(government.VicePresident, snapshot.users), len(government.CongressMembers))
+			resolveUser(government.President, snapshot.officials), resolveUser(government.VicePresident, snapshot.officials), len(government.CongressMembers))
+		for _, minister := range government.Ministers {
+			title := minister.Title
+			if minister.CustomTitle != "" {
+				title += " (" + minister.CustomTitle + ")"
+			}
+			fmt.Printf("  minister: %s, %s, rights=%v\n", resolveUser(minister.UserID, snapshot.officials), title, minister.Rights)
+		}
 	}
 
 	regionPopulation := 0
@@ -217,7 +246,7 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 	}
 	fmt.Printf("Regions: %d (reported current population sum=%d, with active battle=%d)\n",
 		len(snapshot.regions), regionPopulation, activeRegions)
-	fmt.Printf("Users: %d profiles; military units: %d; events: %d; active battles: %d\n",
+	fmt.Printf("Citizens: %d; military units: %d; events: %d; active battles: %d\n",
 		len(snapshot.users), len(snapshot.units), len(snapshot.events), len(snapshot.battles))
 
 	sort.Slice(snapshot.events, func(i, j int) bool { return snapshot.events[i].CreatedAt > snapshot.events[j].CreatedAt })
@@ -238,16 +267,14 @@ func printSnapshot(snapshot countrySnapshot, countryID string) {
 	fmt.Println("Population growth and change alerts require comparing this capture with a later saved snapshot.")
 }
 
-func resolveUser(userID string, users []warera.User) string {
-	// Government references can be displayed as names when the country user
-	// listing included that profile, while IDs remain a useful fallback.
+func resolveUser(userID string, usernames map[string]string) string {
+	// Show office holders by name when their profile loaded, keeping the ID
+	// as a fallback.
 	if userID == "" {
 		return "(none)"
 	}
-	for _, user := range users {
-		if user.ID == userID {
-			return fmt.Sprintf("%s [%s]", user.Username, userID)
-		}
+	if name, ok := usernames[userID]; ok {
+		return fmt.Sprintf("%s [%s]", name, userID)
 	}
 	return userID
 }

@@ -64,7 +64,7 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"user detail", "user.getUserById.json", decodeFixtureAs[User]},
 		{"user lite", "user.getUserLite.json", decodeFixtureAs[UserLite]},
 		{"user skills", "user.getUserSkills.json", decodeFixtureAs[UserSkillProfile]},
-		{"users by country", "user.getUsersByCountry.json", decodeFixtureAs[CursorPage[User]]},
+		{"users by country", "user.getUsersByCountry.json", decodeFixtureAs[CursorPage[UserListItem]]},
 	}
 
 	covered := make(map[string]struct{}, len(tests))

@@ -238,7 +238,12 @@ func run() error {
 				warIDs = append(warIDs, battle.WarID)
 			}
 		}
-		snapshot.wars, err = client.Wars.GetMany(ctx, warIDs)
+		wars, err := client.Wars.GetMany(ctx, warIDs)
+		for _, id := range warIDs {
+			if war, ok := wars[id]; ok {
+				snapshot.wars = append(snapshot.wars, war)
+			}
+		}
 		return err
 	})
 

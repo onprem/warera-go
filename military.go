@@ -24,6 +24,17 @@ func (s *BattleService) GetByID(ctx context.Context, battleID string) (*Battle, 
 	return &battle, nil
 }
 
+// GetMany looks up the battles with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *BattleService) GetMany(ctx context.Context, battleIDs []string) (map[string]Battle, error) {
+	return getManyByID[Battle](ctx, s.client, "battles", "battle.getById", battleIDs, func(id string) any {
+		return getBattleByIdInput{BattleID: id}
+	})
+}
+
 // List returns one page of battles matching the filter.
 func (s *BattleService) List(ctx context.Context, filter BattleFilter) (*CursorPage[Battle], error) {
 	var page CursorPage[Battle]
@@ -91,12 +102,12 @@ func (s *MilitaryUnitService) GetByID(ctx context.Context, muID string) (*Milita
 	return &unit, nil
 }
 
-// GetMany retrieves military units for the supplied IDs. Results preserve the
-// input order and duplicate IDs. An empty input returns an empty slice without
-// making a request. If any lookup fails, GetMany returns no units and a
-// [BatchLookupError] identifying the failed IDs. Large inputs are split
-// according to the client's configured batch-size limit.
-func (s *MilitaryUnitService) GetMany(ctx context.Context, muIDs []string) ([]MilitaryUnit, error) {
+// GetMany looks up the military units with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *MilitaryUnitService) GetMany(ctx context.Context, muIDs []string) (map[string]MilitaryUnit, error) {
 	return getManyByID[MilitaryUnit](ctx, s.client, "military units", "mu.getById", muIDs, func(id string) any {
 		return getMilitaryUnitByIDInput{MUID: id}
 	})

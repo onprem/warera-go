@@ -49,6 +49,17 @@ func (s *ArticleService) GetByID(ctx context.Context, articleID string) (*Articl
 	return &article, nil
 }
 
+// GetMany looks up the full articles with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *ArticleService) GetMany(ctx context.Context, articleIDs []string) (map[string]Article, error) {
+	return getManyByID[Article](ctx, s.client, "articles", "article.getArticleById", articleIDs, func(id string) any {
+		return getArticleByIdInput{ArticleID: id}
+	})
+}
+
 // GetLiteByID returns lightweight article information by ID.
 func (s *ArticleService) GetLiteByID(ctx context.Context, articleID string) (*Article, error) {
 	var article Article
@@ -99,12 +110,12 @@ func (s *UserService) GetByID(ctx context.Context, userID string) (*User, error)
 	return &user, nil
 }
 
-// GetMany retrieves full user profiles for the supplied IDs. Results preserve
-// the input order and duplicate IDs. An empty input returns an empty slice
-// without making a request. If any lookup fails, GetMany returns no profiles
-// and a [BatchLookupError] identifying the failed IDs. Large inputs are split
-// according to the client's configured batch-size limit.
-func (s *UserService) GetMany(ctx context.Context, userIDs []string) ([]User, error) {
+// GetMany looks up the full user profiles with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *UserService) GetMany(ctx context.Context, userIDs []string) (map[string]User, error) {
 	return getManyByID[User](ctx, s.client, "users", "user.getUserById", userIDs, func(id string) any {
 		return getUserByIdInput{UserID: id}
 	})
@@ -120,12 +131,12 @@ func (s *UserService) GetLiteByID(ctx context.Context, userID string) (*UserLite
 	return &user, nil
 }
 
-// GetLiteMany retrieves compact user profiles for the supplied IDs. Results
-// preserve the input order and duplicate IDs. An empty input returns an empty
-// slice without making a request. If any lookup fails, GetLiteMany returns no
-// profiles and a [BatchLookupError] identifying the failed IDs. Large inputs
-// are split according to the client's configured batch-size limit.
-func (s *UserService) GetLiteMany(ctx context.Context, userIDs []string) ([]UserLite, error) {
+// GetLiteMany looks up the compact user profiles with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetLiteMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *UserService) GetLiteMany(ctx context.Context, userIDs []string) (map[string]UserLite, error) {
 	return getManyByID[UserLite](ctx, s.client, "users", "user.getUserLite", userIDs, func(id string) any {
 		return getUserByIdInput{UserID: id}
 	})
@@ -142,10 +153,12 @@ func (s *UserService) GetSkills(ctx context.Context, userID string) (*UserSkillP
 	return &profile, nil
 }
 
-// GetSkillsMany retrieves the skills of the supplied players. Results preserve
-// the input order and duplicate IDs. If any lookup fails, GetSkillsMany returns
-// no records and a [BatchLookupError] identifying the failed IDs.
-func (s *UserService) GetSkillsMany(ctx context.Context, userIDs []string) ([]UserSkillProfile, error) {
+// GetSkillsMany looks up the skills with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetSkillsMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *UserService) GetSkillsMany(ctx context.Context, userIDs []string) (map[string]UserSkillProfile, error) {
 	return getManyByID[UserSkillProfile](ctx, s.client, "user skills", "user.getUserSkills", userIDs, func(id string) any {
 		return getUserByIdInput{UserID: id}
 	})
@@ -193,16 +206,22 @@ func (s *SearchService) SearchAnything(ctx context.Context, searchText string) (
 	return &result, nil
 }
 
-// SearchUsers searches for users matching the query and fetches their profiles.
+// SearchUsers searches for users matching the query and fetches their
+// profiles, in the search's order. Like [UserService.GetLiteMany], it returns
+// the profiles it found together with a [BatchLookupError] when some fail.
 func (s *SearchService) SearchUsers(ctx context.Context, searchText string) ([]UserLite, error) {
 	result, err := s.SearchAnything(ctx, searchText)
 	if err != nil {
 		return nil, err
 	}
-	if len(result.UserIDs) == 0 {
-		return nil, nil
+	profiles, err := s.client.Users.GetLiteMany(ctx, result.UserIDs)
+	users := make([]UserLite, 0, len(profiles))
+	for _, id := range uniqueIDs(result.UserIDs) {
+		if profile, ok := profiles[id]; ok {
+			users = append(users, profile)
+		}
 	}
-	return s.client.Users.GetLiteMany(ctx, result.UserIDs)
+	return users, err
 }
 
 // --- Poll Service ---

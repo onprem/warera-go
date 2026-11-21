@@ -127,8 +127,8 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("load donor profiles: %w", err)
 	}
-	for i, donor := range donors.Items {
-		fmt.Printf("- %s donated %.2f, latest %s\n", profiles[i].Username, donor.Amount, donor.UpdatedAt)
+	for _, donor := range donors.Items {
+		fmt.Printf("- %s donated %.2f, latest %s\n", profiles[donor.UserID].Username, donor.Amount, donor.UpdatedAt)
 	}
 
 	fmt.Printf("\nTransaction page: %d records", len(transactions.Items))

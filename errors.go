@@ -85,9 +85,10 @@ type BatchLookupFailure struct {
 }
 
 // BatchLookupError reports lookup failures from a bulk retrieval method such
-// as [CompanyService.GetMany]. Such methods return no records when this error
-// is returned. Use [errors.As] to inspect the failed IDs, and [errors.Is] or
-// [errors.As] to inspect the underlying errors.
+// as [CompanyService.GetMany]. Such methods still return the records they
+// found alongside this error, so a tool can show what loaded and skip or
+// retry the rest. Use [errors.As] to inspect the failed IDs, and [IsNotFound]
+// or [errors.As] to inspect the underlying errors.
 type BatchLookupError struct {
 	// Entity is the plural entity name, such as "companies".
 	Entity string

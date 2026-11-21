@@ -132,13 +132,21 @@ func SelectMilitaryUnit(ctx context.Context, client *warera.Client, prompt *Prom
 			fmt.Fprintf(prompt.out, "No military units matched %q. Try a more specific name.\n", query)
 			continue
 		}
-		units, err := client.MilitaryUnits.GetMany(ctx, result.MUIDs)
+		ids := result.MUIDs
+		if len(ids) > 20 {
+			ids = ids[:20]
+			fmt.Fprintln(prompt.out, "Showing the first 20 matches. Enter a more specific name if yours is not listed.")
+		}
+		found, err := client.MilitaryUnits.GetMany(ctx, ids)
 		if err != nil {
 			return nil, fmt.Errorf("load matching military units: %w", err)
 		}
-		if len(units) > 20 {
-			units = units[:20]
-			fmt.Fprintln(prompt.out, "Showing the first 20 matches. Enter a more specific name if yours is not listed.")
+		// GetMany returns a map; keep the search's order for the menu.
+		units := make([]warera.MilitaryUnit, 0, len(found))
+		for _, id := range ids {
+			if unit, ok := found[id]; ok {
+				units = append(units, unit)
+			}
 		}
 		options := make([]string, len(units))
 		for i, unit := range units {

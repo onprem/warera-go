@@ -2,6 +2,10 @@ package warera
 
 import "context"
 
+// getManyByID looks up each distinct ID with one procedure call per ID, sent
+// in as few batch requests as the client's batch size allows. It returns the
+// records it found keyed by ID. When some lookups fail it returns those
+// records together with a *BatchLookupError naming only the failed IDs.
 func getManyByID[T any](
 	ctx context.Context,
 	client *Client,
@@ -9,37 +13,42 @@ func getManyByID[T any](
 	procedure string,
 	ids []string,
 	inputForID func(string) any,
-) ([]T, error) {
-	results := make([]T, len(ids))
-	if len(ids) == 0 {
-		return results, nil
+) (map[string]T, error) {
+	unique := uniqueIDs(ids)
+	results := make([]T, len(unique))
+	calls := make([]BatchCall, len(unique))
+	for i, id := range unique {
+		calls[i] = BatchCall{Method: procedure, Input: inputForID(id), Output: &results[i]}
 	}
+	// Batch records every failure, including transport failures, on the
+	// individual calls, so its combined error adds nothing here.
+	_ = client.Batch(ctx, calls)
 
-	calls := make([]BatchCall, len(ids))
-	for i, id := range ids {
-		calls[i] = BatchCall{
-			Method: procedure,
-			Input:  inputForID(id),
-			Output: &results[i],
-		}
-	}
-
-	batchErr := client.Batch(ctx, calls)
-	failures := make([]BatchLookupFailure, 0)
+	found := make(map[string]T, len(unique))
+	var failures []BatchLookupFailure
 	for i, call := range calls {
 		if call.Err != nil {
-			failures = append(failures, BatchLookupFailure{ID: ids[i], Err: call.Err})
-		}
-	}
-	if batchErr != nil && len(failures) == 0 {
-		// Preserve a useful ID list if a transport-level failure was not copied
-		// onto individual calls by the batch implementation.
-		for _, id := range ids {
-			failures = append(failures, BatchLookupFailure{ID: id, Err: batchErr})
+			failures = append(failures, BatchLookupFailure{ID: unique[i], Err: call.Err})
+		} else {
+			found[unique[i]] = results[i]
 		}
 	}
 	if len(failures) > 0 {
-		return nil, &BatchLookupError{Entity: entity, Failures: failures}
+		return found, &BatchLookupError{Entity: entity, Failures: failures}
 	}
-	return results, nil
+	return found, nil
+}
+
+// uniqueIDs returns ids without empty strings and duplicates, in first-seen
+// order.
+func uniqueIDs(ids []string) []string {
+	seen := make(map[string]bool, len(ids))
+	unique := make([]string, 0, len(ids))
+	for _, id := range ids {
+		if id != "" && !seen[id] {
+			seen[id] = true
+			unique = append(unique, id)
+		}
+	}
+	return unique
 }

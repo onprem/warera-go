@@ -66,9 +66,14 @@ func run() error {
 		return nil
 	}
 
-	companies, err := client.Companies.GetMany(ctx, companyIDs)
+	found, err := client.Companies.GetMany(ctx, companyIDs)
 	if err != nil {
 		return fmt.Errorf("load company details: %w", err)
+	}
+	// GetMany returns companies keyed by ID; keep the listing's order.
+	companies := make([]warera.Company, 0, len(found))
+	for _, id := range companyIDs {
+		companies = append(companies, found[id])
 	}
 	// Prices are fetched once as a lookup map, so each company can be paired with
 	// the current reference price for its product code.

@@ -195,6 +195,17 @@ func (s *TournamentService) GetByID(ctx context.Context, tournamentID string) (*
 	return &tournament, nil
 }
 
+// GetMany looks up the tournaments, including their brackets, with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *TournamentService) GetMany(ctx context.Context, tournamentIDs []string) (map[string]Tournament, error) {
+	return getManyByID[Tournament](ctx, s.client, "tournaments", "tournament.getById", tournamentIDs, func(id string) any {
+		return getTournamentInput{TournamentID: id}
+	})
+}
+
 // List returns one page of tournaments, newest first.
 func (s *TournamentService) List(ctx context.Context, filter TournamentFilter) (*CursorPage[Tournament], error) {
 	var page CursorPage[Tournament]

@@ -47,15 +47,20 @@ func run() error {
 	if len(unit.MemberIDs) == 0 {
 		fmt.Println("The API returned no member IDs for this unit.")
 	} else {
+		// Bulk lookups return what they found even when some IDs fail, such as
+		// a deleted account, so report those and carry on with the rest.
 		members, err := client.Users.GetLiteMany(ctx, unit.MemberIDs)
 		if err != nil {
-			return fmt.Errorf("load unit member profiles: %w", err)
+			if len(members) == 0 {
+				return fmt.Errorf("load unit member profiles: %w", err)
+			}
+			fmt.Printf("Some member profiles did not load: %v\n", err)
 		}
 		// Compact profiles no longer include skills, so load them separately in
-		// one batched request. Results come back in the same order as the IDs.
+		// one batched request, keyed by user ID like the profiles.
 		skills, err := client.Users.GetSkillsMany(ctx, unit.MemberIDs)
 		if err != nil {
-			return fmt.Errorf("load unit member skills: %w", err)
+			fmt.Printf("Some member skills did not load: %v\n", err)
 		}
 		// Member records carry the unit's own weekly, monthly, and all-time
 		// damage and help counts for each member, keyed by user ID.
@@ -69,12 +74,16 @@ func run() error {
 		}
 		fmt.Printf("Listed roster: %d members\n", len(members))
 		modeCounts := map[skillmix.Mode]int{}
-		for i, member := range members {
+		for _, id := range unit.MemberIDs {
+			member, ok := members[id]
+			if !ok {
+				continue
+			}
 			lastSeen := "not reported"
 			if at := member.Dates.LastConnectionAt; !at.IsZero() {
 				lastSeen = at.Format(time.RFC3339)
 			}
-			mix := skillmix.Analyze(skills[i].Skills)
+			mix := skillmix.Analyze(skills[id].Skills)
 			modeCounts[mix.Mode()]++
 			fmt.Printf("- %s | level=%d militaryRank=%d activeFlag=%t lastConnection=%s\n",
 				member.Username, member.Level(), member.MilitaryRank, member.IsActive, lastSeen)

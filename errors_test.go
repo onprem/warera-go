@@ -152,3 +152,31 @@ func TestErrorClassification(t *testing.T) {
 		}
 	}
 }
+
+func TestGetManyReturnsFoundRecordsAndSendsEachIDOnce(t *testing.T) {
+	var path string
+	client := warera.NewClient(
+		warera.WithBaseURL("https://example.test/trpc"),
+		warera.WithHTTPClient(&http.Client{Transport: errorResponseTransport(func(r *http.Request) (*http.Response, error) {
+			path = r.URL.Path
+			return &http.Response{StatusCode: http.StatusMultiStatus, Body: io.NopCloser(strings.NewReader(`[` +
+				`{"result":{"data":{"_id":"a","username":"alice"}}},` +
+				`{"error":{"message":"Users not found.","code":-32004,"data":{"code":"NOT_FOUND","httpStatus":404}}}]`))}, nil
+		})}),
+		warera.WithRateLimit(0),
+		warera.WithMaxRetries(0),
+	)
+	defer client.Close()
+
+	users, err := client.Users.GetLiteMany(context.Background(), []string{"a", "gone", "a", ""})
+	if path != "/trpc/user.getUserLite,user.getUserLite" {
+		t.Errorf("request path = %s, want one call per distinct ID", path)
+	}
+	if len(users) != 1 || users["a"].Username != "alice" {
+		t.Errorf("users = %+v, want alice keyed by her ID", users)
+	}
+	var lookupErr *warera.BatchLookupError
+	if !errors.As(err, &lookupErr) || len(lookupErr.Failures) != 1 || lookupErr.Failures[0].ID != "gone" || !warera.IsNotFound(err) {
+		t.Fatalf("error = %v, want a BatchLookupError naming only the missing ID", err)
+	}
+}

@@ -34,18 +34,39 @@ func (s *AllianceService) GetByID(ctx context.Context, allianceID string) (*Alli
 	return &alliance, nil
 }
 
-// GetMany returns the alliances with the given IDs in one request. The API
-// accepts at most 100 IDs and omits IDs it does not find, so the result may be
-// shorter than allianceIDs and is not guaranteed to follow its order.
-func (s *AllianceService) GetMany(ctx context.Context, allianceIDs []string) ([]Alliance, error) {
-	if len(allianceIDs) == 0 {
-		return []Alliance{}, nil
+// GetMany looks up the alliances with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *AllianceService) GetMany(ctx context.Context, allianceIDs []string) (map[string]Alliance, error) {
+	ids := uniqueIDs(allianceIDs)
+	found := make(map[string]Alliance, len(ids))
+	var failures []BatchLookupFailure
+	// alliance.getByIds accepts up to 100 IDs and omits the ones it does not
+	// find.
+	for start := 0; start < len(ids); start += 100 {
+		chunk := ids[start:min(start+100, len(ids))]
+		var alliances []Alliance
+		if err := s.client.trpc.Call(ctx, "alliance.getByIds", getAlliancesInput{IDs: chunk}, &alliances); err != nil {
+			for _, id := range chunk {
+				failures = append(failures, BatchLookupFailure{ID: id, Err: err})
+			}
+			continue
+		}
+		for _, alliance := range alliances {
+			found[alliance.ID] = alliance
+		}
+		for _, id := range chunk {
+			if _, ok := found[id]; !ok {
+				failures = append(failures, BatchLookupFailure{ID: id, Err: ErrNotFound})
+			}
+		}
 	}
-	var alliances []Alliance
-	if err := s.client.trpc.Call(ctx, "alliance.getByIds", getAlliancesInput{IDs: allianceIDs}, &alliances); err != nil {
-		return nil, err
+	if len(failures) > 0 {
+		return found, &BatchLookupError{Entity: "alliances", Failures: failures}
 	}
-	return alliances, nil
+	return found, nil
 }
 
 // GetStrategicResourceBonuses returns the strategic resources an alliance's
@@ -79,9 +100,12 @@ func (s *WarService) GetByID(ctx context.Context, warID string) (*War, error) {
 	return &war, nil
 }
 
-// GetMany returns wars by ID, in the same order as warIDs, using one batched
-// request.
-func (s *WarService) GetMany(ctx context.Context, warIDs []string) ([]War, error) {
+// GetMany looks up the wars with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *WarService) GetMany(ctx context.Context, warIDs []string) (map[string]War, error) {
 	return getManyByID[War](ctx, s.client, "wars", "war.getById", warIDs, func(id string) any {
 		return getWarInput{WarID: id}
 	})
@@ -108,9 +132,12 @@ func (s *PartyService) GetByID(ctx context.Context, partyID string) (*Party, err
 	return &party, nil
 }
 
-// GetMany returns parties by ID, in the same order as partyIDs, using one
-// batched request.
-func (s *PartyService) GetMany(ctx context.Context, partyIDs []string) ([]Party, error) {
+// GetMany looks up the parties with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *PartyService) GetMany(ctx context.Context, partyIDs []string) (map[string]Party, error) {
 	return getManyByID[Party](ctx, s.client, "parties", "party.getById", partyIDs, func(id string) any {
 		return getPartyInput{PartyID: id}
 	})
@@ -174,9 +201,12 @@ func (s *ElectionService) GetByID(ctx context.Context, electionID string) (*Elec
 	return &election, nil
 }
 
-// GetMany returns elections by ID, in the same order as electionIDs, using one
-// batched request.
-func (s *ElectionService) GetMany(ctx context.Context, electionIDs []string) ([]Election, error) {
+// GetMany looks up the elections with the given IDs in as few batched requests
+// as possible and returns them keyed by ID. Duplicate and empty IDs are
+// ignored. When some lookups fail, GetMany returns the records it found
+// together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
+// to tell missing IDs from other failures.
+func (s *ElectionService) GetMany(ctx context.Context, electionIDs []string) (map[string]Election, error) {
 	return getManyByID[Election](ctx, s.client, "elections", "election.getElection", electionIDs, func(id string) any {
 		return getElectionInput{ElectionID: id}
 	})

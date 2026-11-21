@@ -215,9 +215,9 @@ type StateArmyOverview struct {
 // StateArmyExpenseTotal is a total of state army spending. Day and MUID are
 // set only in per-day and per-unit totals.
 type StateArmyExpenseTotal struct {
-	Day  string `json:"day,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	MUID string `json:"mu,omitempty"`
+	Day  string               `json:"day,omitempty"`
+	Kind StateArmyExpenseKind `json:"kind,omitempty"`
+	MUID string               `json:"mu,omitempty"`
 	// Money is the money spent, and Quantity the items given.
 	Money    float64 `json:"money,omitempty"`
 	Quantity int     `json:"quantity,omitempty"`
@@ -227,17 +227,16 @@ type StateArmyExpenseTotal struct {
 // headquarters, a mercenary contract payment, or items given under a
 // sponsorship law.
 type StateArmyExpense struct {
-	ID        string `json:"_id,omitempty"`
-	At        string `json:"at,omitempty"`
-	CountryID string `json:"country,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
-	Day       string `json:"day,omitempty"`
-	ItemCode  string `json:"itemCode,omitempty"`
-	// Kind is "hqOil", "contract", "sponsorLaw", or "revokeLaw".
-	Kind     string  `json:"kind,omitempty"`
-	MUID     string  `json:"mu,omitempty"`
-	Money    float64 `json:"money,omitempty"`
-	Quantity int     `json:"quantity,omitempty"`
+	ID        string               `json:"_id,omitempty"`
+	At        string               `json:"at,omitempty"`
+	CountryID string               `json:"country,omitempty"`
+	CreatedAt string               `json:"createdAt,omitempty"`
+	Day       string               `json:"day,omitempty"`
+	ItemCode  string               `json:"itemCode,omitempty"`
+	Kind      StateArmyExpenseKind `json:"kind,omitempty"`
+	MUID      string               `json:"mu,omitempty"`
+	Money     float64              `json:"money,omitempty"`
+	Quantity  int                  `json:"quantity,omitempty"`
 	// RefID is the contract or law the expense came from.
 	RefID     string `json:"refId,omitempty"`
 	UpdatedAt string `json:"updatedAt,omitempty"`

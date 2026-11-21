@@ -62,7 +62,7 @@ type BattleOrderService struct {
 }
 
 // GetByBattle returns orders for a battle side.
-func (s *BattleOrderService) GetByBattle(ctx context.Context, battleID, side string) ([]BattleOrder, error) {
+func (s *BattleOrderService) GetByBattle(ctx context.Context, battleID string, side BattleSide) ([]BattleOrder, error) {
 	var orders []BattleOrder
 	if err := s.client.trpc.Call(ctx, "battleOrder.getByBattle", BattleOrderByBattleFilter{
 		BattleID: battleID,

@@ -45,7 +45,7 @@ func TestGenerateSourcePreservesSchemaSemantics(t *testing.T) {
 	wantFields := map[string][2]string{
 		"RequiredID": {"string", "`json:\"requiredId\"`"},
 		"Enabled":    {"*bool", "`json:\"enabled,omitempty\"`"},
-		"Kind":       {"*StringOrStrings", "`json:\"kind,omitempty\"`"},
+		"Kinds":      {"[]string", "`json:\"kind,omitempty\"`"},
 		"Dynamic":    {"any", "`json:\"dynamic,omitempty\"`"},
 		"Tags":       {"[]string", "`json:\"tags,omitempty\"`"},
 		"EnabledToo": {"*bool", "`json:\"enabledToo,omitempty\"` // Shares enabled's schema"},
@@ -99,5 +99,20 @@ func TestGenerateSourceRejectsFieldNameCollision(t *testing.T) {
 
 	if _, err := generateSource(spec); err == nil || !strings.Contains(err.Error(), "both map to Go field UserID") {
 		t.Fatalf("expected field name collision error, got %v", err)
+	}
+}
+
+func TestGenerateSourceRequiresEnumTypeNames(t *testing.T) {
+	spec := parseSpec(t, `{
+		"paths": {"/sample.getRecords": {"post": {
+			"operationId": "sample.getRecords",
+			"requestBody": {"content": {"application/json": {"schema": {
+				"properties": {"mode": {"type": "string", "enum": ["a", "b"]}, "limit": {"type": "number"}}
+			}}}}
+		}}}
+	}`)
+
+	if _, err := generateSource(spec); err == nil || !strings.Contains(err.Error(), "enum without a Go type name") {
+		t.Fatalf("expected unnamed enum error, got %v", err)
 	}
 }

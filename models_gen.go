@@ -12,26 +12,26 @@ type CursorPage[T any] struct {
 
 // ArticleFilter specifies query and filter options for article.getArticlesPaginated.
 type ArticleFilter struct {
-	Categories        []string `json:"categories,omitempty"` // The categories to get articles for
-	Cursor            string   `json:"cursor,omitempty"`
-	Languages         []string `json:"languages,omitempty"`         // The languages to get articles for
-	Limit             int      `json:"limit,omitempty"`             // The limit of articles to get
-	PositiveScoreOnly *bool    `json:"positiveScoreOnly,omitempty"` // Only show articles with a positive score
-	Type              string   `json:"type"`                        // The type of articles to get. `saved` is the caller's private bookmark list (auth required, ignores filters).
-	UserID            string   `json:"userId,omitempty"`            // The user ID to get articles for
+	Categories        []string        `json:"categories,omitempty"` // The categories to get articles for
+	Cursor            string          `json:"cursor,omitempty"`
+	Languages         []string        `json:"languages,omitempty"`         // The languages to get articles for
+	Limit             int             `json:"limit,omitempty"`             // The limit of articles to get
+	PositiveScoreOnly *bool           `json:"positiveScoreOnly,omitempty"` // Only show articles with a positive score
+	Type              ArticleListType `json:"type"`                        // The type of articles to get. `saved` is the caller's private bookmark list (auth required, ignores filters).
+	UserID            string          `json:"userId,omitempty"`            // The user ID to get articles for
 }
 
 // BattleFilter specifies query and filter options for battle.getBattles.
 type BattleFilter struct {
-	AllianceID       string `json:"allianceId,omitempty"`       // Filter battles involving any member country of this alliance
-	CountryID        string `json:"countryId,omitempty"`        // Filter battles by country ID
-	Cursor           string `json:"cursor,omitempty"`           // The cursor to get the next battles
-	DefenderRegionID string `json:"defenderRegionId,omitempty"` // Filter battles by defender region ID
-	Direction        string `json:"direction,omitempty"`        // The direction to get the battles
-	Filter           string `json:"filter,omitempty"`           // Filter type for battles
-	IsActive         *bool  `json:"isActive,omitempty"`         // Whether to get active battles
-	Limit            int    `json:"limit,omitempty"`            // The limit of battles to get
-	WarID            string `json:"warId,omitempty"`            // Filter battles by war ID
+	AllianceID       string           `json:"allianceId,omitempty"`       // Filter battles involving any member country of this alliance
+	CountryID        string           `json:"countryId,omitempty"`        // Filter battles by country ID
+	Cursor           string           `json:"cursor,omitempty"`           // The cursor to get the next battles
+	DefenderRegionID string           `json:"defenderRegionId,omitempty"` // Filter battles by defender region ID
+	Direction        BattleDirection  `json:"direction,omitempty"`        // The direction to get the battles
+	Filter           BattleListFilter `json:"filter,omitempty"`           // Filter type for battles
+	IsActive         *bool            `json:"isActive,omitempty"`         // Whether to get active battles
+	Limit            int              `json:"limit,omitempty"`            // The limit of battles to get
+	WarID            string           `json:"warId,omitempty"`            // Filter battles by war ID
 }
 
 // BattleLiveBattleDataFilter specifies query and filter options for battle.getLiveBattleData.
@@ -48,20 +48,20 @@ type BattleLootSummaryByBattleAndUserFilter struct {
 
 // BattleOrderByBattleFilter specifies query and filter options for battleOrder.getByBattle.
 type BattleOrderByBattleFilter struct {
-	BattleID string `json:"battleId"`
-	Side     string `json:"side"`
+	BattleID string     `json:"battleId"`
+	Side     BattleSide `json:"side"`
 }
 
 // BattleRankingFilter specifies query and filter options for battleRanking.getRanking.
 type BattleRankingFilter struct {
-	BattleID string `json:"battleId,omitempty"` // Optional battle ID to filter rankings
-	Cursor   string `json:"cursor,omitempty"`   // Cursor to fetch the next page of entries
-	DataType string `json:"dataType"`           // Type of ranking data to retrieve (damage, ground points, or money)
-	Limit    int    `json:"limit,omitempty"`    // Number of ranking entries per page
-	RoundID  string `json:"roundId,omitempty"`  // Optional round ID to filter rankings
-	Side     string `json:"side"`               // Which side of the battle to rank
-	Type     string `json:"type"`               // Whether to rank by user, country, military unit or alliance
-	WarID    string `json:"warId,omitempty"`    // Optional war ID to filter rankings
+	BattleID string                `json:"battleId,omitempty"` // Optional battle ID to filter rankings
+	Cursor   string                `json:"cursor,omitempty"`   // Cursor to fetch the next page of entries
+	DataType BattleRankingDataType `json:"dataType"`           // Type of ranking data to retrieve (damage, ground points, or money)
+	Limit    int                   `json:"limit,omitempty"`    // Number of ranking entries per page
+	RoundID  string                `json:"roundId,omitempty"`  // Optional round ID to filter rankings
+	Side     BattleRankingSide     `json:"side"`               // Which side of the battle to rank
+	Type     BattleRankingType     `json:"type"`               // Whether to rank by user, country, military unit or alliance
+	WarID    string                `json:"warId,omitempty"`    // Optional war ID to filter rankings
 }
 
 // CompanyFilter specifies query and filter options for company.getCompanies.
@@ -73,19 +73,19 @@ type CompanyFilter struct {
 
 // EventFilter specifies query and filter options for event.getEventsPaginated.
 type EventFilter struct {
-	CountryID  string   `json:"countryId,omitempty"`  // Filter events by country ID
-	Cursor     string   `json:"cursor,omitempty"`     // The cursor to get the next events
-	EventTypes []string `json:"eventTypes,omitempty"` // Filter events by event types
-	Limit      int      `json:"limit,omitempty"`      // The limit of events to get
+	CountryID  string      `json:"countryId,omitempty"`  // Filter events by country ID
+	Cursor     string      `json:"cursor,omitempty"`     // The cursor to get the next events
+	EventTypes []EventType `json:"eventTypes,omitempty"` // Filter events by event types
+	Limit      int         `json:"limit,omitempty"`      // The limit of events to get
 }
 
 // MercenaryAuctionFilter specifies query and filter options for mercenaryContractAuction.getPaginatedAuctions.
 type MercenaryAuctionFilter struct {
-	BattleID  string `json:"battleId,omitempty"`
-	CountryID string `json:"countryId,omitempty"`
-	Cursor    string `json:"cursor,omitempty"`
-	Limit     int    `json:"limit,omitempty"`
-	Status    string `json:"status,omitempty"`
+	BattleID  string                 `json:"battleId,omitempty"`
+	CountryID string                 `json:"countryId,omitempty"`
+	Cursor    string                 `json:"cursor,omitempty"`
+	Limit     int                    `json:"limit,omitempty"`
+	Status    MercenaryAuctionStatus `json:"status,omitempty"`
 }
 
 // MilitaryUnitFilter specifies query and filter options for mu.getManyPaginated.
@@ -107,19 +107,19 @@ type PollVoterFilter struct {
 
 // RankingAroundFilter specifies query and filter options for ranking.getRankingAround.
 type RankingAroundFilter struct {
-	CountryID   string `json:"countryId,omitempty"`
-	EntityID    string `json:"entityId"`
-	MUID        string `json:"muId,omitempty"`
-	RankingType string `json:"rankingType"` // The type of ranking to retrieve
+	CountryID   string      `json:"countryId,omitempty"`
+	EntityID    string      `json:"entityId"`
+	MUID        string      `json:"muId,omitempty"`
+	RankingType RankingType `json:"rankingType"` // The type of ranking to retrieve
 }
 
 // RankingPageFilter specifies query and filter options for ranking.getRankingPage.
 type RankingPageFilter struct {
-	CountryID   string `json:"countryId,omitempty"`
-	Cursor      string `json:"cursor,omitempty"`
-	Limit       int    `json:"limit,omitempty"`
-	MUID        string `json:"muId,omitempty"`
-	RankingType string `json:"rankingType"` // The type of ranking to retrieve
+	CountryID   string      `json:"countryId,omitempty"`
+	Cursor      string      `json:"cursor,omitempty"`
+	Limit       int         `json:"limit,omitempty"`
+	MUID        string      `json:"muId,omitempty"`
+	RankingType RankingType `json:"rankingType"` // The type of ranking to retrieve
 }
 
 // TradingOrderTopOrdersFilter specifies query and filter options for tradingOrder.getTopOrders.
@@ -130,22 +130,22 @@ type TradingOrderTopOrdersFilter struct {
 
 // TransactionFilter specifies query and filter options for transaction.getPaginatedTransactions.
 type TransactionFilter struct {
-	CountryID       string           `json:"countryId,omitempty"`       // The country ID to get transactions for
-	Cursor          string           `json:"cursor,omitempty"`          // The cursor to get the next transactions
-	ItemCode        string           `json:"itemCode,omitempty"`        // The item code to get transactions for
-	Limit           int              `json:"limit,omitempty"`           // The limit of transactions to get
-	MUID            string           `json:"muId,omitempty"`            // The MU ID to get transactions for
-	PartyID         string           `json:"partyId,omitempty"`         // The party ID to get transactions for
-	TransactionType *StringOrStrings `json:"transactionType,omitempty"` // The type of transactions to get
-	UserID          string           `json:"userId,omitempty"`          // The user ID to get transactions for
+	CountryID        string            `json:"countryId,omitempty"`       // The country ID to get transactions for
+	Cursor           string            `json:"cursor,omitempty"`          // The cursor to get the next transactions
+	ItemCode         string            `json:"itemCode,omitempty"`        // The item code to get transactions for
+	Limit            int               `json:"limit,omitempty"`           // The limit of transactions to get
+	MUID             string            `json:"muId,omitempty"`            // The MU ID to get transactions for
+	PartyID          string            `json:"partyId,omitempty"`         // The party ID to get transactions for
+	TransactionTypes []TransactionType `json:"transactionType,omitempty"` // The type of transactions to get
+	UserID           string            `json:"userId,omitempty"`          // The user ID to get transactions for
 }
 
 // UpgradeFilter specifies query and filter options for upgrade.getUpgradeByTypeAndEntity.
 type UpgradeFilter struct {
-	CompanyID   string `json:"companyId,omitempty"` // The company ID to get upgrade for
-	MUID        string `json:"muId,omitempty"`      // The military unit ID to get upgrade for
-	RegionID    string `json:"regionId,omitempty"`  // The region ID to get upgrade for
-	UpgradeType string `json:"upgradeType"`         // The upgrade type to get
+	CompanyID   string      `json:"companyId,omitempty"` // The company ID to get upgrade for
+	MUID        string      `json:"muId,omitempty"`      // The military unit ID to get upgrade for
+	RegionID    string      `json:"regionId,omitempty"`  // The region ID to get upgrade for
+	UpgradeType UpgradeType `json:"upgradeType"`         // The upgrade type to get
 }
 
 // UserFilter specifies query and filter options for user.getUsersByCountry.
@@ -154,3 +154,188 @@ type UserFilter struct {
 	Cursor    string `json:"cursor,omitempty"`
 	Limit     int    `json:"limit,omitempty"`
 }
+
+// ArticleListType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type ArticleListType string
+
+const (
+	ArticleListTypeDaily         ArticleListType = "daily"
+	ArticleListTypeWeekly        ArticleListType = "weekly"
+	ArticleListTypeTop           ArticleListType = "top"
+	ArticleListTypeMy            ArticleListType = "my"
+	ArticleListTypeSubscriptions ArticleListType = "subscriptions"
+	ArticleListTypeLast          ArticleListType = "last"
+	ArticleListTypeSaved         ArticleListType = "saved"
+)
+
+// BattleDirection is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type BattleDirection string
+
+const (
+	BattleDirectionForward  BattleDirection = "forward"
+	BattleDirectionBackward BattleDirection = "backward"
+)
+
+// BattleListFilter is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type BattleListFilter string
+
+const (
+	BattleListFilterAll         BattleListFilter = "all"
+	BattleListFilterYourCountry BattleListFilter = "yourCountry"
+	BattleListFilterYourEnemies BattleListFilter = "yourEnemies"
+)
+
+// BattleRankingDataType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type BattleRankingDataType string
+
+const (
+	BattleRankingDataTypeDamage BattleRankingDataType = "damage"
+	BattleRankingDataTypePoints BattleRankingDataType = "points"
+	BattleRankingDataTypeMoney  BattleRankingDataType = "money"
+)
+
+// BattleRankingSide is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type BattleRankingSide string
+
+const (
+	BattleRankingSideAttacker BattleRankingSide = "attacker"
+	BattleRankingSideDefender BattleRankingSide = "defender"
+	BattleRankingSideMerged   BattleRankingSide = "merged"
+)
+
+// BattleRankingType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type BattleRankingType string
+
+const (
+	BattleRankingTypeUser     BattleRankingType = "user"
+	BattleRankingTypeCountry  BattleRankingType = "country"
+	BattleRankingTypeMU       BattleRankingType = "mu"
+	BattleRankingTypeAlliance BattleRankingType = "alliance"
+)
+
+// BattleSide is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type BattleSide string
+
+const (
+	BattleSideAttacker BattleSide = "attacker"
+	BattleSideDefender BattleSide = "defender"
+)
+
+// EventType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type EventType string
+
+const (
+	EventTypeWarDeclared                  EventType = "warDeclared"
+	EventTypePeaceAgreement               EventType = "peace_agreement"
+	EventTypeBattleOpened                 EventType = "battleOpened"
+	EventTypeBattleEnded                  EventType = "battleEnded"
+	EventTypeNewPresident                 EventType = "newPresident"
+	EventTypeRegionTransfer               EventType = "regionTransfer"
+	EventTypePeaceMade                    EventType = "peaceMade"
+	EventTypeCountryMoneyTransfer         EventType = "countryMoneyTransfer"
+	EventTypeDepositDiscovered            EventType = "depositDiscovered"
+	EventTypeDepositDepleted              EventType = "depositDepleted"
+	EventTypeSystemRevolt                 EventType = "systemRevolt"
+	EventTypeBankruptcy                   EventType = "bankruptcy"
+	EventTypeAllianceFormed               EventType = "allianceFormed"
+	EventTypeAllianceBroken               EventType = "allianceBroken"
+	EventTypeAllianceMemberJoined         EventType = "allianceMemberJoined"
+	EventTypeAllianceMemberLeft           EventType = "allianceMemberLeft"
+	EventTypeAllianceMemberExcluded       EventType = "allianceMemberExcluded"
+	EventTypeDefensivePactFormed          EventType = "defensivePactFormed"
+	EventTypeDefensivePactBroken          EventType = "defensivePactBroken"
+	EventTypeRegionLiberated              EventType = "regionLiberated"
+	EventTypeStrategicResourcesReshuffled EventType = "strategicResourcesReshuffled"
+	EventTypeResistanceIncreased          EventType = "resistanceIncreased"
+	EventTypeResistanceDecreased          EventType = "resistanceDecreased"
+	EventTypeRevolutionStarted            EventType = "revolutionStarted"
+	EventTypeRevolutionEnded              EventType = "revolutionEnded"
+	EventTypeFinancedRevolt               EventType = "financedRevolt"
+)
+
+// MercenaryAuctionStatus is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type MercenaryAuctionStatus string
+
+const (
+	MercenaryAuctionStatusActive        MercenaryAuctionStatus = "active"
+	MercenaryAuctionStatusWon           MercenaryAuctionStatus = "won"
+	MercenaryAuctionStatusExpiredNoBids MercenaryAuctionStatus = "expiredNoBids"
+	MercenaryAuctionStatusExpiredBattle MercenaryAuctionStatus = "expiredBattle"
+	MercenaryAuctionStatusExpiredRound  MercenaryAuctionStatus = "expiredRound"
+	MercenaryAuctionStatusCancelled     MercenaryAuctionStatus = "cancelled"
+	MercenaryAuctionStatusTerminated    MercenaryAuctionStatus = "terminated"
+)
+
+// RankingType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type RankingType string
+
+const (
+	RankingTypeWeeklyCountryDamages            RankingType = "weeklyCountryDamages"
+	RankingTypeWeeklyCountryDamagesPerCitizen  RankingType = "weeklyCountryDamagesPerCitizen"
+	RankingTypeCountryRegionDiff               RankingType = "countryRegionDiff"
+	RankingTypeCountryDevelopment              RankingType = "countryDevelopment"
+	RankingTypeCountryActivePopulation         RankingType = "countryActivePopulation"
+	RankingTypeCountryDamages                  RankingType = "countryDamages"
+	RankingTypeCountryWealth                   RankingType = "countryWealth"
+	RankingTypeCountryBounty                   RankingType = "countryBounty"
+	RankingTypeWeeklyUserDamages               RankingType = "weeklyUserDamages"
+	RankingTypeUserDamages                     RankingType = "userDamages"
+	RankingTypeUserWealth                      RankingType = "userWealth"
+	RankingTypeUserLevel                       RankingType = "userLevel"
+	RankingTypeUserReferrals                   RankingType = "userReferrals"
+	RankingTypeUserSubscribers                 RankingType = "userSubscribers"
+	RankingTypeUserTerrain                     RankingType = "userTerrain"
+	RankingTypeUserPremiumMonths               RankingType = "userPremiumMonths"
+	RankingTypeUserPremiumGifts                RankingType = "userPremiumGifts"
+	RankingTypeUserCasesOpened                 RankingType = "userCasesOpened"
+	RankingTypeUserGemsPurchased               RankingType = "userGemsPurchased"
+	RankingTypeUserBounty                      RankingType = "userBounty"
+	RankingTypeUserMercenaryEarnings           RankingType = "userMercenaryEarnings"
+	RankingTypeUserSkinsOwned                  RankingType = "userSkinsOwned"
+	RankingTypeUserMilestoneTiers              RankingType = "userMilestoneTiers"
+	RankingTypeUserMissionsClaimed             RankingType = "userMissionsClaimed"
+	RankingTypeMUWeeklyDamages                 RankingType = "muWeeklyDamages"
+	RankingTypeMUDamages                       RankingType = "muDamages"
+	RankingTypeMUTerrain                       RankingType = "muTerrain"
+	RankingTypeMUWealth                        RankingType = "muWealth"
+	RankingTypeMUBounty                        RankingType = "muBounty"
+	RankingTypeMUMercenaryEarnings             RankingType = "muMercenaryEarnings"
+	RankingTypeMUReputation                    RankingType = "muReputation"
+	RankingTypeAllianceInitialDevelopment      RankingType = "allianceInitialDevelopment"
+	RankingTypeAllianceDevelopment             RankingType = "allianceDevelopment"
+	RankingTypeAllianceWeeklyDamages           RankingType = "allianceWeeklyDamages"
+	RankingTypeAllianceDamages                 RankingType = "allianceDamages"
+	RankingTypeAlliancePopulation              RankingType = "alliancePopulation"
+	RankingTypeAllianceWeeklyDamagesPerCitizen RankingType = "allianceWeeklyDamagesPerCitizen"
+)
+
+// TransactionType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type TransactionType string
+
+const (
+	TransactionTypeApplicationFee       TransactionType = "applicationFee"
+	TransactionTypeTrading              TransactionType = "trading"
+	TransactionTypeItemMarket           TransactionType = "itemMarket"
+	TransactionTypeWage                 TransactionType = "wage"
+	TransactionTypeDonation             TransactionType = "donation"
+	TransactionTypeArticleTip           TransactionType = "articleTip"
+	TransactionTypeOpenCase             TransactionType = "openCase"
+	TransactionTypeCraftItem            TransactionType = "craftItem"
+	TransactionTypeDismantleItem        TransactionType = "dismantleItem"
+	TransactionTypeBattleLoot           TransactionType = "battleLoot"
+	TransactionTypeCountryMoneyTransfer TransactionType = "countryMoneyTransfer"
+)
+
+// UpgradeType is a value accepted by the API; the constants below list the values in spec/openapi.json.
+type UpgradeType string
+
+const (
+	UpgradeTypeBunker             UpgradeType = "bunker"
+	UpgradeTypeBase               UpgradeType = "base"
+	UpgradeTypePacificationCenter UpgradeType = "pacificationCenter"
+	UpgradeTypeStorage            UpgradeType = "storage"
+	UpgradeTypeAutomatedEngine    UpgradeType = "automatedEngine"
+	UpgradeTypeBreakRoom          UpgradeType = "breakRoom"
+	UpgradeTypeHeadquarters       UpgradeType = "headquarters"
+	UpgradeTypeDormitories        UpgradeType = "dormitories"
+)

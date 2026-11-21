@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"go/format"
 	"os"
+	"slices"
 	"sort"
 	"strings"
 	"unicode"
@@ -35,6 +36,7 @@ type OpenAPIProperty struct {
 	Type        string            `json:"type"`
 	Description string            `json:"description"`
 	Enum        []string          `json:"enum"`
+	Const       string            `json:"const"`
 	AnyOf       []OpenAPIProperty `json:"anyOf"`
 	Items       *OpenAPIProperty  `json:"items"`
 }
@@ -127,6 +129,26 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 		"ranking.getRankingAround":                      "RankingAroundFilter",
 	}
 
+	// enumTypes names the Go type for each enum-valued input, keyed by
+	// "operation.property". Inputs sharing a name must have the same values.
+	enumTypes := map[string]string{
+		"event.getEventsPaginated.eventTypes":                  "EventType",
+		"battle.getBattles.direction":                          "BattleDirection",
+		"battle.getBattles.filter":                             "BattleListFilter",
+		"battleRanking.getRanking.dataType":                    "BattleRankingDataType",
+		"battleRanking.getRanking.type":                        "BattleRankingType",
+		"battleRanking.getRanking.side":                        "BattleRankingSide",
+		"ranking.getRanking.rankingType":                       "RankingType",
+		"ranking.getRankingPage.rankingType":                   "RankingType",
+		"ranking.getRankingAround.rankingType":                 "RankingType",
+		"article.getArticlesPaginated.type":                    "ArticleListType",
+		"transaction.getPaginatedTransactions.transactionType": "TransactionType",
+		"upgrade.getUpgradeByTypeAndEntity.upgradeType":        "UpgradeType",
+		"battleOrder.getByBattle.side":                         "BattleSide",
+		"mercenaryContractAuction.getPaginatedAuctions.status": "MercenaryAuctionStatus",
+	}
+	enums := map[string][]string{} // type name to values
+
 	paths := make([]string, 0, len(spec.Paths))
 	for path := range spec.Paths {
 		paths = append(paths, path)
@@ -188,11 +210,24 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 			if err != nil {
 				return nil, fmt.Errorf("operation %s property %s: %w", opID, name, err)
 			}
+			if values := enumValues(property); len(values) > 0 {
+				enumType, ok := enumTypes[opID+"."+name]
+				if !ok {
+					return nil, fmt.Errorf("operation %s property %s is an enum without a Go type name; add it to enumTypes", opID, name)
+				}
+				if previous, seen := enums[enumType]; seen && strings.Join(previous, ",") != strings.Join(values, ",") {
+					return nil, fmt.Errorf("enum %s has different values in operation %s", enumType, opID)
+				}
+				enums[enumType] = values
+				goType = strings.Replace(goType, "string", enumType, 1)
+			}
+			if strings.HasPrefix(goType, "[]") && isStringOrStringsUnion(property) {
+				// The API accepts one value or a list; always sending a list
+				// keeps the Go field a plain slice.
+				fieldName += "s"
+			}
 			if property.Type == "boolean" && !required[name] {
 				goType = "*bool" // Preserve the distinction between omitted and false.
-			}
-			if goType == "StringOrStrings" && !required[name] {
-				goType = "*StringOrStrings"
 			}
 			tag := fmt.Sprintf("json:\"%s,omitempty\"", name)
 			if required[name] {
@@ -205,6 +240,21 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 			fmt.Fprintf(&b, "\t%s %s `%s`%s\n", fieldName, goType, tag, comment)
 		}
 		b.WriteString("}\n\n")
+	}
+
+	enumNames := make([]string, 0, len(enums))
+	for name := range enums {
+		enumNames = append(enumNames, name)
+	}
+	sort.Strings(enumNames)
+	for _, name := range enumNames {
+		fmt.Fprintf(&b, "// %s is a value accepted by the API; the constants below list the values in spec/openapi.json.\n", name)
+		fmt.Fprintf(&b, "type %s string\n\n", name)
+		b.WriteString("const (\n")
+		for _, value := range enums[name] {
+			fmt.Fprintf(&b, "\t%s%s %s = %q\n", name, enumConstSuffix(value), name, value)
+		}
+		b.WriteString(")\n\n")
 	}
 
 	formatted, err := format.Source([]byte(b.String()))
@@ -232,6 +282,46 @@ func resolveLocalRef(property OpenAPIProperty, siblings map[string]OpenAPIProper
 	return target, nil
 }
 
+// enumValues returns the allowed values of a string enum, merging the enum and
+// const variants of an anyOf.
+func enumValues(property OpenAPIProperty) []string {
+	values := append([]string{}, property.Enum...)
+	if property.Const != "" {
+		values = append(values, property.Const)
+	}
+	for _, variant := range property.AnyOf {
+		for _, value := range enumValues(variant) {
+			if !slices.Contains(values, value) {
+				values = append(values, value)
+			}
+		}
+	}
+	if property.Items != nil {
+		values = append(values, enumValues(*property.Items)...)
+	}
+	return values
+}
+
+// enumConstSuffix turns an enum value into the suffix of its Go constant
+// name, such as "peace_agreement" into "PeaceAgreement" and "muDamages" into
+// "MUDamages".
+func enumConstSuffix(value string) string {
+	value = camelize(value)
+	if value == "mu" || (strings.HasPrefix(value, "mu") && unicode.IsUpper([]rune(value)[2])) {
+		return "MU" + value[2:]
+	}
+	return capitalize(value)
+}
+
+// camelize turns snake_case into camelCase.
+func camelize(value string) string {
+	parts := strings.Split(value, "_")
+	for i := 1; i < len(parts); i++ {
+		parts[i] = capitalize(parts[i])
+	}
+	return strings.Join(parts, "")
+}
+
 func deriveFilterName(opID string) string {
 	parts := strings.Split(opID, ".")
 	if len(parts) < 2 {
@@ -245,7 +335,7 @@ func deriveFilterName(opID string) string {
 func goTypeFromOpenAPI(property OpenAPIProperty) (string, error) {
 	if len(property.AnyOf) > 0 {
 		if isStringOrStringsUnion(property) {
-			return "StringOrStrings", nil
+			return "[]string", nil
 		}
 		var commonType string
 		for i, variant := range property.AnyOf {

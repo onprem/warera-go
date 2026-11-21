@@ -11,13 +11,13 @@ type RankingService struct {
 }
 
 type getRankingInput struct {
-	RankingType string `json:"rankingType"`
+	RankingType RankingType `json:"rankingType"`
 }
 
 // GetRanking returns the tier cutoffs and the top 100 entries of a ranking.
 // Entries with a value of 0 are not listed. Use [RankingService.List] or
 // [RankingService.All] for entries beyond the top 100.
-func (s *RankingService) GetRanking(ctx context.Context, rankingType string) (*Ranking, error) {
+func (s *RankingService) GetRanking(ctx context.Context, rankingType RankingType) (*Ranking, error) {
 	var ranking Ranking
 	if err := s.client.trpc.Call(ctx, "ranking.getRanking", getRankingInput{RankingType: rankingType}, &ranking); err != nil {
 		return nil, err

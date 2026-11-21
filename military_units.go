@@ -152,13 +152,26 @@ func (s *StateArmyService) AllLedger(ctx context.Context, filter StateArmyLedger
 // StateArmyLedgerFilter specifies options for listing a country's state army
 // expenses.
 type StateArmyLedgerFilter struct {
-	CountryID string `json:"countryId"`
-	Cursor    string `json:"cursor,omitempty"`
-	// Kind is one of "hqOil", "contract", "sponsorLaw", or "revokeLaw".
-	Kind  string `json:"kind,omitempty"`
-	Limit int    `json:"limit,omitempty"`
-	MUID  string `json:"muId,omitempty"`
+	CountryID string               `json:"countryId"`
+	Cursor    string               `json:"cursor,omitempty"`
+	Kind      StateArmyExpenseKind `json:"kind,omitempty"`
+	Limit     int                  `json:"limit,omitempty"`
+	MUID      string               `json:"muId,omitempty"`
 }
+
+// StateArmyExpenseKind is what a state army expense paid for.
+type StateArmyExpenseKind string
+
+const (
+	// StateArmyExpenseHQOil is oil sent to a military unit's headquarters.
+	StateArmyExpenseHQOil StateArmyExpenseKind = "hqOil"
+	// StateArmyExpenseContract is a mercenary contract payment.
+	StateArmyExpenseContract StateArmyExpenseKind = "contract"
+	// StateArmyExpenseSponsorLaw is items given under a sponsorship law.
+	StateArmyExpenseSponsorLaw StateArmyExpenseKind = "sponsorLaw"
+	// StateArmyExpenseRevokeLaw is a sponsorship law being revoked.
+	StateArmyExpenseRevokeLaw StateArmyExpenseKind = "revokeLaw"
+)
 
 // TournamentService handles MU and country tournaments and their teams.
 type TournamentService struct {
@@ -332,10 +345,17 @@ func (s *RankingService) GetRecentRanks(ctx context.Context, entityID string) (*
 // RankingHistoryFilter selects an entity's history in one ranking.
 type RankingHistoryFilter struct {
 	// EntityID is the ID of the user, country, military unit, or alliance.
-	EntityID string `json:"entityId"`
-	// RankingType is a ranking type such as "userDamages", "muWeeklyDamages",
-	// "countryWealth", or "allianceDamages".
-	RankingType string `json:"rankingType"`
-	// Range is the period to return: "7d", "30d", "90d", or "1y".
-	Range string `json:"range"`
+	EntityID    string              `json:"entityId"`
+	RankingType RankingType         `json:"rankingType"`
+	Range       RankingHistoryRange `json:"range"`
 }
+
+// RankingHistoryRange is the period [RankingService.GetHistory] returns.
+type RankingHistoryRange string
+
+const (
+	RankingHistoryRange7Days  RankingHistoryRange = "7d"
+	RankingHistoryRange30Days RankingHistoryRange = "30d"
+	RankingHistoryRange90Days RankingHistoryRange = "90d"
+	RankingHistoryRange1Year  RankingHistoryRange = "1y"
+)

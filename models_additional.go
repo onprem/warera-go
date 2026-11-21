@@ -123,7 +123,7 @@ type MercenaryContractAuction struct {
 	ProfessionalsOnly bool                          `json:"professionalsOnly,omitempty"`
 	RoundID           string                        `json:"round,omitempty"`
 	RoundNumber       int                           `json:"roundNumber,omitempty"`
-	Status            string                        `json:"status,omitempty"`
+	Status            MercenaryAuctionStatus        `json:"status,omitempty"`
 	UpdatedAt         string                        `json:"updatedAt,omitempty"`
 }
 
@@ -138,19 +138,19 @@ type MercenaryContractAuctionBid struct {
 
 // TransactionListItem is one transaction history entry.
 type TransactionListItem struct {
-	ID              string  `json:"_id,omitempty"`
-	BuyerID         string  `json:"buyerId,omitempty"`
-	CreatedAt       string  `json:"createdAt,omitempty"`
-	Item            *Item   `json:"item,omitempty"`
-	ItemCode        string  `json:"itemCode,omitempty"`
-	Money           float64 `json:"money,omitempty"`
-	OfferCreatedAt  string  `json:"offerCreatedAt,omitempty"`
-	Quantity        int     `json:"quantity,omitempty"`
-	SellerCountryID string  `json:"sellerCountryId,omitempty"`
-	SellerID        string  `json:"sellerId,omitempty"`
-	SellerMUID      string  `json:"sellerMuId,omitempty"`
-	TransactionType string  `json:"transactionType,omitempty"`
-	UpdatedAt       string  `json:"updatedAt,omitempty"`
+	ID              string          `json:"_id,omitempty"`
+	BuyerID         string          `json:"buyerId,omitempty"`
+	CreatedAt       string          `json:"createdAt,omitempty"`
+	Item            *Item           `json:"item,omitempty"`
+	ItemCode        string          `json:"itemCode,omitempty"`
+	Money           float64         `json:"money,omitempty"`
+	OfferCreatedAt  string          `json:"offerCreatedAt,omitempty"`
+	Quantity        int             `json:"quantity,omitempty"`
+	SellerCountryID string          `json:"sellerCountryId,omitempty"`
+	SellerID        string          `json:"sellerId,omitempty"`
+	SellerMUID      string          `json:"sellerMuId,omitempty"`
+	TransactionType TransactionType `json:"transactionType,omitempty"`
+	UpdatedAt       string          `json:"updatedAt,omitempty"`
 }
 
 // Item is a weapon or equipment item, as attached to a transaction or awarded

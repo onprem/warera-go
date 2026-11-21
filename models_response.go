@@ -70,19 +70,19 @@ type BattleRoundHistory struct {
 
 // BattleOrder is an order assigned to a country or military unit on a battle side.
 type BattleOrder struct {
-	ID          string `json:"_id,omitempty"`
-	Battle      string `json:"battle,omitempty"`
-	CountryID   string `json:"country,omitempty"`
-	CreatedAt   string `json:"createdAt,omitempty"`
-	IsActive    bool   `json:"isActive,omitempty"`
-	MUID        string `json:"mu,omitempty"`
-	Priority    string `json:"priority,omitempty"`
-	Rank        int    `json:"rank,omitempty"`
-	Side        string `json:"side,omitempty"`
-	SideCountry string `json:"sideCountry,omitempty"`
-	Text        string `json:"text,omitempty"`
-	UpdatedAt   string `json:"updatedAt,omitempty"`
-	UserID      string `json:"user,omitempty"`
+	ID          string     `json:"_id,omitempty"`
+	Battle      string     `json:"battle,omitempty"`
+	CountryID   string     `json:"country,omitempty"`
+	CreatedAt   string     `json:"createdAt,omitempty"`
+	IsActive    bool       `json:"isActive,omitempty"`
+	MUID        string     `json:"mu,omitempty"`
+	Priority    string     `json:"priority,omitempty"`
+	Rank        int        `json:"rank,omitempty"`
+	Side        BattleSide `json:"side,omitempty"`
+	SideCountry string     `json:"sideCountry,omitempty"`
+	Text        string     `json:"text,omitempty"`
+	UpdatedAt   string     `json:"updatedAt,omitempty"`
+	UserID      string     `json:"user,omitempty"`
 }
 
 // BattleRound is a nested component of Battle.
@@ -255,23 +255,23 @@ type Event struct {
 
 // EventData is a nested component of Event.
 type EventData struct {
-	AllianceID      string   `json:"allianceId,omitempty"`
-	AllianceName    string   `json:"allianceName,omitempty"`
-	AttackerCountry string   `json:"attackerCountry,omitempty"`
-	AttackerRegion  string   `json:"attackerRegion,omitempty"`
-	Battle          string   `json:"battle,omitempty"`
-	BonusPercent    float64  `json:"bonusPercent,omitempty"`
-	Countries       []string `json:"countries,omitempty"`
-	CountryID       string   `json:"country,omitempty"`
-	DefenderCountry string   `json:"defenderCountry,omitempty"`
-	DefenderRegion  string   `json:"defenderRegion,omitempty"`
-	DurationDays    float64  `json:"durationDays,omitempty"`
-	ItemCode        string   `json:"itemCode,omitempty"`
-	Money           float64  `json:"money,omitempty"`
-	Region          string   `json:"region,omitempty"`
-	Type            string   `json:"type,omitempty"`
-	Wars            []string `json:"wars,omitempty"`
-	WonBy           string   `json:"wonBy,omitempty"`
+	AllianceID      string    `json:"allianceId,omitempty"`
+	AllianceName    string    `json:"allianceName,omitempty"`
+	AttackerCountry string    `json:"attackerCountry,omitempty"`
+	AttackerRegion  string    `json:"attackerRegion,omitempty"`
+	Battle          string    `json:"battle,omitempty"`
+	BonusPercent    float64   `json:"bonusPercent,omitempty"`
+	Countries       []string  `json:"countries,omitempty"`
+	CountryID       string    `json:"country,omitempty"`
+	DefenderCountry string    `json:"defenderCountry,omitempty"`
+	DefenderRegion  string    `json:"defenderRegion,omitempty"`
+	DurationDays    float64   `json:"durationDays,omitempty"`
+	ItemCode        string    `json:"itemCode,omitempty"`
+	Money           float64   `json:"money,omitempty"`
+	Region          string    `json:"region,omitempty"`
+	Type            EventType `json:"type,omitempty"`
+	Wars            []string  `json:"wars,omitempty"`
+	WonBy           string    `json:"wonBy,omitempty"`
 }
 
 // GameConfig contains server settings for game systems, skills, items, and rewards.
@@ -1172,21 +1172,21 @@ type TopOrders struct {
 
 // Upgrade represents data returned by the WarEra API.
 type Upgrade struct {
-	ID                  string  `json:"_id,omitempty"`
-	CreatedAt           string  `json:"createdAt,omitempty"`
-	DependantUsersCount int     `json:"dependantUsersCount,omitempty"`
-	InvestedConcrete    float64 `json:"investedConcrete,omitempty"`
-	InvestedMoney       float64 `json:"investedMoney,omitempty"`
-	InvestedSteel       float64 `json:"investedSteel,omitempty"`
-	LastDowngradeAt     string  `json:"lastDowngradeAt,omitempty"`
-	LastUpgradeAt       string  `json:"lastUpgradeAt,omitempty"`
-	Level               int     `json:"level,omitempty"`
-	Region              string  `json:"region,omitempty"`
-	Status              string  `json:"status,omitempty"`
-	StatusChangedAt     string  `json:"statusChangedAt,omitempty"`
-	UpdatedAt           string  `json:"updatedAt,omitempty"`
-	UpgradeType         string  `json:"upgradeType,omitempty"`
-	WillBeActiveAt      string  `json:"willBeActiveAt,omitempty"`
+	ID                  string      `json:"_id,omitempty"`
+	CreatedAt           string      `json:"createdAt,omitempty"`
+	DependantUsersCount int         `json:"dependantUsersCount,omitempty"`
+	InvestedConcrete    float64     `json:"investedConcrete,omitempty"`
+	InvestedMoney       float64     `json:"investedMoney,omitempty"`
+	InvestedSteel       float64     `json:"investedSteel,omitempty"`
+	LastDowngradeAt     string      `json:"lastDowngradeAt,omitempty"`
+	LastUpgradeAt       string      `json:"lastUpgradeAt,omitempty"`
+	Level               int         `json:"level,omitempty"`
+	Region              string      `json:"region,omitempty"`
+	Status              string      `json:"status,omitempty"`
+	StatusChangedAt     string      `json:"statusChangedAt,omitempty"`
+	UpdatedAt           string      `json:"updatedAt,omitempty"`
+	UpgradeType         UpgradeType `json:"upgradeType,omitempty"`
+	WillBeActiveAt      string      `json:"willBeActiveAt,omitempty"`
 }
 
 // User is a full player profile, including skills, statistics, and equipment.

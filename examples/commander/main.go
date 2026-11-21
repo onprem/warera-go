@@ -149,11 +149,11 @@ func run() error {
 		return fmt.Errorf("select active battle: %w", err)
 	}
 	battle := battles.Items[selected]
-	side := ""
+	var side warera.BattleSide
 	if battle.Attacker.CountryID == unit.CountryID {
-		side = "attacker"
+		side = warera.BattleSideAttacker
 	} else if battle.Defender.CountryID == unit.CountryID {
-		side = "defender"
+		side = warera.BattleSideDefender
 	} else {
 		return fmt.Errorf("selected battle does not include unit country %s", unit.CountryID)
 	}

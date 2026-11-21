@@ -131,6 +131,26 @@ func (s *UserService) GetLiteMany(ctx context.Context, userIDs []string) ([]User
 	})
 }
 
+// GetSkills returns a player's skills. User.getUserLite no longer includes
+// skills; this calls user.getUserSkills, which the published API description
+// names but does not list.
+func (s *UserService) GetSkills(ctx context.Context, userID string) (*UserSkillProfile, error) {
+	var profile UserSkillProfile
+	if err := s.client.trpc.Call(ctx, "user.getUserSkills", getUserByIdInput{UserID: userID}, &profile); err != nil {
+		return nil, err
+	}
+	return &profile, nil
+}
+
+// GetSkillsMany retrieves the skills of the supplied players. Results preserve
+// the input order and duplicate IDs. If any lookup fails, GetSkillsMany returns
+// no records and a [BatchLookupError] identifying the failed IDs.
+func (s *UserService) GetSkillsMany(ctx context.Context, userIDs []string) ([]UserSkillProfile, error) {
+	return getManyByID[UserSkillProfile](ctx, s.client, "user skills", "user.getUserSkills", userIDs, func(id string) any {
+		return getUserByIdInput{UserID: id}
+	})
+}
+
 // List returns one page of users matching the filter.
 func (s *UserService) List(ctx context.Context, filter UserFilter) (*CursorPage[User], error) {
 	var page CursorPage[User]
@@ -182,4 +202,43 @@ func (s *SearchService) SearchUsers(ctx context.Context, searchText string) ([]U
 		return nil, nil
 	}
 	return s.client.Users.GetLiteMany(ctx, result.UserIDs)
+}
+
+// --- Poll Service ---
+
+// PollService handles article polls and their voters.
+type PollService struct {
+	client *Client
+}
+
+type getPollInput struct {
+	PollID string `json:"pollId"`
+}
+
+// GetByID returns a poll with its results. When the client is authenticated,
+// the poll also reports the caller's vote and whether they can vote.
+func (s *PollService) GetByID(ctx context.Context, pollID string) (*Poll, error) {
+	var poll Poll
+	if err := s.client.trpc.Call(ctx, "poll.getPoll", getPollInput{PollID: pollID}, &poll); err != nil {
+		return nil, err
+	}
+	return &poll, nil
+}
+
+// ListVoters returns one page of the votes cast for one poll option.
+func (s *PollService) ListVoters(ctx context.Context, filter PollVoterFilter) (*CursorPage[PollVote], error) {
+	var page CursorPage[PollVote]
+	if err := s.client.trpc.Call(ctx, "poll.getPollVoters", filter, &page); err != nil {
+		return nil, err
+	}
+	return &page, nil
+}
+
+// AllVoters returns an iterator over every vote cast for one poll option.
+func (s *PollService) AllVoters(ctx context.Context, filter PollVoterFilter) iter.Seq2[PollVote, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[PollVote], error) {
+		f := filter
+		f.Cursor = cursor
+		return s.ListVoters(c, f)
+	})
 }

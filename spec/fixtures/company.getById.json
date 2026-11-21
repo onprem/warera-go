@@ -1,20 +1,20 @@
 {
-  "__v": 0,
   "_id": "6aca978b6164cfde0f131b17",
-  "activeUpgradeLevels": {
-    "automatedEngine": 5,
-    "breakRoom": 1,
-    "storage": 1
-  },
-  "concreteInvested": 400,
-  "createdAt": "2026-10-10T19:52:43.225Z",
-  "estimatedValue": 1328.244626432519,
-  "isFull": false,
-  "itemCode": "lead",
-  "name": "Asle ka Masla",
-  "production": 8.49750000000002,
-  "region": "696a81f5882256e1db11821e",
-  "updatedAt": "2026-10-17T19:03:40.287Z",
   "user": "6aa7ad06d91c79361d0b0673",
-  "workerCount": 0
+  "region": "6813b70a9403bc4170a5d9db",
+  "itemCode": "iron",
+  "isFull": false,
+  "name": "Asle ka Masla",
+  "concreteInvested": 400,
+  "production": 42.88999999999997,
+  "activeUpgradeLevels": {
+    "storage": 2,
+    "automatedEngine": 5,
+    "breakRoom": 3
+  },
+  "createdAt": "2026-10-10T19:52:43.225Z",
+  "updatedAt": "2026-11-21T15:03:52.235Z",
+  "__v": 0,
+  "estimatedValue": 1378.0889593320326,
+  "freeMoves": 0
 }

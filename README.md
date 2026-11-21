@@ -42,7 +42,7 @@ func main() {
 
 See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the package overview, client options, service methods, filters, and response models. The [`examples`](examples) directory contains runnable programs:
 
-- `go run ./examples/trader` prompts for a player handle and shows companies, workers, wages, and current market context.
+- `go run ./examples/trader` prompts for a player handle and shows companies, reference prices, and top market orders.
 - `go run ./examples/soldier` prompts for a player, then selects an active or recent battle involving their country and shows profile, equipment, and battle data.
 - `go run ./examples/government` prompts for a country and collects a country briefing.
 - `go run ./examples/commander` prompts for a military unit and inspects its roster and orders in an active battle.

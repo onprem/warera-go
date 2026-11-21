@@ -1,49 +1,55 @@
 {
-  "__v": 1,
-  "_id": "6ad3b89d7b158f464a343664",
-  "attacker": {
-    "country": "6813b6d446e731854c7ac7ba",
-    "countryOrders": [
-      "6813b6d446e731854c7ac7ba",
-      "6813b6d546e731854c7ac811",
-      "6813b6d546e731854c7ac814"
-    ],
-    "damages": 0,
-    "hitCount": 1072,
-    "moneyPer1kDamages": 0.03,
-    "muOrders": [
-      "6898771106abe90849bebc28",
-      "697b4103e8e4d9fac4a56809",
-      "689c3cb9053f8fbb3fe92cdd",
-      "69b7a3a580a8729c4de0be40",
-      "6a6dbbf2c35eb65da79f4c59",
-      "698b0d1bc0b91cffeddfbc55"
-    ],
-    "wonRoundsCount": 0
-  },
-  "createdAt": "2026-10-17T18:04:13.643Z",
-  "currentRound": "6ad3b89d7b158f464a343666",
+  "_id": "6ad32f78f6dfbfc06adbb239",
+  "war": "6ac562f8742fb77788190f0d",
+  "type": "resistance",
   "defender": {
-    "country": "6813b6d446e731854c7ac7bc",
+    "region": "6813b7049403bc4170a5d729",
+    "country": "6813b6d446e731854c7ac7b6",
+    "wonRoundsCount": 2,
     "countryOrders": [],
-    "damages": 0,
-    "hitCount": 73,
-    "muOrders": [
-      "6a04778ceefe7213e8cdc4b7"
-    ],
-    "region": "6813b7059403bc4170a5d79b",
-    "wonRoundsCount": 0
+    "muOrders": [],
+    "damages": 9967809,
+    "hitCount": 2891,
+    "moneyPer1kDamages": 0.07
   },
-  "isActive": true,
+  "attacker": {
+    "country": "6813b6d446e731854c7ac7b2",
+    "wonRoundsCount": 0,
+    "countryOrders": [],
+    "muOrders": [],
+    "damages": 4586082,
+    "hitCount": 2323
+  },
   "rounds": [
-    "6ad3b89d7b158f464a343666"
+    "6ad32f78f6dfbfc06adbb23b",
+    "6ad38aa5b45be57841a8f974"
   ],
-  "roundsHistory": [],
+  "roundsHistory": [
+    {
+      "wonBy": "defender",
+      "attackerPoints": 39,
+      "defenderPoints": 303,
+      "attackerDamages": 2631741,
+      "defenderDamages": 4315140
+    },
+    {
+      "wonBy": "defender",
+      "attackerPoints": 4,
+      "defenderPoints": 302,
+      "attackerDamages": 1954341,
+      "defenderDamages": 5652669
+    }
+  ],
+  "isActive": false,
   "roundsToWin": 2,
   "stats": {
     "hitCount": 0
   },
-  "type": "resistance",
-  "updatedAt": "2026-10-17T19:09:28.985Z",
-  "war": "69aa0c0d16841b4ce1ed73ae"
+  "createdAt": "2026-10-17T08:19:04.725Z",
+  "updatedAt": "2026-10-17T20:59:06.377Z",
+  "__v": 2,
+  "currentRound": "6ad38aa5b45be57841a8f974",
+  "endedAt": "2026-10-17T20:59:05.181Z",
+  "wonBy": "defender",
+  "badgesProcessed": true
 }

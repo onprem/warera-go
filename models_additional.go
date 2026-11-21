@@ -188,62 +188,94 @@ type ItemSkills struct {
 	Precision       float64 `json:"precision,omitempty"`
 }
 
-// WorkOffer is an offer to work for a company. It includes wageAfterTax and
-// minLevel fields present in current live responses but absent upstream.
-type WorkOffer struct {
-	ID              string  `json:"_id,omitempty"`
-	Citizenship     string  `json:"citizenship,omitempty"`
-	CompanyID       string  `json:"company,omitempty"`
-	CreatedAt       string  `json:"createdAt,omitempty"`
-	InitialQuantity int     `json:"initialQuantity,omitempty"`
-	MinEnergy       float64 `json:"minEnergy,omitempty"`
-	MinLevel        float64 `json:"minLevel,omitempty"`
-	MinProduction   float64 `json:"minProduction,omitempty"`
-	Quantity        int     `json:"quantity,omitempty"`
-	RegionID        string  `json:"region,omitempty"`
-	Text            string  `json:"text,omitempty"`
-	UpdatedAt       string  `json:"updatedAt,omitempty"`
-	UserID          string  `json:"user,omitempty"`
-	Wage            float64 `json:"wage,omitempty"`
-	WageAfterTax    float64 `json:"wageAfterTax,omitempty"`
+// RankingPage is one page of ranking entries from ranking.getRankingPage.
+type RankingPage struct {
+	CursorPage[RankingEntry]
+	// Ranking holds the ranking's tier cutoffs and entry count. Only the first
+	// page includes it, and its Items are empty.
+	Ranking *Ranking `json:"ranking,omitempty"`
 }
 
-// WorkOfferListItem is a work offer returned in a paginated list.
-type WorkOfferListItem = WorkOffer
-
-// Workers contains the response to worker.getWorkers. The API returns a flat
-// Workers slice when filtering by company, or WorkersPerCompany when filtering
-// by user.
-type Workers struct {
-	Type              string                  `json:"type,omitempty"`
-	Workers           []Worker                `json:"workers,omitempty"`
-	WorkersPerCompany []WorkersPerCompanyItem `json:"workersPerCompany,omitempty"`
+// Poll is a poll attached to an article.
+type Poll struct {
+	ID               string  `json:"_id,omitempty"`
+	AllowMultiple    bool    `json:"allowMultiple,omitempty"`
+	ArticleID        string  `json:"article,omitempty"`
+	AuthorID         string  `json:"author,omitempty"`
+	CanVote          bool    `json:"canVote,omitempty"`
+	CannotVoteReason string  `json:"cannotVoteReason,omitempty"`
+	CreatedAt        string  `json:"createdAt,omitempty"`
+	DurationHours    float64 `json:"durationHours,omitempty"`
+	EndsAt           string  `json:"endsAt,omitempty"`
+	IsEnded          bool    `json:"isEnded,omitempty"`
+	// MyVote lists the option IDs the caller picked. It is empty when the
+	// caller has not voted or the request is not authenticated.
+	MyVote      []int        `json:"myVote,omitempty"`
+	Options     []PollOption `json:"options,omitempty"`
+	Question    string       `json:"question,omitempty"`
+	StartedAt   string       `json:"startedAt,omitempty"`
+	TotalVoters int          `json:"totalVoters,omitempty"`
+	UpdatedAt   string       `json:"updatedAt,omitempty"`
 }
 
-// Worker is an employment record returned by worker.getWorkers.
-type Worker struct {
-	ID                     string  `json:"_id,omitempty"`
-	UserID                 string  `json:"user,omitempty"`
-	CompanyID              string  `json:"company,omitempty"`
-	EmployerID             string  `json:"employer,omitempty"`
-	Wage                   float64 `json:"wage,omitempty"`
-	JoinedAt               string  `json:"joinedAt,omitempty"`
-	Fidelity               float64 `json:"fidelity,omitempty"`
-	LastFidelityIncreaseAt string  `json:"lastFidelityIncreaseAt,omitempty"`
-	CreatedAt              string  `json:"createdAt,omitempty"`
-	UpdatedAt              string  `json:"updatedAt,omitempty"`
-	Version                int     `json:"__v,omitempty"`
+// PollOption is one answer in a poll with its vote count.
+type PollOption struct {
+	ID    int    `json:"id"`
+	Text  string `json:"text,omitempty"`
+	Votes int    `json:"votes,omitempty"`
 }
 
-// WorkersPerCompanyItem contains a company and its workers.
-type WorkersPerCompanyItem struct {
-	Company WorkerCompany `json:"company,omitempty"`
-	Workers []Worker      `json:"workers,omitempty"`
+// PollVote is one user's vote in a poll.
+type PollVote struct {
+	ID        string `json:"_id,omitempty"`
+	CreatedAt string `json:"createdAt,omitempty"`
+	Options   []int  `json:"options,omitempty"`
+	PollID    string `json:"poll,omitempty"`
+	UpdatedAt string `json:"updatedAt,omitempty"`
+	UserID    string `json:"user,omitempty"`
+	Version   int    `json:"version,omitempty"`
 }
 
-// WorkerCompany is identifying information for a company in a worker listing.
-type WorkerCompany struct {
-	ID       string `json:"_id,omitempty"`
-	ItemCode string `json:"itemCode,omitempty"`
-	Name     string `json:"name,omitempty"`
+// GameConfigItem describes one item in the game configuration, keyed by item
+// code in [GameConfig.Items]. Which fields are set depends on the item type:
+// equipment and tools have DynamicStats, consumables have FlatStats, and
+// produced goods have ProductionPoints and ProductionNeeds.
+type GameConfigItem struct {
+	Code   string `json:"code,omitempty"`
+	Type   string `json:"type,omitempty"`
+	Rarity string `json:"rarity,omitempty"`
+	Usage  string `json:"usage,omitempty"`
+	// DynamicStats maps a stat to the [min, max] range an item can roll.
+	DynamicStats map[string][]float64 `json:"dynamicStats,omitempty"`
+	// FlatStats maps a stat to the fixed value the item gives.
+	FlatStats        map[string]float64 `json:"flatStats,omitempty"`
+	ProductionPoints float64            `json:"productionPoints,omitempty"`
+	// ProductionNeeds maps an input item code to the quantity one unit needs.
+	ProductionNeeds map[string]float64 `json:"productionNeeds,omitempty"`
+	Climates        []string           `json:"climates,omitempty"`
+	IsConsumable    bool               `json:"isConsumable,omitempty"`
+	IsDeposit       bool               `json:"isDeposit,omitempty"`
+	IsTradable      bool               `json:"isTradable,omitempty"`
+	SkinSlot        string             `json:"skinSlot,omitempty"`
+	IconImg         string             `json:"iconImg,omitempty"`
+	// IconComponent is web-client rendering metadata.
+	IconComponent json.RawMessage `json:"IconComponent,omitempty"`
+}
+
+// GameConfigBadge describes one badge in the game configuration, keyed by
+// badge code in [GameConfig.Badge].
+type GameConfigBadge struct {
+	Availabilities       []string `json:"availabilities,omitempty"`
+	CooldownDays         float64  `json:"cooldownDays,omitempty"`
+	PreserveBetweenReset bool     `json:"preserveBetweenReset,omitempty"`
+	Reward               float64  `json:"reward,omitempty"`
+	UniqueMetadataKey    string   `json:"uniqueMetadataKey,omitempty"`
+}
+
+// UserSkillProfile is a player's skills, as returned by user.getUserSkills.
+type UserSkillProfile struct {
+	ID       string       `json:"_id,omitempty"`
+	Dates    UserDates    `json:"dates,omitempty"`
+	Leveling UserLeveling `json:"leveling,omitempty"`
+	Skills   UserSkills   `json:"skills,omitempty"`
 }

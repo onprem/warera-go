@@ -1,5 +1,5 @@
-// trader prints a read-only snapshot of a player's companies, workers, and
-// current market context. It prompts for a player handle. Set WARERA_API_KEY
+// trader prints a read-only snapshot of a player's companies and current
+// market context. It prompts for a player handle. Set WARERA_API_KEY
 // when the API requires authentication, then run: go run ./examples/trader.
 package main
 
@@ -66,12 +66,6 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("load company details: %w", err)
 	}
-	// Worker data is a separate endpoint from company details. Filtering by the
-	// selected user's ID gives payroll records grouped by the companies they work at.
-	workers, err := client.Workers.GetWorkers(ctx, warera.WorkerFilter{UserID: userID})
-	if err != nil {
-		return fmt.Errorf("load worker records: %w", err)
-	}
 	// Prices are fetched once as a lookup map, so each company can be paired with
 	// the current reference price for its product code.
 	prices, err := client.Trading.GetPrices(ctx)
@@ -86,42 +80,10 @@ func run() error {
 	// The price map provides current reference prices by item code; it is not a
 	// realized sale price and does not include this company's costs or taxes.
 	for _, company := range companies {
-		fmt.Printf("- %s [%s] product=%s production=%g workers=%d region=%s\n",
-			company.Name, company.ID, company.ItemCode, company.Production, company.WorkerCount, company.Region)
+		fmt.Printf("- %s [%s] product=%s production=%g region=%s\n",
+			company.Name, company.ID, company.ItemCode, company.Production, company.Region)
 		if price, ok := prices[company.ItemCode]; ok {
 			fmt.Printf("  reference price for %s: %.4f\n", company.ItemCode, price)
-		}
-	}
-
-	fmt.Println("\nObserved worker wages by company")
-	// Worker results are grouped with their company data, which is convenient for
-	// inspecting each payroll together. The SDK reports API values as-is.
-	for _, group := range workers.WorkersPerCompany {
-		fmt.Printf("- %s [%s], product=%s: %d workers\n",
-			group.Company.Name, group.Company.ID, group.Company.ItemCode, len(group.Workers))
-		for _, worker := range group.Workers {
-			fmt.Printf("  user=%s wage=%.4f fidelity=%g joined=%s\n",
-				worker.UserID, worker.Wage, worker.Fidelity, worker.JoinedAt)
-		}
-	}
-
-	// Sample regional offers to compare advertised wages with current payroll.
-	// This deliberately requests one bounded page: it is useful for exploration,
-	// but cannot be treated as the full wage distribution or a worker recommendation.
-	// Reuse the first company's region automatically as the basis for the local
-	// work-offer sample.
-	regionID := companies[0].Region
-	if regionID == "" {
-		fmt.Println("\nSkipping work-offer sample: no company region was returned.")
-	} else {
-		offers, err := client.WorkOffers.List(ctx, warera.WorkOfferFilter{RegionID: regionID, Limit: 20})
-		if err != nil {
-			return fmt.Errorf("load regional work-offer sample: %w", err)
-		}
-		fmt.Printf("\nFirst page of regional work offers (region=%s, %d records)\n", regionID, len(offers.Items))
-		for _, offer := range offers.Items {
-			fmt.Printf("- company=%s wage=%.4f afterTax=%.4f minLevel=%g minEnergy=%g minProduction=%g\n",
-				offer.CompanyID, offer.Wage, offer.WageAfterTax, offer.MinLevel, offer.MinEnergy, offer.MinProduction)
 		}
 	}
 

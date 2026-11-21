@@ -1,65 +1,141 @@
 {
-  "__v": 0,
-  "_id": "6aa9311d8af2bd246aff6189",
-  "activeUpgradeLevels": {
-    "dormitories": 2
-  },
-  "avatarUrl": "https://media.warera.io/avatars/mu/mu-6aa9311d8af2bd246aff6189-1789473203589-6kynr95i.jpg",
-  "country": "6813b6d546e731854c7ac862",
-  "createdAt": "2026-09-15T11:50:53.609Z",
-  "leveling": {
-    "level": 1,
-    "monthlyDamages": 0
-  },
+  "_id": "6889f06a86a27544e6ab0653",
+  "user": "687120fedfa8f065a60c02ac",
+  "region": "6813b7049403bc4170a5d714",
+  "name": "Husaria",
   "members": [
-    "6aa7ad06d91c79361d0b0673",
-    "6a756d8eff1e4b45d522e300",
-    "6aa6bbdce98e26c85d341713",
-    "6ab1b2e13d409d5862f6cc3c",
-    "6ab3b004c0d3cab702e56d23",
-    "69505177fca4396ce4ec2092",
-    "6acd24cd7b158f464a7e2eab"
+    "69611f084aa044813af7c563",
+    "686cff35e9ce9119611c5f18",
+    "68e297c91c943635b81c3db1",
+    "686c1269ad72c66c0a8f3ad4",
+    "68616f786c0e40899174c552",
+    "68639a805fc88dd42b890816",
+    "686176844d05d7380240ca7b",
+    "68615e91e71540fcddf993b8",
+    "6872dc4e1ddfbbefdfab7f0f",
+    "697b7379ce6d2a319b61685a",
+    "6a6bed666c74e8310b0aacb7",
+    "6a6b6cf7192e238bb121bc1f",
+    "6aa84e5b26c29f31986b9b6c",
+    "6a69cce4c25657c971027fab",
+    "6a3e587b7d92f8796aed9865",
+    "6a0d9d684bc0dbb087bc9f7e",
+    "69d7f90f55f7de3a090ff31a",
+    "6a5ae177d97f872096a19791",
+    "6ac15d8701dd886dd9c64eac",
+    "6a6a4ea32cc5a592d347b5ba",
+    "682d69e39447019ec2bc499f",
+    "6ac4523b319dc164e956b2e8"
   ],
-  "mercenaryReputation": 0,
-  "name": "Catastrophe",
-  "rankings": {
-    "muBounty": {
-      "rank": 1245,
-      "tier": "bronze",
-      "value": 21.600472
-    },
-    "muDamages": {
-      "rank": 1208,
-      "tier": "bronze",
-      "value": 1360458
-    },
-    "muTerrain": {
-      "rank": 1235,
-      "tier": "bronze",
-      "value": 71
-    },
-    "muWealth": {
-      "rank": 1150,
-      "tier": "bronze",
-      "value": 125.54999999999995
-    },
-    "muWeeklyDamages": {
-      "rank": 887,
-      "tier": "bronze",
-      "value": 139167
-    }
-  },
-  "region": "6813b70a9403bc4170a5d9e7",
   "roles": {
-    "commanders": [
-      "6aa7ad06d91c79361d0b0673",
-      "6a756d8eff1e4b45d522e300",
-      "69505177fca4396ce4ec2092"
-    ],
     "managers": [
-      "69505177fca4396ce4ec2092"
+      "683db1a74349c0f7448fb31a"
+    ],
+    "commanders": [
+      "68615e91e71540fcddf993b8",
+      "686c1269ad72c66c0a8f3ad4",
+      "69611f084aa044813af7c563",
+      "686176844d05d7380240ca7b",
+      "6aa84e5b26c29f31986b9b6c"
     ]
   },
-  "updatedAt": "2026-10-17T19:01:37.147Z",
-  "user": "69505177fca4396ce4ec2092"
+  "createdAt": "2025-07-30T10:14:02.293Z",
+  "updatedAt": "2026-11-21T15:01:27.360Z",
+  "__v": 0,
+  "activeUpgradeLevels": {
+    "headquarters": 4,
+    "dormitories": 5
+  },
+  "avatarUrl": "https://media.warera.io/avatars/mu/mu-6889f06a86a27544e6ab0653-1787855504838-ryysj89p.webp",
+  "investedMoneyByUsers": {
+    "683db1a74349c0f7448fb31a": 822,
+    "6874f91870845f8c86e11d1e": 190,
+    "68615e91e71540fcddf993b8": 1378.37,
+    "685dc017671305cd2cbafea3": 100,
+    "6866c3f4be1cef5842dfe2b7": 20,
+    "688b390f919cbb2b0675db88": 60,
+    "686176844d05d7380240ca7b": 130,
+    "6866d7d9b7dc5cb1d70456f4": 40,
+    "688ce5466ed5fbb11f323bba": 10,
+    "687120fedfa8f065a60c02ac": 355,
+    "6870dab34d7f42cadcd90cb3": 295,
+    "686c2c445fc88dd42b58e398": 392,
+    "6872a788b8d1854d9d582291": 20,
+    "686eb480e9ce9119614f703e": 555,
+    "68779b9c90c1aa4e9b676ec8": 160,
+    "686e6a51e9ce91196145ebc8": 130,
+    "6842f53f2d38aea3f7a3284e": 40,
+    "6866e03d267109782e8e7bb3": 155,
+    "6893a34ac1e56dce251f0674": 20,
+    "6866e81de9ce91196164a4d5": 345.069,
+    "68614632aaa7ab64e3073ecd": 463.7,
+    "686d2cb683e9eaf95b356733": 620,
+    "6866f080267109782e90a9aa": 180,
+    "685115a95c00b000688d4a19": 430,
+    "689dc1ab5c3c40f7640803e8": 100,
+    "6870ea7cdfa8f065a6076069": 313,
+    "688b3976407ecd4cbe091dd9": 136.9,
+    "686cff35e9ce9119611c5f18": 370,
+    "6866c507e9ce9119615f19b0": 255,
+    "684edbe401a21e3346463aa2": 7461,
+    "6866cb14ad72c66c0a05c07e": 300,
+    "6866e2da83e9eaf95b763f2a": 469.345,
+    "686d3e3cfb337713b2ef00c4": 250,
+    "68939ea540c0c44f83d74267": 1292,
+    "6851e5389e2822d773c8ef6a": 170,
+    "6863d9140c50e7889c55e679": 330,
+    "6866caedfb337713b22cfdd9": 290,
+    "689db008e1186a97d90841a0": 10,
+    "6864010c5fc88dd42b910d6c": 180,
+    "688b39a62d00d18af8e3b409": 335,
+    "6861b3afd1188a915693a2a4": 30,
+    "68a8dd8d6388b4a02ff63e85": 360,
+    "688f6c1f435018fa641eb12f": 10,
+    "68676250fb337713b23b1655": 1440,
+    "6977168afbde11a3b54d095b": 11,
+    "69611f084aa044813af7c563": 1,
+    "68e2345321bef8b9fba2ce71": 1
+  },
+  "rankings": {
+    "muWeeklyDamages": {
+      "value": 301757653,
+      "rank": 43,
+      "tier": "diamond"
+    },
+    "muDamages": {
+      "value": 5228864404,
+      "rank": 9,
+      "tier": "master"
+    },
+    "muTerrain": {
+      "value": 226010,
+      "rank": 10,
+      "tier": "master"
+    },
+    "muWealth": {
+      "value": 862.602000000001,
+      "rank": 682,
+      "tier": "gold"
+    },
+    "muBounty": {
+      "value": 149430.54629090222,
+      "rank": 11,
+      "tier": "master"
+    },
+    "muMercenaryEarnings": {
+      "value": 98982.18625,
+      "rank": 43,
+      "tier": "platinum"
+    },
+    "muReputation": {
+      "value": 30.426671468879885,
+      "rank": 36,
+      "tier": "diamond"
+    }
+  },
+  "mercenaryReputation": 30.426671468879885,
+  "country": "6813b6d446e731854c7ac7ae",
+  "lastAnnouncementAt": "2026-10-31T09:37:55.515Z",
+  "sponsorCountry": "6813b6d446e731854c7ac7ae",
+  "type": "stateArmy"
 }

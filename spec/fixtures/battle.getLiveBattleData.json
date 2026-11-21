@@ -1,26 +1,38 @@
 {
   "battle": {
-    "attackerCountryOrders": [
-      "6813b6d446e731854c7ac7ba",
-      "6813b6d546e731854c7ac811",
-      "6813b6d546e731854c7ac814"
-    ],
-    "attackerMoneyPer1kDamages": 0.03,
+    "isActive": false,
+    "attackerCountryOrders": [],
     "defenderCountryOrders": [],
-    "isActive": true,
-    "roundHistory": [],
     "roundIds": [
-      "6ad3b89d7b158f464a343666"
-    ]
+      "6ad32f78f6dfbfc06adbb23b",
+      "6ad38aa5b45be57841a8f974"
+    ],
+    "roundHistory": [
+      {
+        "wonBy": "defender",
+        "attackerPoints": 39,
+        "defenderPoints": 303,
+        "attackerDamages": 2631741,
+        "defenderDamages": 4315140
+      },
+      {
+        "wonBy": "defender",
+        "attackerPoints": 4,
+        "defenderPoints": 302,
+        "attackerDamages": 1954341,
+        "defenderDamages": 5652669
+      }
+    ],
+    "defenderMoneyPer1kDamages": 0.07
   },
   "round": {
-    "actualTickPoints": 1,
-    "attackerDamages": 5063172,
-    "attackerPoints": 34,
-    "defenderDamages": 143523,
-    "defenderPoints": 0,
-    "isActive": true,
-    "nextTickAt": "2026-10-17T19:15:00.968Z",
-    "roundId": "6ad3b89d7b158f464a343666"
+    "roundId": "6ad38aa5b45be57841a8f974",
+    "attackerDamages": 1954341,
+    "defenderDamages": 5652669,
+    "isActive": false,
+    "actualTickPoints": 4,
+    "attackerPoints": 4,
+    "nextTickAt": "2026-10-17T21:01:00.022Z",
+    "defenderPoints": 302
   }
 }

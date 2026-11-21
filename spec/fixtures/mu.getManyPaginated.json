@@ -1,3 +1,287 @@
 {
-  "items": []
+  "items": [
+    {
+      "_id": "6b01a62f9a7e0c30adf2ddd8",
+      "user": "6af1f529e79dc081c9889ec2",
+      "region": "696a81f5882256e1db118212",
+      "country": "6813b6d546e731854c7ac848",
+      "name": "3_RIM",
+      "members": [
+        "6af1f529e79dc081c9889ec2"
+      ],
+      "roles": {
+        "managers": [
+          "6af1f529e79dc081c9889ec2"
+        ],
+        "commanders": [
+          "6af1f529e79dc081c9889ec2"
+        ]
+      },
+      "leveling": {
+        "level": 1,
+        "monthlyDamages": 0
+      },
+      "mercenaryReputation": 0,
+      "createdAt": "2026-11-21T14:09:51.326Z",
+      "updatedAt": "2026-11-21T15:01:27.718Z",
+      "__v": 0,
+      "activeUpgradeLevels": {
+        "dormitories": 1
+      },
+      "avatarUrl": "https://media.warera.io/avatars/mu/mu-6b01a62f9a7e0c30adf2ddd8-1795270240630-plk2szge.jpg",
+      "type": "privateMercenary",
+      "rankings": {
+        "muWealth": {
+          "value": 5,
+          "rank": 1599,
+          "tier": "bronze"
+        }
+      }
+    },
+    {
+      "_id": "6b019fa8942dc44cc566570b",
+      "user": "6a8ab07ff144783fe6c96d0f",
+      "region": "6813b7099403bc4170a5d987",
+      "country": "6813b6d546e731854c7ac84b",
+      "name": "U_F_S_03",
+      "members": [
+        "6b00ba7100df8d2e312d0137",
+        "6afdbae793ff697ea0901903",
+        "6b00272cb332203788e23269",
+        "6afb10d9e0d4bdc334eaaa1a",
+        "6afefe52f67d7c5951380783",
+        "6afcf677751e7f0d53e1db7e",
+        "6afe21273582dfc9993ab920",
+        "6aff1566cea8d4a042dc04aa",
+        "6afede15a9102e79de425898",
+        "6afe2dec89448552174bd723",
+        "6afd96b31686e882fb4b8ba2",
+        "6af790c1aeabc5cba7a7078b",
+        "6aff3437ab92b66734a301d2",
+        "6affea47bd7d2b2a599e6beb",
+        "6b00e68eea7f357b8d495cf1",
+        "6afb7a75c5da48c0faa727e4",
+        "6b000fa3dff074cd3027d7bb"
+      ],
+      "roles": {
+        "managers": [
+          "6a8ab07ff144783fe6c96d0f"
+        ],
+        "commanders": [
+          "6b00272cb332203788e23269",
+          "6afcf677751e7f0d53e1db7e",
+          "6afede15a9102e79de425898"
+        ]
+      },
+      "leveling": {
+        "level": 1,
+        "monthlyDamages": 0
+      },
+      "mercenaryReputation": 0,
+      "createdAt": "2026-11-21T13:42:00.320Z",
+      "updatedAt": "2026-11-21T15:01:27.591Z",
+      "__v": 0,
+      "activeUpgradeLevels": {
+        "dormitories": 4
+      },
+      "avatarUrl": "https://media.warera.io/avatars/mu/mu-6b019fa8942dc44cc566570b-1795268528790-2qjwyqqf.jpg",
+      "rankings": {
+        "muWeeklyDamages": {
+          "value": 5066,
+          "rank": 1039,
+          "tier": "bronze"
+        },
+        "muDamages": {
+          "value": 5066,
+          "rank": 1668,
+          "tier": "bronze"
+        },
+        "muWealth": {
+          "value": 78.5,
+          "rank": 1358,
+          "tier": "bronze"
+        }
+      }
+    },
+    {
+      "_id": "6b0198ad0450a3715655508c",
+      "user": "6a8d8e353873d9fefcf0fb65",
+      "region": "6813b7099403bc4170a5d957",
+      "country": "6813b6d546e731854c7ac848",
+      "name": "MOROCCAN-SHADOWS",
+      "members": [
+        "6a8d8e353873d9fefcf0fb65",
+        "6aff45d7416c884d78aadc00",
+        "6af9a90ba1e9cd7b5e77f573",
+        "6af06220f6d148886982cc09",
+        "6af723e5caad6a1b42cfb5c4"
+      ],
+      "roles": {
+        "managers": [
+          "6a8d8e353873d9fefcf0fb65"
+        ],
+        "commanders": [
+          "6a8d8e353873d9fefcf0fb65"
+        ]
+      },
+      "leveling": {
+        "level": 1,
+        "monthlyDamages": 0
+      },
+      "mercenaryReputation": 0,
+      "createdAt": "2026-11-21T13:12:13.475Z",
+      "updatedAt": "2026-11-21T15:01:27.594Z",
+      "__v": 0,
+      "activeUpgradeLevels": {
+        "dormitories": 1
+      },
+      "avatarUrl": "https://media.warera.io/avatars/mu/mu-6b0198ad0450a3715655508c-1795266774153-k9g47o0t.png",
+      "type": "privateMercenary",
+      "lastAnnouncementAt": "2026-11-21T13:44:01.722Z",
+      "rankings": {
+        "muWeeklyDamages": {
+          "value": 943,
+          "rank": 1056,
+          "tier": "bronze"
+        },
+        "muDamages": {
+          "value": 943,
+          "rank": 1684,
+          "tier": "bronze"
+        },
+        "muWealth": {
+          "value": 168.04,
+          "rank": 1184,
+          "tier": "bronze"
+        }
+      }
+    },
+    {
+      "_id": "6b018969ae2d65bcb4ade47c",
+      "user": "6aecae6efa078154991f7228",
+      "region": "696a81f5882256e1db118214",
+      "country": "6813b6d546e731854c7ac84b",
+      "name": "D.I.A.Z 4",
+      "members": [
+        "6aecae6efa078154991f7228",
+        "6affe337b42104f6891c1aa3",
+        "6af7076614bf73fbf185f0ba",
+        "6aff6fcad7ea8feea2b05168",
+        "6afde2f1f6563b4ad9942dd0",
+        "6aff581fe76271ba51aed86f",
+        "6b00d8d404c9c39a5d0190f2",
+        "6aff494828b5b308fda9fa55",
+        "6af78a94734b8bda4a91c901",
+        "6afdd857a8bd066d26bd5593",
+        "6aff129759df6a6e76f3deac",
+        "6afd13da1a084258aab1441e",
+        "6b003914b3df4594f30323ed",
+        "6afd41feda1d70dd065a075f",
+        "6a9f21fd8c69c0b860e0f667"
+      ],
+      "roles": {
+        "managers": [
+          "6aecae6efa078154991f7228"
+        ],
+        "commanders": [
+          "6aecae6efa078154991f7228"
+        ]
+      },
+      "leveling": {
+        "level": 1,
+        "monthlyDamages": 0
+      },
+      "mercenaryReputation": 0,
+      "createdAt": "2026-11-21T12:07:05.672Z",
+      "updatedAt": "2026-11-21T15:01:27.583Z",
+      "__v": 0,
+      "activeUpgradeLevels": {
+        "dormitories": 3
+      },
+      "lastAnnouncementAt": "2026-11-21T12:14:09.980Z",
+      "avatarUrl": "https://media.warera.io/avatars/mu/mu-6b018969ae2d65bcb4ade47c-1795263439033-csvv1x91.jpg",
+      "rankings": {
+        "muWeeklyDamages": {
+          "value": 25955,
+          "rank": 1001,
+          "tier": "bronze"
+        },
+        "muDamages": {
+          "value": 25955,
+          "rank": 1630,
+          "tier": "bronze"
+        },
+        "muWealth": {
+          "value": 229.834,
+          "rank": 1110,
+          "tier": "bronze"
+        },
+        "muBounty": {
+          "value": 0.053055,
+          "rank": 1644,
+          "tier": "bronze"
+        }
+      }
+    },
+    {
+      "_id": "6b017f755d06869851fe1332",
+      "user": "6aa6e5ba26c29f3198208767",
+      "region": "6813b7099403bc4170a5d957",
+      "country": "6813b6d546e731854c7ac848",
+      "name": "MAR-mgharba",
+      "members": [
+        "6afe1c433582dfc999359cf5",
+        "6b012e8bbc38b27b41eba8fe",
+        "6afa4a0791d163203290de10",
+        "6afd8b3fdf02951a4877f7b1",
+        "6afd8b5077fd74560c7b430e",
+        "6afa09fe2921e300ca01a6ba",
+        "6afeb2db78a3597d41ecdaad"
+      ],
+      "roles": {
+        "managers": [
+          "6aa6e5ba26c29f3198208767"
+        ],
+        "commanders": [
+          "6afa4a0791d163203290de10",
+          "6afe1c433582dfc999359cf5"
+        ]
+      },
+      "leveling": {
+        "level": 1,
+        "monthlyDamages": 0
+      },
+      "mercenaryReputation": 0,
+      "createdAt": "2026-11-21T11:24:37.197Z",
+      "updatedAt": "2026-11-21T15:01:27.581Z",
+      "__v": 0,
+      "activeUpgradeLevels": {
+        "dormitories": 2
+      },
+      "avatarUrl": "https://media.warera.io/avatars/mu/mu-6b017f755d06869851fe1332-1795260859733-916w0mmi.png",
+      "rankings": {
+        "muWeeklyDamages": {
+          "value": 31084,
+          "rank": 994,
+          "tier": "bronze"
+        },
+        "muDamages": {
+          "value": 31084,
+          "rank": 1620,
+          "tier": "bronze"
+        },
+        "muWealth": {
+          "value": 83.18799999999999,
+          "rank": 1346,
+          "tier": "bronze"
+        },
+        "muBounty": {
+          "value": 0.005399999999999999,
+          "rank": 1658,
+          "tier": "bronze"
+        }
+      }
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0xMS0yMVQxMToyNDozNy4xOTdaIn0seyJ0Ijoic3RyIiwidiI6IjZiMDE3Zjc1NWQwNjg2OTg1MWZlMTMzMiJ9XQ"
 }

@@ -1,0 +1,133 @@
+{
+  "_id": "6aa84e5b26c29f31986b9b6c",
+  "skills": {
+    "energy": {
+      "level": 0,
+      "currentBarValue": 15,
+      "value": 100,
+      "total": 100,
+      "hourlyBarRegen": 10,
+      "prestige": 0
+    },
+    "stamina": {
+      "level": 0,
+      "currentBarValue": 100,
+      "value": 100,
+      "total": 100,
+      "hourlyBarRegen": 10,
+      "prestige": 0
+    },
+    "health": {
+      "level": 4,
+      "currentBarValue": 150,
+      "value": 140,
+      "total": 150,
+      "hourlyBarRegen": 15,
+      "prestige": 0,
+      "strategic": 10
+    },
+    "hunger": {
+      "level": 4,
+      "currentBarValue": 8,
+      "value": 8,
+      "total": 8,
+      "hourlyBarRegen": 0.8,
+      "prestige": 0
+    },
+    "attack": {
+      "level": 7,
+      "ammoPercent": 10,
+      "buffsPercent": 0,
+      "debuffsPercent": 60,
+      "militaryRankPercent": 55,
+      "value": 275,
+      "weapon": 163,
+      "overflow": 72,
+      "total": 348,
+      "prestige": 0
+    },
+    "companies": {
+      "level": 2,
+      "value": 4,
+      "total": 4,
+      "prestige": 0
+    },
+    "production": {
+      "level": 0,
+      "currentBarValue": 10,
+      "value": 30,
+      "total": 33,
+      "hourlyBarRegen": 3.3,
+      "prestige": 0,
+      "strategic": 3
+    },
+    "criticalChance": {
+      "level": 7,
+      "value": 45,
+      "weapon": 29,
+      "total": 74,
+      "prestige": 0
+    },
+    "criticalDamages": {
+      "level": 6,
+      "value": 220,
+      "equipment": 97,
+      "total": 317,
+      "prestige": 0
+    },
+    "armor": {
+      "level": 3,
+      "value": 18,
+      "equipment": 66,
+      "total": 84,
+      "totalAfterSoftCap": 68,
+      "prestige": 0
+    },
+    "precision": {
+      "level": 6,
+      "value": 80,
+      "equipment": 33,
+      "limited": -18,
+      "total": 100,
+      "prestige": 0,
+      "strategic": 5
+    },
+    "dodge": {
+      "level": 4,
+      "value": 16,
+      "equipment": 34,
+      "total": 50,
+      "totalAfterSoftCap": 56,
+      "prestige": 0
+    },
+    "lootChance": {
+      "level": 3,
+      "value": 11,
+      "total": 13,
+      "prestige": 0,
+      "strategic": 2
+    },
+    "management": {
+      "level": 0,
+      "value": 1,
+      "total": 2,
+      "prestige": 0,
+      "strategic": 1
+    }
+  },
+  "leveling": {
+    "level": 36,
+    "xp": 46610,
+    "totalXp": 46610,
+    "dailyXpLeft": 100,
+    "availableSkillPoints": 1,
+    "spentSkillPoints": 143,
+    "totalSkillPoints": 144,
+    "freeReset": 0,
+    "prestige": 0,
+    "prestigeLevel": 0
+  },
+  "dates": {
+    "lastSkillsResetAt": "2026-11-16T13:35:10.019Z"
+  }
+}

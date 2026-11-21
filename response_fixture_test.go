@@ -42,6 +42,11 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"military unit list", "mu.getManyPaginated.json", decodeFixtureAs[CursorPage[MilitaryUnit]]},
 		{"mercenary auctions", "mercenaryContractAuction.getPaginatedAuctions.json", decodeFixtureAs[CursorPage[MercenaryContractAuction]]},
 		{"ranking", "ranking.getRanking.json", decodeFixtureAs[Ranking]},
+		{"ranking page", "ranking.getRankingPage.json", decodeFixtureAs[RankingPage]},
+		{"ranking around", "ranking.getRankingAround.json", decodeFixtureAs[[]RankingEntry]},
+		{"poll", "poll.getPoll.json", decodeFixtureAs[Poll]},
+		{"poll voters", "poll.getPollVoters.json", decodeFixtureAs[CursorPage[PollVote]]},
+		{"transactions", "transaction.getPaginatedTransactions.json", decodeFixtureAs[CursorPage[TransactionListItem]]},
 		{"region detail", "region.getById.json", decodeFixtureAs[Region]},
 		{"region map", "region.getRegionsObject.json", decodeFixtureAs[map[string]Region]},
 		{"round detail", "round.getById.json", decodeFixtureAs[Round]},
@@ -51,12 +56,8 @@ func TestResponseFixturesDecode(t *testing.T) {
 		{"upgrade", "upgrade.getUpgradeByTypeAndEntity.json", decodeFixtureAs[Upgrade]},
 		{"user detail", "user.getUserById.json", decodeFixtureAs[User]},
 		{"user lite", "user.getUserLite.json", decodeFixtureAs[UserLite]},
+		{"user skills", "user.getUserSkills.json", decodeFixtureAs[UserSkillProfile]},
 		{"users by country", "user.getUsersByCountry.json", decodeFixtureAs[CursorPage[User]]},
-		{"workers by user", "worker.getWorkers.json", decodeFixtureAs[Workers]},
-		{"workers by company", "worker.getWorkers.company.json", decodeFixtureAs[Workers]},
-		{"work offer", "workOffer.getById.json", decodeFixtureAs[WorkOffer]},
-		{"work offer by company", "workOffer.getWorkOfferByCompanyId.json", decodeFixtureAs[WorkOffer]},
-		{"work offers", "workOffer.getWorkOffersPaginated.json", decodeFixtureAs[CursorPage[WorkOffer]]},
 	}
 
 	covered := make(map[string]struct{}, len(tests))
@@ -123,21 +124,24 @@ func TestRegionActiveBattleFixtureShapes(t *testing.T) {
 	}
 }
 
-func TestUserSkillFixtureRetainsNullAndNumericValues(t *testing.T) {
+func TestUserSkillFixtureDistinguishesAbsentAndNumericValues(t *testing.T) {
 	var user User
 	if err := json.Unmarshal(loadFixture(t, "user.getUserById.json"), &user); err != nil {
 		t.Fatalf("decode user fixture: %v", err)
 	}
 	attack := user.Skills.Attack
 	if attack.Equipment != nil {
-		t.Errorf("attack equipment = %v, want nil for JSON null", *attack.Equipment)
+		t.Errorf("attack equipment = %v, want nil when the API omits it", *attack.Equipment)
 	}
-	if attack.Value != 100 {
-		t.Errorf("attack value = %v, want 100", attack.Value)
+	if attack.Value != 275 || attack.Weapon == nil || *attack.Weapon != 163 {
+		t.Errorf("attack value/weapon = %v/%v, want 275/163", attack.Value, attack.Weapon)
+	}
+	if !bytes.Equal(attack.Overflow, []byte("72")) {
+		t.Errorf("attack overflow = %s, want preserved JSON 72", attack.Overflow)
 	}
 	armor := user.Skills.Armor
-	if !bytes.Equal(armor.Limited, []byte("null")) {
-		t.Errorf("armor limited = %s, want preserved JSON null", armor.Limited)
+	if armor.TotalAfterSoftCap == nil || *armor.TotalAfterSoftCap != 68 {
+		t.Errorf("armor total after soft cap = %v, want 68", armor.TotalAfterSoftCap)
 	}
 }
 
@@ -196,10 +200,10 @@ func TestGameConfigService_GetGameConfigFixture(t *testing.T) {
 	if err != nil {
 		t.Fatalf("GetGameConfig returned error: %v", err)
 	}
-	if config == nil || config.Announcement.DurationHours != 24 || config.Badge.BabyBoomer.Reward != 100 {
+	if config == nil || config.Announcement.DurationHours != 24 || config.Badge["babyBoomer"].Reward != 100 {
 		t.Fatalf("unexpected decoded config: %+v", config)
 	}
-	if level := config.Skills.Armor.Levels["1"]; level.Cost != 1 || level.Value != 6 {
+	if level := config.Skills["armor"].Levels["1"]; level.Cost != 1 || level.Value != 6 {
 		t.Fatalf("unexpected armor level: %+v", level)
 	}
 	if level := config.UpgradesConfig.Base.Levels["1"]; level.Level != 1 || level.Stats["attackBonus"] != 5 {
@@ -220,5 +224,19 @@ func fixtureResponse(t *testing.T, data json.RawMessage) *http.Response {
 		Status:     "200 OK",
 		Header:     http.Header{"Content-Type": []string{"application/json"}},
 		Body:       io.NopCloser(bytes.NewReader(body)),
+	}
+}
+
+func TestRankingPageFixtureFillsEmbeddedCursorPage(t *testing.T) {
+	var page RankingPage
+	if err := json.Unmarshal(loadFixture(t, "ranking.getRankingPage.json"), &page); err != nil {
+		t.Fatalf("decode ranking page fixture: %v", err)
+	}
+	if len(page.Items) != 5 || page.Items[0].Rank != 1 || !page.HasNext() {
+		t.Fatalf("page items = %d, first rank = %v, has next = %t; want 5 entries from rank 1 and a next cursor",
+			len(page.Items), page.Items, page.HasNext())
+	}
+	if page.Ranking == nil || page.Ranking.Count != 181 || page.Ranking.TierValues.Master == 0 {
+		t.Fatalf("first-page ranking summary = %+v, want count 181 with tier values", page.Ranking)
 	}
 }

@@ -19,6 +19,8 @@ type Client struct {
 	Battles *BattleService
 	// Articles provides access to news articles.
 	Articles *ArticleService
+	// Polls provides access to article polls and their voters.
+	Polls *PollService
 	// Users provides access to player profiles and country listings.
 	Users *UserService
 	// Regions provides access to regions and their details.
@@ -55,10 +57,6 @@ type Client struct {
 	MercenaryAuctions *MercenaryAuctionService
 	// Transactions provides access to paginated transaction history.
 	Transactions *TransactionService
-	// WorkOffers provides access to work offers.
-	WorkOffers *WorkOfferService
-	// Workers provides access to worker counts and company groupings.
-	Workers *WorkerService
 }
 
 // NewClient creates a client for the WarEra API. It uses the default API
@@ -90,6 +88,7 @@ func NewClient(opts ...Option) *Client {
 	c.Companies = &CompanyService{client: c}
 	c.Battles = &BattleService{client: c}
 	c.Articles = &ArticleService{client: c}
+	c.Polls = &PollService{client: c}
 	c.Users = &UserService{client: c}
 	c.Regions = &RegionService{client: c}
 	c.Government = &GovernmentService{client: c}
@@ -108,8 +107,6 @@ func NewClient(opts ...Option) *Client {
 	c.ItemOffers = &ItemOfferService{client: c}
 	c.MercenaryAuctions = &MercenaryAuctionService{client: c}
 	c.Transactions = &TransactionService{client: c}
-	c.WorkOffers = &WorkOfferService{client: c}
-	c.Workers = &WorkerService{client: c}
 
 	return c
 }

@@ -51,7 +51,6 @@ func Analyze(skills warera.UserSkills) Allocation {
 	)
 	ecoPoints := sumPoints(
 		skills.Energy.Level,
-		skills.Entrepreneurship.Level,
 		skills.Production.Level,
 		skills.Companies.Level,
 		skills.Management.Level,
@@ -70,7 +69,6 @@ func Analyze(skills warera.UserSkills) Allocation {
 	)
 	ecoPrestige := sumInts(
 		skills.Energy.Prestige,
-		skills.Entrepreneurship.Prestige,
 		skills.Production.Prestige,
 		skills.Companies.Prestige,
 		skills.Management.Prestige,

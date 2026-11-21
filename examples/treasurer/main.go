@@ -53,14 +53,16 @@ func run() error {
 
 	fmt.Printf("\nCountry economy snapshot: %s (%s) [%s]\n", country.Name, country.Code, country.ID)
 	fmt.Printf("Captured at: %s (UTC)\n", capturedAt.Format(time.RFC3339))
-	fmt.Printf("Reported population=%d treasuryMoney=%.4f taxes(income=%.4f market=%.4f selfWork=%.4f)\n",
-		country.CurrentPopulation, country.Money,
-		country.Taxes.Income, country.Taxes.Market, country.Taxes.SelfWork)
-	if resources := country.StrategicResources; resources != nil {
-		fmt.Printf("Strategic-resource bonuses: development=%.4f production=%.4f\n",
-			resources.Bonuses.DevelopmentPercent, resources.Bonuses.ProductionPercent)
+	fmt.Printf("Reported population=%d government=%s treasuryMoney=%.4f taxes(income=%.4f market=%.4f manager=%.4f)\n",
+		country.CurrentPopulation, country.GovType, country.Money,
+		country.Taxes.Income, country.Taxes.Market, country.Taxes.Manager)
+	// The income breakdown is the game's own daily estimate by source.
+	if income := country.Income; income != nil {
+		fmt.Printf("Daily income estimate: total=%.4f development=%.4f employeeIncomeTax=%.4f managerIncomeTax=%.4f strategicResources=%.4f governmentType=%.4f\n",
+			income.Total, income.Development, income.EmployeeIncomeTax, income.ManagerIncomeTax,
+			income.StrategicResourcesBonus, income.GovType)
 	} else {
-		fmt.Println("No strategic-resource data was present in the country response.")
+		fmt.Println("No income breakdown was present in the country response.")
 	}
 
 	fmt.Printf("\nTransaction page: %d records", len(transactions.Items))

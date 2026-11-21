@@ -17,12 +17,13 @@ type ArticleFilter struct {
 	Languages         []string `json:"languages,omitempty"`         // The languages to get articles for
 	Limit             int      `json:"limit,omitempty"`             // The limit of articles to get
 	PositiveScoreOnly *bool    `json:"positiveScoreOnly,omitempty"` // Only show articles with a positive score
-	Type              string   `json:"type"`                        // The type of articles to get
+	Type              string   `json:"type"`                        // The type of articles to get. `saved` is the caller's private bookmark list (auth required, ignores filters).
 	UserID            string   `json:"userId,omitempty"`            // The user ID to get articles for
 }
 
 // BattleFilter specifies query and filter options for battle.getBattles.
 type BattleFilter struct {
+	AllianceID       string `json:"allianceId,omitempty"`       // Filter battles involving any member country of this alliance
 	CountryID        string `json:"countryId,omitempty"`        // Filter battles by country ID
 	Cursor           string `json:"cursor,omitempty"`           // The cursor to get the next battles
 	DefenderRegionID string `json:"defenderRegionId,omitempty"` // Filter battles by defender region ID
@@ -59,7 +60,7 @@ type BattleRankingFilter struct {
 	Limit    int    `json:"limit,omitempty"`    // Number of ranking entries per page
 	RoundID  string `json:"roundId,omitempty"`  // Optional round ID to filter rankings
 	Side     string `json:"side"`               // Which side of the battle to rank
-	Type     string `json:"type"`               // Whether to rank by user or country
+	Type     string `json:"type"`               // Whether to rank by user, country, military unit or alliance
 	WarID    string `json:"warId,omitempty"`    // Optional war ID to filter rankings
 }
 
@@ -96,6 +97,31 @@ type MilitaryUnitFilter struct {
 	UserID   string `json:"userId,omitempty"`
 }
 
+// PollVoterFilter specifies query and filter options for poll.getPollVoters.
+type PollVoterFilter struct {
+	Cursor   string `json:"cursor,omitempty"`
+	Limit    int    `json:"limit,omitempty"`
+	OptionID int    `json:"optionId"` // The answer to list voters for
+	PollID   string `json:"pollId"`   // The ID of the poll
+}
+
+// RankingAroundFilter specifies query and filter options for ranking.getRankingAround.
+type RankingAroundFilter struct {
+	CountryID   string `json:"countryId,omitempty"`
+	EntityID    string `json:"entityId"`
+	MUID        string `json:"muId,omitempty"`
+	RankingType string `json:"rankingType"` // The type of ranking to retrieve
+}
+
+// RankingPageFilter specifies query and filter options for ranking.getRankingPage.
+type RankingPageFilter struct {
+	CountryID   string `json:"countryId,omitempty"`
+	Cursor      string `json:"cursor,omitempty"`
+	Limit       int    `json:"limit,omitempty"`
+	MUID        string `json:"muId,omitempty"`
+	RankingType string `json:"rankingType"` // The type of ranking to retrieve
+}
+
 // TradingOrderTopOrdersFilter specifies query and filter options for tradingOrder.getTopOrders.
 type TradingOrderTopOrdersFilter struct {
 	ItemCode string `json:"itemCode"`        // The item code to get orders for
@@ -127,22 +153,4 @@ type UserFilter struct {
 	CountryID string `json:"countryId"`
 	Cursor    string `json:"cursor,omitempty"`
 	Limit     int    `json:"limit,omitempty"`
-}
-
-// WorkOfferFilter specifies query and filter options for workOffer.getWorkOffersPaginated.
-type WorkOfferFilter struct {
-	Citizenship string `json:"citizenship,omitempty"`
-	Cursor      string `json:"cursor,omitempty"`
-	Energy      int    `json:"energy,omitempty"`
-	Level       int    `json:"level,omitempty"`
-	Limit       int    `json:"limit,omitempty"`
-	Production  int    `json:"production,omitempty"`
-	RegionID    string `json:"regionId,omitempty"`
-	UserID      string `json:"userId,omitempty"`
-}
-
-// WorkerFilter specifies query and filter options for worker.getWorkers.
-type WorkerFilter struct {
-	CompanyID string `json:"companyId,omitempty"`
-	UserID    string `json:"userId,omitempty"`
 }

@@ -442,15 +442,20 @@
                   },
                   "defenderRegionId": {
                     "type": "string",
+                    "pattern": "^[0-9a-fA-F]{24}$",
                     "description": "Filter battles by defender region ID"
                   },
                   "warId": {
-                    "type": "string",
+                    "$ref": "#/properties/defenderRegionId",
                     "description": "Filter battles by war ID"
                   },
                   "countryId": {
-                    "type": "string",
+                    "$ref": "#/properties/defenderRegionId",
                     "description": "Filter battles by country ID"
+                  },
+                  "allianceId": {
+                    "$ref": "#/properties/defenderRegionId",
+                    "description": "Filter battles involving any member country of this alliance"
                   }
                 },
                 "additionalProperties": false
@@ -535,7 +540,7 @@
         "tags": [
           "battleRanking"
         ],
-        "description": "Retrieves damage, ground, or money rankings for users or countries in battles, rounds, or wars",
+        "description": "Retrieves damage, ground, or money rankings for users, countries, military units or alliances in battles, rounds, or wars",
         "summary": "Get battle rankings",
         "operationId": "battleRanking.getRanking",
         "responses": {
@@ -578,9 +583,10 @@
                     "enum": [
                       "user",
                       "country",
-                      "mu"
+                      "mu",
+                      "alliance"
                     ],
-                    "description": "Whether to rank by user or country"
+                    "description": "Whether to rank by user, country, military unit or alliance"
                   },
                   "side": {
                     "type": "string",
@@ -704,7 +710,7 @@
                 "properties": {
                   "itemOfferId": {
                     "type": "string",
-                    "minLength": 1
+                    "pattern": "^[0-9a-fA-F]{24}$"
                   }
                 },
                 "required": [
@@ -717,137 +723,12 @@
         }
       }
     },
-    "/workOffer.getById": {
-      "post": {
-        "tags": [
-          "workOffer"
-        ],
-        "description": "Retrieves detailed information about a specific work offer",
-        "summary": "Get work offer by ID",
-        "operationId": "workOffer.getById",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "workOfferId": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "required": [
-                  "workOfferId"
-                ],
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
-    },
-    "/workOffer.getWorkOfferByCompanyId": {
-      "post": {
-        "tags": [
-          "workOffer"
-        ],
-        "description": "Retrieves work offer for a specific company",
-        "summary": "Get work offer by company ID",
-        "operationId": "workOffer.getWorkOfferByCompanyId",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "companyId": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "required": [
-                  "companyId"
-                ],
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
-    },
-    "/workOffer.getWorkOffersPaginated": {
-      "post": {
-        "tags": [
-          "workOffer"
-        ],
-        "description": "Retrieves a paginated list of work offers with optional user and region filtering",
-        "summary": "Get paginated work offers",
-        "operationId": "workOffer.getWorkOffersPaginated",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "userId": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "regionId": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "cursor": {
-                    "type": "string"
-                  },
-                  "limit": {
-                    "type": "integer",
-                    "default": 10
-                  },
-                  "energy": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "production": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "level": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "citizenship": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
-    },
     "/ranking.getRanking": {
       "post": {
         "tags": [
           "ranking"
         ],
-        "description": "Retrieves ranking data for the specified ranking type and optional year-week filter",
+        "description": "The ranking's tier cutoffs and its top 100 entries (entries at 0 are not listed). Use getRankingPage for the rest.",
         "summary": "Get ranking data",
         "operationId": "ranking.getRanking",
         "responses": {
@@ -871,7 +752,6 @@
                       "countryActivePopulation",
                       "countryDamages",
                       "countryWealth",
-                      "countryProductionBonus",
                       "countryBounty",
                       "weeklyUserDamages",
                       "userDamages",
@@ -885,6 +765,7 @@
                       "userCasesOpened",
                       "userGemsPurchased",
                       "userBounty",
+                      "userMercenaryEarnings",
                       "userSkinsOwned",
                       "userMilestoneTiers",
                       "userMissionsClaimed",
@@ -893,6 +774,7 @@
                       "muTerrain",
                       "muWealth",
                       "muBounty",
+                      "muMercenaryEarnings",
                       "muReputation",
                       "allianceInitialDevelopment",
                       "allianceDevelopment",
@@ -906,6 +788,180 @@
                 },
                 "required": [
                   "rankingType"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ranking.getRankingPage": {
+      "post": {
+        "tags": [
+          "ranking"
+        ],
+        "description": "Entries best first, by cursor. The ranking details (tier cutoffs, count) come with the first page only. countryId / muId keep the players of one country or military unit (player rankings). Entries at 0 are not listed.",
+        "summary": "Get a page of a ranking",
+        "operationId": "ranking.getRankingPage",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rankingType": {
+                    "type": "string",
+                    "enum": [
+                      "weeklyCountryDamages",
+                      "weeklyCountryDamagesPerCitizen",
+                      "countryRegionDiff",
+                      "countryDevelopment",
+                      "countryActivePopulation",
+                      "countryDamages",
+                      "countryWealth",
+                      "countryBounty",
+                      "weeklyUserDamages",
+                      "userDamages",
+                      "userWealth",
+                      "userLevel",
+                      "userReferrals",
+                      "userSubscribers",
+                      "userTerrain",
+                      "userPremiumMonths",
+                      "userPremiumGifts",
+                      "userCasesOpened",
+                      "userGemsPurchased",
+                      "userBounty",
+                      "userMercenaryEarnings",
+                      "userSkinsOwned",
+                      "userMilestoneTiers",
+                      "userMissionsClaimed",
+                      "muWeeklyDamages",
+                      "muDamages",
+                      "muTerrain",
+                      "muWealth",
+                      "muBounty",
+                      "muMercenaryEarnings",
+                      "muReputation",
+                      "allianceInitialDevelopment",
+                      "allianceDevelopment",
+                      "allianceWeeklyDamages",
+                      "allianceDamages",
+                      "alliancePopulation",
+                      "allianceWeeklyDamagesPerCitizen"
+                    ],
+                    "description": "The type of ranking to retrieve"
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 50,
+                    "default": 20
+                  },
+                  "countryId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-fA-F]{24}$"
+                  },
+                  "muId": {
+                    "$ref": "#/properties/countryId"
+                  }
+                },
+                "required": [
+                  "rankingType"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ranking.getRankingAround": {
+      "post": {
+        "tags": [
+          "ranking"
+        ],
+        "description": "One user, country, MU or alliance in a ranking, with the entries just above and below it, in the same country / MU filter as getRankingPage. Empty when it has no entry there.",
+        "summary": "Get an entry and its neighbours",
+        "operationId": "ranking.getRankingAround",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rankingType": {
+                    "type": "string",
+                    "enum": [
+                      "weeklyCountryDamages",
+                      "weeklyCountryDamagesPerCitizen",
+                      "countryRegionDiff",
+                      "countryDevelopment",
+                      "countryActivePopulation",
+                      "countryDamages",
+                      "countryWealth",
+                      "countryBounty",
+                      "weeklyUserDamages",
+                      "userDamages",
+                      "userWealth",
+                      "userLevel",
+                      "userReferrals",
+                      "userSubscribers",
+                      "userTerrain",
+                      "userPremiumMonths",
+                      "userPremiumGifts",
+                      "userCasesOpened",
+                      "userGemsPurchased",
+                      "userBounty",
+                      "userMercenaryEarnings",
+                      "userSkinsOwned",
+                      "userMilestoneTiers",
+                      "userMissionsClaimed",
+                      "muWeeklyDamages",
+                      "muDamages",
+                      "muTerrain",
+                      "muWealth",
+                      "muBounty",
+                      "muMercenaryEarnings",
+                      "muReputation",
+                      "allianceInitialDevelopment",
+                      "allianceDevelopment",
+                      "allianceWeeklyDamages",
+                      "allianceDamages",
+                      "alliancePopulation",
+                      "allianceWeeklyDamagesPerCitizen"
+                    ],
+                    "description": "The type of ranking to retrieve"
+                  },
+                  "entityId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-fA-F]{24}$"
+                  },
+                  "countryId": {
+                    "$ref": "#/properties/entityId"
+                  },
+                  "muId": {
+                    "$ref": "#/properties/entityId"
+                  }
+                },
+                "required": [
+                  "rankingType",
+                  "entityId"
                 ],
                 "additionalProperties": false
               }
@@ -1006,7 +1062,7 @@
         "tags": [
           "user"
         ],
-        "description": "Retrieves basic public information about a user including username, skills, and rankings",
+        "description": "Retrieves basic public information about a user including username and rankings. Skills are served by getUserSkills.",
         "summary": "Get user profile (lite)",
         "operationId": "user.getUserLite",
         "responses": {
@@ -1207,9 +1263,10 @@
                       "top",
                       "my",
                       "subscriptions",
-                      "last"
+                      "last",
+                      "saved"
                     ],
-                    "description": "The type of articles to get"
+                    "description": "The type of articles to get. `saved` is the caller's private bookmark list (auth required, ignores filters)."
                   },
                   "limit": {
                     "type": "number",
@@ -1246,6 +1303,92 @@
                 },
                 "required": [
                   "type"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/poll.getPoll": {
+      "post": {
+        "tags": [
+          "poll"
+        ],
+        "description": "Retrieves an article poll with its results and, when logged in, your vote and whether you can vote",
+        "summary": "Get poll by ID",
+        "operationId": "poll.getPoll",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pollId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-fA-F]{24}$",
+                    "description": "The ID of the poll to get"
+                  }
+                },
+                "required": [
+                  "pollId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/poll.getPollVoters": {
+      "post": {
+        "tags": [
+          "poll"
+        ],
+        "description": "Retrieves a paginated list of the users who picked an answer",
+        "summary": "Get poll voters",
+        "operationId": "poll.getPollVoters",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pollId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-fA-F]{24}$",
+                    "description": "The ID of the poll"
+                  },
+                  "optionId": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9,
+                    "description": "The answer to list voters for"
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 20
+                  },
+                  "cursor": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "pollId",
+                  "optionId"
                 ],
                 "additionalProperties": false
               }
@@ -1478,72 +1621,6 @@
                 },
                 "required": [
                   "upgradeType"
-                ],
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
-    },
-    "/worker.getWorkers": {
-      "post": {
-        "tags": [
-          "worker"
-        ],
-        "description": "Get workers for a company or user",
-        "summary": "Get workers",
-        "operationId": "worker.getWorkers",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "companyId": {
-                    "type": "string"
-                  },
-                  "userId": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
-    },
-    "/worker.getTotalWorkersCount": {
-      "post": {
-        "tags": [
-          "worker"
-        ],
-        "description": "Get total workers count for a user",
-        "summary": "Get total workers count",
-        "operationId": "worker.getTotalWorkersCount",
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "userId": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "userId"
                 ],
                 "additionalProperties": false
               }

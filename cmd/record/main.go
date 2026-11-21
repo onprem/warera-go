@@ -220,6 +220,9 @@ func loadSeedValues(fixturesDir string) map[string]any {
 		"perPage":          10,
 		"type":             "last",
 		"rankingType":      "countryDamages",
+		// A closed poll, so its recorded results stay stable.
+		"pollId":   "6af8a2ba9c3436ee1b0fc90f",
+		"optionId": 0,
 	}
 
 	// Refine IDs from existing local fixtures if available
@@ -314,17 +317,16 @@ func loadSeedValues(fixturesDir string) map[string]any {
 			seeds["companyId"] = company.ID
 		}
 	}
-	if data, err := os.ReadFile(filepath.Join(fixturesDir, "workOffer.getWorkOffersPaginated.json")); err == nil {
-		var offers struct {
-			Items []struct {
-				ID      string `json:"_id"`
-				Company string `json:"company"`
-			} `json:"items"`
-		}
-		if json.Unmarshal(data, &offers) == nil && len(offers.Items) > 0 && offers.Items[0].ID != "" {
-			seeds["workOfferId"] = offers.Items[0].ID
-			if offers.Items[0].Company != "" {
-				seeds["companyId"] = offers.Items[0].Company
+	if _, ok := seeds["entityId"]; !ok {
+		seeds["entityId"] = seeds["countryId"]
+	}
+	if _, ok := seeds["companyId"]; !ok {
+		if data, err := os.ReadFile(filepath.Join(fixturesDir, "company.getCompanies.json")); err == nil {
+			var page struct {
+				Items []string `json:"items"`
+			}
+			if json.Unmarshal(data, &page) == nil && len(page.Items) > 0 {
+				seeds["companyId"] = page.Items[0]
 			}
 		}
 	}

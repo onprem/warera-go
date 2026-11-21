@@ -1,23 +1,100 @@
 {
-  "__v": 0,
   "_id": "6813b6e83e57e0601e792b03",
+  "country": "6813b6d446e731854c7ac7a6",
   "congressMembers": [
-    "6a66539265620c6b4a736492",
     "69a83f1befcbb35899902a9b",
-    "69d6d158a00c0386d7b71547",
-    "6a870dee9d715a83e07033ce",
+    "6a554e79947efb3c9a562d37",
+    "681ecfe0f6f19b81b6328841",
+    "6a93fadc6c6a2559699a8979",
     "69f2390512b625e04067ba0b"
   ],
-  "country": "6813b6d446e731854c7ac7a6",
+  "__v": 0,
   "dates": {
     "announcementCreatedAts": [
       "2026-08-17T05:21:28.539Z"
     ],
-    "lastAnnouncementAt": "2026-10-10T11:40:26.106Z"
+    "lastAnnouncementAt": "2026-11-18T19:13:19.342Z"
   },
-  "minOfDefense": "69d6d158a00c0386d7b71547",
-  "minOfEconomy": "69a44c4c9167d51bf91ddb6c",
-  "minOfForeignAffairs": "6a1308904b3dcd65ea510ac0",
-  "president": "69dca497f8d47c04e5846f8f",
-  "vicePresident": "69b9b6302ebd7a671ed79c31"
+  "president": "69b9b6302ebd7a671ed79c31",
+  "vicePresident": "6a1308904b3dcd65ea510ac0",
+  "ministers": [
+    {
+      "user": "6a66539265620c6b4a736492",
+      "title": "minOfForeignAffairs",
+      "rights": [
+        "setOrders",
+        "openBattle",
+        "pinArticle",
+        "pinMessage",
+        "postAnnouncement"
+      ],
+      "appointedAt": "2026-11-07T15:19:11.485Z",
+      "badgeGrantedAt": "2026-11-07T15:19:11.485Z"
+    },
+    {
+      "user": "681ecfe0f6f19b81b6328841",
+      "title": "advisor",
+      "customTitle": "oberbünzli",
+      "rights": [],
+      "appointedAt": "2026-11-07T16:53:18.504Z"
+    },
+    {
+      "user": "69a83f1befcbb35899902a9b",
+      "title": "minOfDefense",
+      "customTitle": "Mercguy",
+      "rights": [
+        "setOrders",
+        "manageStateArmyMembers"
+      ],
+      "appointedAt": "2026-11-07T16:54:31.704Z"
+    },
+    {
+      "user": "69f2390512b625e04067ba0b",
+      "title": "chiefOfStaff",
+      "customTitle": "Gamingminister",
+      "rights": [],
+      "appointedAt": "2026-11-07T16:59:37.503Z"
+    },
+    {
+      "user": "6a554e79947efb3c9a562d37",
+      "title": "minOfCommunication",
+      "customTitle": "Nationaltrainer",
+      "rights": [],
+      "appointedAt": "2026-11-07T17:06:09.721Z"
+    },
+    {
+      "user": "69a44c4c9167d51bf91ddb6c",
+      "title": "minOfDefense",
+      "rights": [
+        "setOrders",
+        "openBattle",
+        "upgradeRegion",
+        "manageMercenaryContracts",
+        "manageMercenaryContractProposals",
+        "manageResistance",
+        "pinArticle",
+        "pinMessage",
+        "postAnnouncement",
+        "registerTournament",
+        "manageStateArmyMembers"
+      ],
+      "appointedAt": "2026-11-15T15:03:40.550Z"
+    },
+    {
+      "user": "69f75bd535ea7fe7f90a4630",
+      "title": "minOfEconomy",
+      "customTitle": "Sugarmommy",
+      "rights": [
+        "manageInventory",
+        "manageMercenaryContracts",
+        "manageMercenaryContractProposals",
+        "pinArticle",
+        "pinMessage",
+        "postAnnouncement",
+        "setOrders",
+        "manageStateArmyMembers"
+      ],
+      "appointedAt": "2026-11-17T19:41:59.832Z"
+    }
+  ]
 }

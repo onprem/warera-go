@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "_id": "6af94e423076ab3d2b5fe54d",
+      "poll": "6af8a2ba9c3436ee1b0fc90f",
+      "user": "692a967278eab26a65ecf084",
+      "options": [
+        0
+      ],
+      "version": 0,
+      "createdAt": "2026-11-15T06:16:34.557Z",
+      "updatedAt": "2026-11-15T06:16:34.557Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af8d37a8f11492decec9ff6",
+      "poll": "6af8a2ba9c3436ee1b0fc90f",
+      "user": "6a15925e5135ae475f1d5aad",
+      "options": [
+        0
+      ],
+      "version": 0,
+      "createdAt": "2026-11-14T21:32:42.324Z",
+      "updatedAt": "2026-11-14T21:32:42.324Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af8c18586bf4e03e3271a8f",
+      "poll": "6af8a2ba9c3436ee1b0fc90f",
+      "user": "69a14b324d2abd93de74dc0a",
+      "options": [
+        0
+      ],
+      "version": 0,
+      "createdAt": "2026-11-14T20:16:05.101Z",
+      "updatedAt": "2026-11-14T20:16:05.101Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af8a5ea7f7affadb69ca729",
+      "poll": "6af8a2ba9c3436ee1b0fc90f",
+      "user": "69025adcfe0f15858fead462",
+      "options": [
+        0
+      ],
+      "version": 0,
+      "createdAt": "2026-11-14T18:18:18.084Z",
+      "updatedAt": "2026-11-14T18:18:18.084Z",
+      "__v": 0
+    },
+    {
+      "_id": "6af8a4a43a94cc3a9e53c56e",
+      "poll": "6af8a2ba9c3436ee1b0fc90f",
+      "user": "6a64ebb4242243db40b78951",
+      "options": [
+        0
+      ],
+      "version": 0,
+      "createdAt": "2026-11-14T18:12:52.090Z",
+      "updatedAt": "2026-11-14T18:12:52.090Z",
+      "__v": 0
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0xMS0xNFQxODoxMjo1Mi4wOTBaIn0seyJ0Ijoic3RyIiwidiI6IjZhZjhhNGE0M2E5NGNjM2E5ZTUzYzU2ZSJ9XQ"
+}

@@ -1,0 +1,40 @@
+{
+  "_id": "6af8a2ba9c3436ee1b0fc90f",
+  "author": "69a74ba543bacf277582fe11",
+  "question": "Moderation in Warera",
+  "options": [
+    {
+      "id": 0,
+      "text": "Is perfect",
+      "votes": 6
+    },
+    {
+      "id": 1,
+      "text": "ok, but need changes",
+      "votes": 18
+    },
+    {
+      "id": 2,
+      "text": "bad",
+      "votes": 46
+    },
+    {
+      "id": 3,
+      "text": "Nuke it (average council suggestion)",
+      "votes": 105
+    }
+  ],
+  "allowMultiple": false,
+  "durationHours": 24,
+  "totalVoters": 175,
+  "createdAt": "2026-11-14T18:04:42.270Z",
+  "updatedAt": "2026-11-15T18:07:11.324Z",
+  "__v": 0,
+  "article": "6af8647acaad6a1b42c62af6",
+  "startedAt": "2026-11-14T18:08:24.368Z",
+  "endsAt": "2026-11-15T18:08:24.368Z",
+  "isEnded": true,
+  "myVote": null,
+  "canVote": false,
+  "cannotVoteReason": "ended"
+}

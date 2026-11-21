@@ -1,110 +1,117 @@
 {
-  "__v": 60,
   "_id": "6813b6d446e731854c7ac7a6",
-  "allianceId": "6a935ce802f2f04bc1213e54",
-  "allies": [],
-  "averageDevelopment": 31.68,
+  "name": "Switzerland",
   "code": "ch",
-  "coreDevelopment": 38.024906322519854,
-  "currentBattleOrder": "68483964923f714ccb673b0f",
-  "currentDevelopment": 25.34,
-  "currentPopulation": 34,
-  "dates": {
-    "lastAllianceLeftAt": "2026-09-21T19:32:40.811Z"
+  "money": 3.3300000000000294,
+  "orgs": [
+    "6813b6e83e57e0601e792b05"
+  ],
+  "taxes": {
+    "income": 1,
+    "market": 1,
+    "manager": 1
   },
+  "allies": [],
+  "warsWith": [],
+  "scheme": "red",
+  "mapAccent": "normal",
+  "__v": 60,
+  "strategicResources": {
+    "resources": {}
+  },
+  "rankings": {
+    "weeklyCountryDamages": {
+      "value": 22088929,
+      "rank": 141,
+      "tier": "bronze"
+    },
+    "weeklyCountryDamagesPerCitizen": {
+      "value": 920372.0416666666,
+      "rank": 138,
+      "tier": "bronze"
+    },
+    "countryDamages": {
+      "value": 554423239,
+      "rank": 148,
+      "tier": "bronze"
+    },
+    "countryRegionDiff": {
+      "value": -1,
+      "rank": 120,
+      "tier": "bronze"
+    },
+    "countryDevelopment": {
+      "value": 51.38,
+      "rank": 114,
+      "tier": "bronze"
+    },
+    "countryWealth": {
+      "value": 44100.29155743913,
+      "rank": 18,
+      "tier": "platinum"
+    },
+    "countryActivePopulation": {
+      "value": 24,
+      "rank": 92,
+      "tier": "silver"
+    },
+    "countryBounty": {
+      "value": 8624.216662544088,
+      "rank": 164,
+      "tier": "bronze"
+    }
+  },
+  "currentBattleOrder": "68483964923f714ccb673b0f",
+  "updatedAt": "2026-11-21T15:04:33.937Z",
+  "discordUrl": "https://discord.gg/hbu989ZY6M",
+  "unrest": {
+    "bar": 107,
+    "lastContributionAt": "2026-10-28T16:57:52.971Z",
+    "barMax": 1926
+  },
+  "nonAggressionUntil": {
+    "6813b6d446e731854c7ac79a": "2026-08-08T05:03:34.307Z",
+    "696a81da63e2489f47e5a28c": "2026-08-07T05:15:02.009Z",
+    "6813b6d446e731854c7ac7fe": "2026-06-02T16:42:53.999Z",
+    "6813b6d446e731854c7ac7ac": "2026-11-01T13:45:06.958Z",
+    "6813b6d446e731854c7ac79e": "2026-06-05T20:02:13.806Z",
+    "6813b6d446e731854c7ac7a2": "2026-10-02T07:55:30.739Z",
+    "6873d0ea1758b40e712b5ee9": "2026-07-05T12:31:37.851Z",
+    "6813b6d546e731854c7ac8a6": "2026-11-13T06:28:14.784Z",
+    "6813b6d546e731854c7ac85f": "2026-07-12T16:38:23.911Z",
+    "6813b6d446e731854c7ac7a4": "2026-08-08T11:27:23.811Z",
+    "6813b6d446e731854c7ac7ba": "2026-08-26T15:52:59.318Z",
+    "6813b6d546e731854c7ac817": "2026-08-28T08:33:16.267Z",
+    "6813b6d446e731854c7ac79c": "2026-10-30T01:59:53.646Z",
+    "683ddd2c24b5a2e114af15c5": "2026-11-10T17:19:34.996Z",
+    "6adf5d1d58ce8dc7669676bb": "2026-11-11T09:17:04.552Z"
+  },
+  "coreDevelopment": 77.06923217168837,
+  "averageDevelopment": 64.22,
+  "currentDevelopment": 51.38,
+  "currentPopulation": 29,
   "defensivePacts": [
     "6813b6d446e731854c7ac7fe",
     "6813b6d546e731854c7ac871",
     "6813b6d446e731854c7ac808",
     "683ddd2c24b5a2e114af15d5",
     "6813b6d446e731854c7ac7f8",
-    "683ddd2c24b5a2e114af15b7"
-  ],
-  "discordUrl": "https://discord.gg/hbu989ZY6M",
-  "mapAccent": "normal",
-  "money": 3.3300000000000294,
-  "name": "Switzerland",
-  "nonAggressionUntil": {
-    "6813b6d446e731854c7ac79a": "2026-08-08T05:03:34.307Z",
-    "6813b6d446e731854c7ac79c": "2026-10-17T12:08:01.499Z",
-    "6813b6d446e731854c7ac79e": "2026-06-05T20:02:13.806Z",
-    "6813b6d446e731854c7ac7a2": "2026-10-02T07:55:30.739Z",
-    "6813b6d446e731854c7ac7a4": "2026-08-08T11:27:23.811Z",
-    "6813b6d446e731854c7ac7ac": "2026-06-08T08:20:41.391Z",
-    "6813b6d446e731854c7ac7ba": "2026-08-26T15:52:59.318Z",
-    "6813b6d446e731854c7ac7fe": "2026-06-02T16:42:53.999Z",
-    "6813b6d546e731854c7ac817": "2026-08-28T08:33:16.267Z",
-    "6813b6d546e731854c7ac85f": "2026-07-12T16:38:23.911Z",
-    "6813b6d546e731854c7ac8a6": "2026-07-12T18:06:09.167Z",
-    "6873d0ea1758b40e712b5ee9": "2026-07-05T12:31:37.851Z",
-    "696a81da63e2489f47e5a28c": "2026-08-07T05:15:02.009Z"
-  },
-  "orgs": [
-    "6813b6e83e57e0601e792b05"
+    "683ddd2c24b5a2e114af15b7",
+    "6813b6d546e731854c7ac890"
   ],
   "pinnedArticle": "69dd4e9aa03070cad5196c55",
-  "rankings": {
-    "countryActivePopulation": {
-      "rank": 91,
-      "tier": "silver",
-      "value": 26
-    },
-    "countryBounty": {
-      "rank": 158,
-      "tier": "bronze",
-      "value": 7542.297191644085
-    },
-    "countryDamages": {
-      "rank": 145,
-      "tier": "bronze",
-      "value": 407465608
-    },
-    "countryDevelopment": {
-      "rank": 89,
-      "tier": "silver",
-      "value": 25.34
-    },
-    "countryProductionBonus": {
-      "rank": 93,
-      "tier": "silver",
-      "value": 0
-    },
-    "countryRegionDiff": {
-      "rank": 83,
-      "tier": "silver",
-      "value": -1
-    },
-    "countryWealth": {
-      "rank": 26,
-      "tier": "platinum",
-      "value": 33026.179616281865
-    },
-    "weeklyCountryDamages": {
-      "rank": 150,
-      "tier": "bronze",
-      "value": 8428986
-    },
-    "weeklyCountryDamagesPerCitizen": {
-      "rank": 141,
-      "tier": "bronze",
-      "value": 324191.76923076925
-    }
+  "dates": {
+    "govTypeChangedAt": "2026-11-16T19:42:25.037Z"
   },
-  "rulingParty": "6a1a2ca8c80c51f511a77166",
-  "scheme": "red",
-  "specializedItem": "livestock",
-  "taxes": {
-    "income": 1,
-    "market": 1,
-    "selfWork": 1
+  "allianceId": "6a935ce802f2f04bc1213e54",
+  "income": {
+    "development": 2.1408,
+    "strategicResourcesBonus": 1.0704,
+    "employeeIncomeTax": 0.9472,
+    "managerIncomeTax": 0.0173,
+    "govType": 0,
+    "total": 4.1758
   },
-  "unrest": {
-    "bar": 100,
-    "barMax": 1901,
-    "lastContributionAt": "2026-10-06T11:16:54.543Z"
-  },
-  "updatedAt": "2026-10-17T17:30:07.585Z",
-  "warsWith": [
-    "6813b6d546e731854c7ac8a6"
-  ]
+  "govType": "federation",
+  "rulingParty": "6a1a2ca8c80c51f511a77166"
 }

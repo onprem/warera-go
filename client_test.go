@@ -131,17 +131,17 @@ func TestClient_Countries_GetByID_Fixture(t *testing.T) {
 	if country.Code != "ch" {
 		t.Errorf("expected ch, got %s", country.Code)
 	}
-	if country.CurrentPopulation != 34 {
-		t.Errorf("expected population 34, got %d", country.CurrentPopulation)
+	if country.CurrentPopulation != 29 {
+		t.Errorf("expected population 29, got %d", country.CurrentPopulation)
 	}
 	if country.Money < 3.0 {
 		t.Errorf("expected money > 3.0, got %f", country.Money)
 	}
-	if len(country.DefensivePacts) != 6 {
-		t.Errorf("expected 6 defensive pacts, got %d", len(country.DefensivePacts))
+	if len(country.DefensivePacts) != 7 {
+		t.Errorf("expected 7 defensive pacts, got %d", len(country.DefensivePacts))
 	}
-	if popRank, ok := country.Rankings["countryActivePopulation"]; !ok || popRank.Rank != 91 {
-		t.Errorf("expected countryActivePopulation rank 91, got %+v", popRank)
+	if popRank, ok := country.Rankings["countryActivePopulation"]; !ok || popRank.Rank != 92 {
+		t.Errorf("expected countryActivePopulation rank 92, got %+v", popRank)
 	}
 }
 
@@ -416,20 +416,20 @@ func TestClient_SearchUsers_Fixture(t *testing.T) {
 	}
 
 	u := users[0]
-	if u.ID != "6aa7ad06d91c79361d0b0673" {
-		t.Errorf("expected ID 6aa7ad06d91c79361d0b0673, got %s", u.ID)
+	if u.ID != "6aa84e5b26c29f31986b9b6c" {
+		t.Errorf("expected ID 6aa84e5b26c29f31986b9b6c, got %s", u.ID)
 	}
-	if u.Username != "Kautilya" {
-		t.Errorf("expected Username Kautilya, got %s", u.Username)
+	if u.Username != "Don_Rico" {
+		t.Errorf("expected Username Don_Rico, got %s", u.Username)
 	}
-	if u.Level() != 24 {
-		t.Errorf("expected Level 24, got %d", u.Level())
+	if u.Level() != 36 {
+		t.Errorf("expected Level 36, got %d", u.Level())
 	}
-	if u.MilitaryRank != 31 {
-		t.Errorf("expected military rank 31, got %d", u.MilitaryRank)
+	if u.MilitaryRank != 89 {
+		t.Errorf("expected military rank 89, got %d", u.MilitaryRank)
 	}
-	if u.MUID != "6aa9311d8af2bd246aff6189" {
-		t.Errorf("expected MU 6aa9311d8af2bd246aff6189, got %s", u.MUID)
+	if u.MUID != "6889f06a86a27544e6ab0653" {
+		t.Errorf("expected MU 6889f06a86a27544e6ab0653, got %s", u.MUID)
 	}
 }
 
@@ -475,17 +475,17 @@ func TestClient_Battles_List_Fixture(t *testing.T) {
 	}
 
 	b := page.Items[0]
-	if b.ID != "6ad3b89d7b158f464a343664" {
-		t.Errorf("expected battle ID 6ad3b89d7b158f464a343664, got %s", b.ID)
+	if b.ID != "6b01a9d57bfcc91ee79891c5" {
+		t.Errorf("expected battle ID 6b01a9d57bfcc91ee79891c5, got %s", b.ID)
 	}
-	if b.AttackerCountry() != "6813b6d446e731854c7ac7ba" {
-		t.Errorf("expected attacker country 6813b6d446e731854c7ac7ba, got %s", b.AttackerCountry())
+	if b.AttackerCountry() != "6813b6d546e731854c7ac852" {
+		t.Errorf("expected attacker country 6813b6d546e731854c7ac852, got %s", b.AttackerCountry())
 	}
-	if b.DefenderCountry() != "6813b6d446e731854c7ac7bc" {
-		t.Errorf("expected defender country 6813b6d446e731854c7ac7bc, got %s", b.DefenderCountry())
+	if b.DefenderCountry() != "6813b6d446e731854c7ac7a2" {
+		t.Errorf("expected defender country 6813b6d446e731854c7ac7a2, got %s", b.DefenderCountry())
 	}
-	if b.DefenderRegion() != "6813b7059403bc4170a5d79b" {
-		t.Errorf("expected defender region 6813b7059403bc4170a5d79b, got %s", b.DefenderRegion())
+	if b.DefenderRegion() != "6813b7039403bc4170a5d69f" {
+		t.Errorf("expected defender region 6813b7039403bc4170a5d69f, got %s", b.DefenderRegion())
 	}
 	if b.CurrentRound == nil || b.CurrentRound.Number != 1 {
 		t.Errorf("expected CurrentRound number 1, got %+v", b.CurrentRound)
@@ -642,8 +642,8 @@ func TestClient_Companies_GetByID_Fixture(t *testing.T) {
 	if company.Name != "Asle ka Masla" {
 		t.Errorf("expected Name 'Asle ka Masla', got %s", company.Name)
 	}
-	if company.ItemCode != "lead" {
-		t.Errorf("expected ItemCode lead, got %s", company.ItemCode)
+	if company.ItemCode != "iron" {
+		t.Errorf("expected ItemCode iron, got %s", company.ItemCode)
 	}
 	if company.ConcreteInvested != 400 {
 		t.Errorf("expected ConcreteInvested 400, got %v", company.ConcreteInvested)
@@ -690,14 +690,14 @@ func TestClient_Regions_GetByID_Fixture(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	if region.ID != "6813b7059403bc4170a5d79b" {
-		t.Errorf("expected ID 6813b7059403bc4170a5d79b, got %s", region.ID)
+	if region.ID != "6813b7039403bc4170a5d69f" {
+		t.Errorf("expected ID 6813b7039403bc4170a5d69f, got %s", region.ID)
 	}
-	if region.Name != "Vojvodina" {
-		t.Errorf("expected Name Vojvodina, got %s", region.Name)
+	if region.Name != "Sardinia" {
+		t.Errorf("expected Name Sardinia, got %s", region.Name)
 	}
-	if region.CountryID != "6813b6d446e731854c7ac7bc" {
-		t.Errorf("expected CountryID 6813b6d446e731854c7ac7bc, got %s", region.CountryID)
+	if region.CountryID != "6813b6d446e731854c7ac7a2" {
+		t.Errorf("expected CountryID 6813b6d446e731854c7ac7a2, got %s", region.CountryID)
 	}
 	if region.Biome != "plains" {
 		t.Errorf("expected Biome plains, got %s", region.Biome)
@@ -788,14 +788,14 @@ func TestClient_Government_GetByCountryID_Fixture(t *testing.T) {
 	if gov.CountryID != "6813b6d446e731854c7ac7a6" {
 		t.Errorf("expected CountryID 6813b6d446e731854c7ac7a6, got %s", gov.CountryID)
 	}
-	if gov.President != "69dca497f8d47c04e5846f8f" {
-		t.Errorf("expected President 69dca497f8d47c04e5846f8f, got %s", gov.President)
+	if gov.President != "69b9b6302ebd7a671ed79c31" {
+		t.Errorf("expected President 69b9b6302ebd7a671ed79c31, got %s", gov.President)
 	}
-	if gov.VicePresident != "69b9b6302ebd7a671ed79c31" {
-		t.Errorf("expected VicePresident 69b9b6302ebd7a671ed79c31, got %s", gov.VicePresident)
+	if gov.VicePresident != "6a1308904b3dcd65ea510ac0" {
+		t.Errorf("expected VicePresident 6a1308904b3dcd65ea510ac0, got %s", gov.VicePresident)
 	}
-	if gov.MinOfDefense != "69d6d158a00c0386d7b71547" {
-		t.Errorf("expected MinOfDefense 69d6d158a00c0386d7b71547, got %s", gov.MinOfDefense)
+	if len(gov.Ministers) == 0 || gov.Ministers[0].UserID != "6a66539265620c6b4a736492" || gov.Ministers[0].Title != "minOfForeignAffairs" {
+		t.Errorf("expected first minister 6a66539265620c6b4a736492 (minOfForeignAffairs), got %+v", gov.Ministers)
 	}
 	if len(gov.CongressMembers) != 5 {
 		t.Errorf("expected 5 congress members, got %d", len(gov.CongressMembers))
@@ -844,16 +844,16 @@ func TestClient_Trading_GetTopOrders_Fixture(t *testing.T) {
 	}
 
 	bestBuy := orders.BestBuy()
-	if bestBuy == nil || bestBuy.Price != 0.833 {
-		t.Errorf("expected best buy price 0.833, got %+v", bestBuy)
+	if bestBuy == nil || bestBuy.Price != 0.796 {
+		t.Errorf("expected best buy price 0.796, got %+v", bestBuy)
 	}
 	if bestBuy.ItemCode != "ammo" {
 		t.Errorf("expected best buy itemCode ammo, got %s", bestBuy.ItemCode)
 	}
 
 	bestSell := orders.BestSell()
-	if bestSell == nil || bestSell.Price != 0.835 {
-		t.Errorf("expected best sell price 0.835, got %+v", bestSell)
+	if bestSell == nil || bestSell.Price != 0.799 {
+		t.Errorf("expected best sell price 0.799, got %+v", bestSell)
 	}
 }
 
@@ -891,20 +891,17 @@ func TestClient_Battles_GetLiveBattleData_Fixture(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	if !live.Battle.IsActive {
-		t.Errorf("expected battle to be active")
+	if live.Battle.IsActive {
+		t.Errorf("expected the recorded battle to be inactive")
 	}
-	if len(live.Battle.AttackerCountryOrders) != 3 {
-		t.Errorf("expected 3 attacker orders, got %d", len(live.Battle.AttackerCountryOrders))
+	if live.Round.AttackerDamages != 1954341 {
+		t.Errorf("expected AttackerDamages 1954341, got %v", live.Round.AttackerDamages)
 	}
-	if live.Round.AttackerDamages != 5063172 {
-		t.Errorf("expected AttackerDamages 5063172, got %v", live.Round.AttackerDamages)
+	if live.Round.DefenderDamages != 5652669 {
+		t.Errorf("expected DefenderDamages 5652669, got %v", live.Round.DefenderDamages)
 	}
-	if live.Round.DefenderDamages != 143523 {
-		t.Errorf("expected DefenderDamages 143523, got %v", live.Round.DefenderDamages)
-	}
-	if live.Round.ActualTickPoints != 1 {
-		t.Errorf("expected ActualTickPoints 1, got %v", live.Round.ActualTickPoints)
+	if live.Round.ActualTickPoints != 4 {
+		t.Errorf("expected ActualTickPoints 4, got %v", live.Round.ActualTickPoints)
 	}
 }
 
@@ -942,17 +939,17 @@ func TestClient_Battles_GetByID_Fixture(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	if b.ID != "6ad3b89d7b158f464a343664" {
-		t.Errorf("expected ID 6ad3b89d7b158f464a343664, got %s", b.ID)
+	if b.ID != "6ad32f78f6dfbfc06adbb239" {
+		t.Errorf("expected ID 6ad32f78f6dfbfc06adbb239, got %s", b.ID)
 	}
-	if b.AttackerCountry() != "6813b6d446e731854c7ac7ba" {
-		t.Errorf("expected attacker country 6813b6d446e731854c7ac7ba, got %s", b.AttackerCountry())
+	if b.AttackerCountry() != "6813b6d446e731854c7ac7b2" {
+		t.Errorf("expected attacker country 6813b6d446e731854c7ac7b2, got %s", b.AttackerCountry())
 	}
-	if b.DefenderCountry() != "6813b6d446e731854c7ac7bc" {
-		t.Errorf("expected defender country 6813b6d446e731854c7ac7bc, got %s", b.DefenderCountry())
+	if b.DefenderCountry() != "6813b6d446e731854c7ac7b6" {
+		t.Errorf("expected defender country 6813b6d446e731854c7ac7b6, got %s", b.DefenderCountry())
 	}
 	// Verify currentRound was unmarshaled into *BattleRound with ID populated from string
-	if b.CurrentRound == nil || b.CurrentRound.ID != "6ad3b89d7b158f464a343666" {
-		t.Errorf("expected CurrentRound with ID 6ad3b89d7b158f464a343666, got %+v", b.CurrentRound)
+	if b.CurrentRound == nil || b.CurrentRound.ID != "6ad38aa5b45be57841a8f974" {
+		t.Errorf("expected CurrentRound with ID 6ad38aa5b45be57841a8f974, got %+v", b.CurrentRound)
 	}
 }

@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "_id": "6b01b50fedc346de82efb906",
+      "itemCode": "scraps",
+      "quantity": 54,
+      "sellerId": "6a64ebb4242243db40b78951",
+      "buyerId": "6a64ebb4242243db40b78951",
+      "transactionType": "dismantleItem",
+      "item": {
+        "_id": "6b0081446f73f23a154b1ba8",
+        "type": "equipment",
+        "code": "helmet4",
+        "skills": {
+          "criticalDamages": 86
+        },
+        "state": 0,
+        "maxState": 100,
+        "quantity": 1,
+        "lastAcquisitionAt": "2026-11-20T17:20:04.067Z"
+      },
+      "createdAt": "2026-11-21T15:13:19.831Z",
+      "updatedAt": "2026-11-21T15:13:19.831Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b50fedc346de82efb8fe",
+      "itemCode": "scraps",
+      "quantity": 54,
+      "sellerId": "6a64ebb4242243db40b78951",
+      "buyerId": "6a64ebb4242243db40b78951",
+      "transactionType": "dismantleItem",
+      "item": {
+        "_id": "6b009b610450a37156f7423a",
+        "type": "equipment",
+        "code": "pants4",
+        "skills": {
+          "armor": 29
+        },
+        "state": 0,
+        "maxState": 100,
+        "quantity": 1,
+        "lastAcquisitionAt": "2026-11-20T17:26:35.431Z"
+      },
+      "createdAt": "2026-11-21T15:13:19.826Z",
+      "updatedAt": "2026-11-21T15:13:19.826Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b50f04c9c39a5dccbdee",
+      "itemCode": "scraps",
+      "quantity": 54,
+      "sellerId": "69ebe461015a1fe42deee08d",
+      "buyerId": "69ebe461015a1fe42deee08d",
+      "transactionType": "dismantleItem",
+      "item": {
+        "_id": "6b01a9e13233d9f84419b3ee",
+        "code": "sniper",
+        "skills": {
+          "attack": 126,
+          "criticalChance": 17
+        },
+        "state": 0,
+        "maxState": 100,
+        "quantity": 1,
+        "lastAcquisitionAt": "2026-11-20T15:47:15.000Z"
+      },
+      "createdAt": "2026-11-21T15:13:19.820Z",
+      "updatedAt": "2026-11-21T15:13:19.820Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b50f177f7609ea49cb07",
+      "money": 65.97,
+      "itemCode": "helmet4",
+      "quantity": 1,
+      "sellerId": "69de692da183f7383e04d4c9",
+      "buyerId": "69b3c280e86aeacd8ca4a7c5",
+      "transactionType": "itemMarket",
+      "item": {
+        "_id": "6b01b50f177f7609ea49cb05",
+        "type": "equipment",
+        "code": "helmet4",
+        "skills": {
+          "criticalDamages": 85
+        },
+        "state": 100,
+        "maxState": 100,
+        "quantity": 1,
+        "lastAcquisitionAt": "2026-11-21T13:37:19.517Z"
+      },
+      "offerCreatedAt": "2026-11-21T13:38:20.732Z",
+      "createdAt": "2026-11-21T15:13:19.698Z",
+      "updatedAt": "2026-11-21T15:13:19.698Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01b50fde325a7279faa371",
+      "money": 7.728,
+      "itemCode": "cookedFish",
+      "quantity": 1,
+      "sellerId": "69b2a9e32895f070b71fd794",
+      "buyerId": "6aba39d03ef803fc25494d9b",
+      "transactionType": "trading",
+      "offerCreatedAt": "2026-11-21T15:11:07.751Z",
+      "createdAt": "2026-11-21T15:13:19.682Z",
+      "updatedAt": "2026-11-21T15:13:19.682Z",
+      "__v": 0
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6ImRhdGUiLCJ2IjoiMjAyNi0xMS0yMVQxNToxMzoxOS42ODJaIn0seyJ0Ijoic3RyIiwidiI6IjZiMDFiNTBmZGUzMjVhNzI3OWZhYTM3MSJ9XQ"
+}

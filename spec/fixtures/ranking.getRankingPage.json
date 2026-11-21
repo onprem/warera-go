@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "_id": "6afb0a039a44817005e461db",
+      "type": "weeklyCountryDamages",
+      "country": "6813b6d446e731854c7ac7aa",
+      "value": 3162148636,
+      "rank": 1,
+      "tier": "master"
+    },
+    {
+      "_id": "6afb0a039a44817005e461da",
+      "type": "weeklyCountryDamages",
+      "country": "6813b6d446e731854c7ac7a0",
+      "value": 3045768760,
+      "rank": 2,
+      "tier": "diamond"
+    },
+    {
+      "_id": "6afb0a039a44817005e461dc",
+      "type": "weeklyCountryDamages",
+      "country": "6813b6d446e731854c7ac79c",
+      "value": 2765518346,
+      "rank": 3,
+      "tier": "diamond"
+    },
+    {
+      "_id": "6afb0a039a44817005e461de",
+      "type": "weeklyCountryDamages",
+      "country": "6813b6d446e731854c7ac7b8",
+      "value": 2480475611,
+      "rank": 4,
+      "tier": "diamond"
+    },
+    {
+      "_id": "6afb0a039a44817005e461dd",
+      "type": "weeklyCountryDamages",
+      "country": "6813b6d446e731854c7ac7a4",
+      "value": 2345897132,
+      "rank": 5,
+      "tier": "diamond"
+    }
+  ],
+  "nextCursor": "v2.W3sidCI6Im51bSIsInYiOjV9LHsidCI6InN0ciIsInYiOiI2YWZiMGEwMzlhNDQ4MTcwMDVlNDYxZGQifV0",
+  "ranking": {
+    "type": "weeklyCountryDamages",
+    "tierValues": {
+      "bronze": 434519,
+      "silver": 78748131,
+      "gold": 159502250,
+      "platinum": 491824170,
+      "diamond": 1236687135,
+      "master": 3162148636
+    },
+    "count": 181,
+    "updatedAt": "2026-11-21T15:00:30.171Z"
+  }
+}

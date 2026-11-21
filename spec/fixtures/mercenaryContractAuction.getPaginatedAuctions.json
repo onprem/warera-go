@@ -1,3 +1,97 @@
 {
-  "items": []
+  "items": [
+    {
+      "_id": "6b01b49e7bfcc91ee7a126b1",
+      "country": "683ddd2c24b5a2e114af1606",
+      "createdBy": "6a68db1cfe754aa18767f9cd",
+      "battle": "6b016c25352772a9f9c5a18d",
+      "forCountry": "683ddd2c24b5a2e114af1606",
+      "forCountrySide": "defender",
+      "minimumDamage": 2000000,
+      "budget": 100,
+      "initialPerK": 0.05,
+      "duration": 5,
+      "professionalsOnly": false,
+      "expiresAt": "2026-11-21T15:16:26.301Z",
+      "currentPerK": 0.05,
+      "currentPayout": 100,
+      "bids": [
+        {
+          "mu": "69b74ee0d9614c51fa0d0b8f",
+          "user": "6a83c006c5ea0a958a5f23fb",
+          "perK": 0.05,
+          "payout": 100,
+          "bidAt": "2026-11-21T15:11:37.605Z"
+        }
+      ],
+      "status": "active",
+      "createdAt": "2026-11-21T15:11:26.304Z",
+      "updatedAt": "2026-11-21T15:11:37.605Z",
+      "__v": 0,
+      "currentWinner": "69b74ee0d9614c51fa0d0b8f",
+      "currentWinnerUser": "6a83c006c5ea0a958a5f23fb"
+    },
+    {
+      "_id": "6b01b4443fe8c7c8b0b699e9",
+      "country": "6813b6d446e731854c7ac7f2",
+      "createdBy": "697f9add92b5608af23fb9c5",
+      "battle": "6b016c2a043e21f5deb6187e",
+      "forCountry": "6813b6d446e731854c7ac7f2",
+      "forCountrySide": "defender",
+      "minimumDamage": 2000000,
+      "budget": 100,
+      "initialPerK": 0.05,
+      "duration": 5,
+      "professionalsOnly": true,
+      "expiresAt": "2026-11-21T15:14:56.888Z",
+      "currentPerK": 0.05,
+      "currentPayout": 100,
+      "bids": [
+        {
+          "mu": "6a86efa8a5f9a6b770c7a17f",
+          "user": "6a2407bd0de023654d38872e",
+          "perK": 0.05,
+          "payout": 100,
+          "bidAt": "2026-11-21T15:12:49.299Z"
+        }
+      ],
+      "status": "active",
+      "createdAt": "2026-11-21T15:09:56.893Z",
+      "updatedAt": "2026-11-21T15:12:49.299Z",
+      "__v": 0,
+      "currentWinner": "6a86efa8a5f9a6b770c7a17f",
+      "currentWinnerUser": "6a2407bd0de023654d38872e"
+    },
+    {
+      "_id": "6b01b442edc346de82eee252",
+      "country": "6813b6d446e731854c7ac7f2",
+      "createdBy": "697f9add92b5608af23fb9c5",
+      "battle": "6b016c2a043e21f5deb6187e",
+      "forCountry": "6813b6d446e731854c7ac7f2",
+      "forCountrySide": "defender",
+      "minimumDamage": 2000000,
+      "budget": 100,
+      "initialPerK": 0.05,
+      "duration": 5,
+      "professionalsOnly": true,
+      "expiresAt": "2026-11-21T15:14:54.534Z",
+      "currentPerK": 0.05,
+      "currentPayout": 100,
+      "bids": [
+        {
+          "mu": "6a3a1b2f2dd2d5a978a3859c",
+          "user": "6a286667b7653239cf232ce5",
+          "perK": 0.05,
+          "payout": 100,
+          "bidAt": "2026-11-21T15:10:03.519Z"
+        }
+      ],
+      "status": "active",
+      "createdAt": "2026-11-21T15:09:54.538Z",
+      "updatedAt": "2026-11-21T15:10:03.520Z",
+      "__v": 0,
+      "currentWinner": "6a3a1b2f2dd2d5a978a3859c",
+      "currentWinnerUser": "6a286667b7653239cf232ce5"
+    }
+  ]
 }

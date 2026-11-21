@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "6afb0a039a44817005e46329",
+    "type": "countryDamages",
+    "country": "6813b6d546e731854c7ac8b2",
+    "value": 574385441,
+    "rank": 147,
+    "tier": "bronze"
+  },
+  {
+    "_id": "6afb0a039a44817005e46325",
+    "type": "countryDamages",
+    "country": "6813b6d446e731854c7ac7a6",
+    "value": 554423239,
+    "rank": 148,
+    "tier": "bronze"
+  },
+  {
+    "_id": "6afb0a039a44817005e46326",
+    "type": "countryDamages",
+    "country": "6813b6d546e731854c7ac823",
+    "value": 553048385,
+    "rank": 149,
+    "tier": "bronze"
+  }
+]

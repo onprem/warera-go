@@ -120,10 +120,11 @@ func generateSource(spec OpenAPISpec) ([]byte, error) {
 		"mu.getManyPaginated":                           "MilitaryUnitFilter",
 		"event.getEventsPaginated":                      "EventFilter",
 		"transaction.getPaginatedTransactions":          "TransactionFilter",
-		"workOffer.getWorkOffersPaginated":              "WorkOfferFilter",
 		"mercenaryContractAuction.getPaginatedAuctions": "MercenaryAuctionFilter",
 		"upgrade.getUpgradeByTypeAndEntity":             "UpgradeFilter",
-		"worker.getWorkers":                             "WorkerFilter",
+		"poll.getPollVoters":                            "PollVoterFilter",
+		"ranking.getRankingPage":                        "RankingPageFilter",
+		"ranking.getRankingAround":                      "RankingAroundFilter",
 	}
 
 	paths := make([]string, 0, len(spec.Paths))

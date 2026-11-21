@@ -1,11 +1,11 @@
 {
-  "allianceIds": [],
-  "countryIds": [],
-  "hasData": true,
-  "muIds": [],
-  "partyIds": [],
-  "regionIds": [],
   "userIds": [
     "6aa7ad06d91c79361d0b0673"
-  ]
+  ],
+  "muIds": [],
+  "countryIds": [],
+  "regionIds": [],
+  "partyIds": [],
+  "allianceIds": [],
+  "hasData": true
 }

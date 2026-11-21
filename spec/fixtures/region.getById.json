@@ -1,56 +1,67 @@
 {
-  "__v": 32,
-  "_id": "6813b7059403bc4170a5d79b",
-  "activeBattle": "6ad3b89d7b158f464a343664",
-  "activeUpgradeLevels": {},
-  "baseDevelopment": 95.77,
-  "biome": "plains",
-  "climate": "moderate",
-  "code": "rs-vojvodina",
-  "country": "6813b6d446e731854c7ac7bc",
-  "countryCode": "rs",
-  "currentPopulation": 118,
-  "dates": {
-    "lastOwnershipChangeAt": "2026-10-13T03:57:05.702Z"
-  },
-  "deposit": {
-    "bonusPercent": 27,
-    "endsAt": "2026-10-20T18:04:03.284Z",
-    "startsAt": "2026-10-15T18:04:03.283Z",
-    "type": "grain"
-  },
-  "development": 95.77,
-  "initialCountry": "6813b6d446e731854c7ac7ba",
+  "_id": "6813b7039403bc4170a5d69f",
+  "code": "it-sardinia",
+  "country": "6813b6d446e731854c7ac7a2",
+  "initialCountry": "6813b6d446e731854c7ac7a2",
+  "neighbors": [
+    "6813b7049403bc4170a5d6cc",
+    "6813b7039403bc4170a5d690",
+    "6813b7049403bc4170a5d6e4",
+    "6813b7099403bc4170a5d990"
+  ],
   "isCapital": false,
   "isLinkedToCapital": true,
-  "lastBattleEndedAt": "2026-10-13T03:57:05.713Z",
-  "lastResistanceContributionAt": "2026-10-17T17:44:11.544Z",
-  "lastRevoltEndedAt": "2026-10-03T00:04:04.380Z",
-  "mainCity": "Subotica",
-  "name": "Vojvodina",
-  "neighbors": [
-    "6813b7049403bc4170a5d726",
-    "6813b7059403bc4170a5d753",
-    "6813b7059403bc4170a5d79e",
-    "6813b7059403bc4170a5d798",
-    "6813b7059403bc4170a5d795",
-    "6813b7059403bc4170a5d78f",
-    "6813b7079403bc4170a5d86d",
-    "6813b7049403bc4170a5d729"
-  ],
-  "population": 59,
+  "upgradesV2": {
+    "upgrades": {
+      "bunker": {
+        "level": 1,
+        "constructionPoints": 0,
+        "investedMoney": 100,
+        "constructionStartedAt": "2025-06-28T01:55:53.785Z",
+        "isUnderConstruction": null,
+        "lastConstructions": [],
+        "status": "active",
+        "constructionEndedAt": "2025-06-28T15:05:57.377Z"
+      }
+    },
+    "activeConstructionCount": 0
+  },
+  "name": "Sardinia",
+  "mainCity": "Cagliari",
+  "development": 116.78,
+  "baseDevelopment": 116.78,
+  "countryCode": "it",
   "position": [
-    19.6676,
-    46.1004
+    9.1217,
+    39.2238
   ],
-  "residents": 93,
-  "resistance": 9577,
-  "resistanceMax": 9577,
+  "biome": "plains",
+  "climate": "moderate",
+  "__v": 32,
+  "resistance": 0,
   "stats": {
     "investedMoney": 0
   },
-  "strategicResource": "uranium",
-  "upgradesV2": {
-    "upgrades": {}
-  }
+  "activeUpgradeLevels": {},
+  "dates": {
+    "lastOwnershipChangeAt": "2026-11-07T19:51:04.704Z"
+  },
+  "resistanceMax": 5839,
+  "lastBattleEndedAt": "2026-11-07T19:51:04.718Z",
+  "lastResistanceContributionAt": "2026-11-06T17:30:49.648Z",
+  "currentPopulation": 55,
+  "population": 30,
+  "residents": 45,
+  "lastRevoltEndedAt": "2026-11-07T19:51:04.717Z",
+  "companyCount": 122,
+  "income": {
+    "development": 4.8658,
+    "strategicResourcesBonus": 2.9195,
+    "employeeIncomeTax": 6.4573,
+    "managerIncomeTax": 0,
+    "govType": 0,
+    "total": 14.2427
+  },
+  "employeeCount": 278,
+  "activeBattle": "6b01a9d57bfcc91ee79891c5"
 }

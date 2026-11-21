@@ -50,14 +50,20 @@ func run() error {
 		if err != nil {
 			return fmt.Errorf("load unit member profiles: %w", err)
 		}
+		// Compact profiles no longer include skills, so load them separately in
+		// one batched request. Results come back in the same order as the IDs.
+		skills, err := client.Users.GetSkillsMany(ctx, unit.Members)
+		if err != nil {
+			return fmt.Errorf("load unit member skills: %w", err)
+		}
 		fmt.Printf("Listed roster: %d members\n", len(members))
 		modeCounts := map[skillmix.Mode]int{}
-		for _, member := range members {
+		for i, member := range members {
 			lastSeen := member.Dates.LastConnectionAt
 			if lastSeen == "" {
 				lastSeen = "not reported"
 			}
-			mix := skillmix.Analyze(member.Skills)
+			mix := skillmix.Analyze(skills[i].Skills)
 			modeCounts[mix.Mode()]++
 			fmt.Printf("- %s | level=%d militaryRank=%d activeFlag=%t lastConnection=%s\n",
 				member.Username, member.Level(), member.MilitaryRank, member.IsActive, lastSeen)

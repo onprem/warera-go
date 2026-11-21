@@ -274,3 +274,123 @@ type UserListItem struct {
 	ID        string `json:"_id"`
 	CreatedAt Time   `json:"createdAt"`
 }
+
+// MapData is the world map the game client draws, as returned by
+// map.getMapData. The geometry fields are left raw so they can be handed to a
+// TopoJSON or GeoJSON library unchanged.
+type MapData struct {
+	// Map is a TopoJSON topology. Its objects include regions, countries,
+	// lands, and label points; each region geometry's properties carry its
+	// regionId, countryId, initialCountryId, resourceType, and neighbors.
+	Map json.RawMessage `json:"map"`
+	// InnerCountriesTopo is a TopoJSON topology of borders inside countries.
+	InnerCountriesTopo json.RawMessage `json:"innerCountriesTopo"`
+	// OverseasLinks is a GeoJSON FeatureCollection of sea connections; each
+	// feature's properties carry fromRegionId and toRegionId.
+	OverseasLinks json.RawMessage `json:"overseasLinks"`
+	DynamicData   MapDynamicData  `json:"dynamicData"`
+	UpdatedAt     Time            `json:"updatedAt"`
+}
+
+// MapDynamicData is the part of the map that changes as battles start and end.
+type MapDynamicData struct {
+	AttackLines []MapAttackLine `json:"attackLines"`
+}
+
+// MapAttackLine is an arrow from an attacking region to the region it
+// attacks, as [longitude, latitude] points.
+type MapAttackLine struct {
+	From [2]float64 `json:"from"`
+	To   [2]float64 `json:"to"`
+}
+
+// MapUpgrade is one region upgrade in the world-wide list returned by
+// upgrade.getMapUpgrades. Use [UpgradeService.GetByTypeAndEntity] for the
+// full upgrade with investments and timings.
+type MapUpgrade struct {
+	ID          string      `json:"_id"`
+	RegionID    string      `json:"region"`
+	UpgradeType UpgradeType `json:"upgradeType"`
+	Level       int         `json:"level"`
+	// Status is "active", "pending", or "disabled".
+	Status string `json:"status"`
+}
+
+// ManagerPointValue is how much a company produces per manager point.
+type ManagerPointValue struct {
+	ProductionPerPoint float64 `json:"productionPerPoint"`
+}
+
+// SanctionType is a kind of moderation action.
+type SanctionType string
+
+// SanctionType values accepted by sanction.getPaginated.
+const (
+	SanctionAcceptBanner               SanctionType = "ACCEPT_BANNER"
+	SanctionAcceptSkin                 SanctionType = "ACCEPT_SKIN"
+	SanctionAddToFamilyGroup           SanctionType = "ADD_TO_FAMILY_GROUP"
+	SanctionBan                        SanctionType = "BAN"
+	SanctionChangeArticleCategory      SanctionType = "CHANGE_ARTICLE_CATEGORY"
+	SanctionDeleteArticle              SanctionType = "DELETE_ARTICLE"
+	SanctionDeleteAssetProposition     SanctionType = "DELETE_ASSET_PROPOSITION"
+	SanctionDeleteMessage              SanctionType = "DELETE_MESSAGE"
+	SanctionDestroyItem                SanctionType = "DESTROY_ITEM"
+	SanctionFineUser                   SanctionType = "FINE_USER"
+	SanctionGiveBadge                  SanctionType = "GIVE_BADGE"
+	SanctionGiveMoneyToUser            SanctionType = "GIVE_MONEY_TO_USER"
+	SanctionMarkTransactionProcessed   SanctionType = "MARK_TRANSACTION_PROCESSED"
+	SanctionMuteUser                   SanctionType = "MUTE_USER"
+	SanctionRemoveAllUserOffers        SanctionType = "REMOVE_ALL_USER_OFFERS"
+	SanctionRemoveAvatar               SanctionType = "REMOVE_AVATAR"
+	SanctionRemoveDescription          SanctionType = "REMOVE_DESCRIPTION"
+	SanctionRemoveFromFamilyGroup      SanctionType = "REMOVE_FROM_FAMILY_GROUP"
+	SanctionResetUsername              SanctionType = "RESET_USERNAME"
+	SanctionUnban                      SanctionType = "UNBAN"
+	SanctionUnmarkTransactionProcessed SanctionType = "UNMARK_TRANSACTION_PROCESSED"
+	SanctionUnmuteUser                 SanctionType = "UNMUTE_USER"
+	SanctionWarnUser                   SanctionType = "WARN_USER"
+)
+
+// SanctionFilter selects entries in the public moderation log.
+type SanctionFilter struct {
+	TargetUserID string       `json:"targetUserId,omitempty"`
+	Type         SanctionType `json:"type,omitempty"`
+	Cursor       string       `json:"cursor,omitempty"`
+	Limit        int          `json:"limit,omitempty"`
+}
+
+func (f SanctionFilter) withCursor(cursor string) SanctionFilter { f.Cursor = cursor; return f }
+
+// Sanction is one moderation action against a player.
+type Sanction struct {
+	ID           string       `json:"_id"`
+	TargetUserID string       `json:"targetUser"`
+	Data         SanctionData `json:"data"`
+	CreatedAt    Time         `json:"createdAt"`
+	UpdatedAt    Time         `json:"updatedAt"`
+	Version      int          `json:"__v"`
+}
+
+// SanctionData describes a moderation action. Which fields are set depends
+// on Type.
+type SanctionData struct {
+	Type SanctionType `json:"type"`
+	// Reason is set for bans, unbans, mutes, unmutes, and fines.
+	Reason string `json:"reason"`
+	// Message is the warning shown to the player.
+	Message string `json:"message"`
+	// MessageID is the chat message a moderator deleted.
+	MessageID         string  `json:"messageId"`
+	BanDurationInDays float64 `json:"banDurationInDays"`
+	UnbannedAt        Time    `json:"unbannedAt"`
+	// RemoveDamages reports whether a ban also removed the player's damage.
+	RemoveDamages   bool    `json:"removeDamages"`
+	DurationInHours float64 `json:"durationInHours"`
+	UnMuteAt        Time    `json:"unMuteAt"`
+	// Amount is a fine in money.
+	Amount         float64 `json:"amount"`
+	BadgeType      string  `json:"badgeType"`
+	TargetUsername string  `json:"targetUsername"`
+	OldUsername    string  `json:"oldUsername"`
+	NewUsername    string  `json:"newUsername"`
+}

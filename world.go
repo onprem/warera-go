@@ -64,6 +64,20 @@ func (s *RegionService) GetAll(ctx context.Context) (map[string]Region, error) {
 	return regions, nil
 }
 
+// GetMapData returns the world map the game client draws: region and country
+// shapes as TopoJSON, sea links, and the arrows of ongoing attacks. The
+// response is large (about 3 MB), so fetch it once and refresh it rarely; use
+// [RegionService.GetAll] for who owns each region now.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
+func (s *RegionService) GetMapData(ctx context.Context) (*MapData, error) {
+	var data MapData
+	if err := s.client.trpc.Call(ctx, "map.getMapData", nil, &data); err != nil {
+		return nil, err
+	}
+	return &data, nil
+}
+
 // --- Government Service ---
 
 // GovernmentService handles country government hierarchies.

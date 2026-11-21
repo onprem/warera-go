@@ -50,7 +50,7 @@ The client exposes one service per area of the game:
 | Players and community | `Users`, `Search`, `Articles`, `Polls`, `Events`, `Rankings` (including history), `Leagues` |
 | Game data | `GameConfig`, `Upgrades`, `Inventory` |
 
-Most procedures come from WarEra's [published OpenAPI document](https://api2.warera.io/openapi.json). Employees, managers, politics, markets beyond prices and top orders, and the newer military procedures are served by the API without being listed there; they need an API key and may change without notice. The SDK does not wrap procedures that act on the caller's own account or that API keys are not allowed to call.
+Most procedures come from WarEra's [published OpenAPI document](https://api2.warera.io/openapi.json). Employees, managers, politics, markets beyond prices and top orders, the map, the moderation log, and the newer military procedures are served by the API without being listed there; their documentation is marked `Unstable:` because they may change without notice. Only the employee procedures need an API key. The SDK does not wrap procedures that act on the caller's own account or that API keys are not allowed to call.
 
 ## Documentation and examples
 

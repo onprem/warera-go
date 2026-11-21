@@ -58,6 +58,8 @@ func (s *CompanyService) All(ctx context.Context, filter CompanyFilter) iter.Seq
 
 // GetProductionBonus returns a company's production bonus percent by source.
 // The procedure is not listed in WarEra's published OpenAPI document.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *CompanyService) GetProductionBonus(ctx context.Context, companyID string) (*CompanyProductionBonus, error) {
 	var bonus CompanyProductionBonus
 	if err := s.client.trpc.Call(ctx, "company.getProductionBonus", getCompanyByIdInput{CompanyID: companyID}, &bonus); err != nil {

@@ -39,6 +39,8 @@ var serviceCases = []struct {
 	}},
 	{"Regions.GetAll", "region.getRegionsObject", "{}", func(ctx context.Context, c *warera.Client) error { return ret(c.Regions.GetAll(ctx)) }},
 	{"Regions.GetByID", "region.getById", `{"regionId":"r1"}`, func(ctx context.Context, c *warera.Client) error { return ret(c.Regions.GetByID(ctx, "r1")) }},
+	{"Regions.GetMapData", "map.getMapData", "", func(ctx context.Context, c *warera.Client) error { return ret(c.Regions.GetMapData(ctx)) }},
+	{"Upgrades.GetMapUpgrades", "upgrade.getMapUpgrades", "", func(ctx context.Context, c *warera.Client) error { return ret(c.Upgrades.GetMapUpgrades(ctx)) }},
 	{"Upgrades.GetByTypeAndEntity", "upgrade.getUpgradeByTypeAndEntity", `{"upgradeType":"bunker","regionId":"r1"}`, func(ctx context.Context, c *warera.Client) error {
 		return ret(c.Upgrades.GetByTypeAndEntity(ctx, warera.UpgradeFilter{UpgradeType: warera.UpgradeTypeBunker, RegionID: "r1"}))
 	}},
@@ -109,6 +111,13 @@ var serviceCases = []struct {
 		return ret(warera.Collect(c.Managers.AllOffers(ctx, warera.ManagerOfferFilter{CountryID: "c1"}), 1))
 	}},
 	{"Managers.GetWageStats", "managerOffer.getWageStats", "{}", func(ctx context.Context, c *warera.Client) error { return ret(c.Managers.GetWageStats(ctx)) }},
+	{"Managers.GetPointValue", "employee.getManagerPointValue", `{"companyId":"co1"}`, func(ctx context.Context, c *warera.Client) error { return ret(c.Managers.GetPointValue(ctx, "co1")) }},
+	{"Sanctions.List", "sanction.getPaginated", `{"targetUserId":"u1","type":"BAN","limit":5}`, func(ctx context.Context, c *warera.Client) error {
+		return ret(c.Sanctions.List(ctx, warera.SanctionFilter{TargetUserID: "u1", Type: warera.SanctionBan, Limit: 5}))
+	}},
+	{"Sanctions.All", "sanction.getPaginated", `{"type":"MUTE_USER"}`, func(ctx context.Context, c *warera.Client) error {
+		return ret(warera.Collect(c.Sanctions.All(ctx, warera.SanctionFilter{Type: warera.SanctionMuteUser}), 1))
+	}},
 
 	// Markets and economy.
 	{"Trading.GetPrices", "itemTrading.getPrices", "{}", func(ctx context.Context, c *warera.Client) error { return ret(c.Trading.GetPrices(ctx)) }},

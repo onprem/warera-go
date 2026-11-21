@@ -145,6 +145,8 @@ func (s *UserService) GetLiteMany(ctx context.Context, userIDs []string) (map[st
 // GetSkills returns a player's skills. User.getUserLite no longer includes
 // skills; this calls user.getUserSkills, which the published API description
 // names but does not list.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *UserService) GetSkills(ctx context.Context, userID string) (*UserSkillProfile, error) {
 	var profile UserSkillProfile
 	if err := s.client.trpc.Call(ctx, "user.getUserSkills", getUserByIdInput{UserID: userID}, &profile); err != nil {
@@ -158,6 +160,8 @@ func (s *UserService) GetSkills(ctx context.Context, userID string) (*UserSkillP
 // ignored. When some lookups fail, GetSkillsMany returns the records it found
 // together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
 // to tell missing IDs from other failures.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *UserService) GetSkillsMany(ctx context.Context, userIDs []string) (map[string]UserSkillProfile, error) {
 	return getManyByID[UserSkillProfile](ctx, s.client, "user skills", "user.getUserSkills", userIDs, func(id string) any {
 		return getUserByIdInput{UserID: id}
@@ -222,6 +226,38 @@ func (s *SearchService) SearchUsers(ctx context.Context, searchText string) ([]U
 		}
 	}
 	return users, err
+}
+
+// --- Sanction Service ---
+
+// SanctionService reads the public moderation log: bans, mutes, warnings,
+// fines, and other actions moderators take against players.
+type SanctionService struct {
+	client *Client
+}
+
+// List returns one page of moderation actions matching the filter, newest
+// first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
+func (s *SanctionService) List(ctx context.Context, filter SanctionFilter) (*CursorPage[Sanction], error) {
+	var page CursorPage[Sanction]
+	if err := s.client.trpc.Call(ctx, "sanction.getPaginated", filter, &page); err != nil {
+		return nil, err
+	}
+	return &page, nil
+}
+
+// All returns an iterator over every moderation action matching the filter,
+// newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
+func (s *SanctionService) All(ctx context.Context, filter SanctionFilter) iter.Seq2[Sanction, error] {
+	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Sanction], error) {
+		f := filter
+		f.Cursor = cursor
+		return s.List(c, f)
+	})
 }
 
 // --- Poll Service ---

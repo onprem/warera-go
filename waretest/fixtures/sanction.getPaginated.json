@@ -1,0 +1,142 @@
+{
+  "items": [
+    {
+      "_id": "6b00b11c392635d67a38d135",
+      "targetUser": "6ac4ef919b0ca90327a40159",
+      "data": {
+        "type": "ADD_TO_FAMILY_GROUP",
+        "targetUsername": "Amirbzt"
+      },
+      "createdAt": "2026-11-20T20:44:12.085Z",
+      "updatedAt": "2026-11-20T20:44:12.085Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b007460edc346de82b4ca82",
+      "targetUser": "6b006d2591939320a71a6955",
+      "data": {
+        "type": "BAN",
+        "reason": "multi-account",
+        "banDurationInDays": 9999,
+        "unbannedAt": "2054-04-06T16:25:04.448Z",
+        "removeDamages": false
+      },
+      "createdAt": "2026-11-20T16:25:04.452Z",
+      "updatedAt": "2026-11-20T16:25:04.452Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b007409ca388b09f83eac71",
+      "targetUser": "6b006bfaea7f357b8dabad0d",
+      "data": {
+        "type": "DELETE_MESSAGE",
+        "messageId": "6b006fd40856a61d86514069"
+      },
+      "createdAt": "2026-11-20T16:23:37.764Z",
+      "updatedAt": "2026-11-20T16:23:37.764Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b00aa70e285d6a0255a3bc4",
+      "targetUser": "69967c5df26eabff08d42729",
+      "data": {
+        "type": "FINE_USER",
+        "amount": 577,
+        "reason": "Slaving fine"
+      },
+      "createdAt": "2026-11-20T20:15:44.760Z",
+      "updatedAt": "2026-11-20T20:15:44.760Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b01f3c5496e139281c27e02",
+      "targetUser": "6a56c50639361694332f5696",
+      "data": {
+        "type": "GIVE_BADGE",
+        "badgeType": "translator"
+      },
+      "createdAt": "2026-11-21T19:40:53.397Z",
+      "updatedAt": "2026-11-21T19:40:53.397Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b007e8a1532944f731719a4",
+      "targetUser": "69b311efcbf2b5c108a623af",
+      "data": {
+        "type": "MUTE_USER",
+        "durationInHours": 99999,
+        "unMuteAt": "2038-04-18T08:08:26.748Z",
+        "reason": "Rule 7.3.a: Insults & Rule 7.5: Permanent mute for repeated violations."
+      },
+      "createdAt": "2026-11-20T17:08:26.751Z",
+      "updatedAt": "2026-11-20T17:08:26.751Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b00746451fa73101819d72f",
+      "targetUser": "6b006d2591939320a71a6955",
+      "data": {
+        "type": "REMOVE_AVATAR"
+      },
+      "createdAt": "2026-11-20T16:25:08.084Z",
+      "updatedAt": "2026-11-20T16:25:08.084Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b019a7de285d6a02541189c",
+      "targetUser": "6ab6a73a86acccf45ffbe16b",
+      "data": {
+        "type": "REMOVE_FROM_FAMILY_GROUP"
+      },
+      "createdAt": "2026-11-21T13:19:57.501Z",
+      "updatedAt": "2026-11-21T13:19:57.501Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b00885d3233d9f844af0d4e",
+      "targetUser": "6afe0af55e97c5d7aff8713e",
+      "data": {
+        "type": "RESET_USERNAME",
+        "oldUsername": "epstein",
+        "newUsername": "user_GQ782L"
+      },
+      "createdAt": "2026-11-20T17:50:21.348Z",
+      "updatedAt": "2026-11-20T17:50:21.348Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b00ae7851fa731018634ddf",
+      "targetUser": "6a29ffa15b231a9e2736f33e",
+      "data": {
+        "type": "UNBAN",
+        "reason": "Appeal"
+      },
+      "createdAt": "2026-11-20T20:32:56.242Z",
+      "updatedAt": "2026-11-20T20:32:56.242Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b007fef91939320a7347478",
+      "targetUser": "699c276cb34e1837aa5a253a",
+      "data": {
+        "type": "UNMUTE_USER",
+        "reason": "Be free "
+      },
+      "createdAt": "2026-11-20T17:14:23.996Z",
+      "updatedAt": "2026-11-20T17:14:23.996Z",
+      "__v": 0
+    },
+    {
+      "_id": "6b007c0941b80629f5e64b93",
+      "targetUser": "6a71a1464fbf735a26d5813d",
+      "data": {
+        "type": "WARN_USER",
+        "message": "Your message was deleted. Reason: Rule 7.1: English only In English global chat"
+      },
+      "createdAt": "2026-11-20T16:57:45.676Z",
+      "updatedAt": "2026-11-20T16:57:45.676Z",
+      "__v": 0
+    }
+  ],
+  "nextCursor": "v2.fixture"
+}

@@ -31,13 +31,11 @@
 // [Client.Batch] to submit an explicit batch, or [Client.RawCall] to invoke a
 // procedure without a typed service method.
 //
-// Most services wrap procedures from WarEra's published OpenAPI document. Some
-// wrap procedures the API serves but does not list there: the Employees,
-// Managers, Alliances, Wars, Parties, Elections, MarketStats, Donations,
-// Tournaments, StateArmy, Contributions, and Leagues services, plus
-// Users.GetSkills, Companies.GetProductionBonus, and the methods in
-// politics.go, market.go, and military_units.go. They may change without
-// notice and need an API key.
+// Most services wrap procedures from WarEra's published OpenAPI document. The
+// others wrap procedures the API serves but does not list there; their
+// documentation starts a paragraph with "Unstable:", because they may change
+// without notice. Methods that need an API key say so; the rest also work
+// without one, at the lower rate limit.
 //
 // API errors are available as [TRPCError] and transport failures as
 // [HTTPError]; use [errors.As] to inspect their fields. Bulk lookup methods

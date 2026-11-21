@@ -5,12 +5,10 @@ import (
 	"iter"
 )
 
-// The procedures in this file are served by the WarEra API but are not listed
-// in its published OpenAPI document, so they may change without notice. They
-// require an API key.
-
 // GetMembers returns the damage and help statistics of each member of a
 // military unit.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) GetMembers(ctx context.Context, muID string) ([]MUMember, error) {
 	var members []MUMember
 	if err := s.client.trpc.Call(ctx, "muMember.getByMu", getMilitaryUnitByIDInput{MUID: muID}, &members); err != nil {
@@ -22,6 +20,8 @@ func (s *MilitaryUnitService) GetMembers(ctx context.Context, muID string) ([]MU
 // GetLeague returns a military unit's group in this week's MU league, with the
 // group's standings and how the unit's reward would be shared among its
 // members. League and Me are nil when the unit is not in a league.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) GetLeague(ctx context.Context, muID string) (*MULeague, error) {
 	var league MULeague
 	if err := s.client.trpc.Call(ctx, "muLeague.getMuLeague", getMilitaryUnitByIDInput{MUID: muID}, &league); err != nil {
@@ -32,6 +32,8 @@ func (s *MilitaryUnitService) GetLeague(ctx context.Context, muID string) (*MULe
 
 // GetLeagueDivisionCounts returns how many military units are in each MU
 // league division this week.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) GetLeagueDivisionCounts(ctx context.Context) (*MULeagueDivisionCounts, error) {
 	var counts MULeagueDivisionCounts
 	if err := s.client.trpc.Call(ctx, "muLeague.getDivisionCounts", struct{}{}, &counts); err != nil {
@@ -42,6 +44,8 @@ func (s *MilitaryUnitService) GetLeagueDivisionCounts(ctx context.Context) (*MUL
 
 // GetSponsorship returns a military unit's active or offered state
 // sponsorship, or nil when it has none.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) GetSponsorship(ctx context.Context, muID string) (*MUSponsorship, error) {
 	var sponsorship *MUSponsorship
 	if err := s.client.trpc.Call(ctx, "muSponsorship.getForMu", getMilitaryUnitByIDInput{MUID: muID}, &sponsorship); err != nil {
@@ -56,6 +60,8 @@ type getMUSponsorshipsByCountryInput struct {
 
 // GetSponsorshipsByCountry returns a country's active, offered, and past
 // military unit sponsorships, with the sponsored units' names and sizes.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) GetSponsorshipsByCountry(ctx context.Context, countryID string) (*MUSponsorshipsByCountry, error) {
 	var sponsorships MUSponsorshipsByCountry
 	if err := s.client.trpc.Call(ctx, "muSponsorship.getByCountry", getMUSponsorshipsByCountryInput{CountryID: countryID}, &sponsorships); err != nil {
@@ -66,6 +72,8 @@ func (s *MilitaryUnitService) GetSponsorshipsByCountry(ctx context.Context, coun
 
 // ListActiveSponsorships returns one page of a country's active military unit
 // sponsorships.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) ListActiveSponsorships(ctx context.Context, filter MUSponsorshipFilter) (*MUSponsorshipPage, error) {
 	var page MUSponsorshipPage
 	if err := s.client.trpc.Call(ctx, "muSponsorship.getActiveByCountryPaginated", filter, &page); err != nil {
@@ -76,6 +84,8 @@ func (s *MilitaryUnitService) ListActiveSponsorships(ctx context.Context, filter
 
 // AllActiveSponsorships returns an iterator over every active military unit
 // sponsorship of a country.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) AllActiveSponsorships(ctx context.Context, filter MUSponsorshipFilter) iter.Seq2[MUSponsorship, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[MUSponsorship], error) {
 		f := filter
@@ -90,6 +100,8 @@ func (s *MilitaryUnitService) AllActiveSponsorships(ctx context.Context, filter 
 
 // GetSponsorable returns the military units based in a country that it could
 // sponsor.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MilitaryUnitService) GetSponsorable(ctx context.Context, countryID string) ([]MUSponsorshipCandidate, error) {
 	var units []MUSponsorshipCandidate
 	if err := s.client.trpc.Call(ctx, "muSponsorship.getSponsorable", getMUSponsorshipsByCountryInput{CountryID: countryID}, &units); err != nil {
@@ -121,6 +133,8 @@ type getStateArmyOverviewInput struct {
 // GetOverview returns a country's state army spending over the last days days
 // (1 to 365), totaled by kind, by military unit, and per day. With days 0 the
 // API uses its default period and leaves out the per-day totals.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *StateArmyService) GetOverview(ctx context.Context, countryID string, days int) (*StateArmyOverview, error) {
 	var overview StateArmyOverview
 	if err := s.client.trpc.Call(ctx, "stateArmyExpense.getOverview", getStateArmyOverviewInput{CountryID: countryID, Days: days}, &overview); err != nil {
@@ -131,6 +145,8 @@ func (s *StateArmyService) GetOverview(ctx context.Context, countryID string, da
 
 // ListLedger returns one page of a country's state army expenses, newest
 // first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *StateArmyService) ListLedger(ctx context.Context, filter StateArmyLedgerFilter) (*CursorPage[StateArmyExpense], error) {
 	var page CursorPage[StateArmyExpense]
 	if err := s.client.trpc.Call(ctx, "stateArmyExpense.getLedger", filter, &page); err != nil {
@@ -141,6 +157,8 @@ func (s *StateArmyService) ListLedger(ctx context.Context, filter StateArmyLedge
 
 // AllLedger returns an iterator over every state army expense of a country
 // matching the filter, newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *StateArmyService) AllLedger(ctx context.Context, filter StateArmyLedgerFilter) iter.Seq2[StateArmyExpense, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[StateArmyExpense], error) {
 		f := filter
@@ -187,6 +205,8 @@ type getTournamentTeamInput struct {
 }
 
 // GetByID returns a tournament, including its bracket, by ID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TournamentService) GetByID(ctx context.Context, tournamentID string) (*Tournament, error) {
 	var tournament Tournament
 	if err := s.client.trpc.Call(ctx, "tournament.getById", getTournamentInput{TournamentID: tournamentID}, &tournament); err != nil {
@@ -200,6 +220,8 @@ func (s *TournamentService) GetByID(ctx context.Context, tournamentID string) (*
 // ignored. When some lookups fail, GetMany returns the records it found
 // together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
 // to tell missing IDs from other failures.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TournamentService) GetMany(ctx context.Context, tournamentIDs []string) (map[string]Tournament, error) {
 	return getManyByID[Tournament](ctx, s.client, "tournaments", "tournament.getById", tournamentIDs, func(id string) any {
 		return getTournamentInput{TournamentID: id}
@@ -207,6 +229,8 @@ func (s *TournamentService) GetMany(ctx context.Context, tournamentIDs []string)
 }
 
 // List returns one page of tournaments, newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TournamentService) List(ctx context.Context, filter TournamentFilter) (*CursorPage[Tournament], error) {
 	var page CursorPage[Tournament]
 	if err := s.client.trpc.Call(ctx, "tournament.getManyPaginated", filter, &page); err != nil {
@@ -216,6 +240,8 @@ func (s *TournamentService) List(ctx context.Context, filter TournamentFilter) (
 }
 
 // All returns an iterator over every tournament, newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TournamentService) All(ctx context.Context, filter TournamentFilter) iter.Seq2[Tournament, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Tournament], error) {
 		f := filter
@@ -225,6 +251,8 @@ func (s *TournamentService) All(ctx context.Context, filter TournamentFilter) it
 }
 
 // GetTeam returns a tournament team by ID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TournamentService) GetTeam(ctx context.Context, tournamentTeamID string) (*TournamentTeam, error) {
 	var team TournamentTeam
 	if err := s.client.trpc.Call(ctx, "tournamentTeam.getById", getTournamentTeamInput{TournamentTeamID: tournamentTeamID}, &team); err != nil {
@@ -234,6 +262,8 @@ func (s *TournamentService) GetTeam(ctx context.Context, tournamentTeamID string
 }
 
 // GetTeams returns every team of a tournament.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TournamentService) GetTeams(ctx context.Context, tournamentID string) ([]TournamentTeam, error) {
 	var teams []TournamentTeam
 	if err := s.client.trpc.Call(ctx, "tournamentTeam.getByTournamentId", getTournamentInput{TournamentID: tournamentID}, &teams); err != nil {
@@ -254,6 +284,8 @@ type getActiveBattlesByCountryInput struct {
 
 // GetActiveIDsByCountry returns the IDs of the active battles a country is
 // fighting in.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *BattleService) GetActiveIDsByCountry(ctx context.Context, countryID string) ([]string, error) {
 	var ids []string
 	if err := s.client.trpc.Call(ctx, "battle.getActiveBattlesByCountry", getActiveBattlesByCountryInput{CountryID: countryID}, &ids); err != nil {
@@ -269,6 +301,8 @@ type getPrivateMercenaryDamageInput struct {
 
 // GetPrivateMercenaryDamage returns the damage that mercenaries under private
 // contracts dealt for each side of a battle round.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *BattleRankingService) GetPrivateMercenaryDamage(ctx context.Context, battleID, roundID string) (*BattleMercenaryDamage, error) {
 	var damage BattleMercenaryDamage
 	if err := s.client.trpc.Call(ctx, "battleRanking.getPrivateMercenaryDamage", getPrivateMercenaryDamageInput{BattleID: battleID, RoundID: roundID}, &damage); err != nil {
@@ -295,6 +329,8 @@ type getRegionContributionsInput struct {
 
 // ListCountryUnrest returns one page of contributions to a country's unrest,
 // newest first. Pages are numbered from 1, and 0 requests the first page.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ContributionService) ListCountryUnrest(ctx context.Context, countryID string, page int) (*ContributionPage, error) {
 	var result ContributionPage
 	if err := s.client.trpc.Call(ctx, "contribution.getCountryUnrestContributions", getCountryContributionsInput{CountryID: countryID, Page: page}, &result); err != nil {
@@ -305,6 +341,8 @@ func (s *ContributionService) ListCountryUnrest(ctx context.Context, countryID s
 
 // ListRegion returns one page of contributions to a region's resistance,
 // newest first. Pages are numbered from 1, and 0 requests the first page.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ContributionService) ListRegion(ctx context.Context, regionID string, page int) (*ContributionPage, error) {
 	var result ContributionPage
 	if err := s.client.trpc.Call(ctx, "contribution.getRegionContributions", getRegionContributionsInput{RegionID: regionID, Page: page}, &result); err != nil {
@@ -315,6 +353,8 @@ func (s *ContributionService) ListRegion(ctx context.Context, regionID string, p
 
 // AllCountryUnrest returns an iterator over every contribution to a country's
 // unrest, newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ContributionService) AllCountryUnrest(ctx context.Context, countryID string) iter.Seq2[Contribution, error] {
 	return allContributionPages(ctx, func(ctx context.Context, page int) (*ContributionPage, error) {
 		return s.ListCountryUnrest(ctx, countryID, page)
@@ -323,6 +363,8 @@ func (s *ContributionService) AllCountryUnrest(ctx context.Context, countryID st
 
 // AllRegion returns an iterator over every contribution to a region's
 // resistance, newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ContributionService) AllRegion(ctx context.Context, regionID string) iter.Seq2[Contribution, error] {
 	return allContributionPages(ctx, func(ctx context.Context, page int) (*ContributionPage, error) {
 		return s.ListRegion(ctx, regionID, page)
@@ -359,6 +401,8 @@ type LeagueService struct {
 
 // GetUserLeague returns a user's group in this week's player league and the
 // group's standings. League and Me are nil when the user is not in a league.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *LeagueService) GetUserLeague(ctx context.Context, userID string) (*League, error) {
 	var league League
 	if err := s.client.trpc.Call(ctx, "league.getUserLeague", getUserByIdInput{UserID: userID}, &league); err != nil {
@@ -370,6 +414,8 @@ func (s *LeagueService) GetUserLeague(ctx context.Context, userID string) (*Leag
 // GetHistory returns an entity's daily rank and value in a ranking, oldest
 // first. Days without a snapshot are left out, and an entity that does not
 // belong in the ranking, such as a user in a country ranking, has no history.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *RankingService) GetHistory(ctx context.Context, filter RankingHistoryFilter) ([]RankingSnapshot, error) {
 	var snapshots []RankingSnapshot
 	if err := s.client.trpc.Call(ctx, "rankingSnapshot.getHistory", filter, &snapshots); err != nil {
@@ -384,6 +430,8 @@ type getEntityRecentRanksInput struct {
 
 // GetRecentRanks returns a user's, country's, military unit's, or alliance's
 // daily rank in every ranking it belongs to over roughly the last ten days.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *RankingService) GetRecentRanks(ctx context.Context, entityID string) (*RankingSnapshotRecentRanks, error) {
 	var ranks RankingSnapshotRecentRanks
 	if err := s.client.trpc.Call(ctx, "rankingSnapshot.getEntityRecentRanks", getEntityRecentRanksInput{EntityID: entityID}, &ranks); err != nil {

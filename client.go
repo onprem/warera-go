@@ -79,6 +79,8 @@ type Client struct {
 	MercenaryAuctions *MercenaryAuctionService
 	// Transactions provides access to paginated transaction history.
 	Transactions *TransactionService
+	// Sanctions reads the public moderation log.
+	Sanctions *SanctionService
 }
 
 // NewClient creates a client for the WarEra API. It uses the default API
@@ -143,6 +145,7 @@ func NewClient(opts ...Option) *Client {
 	c.BattleRankings = &BattleRankingService{client: c}
 	c.MercenaryAuctions = &MercenaryAuctionService{client: c}
 	c.Transactions = &TransactionService{client: c}
+	c.Sanctions = &SanctionService{client: c}
 
 	return c
 }
@@ -155,7 +158,8 @@ func (c *Client) Close() {
 }
 
 // RawCall invokes a tRPC procedure that does not have a typed service method.
-// The input is encoded as JSON and output must be a pointer to the destination.
+// The input is encoded as JSON; a nil input sends no input, which procedures
+// that take none require. Output must be a pointer to the destination.
 func (c *Client) RawCall(ctx context.Context, method string, input any, output any) error {
 	return c.trpc.Call(ctx, method, input, output)
 }

@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "6873d1ed8793fd45e0012aa5",
+    "region": "6813b7079403bc4170a5d873",
+    "upgradeType": "base",
+    "level": 3,
+    "status": "active"
+  },
+  {
+    "_id": "6873d1ed8793fd45e00129de",
+    "region": "6813b7039403bc4170a5d6b7",
+    "upgradeType": "base",
+    "level": 1,
+    "status": "disabled"
+  },
+  {
+    "_id": "69ac374800d6543b1ea993a6",
+    "region": "6813b7059403bc4170a5d7bc",
+    "upgradeType": "base",
+    "level": 1,
+    "status": "pending"
+  },
+  {
+    "_id": "6873d1ee8793fd45e0012ab3",
+    "region": "6813b7049403bc4170a5d6f9",
+    "upgradeType": "bunker",
+    "level": 4,
+    "status": "active"
+  },
+  {
+    "_id": "6873d1ed8793fd45e00129e0",
+    "region": "6813b7039403bc4170a5d6a2",
+    "upgradeType": "bunker",
+    "level": 1,
+    "status": "disabled"
+  },
+  {
+    "_id": "6873d1ed8793fd45e00129ec",
+    "region": "6813b7049403bc4170a5d6ea",
+    "upgradeType": "bunker",
+    "level": 3,
+    "status": "pending"
+  },
+  {
+    "_id": "698f5ca028fa2dfcbe1fa392",
+    "region": "696a81f5882256e1db118208",
+    "upgradeType": "pacificationCenter",
+    "level": 1,
+    "status": "active"
+  },
+  {
+    "_id": "698d2817036a4dcaded793ea",
+    "region": "6813b70d9403bc4170a5dbb2",
+    "upgradeType": "pacificationCenter",
+    "level": 1,
+    "status": "disabled"
+  }
+]

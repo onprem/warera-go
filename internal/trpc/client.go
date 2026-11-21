@@ -28,24 +28,16 @@ const (
 	DefaultMaxRetryWait = time.Minute
 )
 
-// VoidInputProcedures contains endpoints where the server rejects `{}` and requires void/no input.
-var VoidInputProcedures = map[string]bool{
-	"gameStat.getWorldDevelopment":   true,
-	"gameStat.getPpMoneyValue":       true,
-	"gameStat.getPpMoneyValueByItem": true,
-}
-
 // ClientConfig holds configuration for the low-level tRPC client.
 type ClientConfig struct {
-	BaseURL             string
-	APIKey              string
-	HTTPClient          *http.Client
-	RateLimitPerMinute  int           // negative auto-detects, zero disables, positive sets a limit
-	BatchWindow         time.Duration // 0 disables transparent batching
-	MaxBatchSize        int           // max items per batch, default 50
-	MaxRetries          int
-	MaxURLLength        int
-	VoidInputProcedures map[string]bool
+	BaseURL            string
+	APIKey             string
+	HTTPClient         *http.Client
+	RateLimitPerMinute int           // negative auto-detects, zero disables, positive sets a limit
+	BatchWindow        time.Duration // 0 disables transparent batching
+	MaxBatchSize       int           // max items per batch, default 50
+	MaxRetries         int
+	MaxURLLength       int
 	// UserAgent is sent with every request.
 	UserAgent string
 	// MaxRetryWait caps how long one retry waits for the server's rate limit
@@ -93,19 +85,17 @@ type WaitInfo struct {
 
 // Client is a low-level tRPC client that handles query encoding, batching, rate limiting, and retries.
 type Client struct {
-	baseURL             string
-	apiKey              string
-	httpClient          *http.Client
-	limiter             *RateLimiter
-	batcher             *Batcher
-	maxRetries          int
-	maxBatchSize        int
-	maxURLLength        int
-	voidInputProcedures map[string]bool
-	mu                  sync.RWMutex
-	userAgent           string
-	maxRetryWait        time.Duration
-	hooks               Hooks
+	baseURL      string
+	apiKey       string
+	httpClient   *http.Client
+	limiter      *RateLimiter
+	batcher      *Batcher
+	maxRetries   int
+	maxBatchSize int
+	maxURLLength int
+	userAgent    string
+	maxRetryWait time.Duration
+	hooks        Hooks
 
 	pauseMu    sync.Mutex
 	pauseUntil time.Time // set when the server reports its quota exhausted
@@ -114,7 +104,7 @@ type Client struct {
 // BatchCall describes a single query within an explicit batch.
 type BatchCall struct {
 	Method string
-	Input  any
+	Input  any // nil sends no input
 	Output any
 	Err    error
 }
@@ -157,26 +147,17 @@ func NewClient(cfg ClientConfig) *Client {
 		maxURLLength = DefaultMaxURLLength
 	}
 
-	voidProcs := make(map[string]bool)
-	for k, v := range VoidInputProcedures {
-		voidProcs[k] = v
-	}
-	for k, v := range cfg.VoidInputProcedures {
-		voidProcs[k] = v
-	}
-
 	c := &Client{
-		baseURL:             baseURL,
-		apiKey:              cfg.APIKey,
-		httpClient:          httpClient,
-		limiter:             NewRateLimiter(rateLimit),
-		maxRetries:          maxRetries,
-		maxBatchSize:        maxBatchSize,
-		maxURLLength:        maxURLLength,
-		voidInputProcedures: voidProcs,
-		userAgent:           cfg.UserAgent,
-		maxRetryWait:        cfg.MaxRetryWait,
-		hooks:               cfg.Hooks,
+		baseURL:      baseURL,
+		apiKey:       cfg.APIKey,
+		httpClient:   httpClient,
+		limiter:      NewRateLimiter(rateLimit),
+		maxRetries:   maxRetries,
+		maxBatchSize: maxBatchSize,
+		maxURLLength: maxURLLength,
+		userAgent:    cfg.UserAgent,
+		maxRetryWait: cfg.MaxRetryWait,
+		hooks:        cfg.Hooks,
 	}
 	if c.maxRetryWait <= 0 {
 		c.maxRetryWait = DefaultMaxRetryWait
@@ -196,13 +177,6 @@ func (c *Client) Close() {
 	}
 }
 
-// isVoidInput reports whether the given method requires no input parameters.
-func (c *Client) isVoidInput(method string) bool {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	return c.voidInputProcedures[method]
-}
-
 // Call performs a tRPC procedure call. If transparent batching is enabled,
 // it joins the current batch window. Otherwise, it executes directly.
 func (c *Client) Call(ctx context.Context, method string, input any, output any) error {
@@ -215,16 +189,12 @@ func (c *Client) Call(ctx context.Context, method string, input any, output any)
 // CallDirect performs an immediate single unbatched call to the tRPC server.
 func (c *Client) CallDirect(ctx context.Context, method string, input any, output any) error {
 	var inputParam string
-	if !c.isVoidInput(method) {
-		if input == nil {
-			inputParam = "{}"
-		} else {
-			data, err := json.Marshal(input)
-			if err != nil {
-				return fmt.Errorf("failed to marshal input: %w", err)
-			}
-			inputParam = string(data)
+	if input != nil {
+		data, err := json.Marshal(input)
+		if err != nil {
+			return fmt.Errorf("failed to marshal input: %w", err)
 		}
+		inputParam = string(data)
 	}
 
 	endpointURL := fmt.Sprintf("%s/%s", c.baseURL, method)
@@ -282,12 +252,7 @@ func (c *Client) CallBatch(ctx context.Context, calls []BatchCall) error {
 
 	for i, call := range calls {
 		methods[i] = call.Method
-		if c.isVoidInput(call.Method) {
-			continue
-		}
-		if call.Input == nil {
-			inputsMap[fmt.Sprintf("%d", i)] = struct{}{}
-		} else {
+		if call.Input != nil {
 			inputsMap[fmt.Sprintf("%d", i)] = call.Input
 		}
 	}

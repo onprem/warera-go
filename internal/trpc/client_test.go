@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"reflect"
+	"slices"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -771,5 +772,35 @@ func TestClient_DoesNotRetryConflict(t *testing.T) {
 	var httpErr *HTTPError
 	if !errors.As(err, &httpErr) || httpErr.StatusCode != http.StatusConflict || count.Load() != 1 {
 		t.Fatalf("error = %v after %d requests, want one 409 HTTPError", err, count.Load())
+	}
+}
+
+// A nil input must send no input at all, which procedures without input
+// require, while an empty struct still sends {}. Both paths must agree.
+func TestClient_NilInputSendsNoInput(t *testing.T) {
+	var queries []string
+	client := NewClient(ClientConfig{BaseURL: "https://mock.warera.io/trpc", HTTPClient: &http.Client{Transport: roundTripFunc(func(r *http.Request) (*http.Response, error) {
+		queries = append(queries, r.URL.RawQuery)
+		body := okBody
+		if r.URL.Query().Get("batch") == "1" {
+			body = "[" + okBody + "," + okBody + "]"
+		}
+		return respond(http.StatusOK, nil, body)(), nil
+	})}})
+	ctx := context.Background()
+	var out dummyOutput
+	if err := client.CallDirect(ctx, "a.void", nil, &out); err != nil {
+		t.Fatal(err)
+	}
+	if err := client.CallDirect(ctx, "a.empty", struct{}{}, &out); err != nil {
+		t.Fatal(err)
+	}
+	var first, second dummyOutput
+	if err := client.CallBatch(ctx, []BatchCall{{Method: "a.void", Output: &first}, {Method: "a.empty", Input: struct{}{}, Output: &second}}); err != nil {
+		t.Fatal(err)
+	}
+	want := []string{"", "input=%7B%7D", "batch=1&input=%7B%221%22%3A%7B%7D%7D"}
+	if !slices.Equal(queries, want) {
+		t.Errorf("queries = %q, want %q", queries, want)
 	}
 }

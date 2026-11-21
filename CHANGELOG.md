@@ -18,6 +18,11 @@ All notable changes to this project are documented here. While the project is in
 - `WithUserAgent` identifies your tool to the API. Requests now send a `warera-go/<version>` User-Agent instead of Go's default.
 - `WithMaxRetryWait` caps how long one retry waits for the server.
 - `IsNotFound`, `IsRateLimited`, and `IsTemporary` classify errors, so tools can tell a missing entity from a failure worth retrying. `ErrNotFound` is returned when a lookup's result is null.
+- `Regions.GetMapData` returns the world map the game draws: region and country shapes as TopoJSON, sea links, and the arrows of ongoing attacks.
+- `Upgrades.GetMapUpgrades` returns every region's bunker, base, and pacification center with its level and status in one call.
+- `Sanctions` service (`List`, `All`) reads the public moderation log: bans, mutes, warnings, fines, and username resets, filterable by player and `SanctionType`.
+- `Managers.GetPointValue` returns how much a company produces per manager point.
+- `UserBuffs.BuffCodes` and `BuffEndAt` report a player's active boosts, such as pills; only the after-effects were modelled before. `User` and `UserLite` also gain `AnimatedAvatarURL`, `Infos.IsBanned`, `Infos.Description`, `Infos.BannerID`, `Mute`, and newer `Dates` fields, and `UserStats` gains `EstimatedWealth`, `EstimatedInventoryValue`, `EstimatedCompanyValues`, `DamagesRanking`, `CasesOpenedCount`, and `GemsPurchased`. Checked by strictly decoding 66 live profiles, including banned and muted players.
 
 ### Changed
 
@@ -34,6 +39,9 @@ All notable changes to this project are documented here. While the project is in
 - **Breaking:** `TransactionFilter.TransactionType *StringOrStrings` is now `TransactionTypes []TransactionType`; `StringOrStrings`, `SingleString`, and `StringList` are removed.
 - **Breaking:** `BattleOrders.GetByBattle` takes a `BattleSide` and `Rankings.GetRanking` a `RankingType`; `RankingHistoryFilter`, `StateArmyLedgerFilter`, and the generated filters use the new enum types.
 - **Breaking:** `Countries.GetStrategicResourceBonuses` returns nil and no error for a country with no strategic resources; the API returns null for these.
+- **Breaking:** `UserStats.Case1`, `Case2`, and `Toolbox` are `CaseStats`, with counts keyed by rarity, and `WoodenCase` is `WoodenCaseStats`, with counts keyed by item code, so new rarities and items decode without a release. The per-case `UserStats*` types are removed.
+- **Breaking:** `Client.RawCall` and `Client.Batch` send no input when the input is nil, which procedures that take no input require; pass `struct{}{}` to send `{}`. The client no longer keeps a list of such procedures.
+- Methods that wrap procedures missing from the published OpenAPI document say `Unstable:` in their documentation, and only those that need an API key say so. Only the employee procedures do; the docs used to say every unlisted procedure needed one.
 
 ### Fixed
 

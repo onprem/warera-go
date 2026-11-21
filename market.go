@@ -5,10 +5,6 @@ import (
 	"iter"
 )
 
-// The procedures in this file are served by the WarEra API but are not listed
-// in its published OpenAPI document, so they may change without notice. They
-// require an API key.
-
 type itemCodeInput struct {
 	ItemCode string `json:"itemCode"`
 }
@@ -20,6 +16,8 @@ type getTopOrdersPerItemCodeInput struct {
 
 // GetItemTrading returns an item's daily market trading history: volume,
 // turnover, and average price for each of the most recent trading days.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TradingService) GetItemTrading(ctx context.Context, itemCode string) (*ItemTrading, error) {
 	var trading ItemTrading
 	if err := s.client.trpc.Call(ctx, "itemTrading.getItemTrading", itemCodeInput{ItemCode: itemCode}, &trading); err != nil {
@@ -32,6 +30,8 @@ func (s *TradingService) GetItemTrading(ctx context.Context, itemCode string) (*
 // given item codes in one request, keyed by item code. Limit caps the orders
 // per side and item (the API allows 1 to 100 and defaults to 1). An empty
 // input returns an empty map without making a request.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TradingService) GetTopOrdersPerItem(ctx context.Context, itemCodes []string, limit int) (map[string]TopOrders, error) {
 	if len(itemCodes) == 0 {
 		return map[string]TopOrders{}, nil
@@ -46,6 +46,8 @@ func (s *TradingService) GetTopOrdersPerItem(ctx context.Context, itemCodes []st
 // GetPublicOrdersByOwner returns the open market orders of a user, country,
 // military unit, or party, with their totals. An empty filter returns no
 // orders.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *TradingService) GetPublicOrdersByOwner(ctx context.Context, filter OwnerOrdersFilter) (*OwnerOrders, error) {
 	var orders OwnerOrders
 	if err := s.client.trpc.Call(ctx, "tradingOrder.getPublicOrdersByOwner", filter, &orders); err != nil {
@@ -58,6 +60,8 @@ func (s *TradingService) GetPublicOrdersByOwner(ctx context.Context, filter Owne
 // offer. It follows the PP money value (see
 // [MarketStatsService.GetPPMoneyValue]) times the game config's
 // mercenaryContract.maxBountyPpMultiplier.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *GameConfigService) GetMaxBountyRate(ctx context.Context) (float64, error) {
 	var rate float64
 	if err := s.client.trpc.Call(ctx, "gameConfig.getMaxBountyRate", struct{}{}, &rate); err != nil {
@@ -72,6 +76,8 @@ type MarketStatsService struct {
 }
 
 // GetPPMoneyValue returns the game-wide value of a production point in money.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MarketStatsService) GetPPMoneyValue(ctx context.Context) (float64, error) {
 	var value float64
 	if err := s.client.trpc.Call(ctx, "gameStat.getPpMoneyValue", nil, &value); err != nil {
@@ -82,6 +88,8 @@ func (s *MarketStatsService) GetPPMoneyValue(ctx context.Context) (float64, erro
 
 // GetPPMoneyValueByItem returns, for each producible item, the money a
 // production point earns when spent producing it at current market prices.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MarketStatsService) GetPPMoneyValueByItem(ctx context.Context) (PPValueByItem, error) {
 	var values PPValueByItem
 	if err := s.client.trpc.Call(ctx, "gameStat.getPpMoneyValueByItem", nil, &values); err != nil {
@@ -91,6 +99,8 @@ func (s *MarketStatsService) GetPPMoneyValueByItem(ctx context.Context) (PPValue
 }
 
 // GetWorldDevelopment returns the total development of all regions.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MarketStatsService) GetWorldDevelopment(ctx context.Context) (float64, error) {
 	var development float64
 	if err := s.client.trpc.Call(ctx, "gameStat.getWorldDevelopment", nil, &development); err != nil {
@@ -102,6 +112,8 @@ func (s *MarketStatsService) GetWorldDevelopment(ctx context.Context) (float64, 
 // GetEquipmentAveragePrice returns the average market sale price of an
 // equipment item code, such as "knife" or "helmet3". It returns 0 for codes
 // that are not tradable equipment.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *MarketStatsService) GetEquipmentAveragePrice(ctx context.Context, itemCode string) (float64, error) {
 	var price float64
 	if err := s.client.trpc.Call(ctx, "gameStat.getEquipmentAvgByCode", itemCodeInput{ItemCode: itemCode}, &price); err != nil {
@@ -118,6 +130,8 @@ type DonationService struct {
 
 // List returns one page of donors to the recipient in the filter, largest
 // total first. An empty filter returns no donors.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *DonationService) List(ctx context.Context, filter DonationFilter) (*CursorPage[Donation], error) {
 	var page CursorPage[Donation]
 	if err := s.client.trpc.Call(ctx, "donation.getManyPaginated", filter, &page); err != nil {
@@ -127,6 +141,8 @@ func (s *DonationService) List(ctx context.Context, filter DonationFilter) (*Cur
 }
 
 // All returns an iterator over every donor to the recipient in the filter.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *DonationService) All(ctx context.Context, filter DonationFilter) iter.Seq2[Donation, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Donation], error) {
 		f := filter
@@ -137,6 +153,8 @@ func (s *DonationService) All(ctx context.Context, filter DonationFilter) iter.S
 
 // GetTotal returns the total donated to the recipient in the filter and the
 // number of donors.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *DonationService) GetTotal(ctx context.Context, filter DonationTotalFilter) (*DonationTotal, error) {
 	var total DonationTotal
 	if err := s.client.trpc.Call(ctx, "donation.getTotalDonations", filter, &total); err != nil {

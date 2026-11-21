@@ -1191,59 +1191,75 @@ type Upgrade struct {
 
 // User is a full player profile, including skills, statistics, and equipment.
 type User struct {
-	ID                    string                 `json:"_id"`
-	AvailableColorSchemes []string               `json:"availableColorSchemes"`
-	AvatarURL             string                 `json:"avatarUrl"`
-	Buffs                 *UserBuffs             `json:"buffs"`
-	CanOnboard            bool                   `json:"canOnboard"`
-	CountryID             string                 `json:"country"`
-	CreatedAt             Time                   `json:"createdAt"`
-	Dates                 UserDates              `json:"dates"`
-	Discord               UserDiscord            `json:"discord"`
-	EmailVerified         bool                   `json:"emailVerified"`
-	EnergyGift            *UserEnergyGift        `json:"energyGift"`
-	Equipment             UserEquipment          `json:"equipment"`
-	EquippedSkinKeys      json.RawMessage        `json:"equippedSkinKeys"`
-	FinishedTours         UserFinishedTours      `json:"finishedTours"`
-	Infos                 UserInfos              `json:"infos"`
-	IsActive              bool                   `json:"isActive"`
-	Leveling              UserLeveling           `json:"leveling"`
-	LocationID            string                 `json:"location"`
-	MilitaryRank          int                    `json:"militaryRank"`
-	Missions              UserMissions           `json:"missions"`
-	MUID                  string                 `json:"mu"`
-	MuMaxLevelRewarded    float64                `json:"muMaxLevelRewarded"`
-	PartyID               string                 `json:"party"`
-	Preferences           UserPreferences        `json:"preferences"`
-	Rankings              map[string]RankingItem `json:"rankings"`
-	RegionID              string                 `json:"region"`
-	ShouldUpdateProfile   bool                   `json:"shouldUpdateProfile"`
-	Skills                UserSkills             `json:"skills"`
-	SkillVersion          int                    `json:"skillVersion"`
-	Stats                 UserStats              `json:"stats"`
-	UpdatedAt             Time                   `json:"updatedAt"`
-	Username              string                 `json:"username"`
-	UsernameLower         string                 `json:"usernameLower"`
-	Warning               *UserWarning           `json:"warning"`
+	ID                    string   `json:"_id"`
+	AvailableColorSchemes []string `json:"availableColorSchemes"`
+	AvatarURL             string   `json:"avatarUrl"`
+	// AnimatedAvatarURL is set when the player has an animated avatar;
+	// AvatarURL is then its still frame.
+	AnimatedAvatarURL  string            `json:"animatedAvatarUrl"`
+	Buffs              *UserBuffs        `json:"buffs"`
+	CanOnboard         bool              `json:"canOnboard"`
+	CountryID          string            `json:"country"`
+	CreatedAt          Time              `json:"createdAt"`
+	Dates              UserDates         `json:"dates"`
+	Discord            UserDiscord       `json:"discord"`
+	EmailVerified      bool              `json:"emailVerified"`
+	EnergyGift         *UserEnergyGift   `json:"energyGift"`
+	Equipment          UserEquipment     `json:"equipment"`
+	EquippedSkinKeys   json.RawMessage   `json:"equippedSkinKeys"`
+	FinishedTours      UserFinishedTours `json:"finishedTours"`
+	Infos              UserInfos         `json:"infos"`
+	IsActive           bool              `json:"isActive"`
+	Leveling           UserLeveling      `json:"leveling"`
+	LocationID         string            `json:"location"`
+	MilitaryRank       int               `json:"militaryRank"`
+	Missions           UserMissions      `json:"missions"`
+	MUID               string            `json:"mu"`
+	MuMaxLevelRewarded float64           `json:"muMaxLevelRewarded"`
+	// OrgIDs has only been seen empty.
+	OrgIDs []string `json:"orgs"`
+	// Mute is set while, or after, the player was muted in chat.
+	Mute                *UserMute              `json:"mute"`
+	PartyID             string                 `json:"party"`
+	Preferences         UserPreferences        `json:"preferences"`
+	Rankings            map[string]RankingItem `json:"rankings"`
+	RegionID            string                 `json:"region"`
+	ShouldUpdateProfile bool                   `json:"shouldUpdateProfile"`
+	Skills              UserSkills             `json:"skills"`
+	// SkillsExpiration is keyed by skill; its values have only been seen
+	// empty.
+	SkillsExpiration map[string]json.RawMessage `json:"skillsExpiration"`
+	SkillVersion     int                        `json:"skillVersion"`
+	Stats            UserStats                  `json:"stats"`
+	UpdatedAt        Time                       `json:"updatedAt"`
+	Username         string                     `json:"username"`
+	UsernameLower    string                     `json:"usernameLower"`
+	Warning          *UserWarning               `json:"warning"`
 }
 
 // UserDates is a nested component of User.
 type UserDates struct {
-	CitizenSince               Time `json:"citizenSince"`
-	LastCitizenshipChangeAt    Time `json:"lastCitizenshipChangeAt"`
-	LastConnectionAt           Time `json:"lastConnectionAt"`
-	LastCountryMessageCheckAt  Time `json:"lastCountryMessageCheckAt"`
-	LastDailyCalendarClaimedAt Time `json:"lastDailyCalendarClaimedAt"`
-	LastEventsCheckAt          Time `json:"lastEventsCheckAt"`
-	LastFiredFromGovAt         Time `json:"lastFiredFromGovAt"`
-	LastFreeTravelHomeAt       Time `json:"lastFreeTravelHomeAt"`
-	LastGlobalMessageCheckAt   Time `json:"lastGlobalMessageCheckAt"`
-	LastHelpAskedAt            Time `json:"lastHelpAskedAt"`
-	LastManagerCareAt          Time `json:"lastManagerCareAt"`
-	LastNotificationsCheckAt   Time `json:"lastNotificationsCheckAt"`
-	LastSeenAnnouncementAt     Time `json:"lastSeenAnnouncementAt"`
-	LastSkillsResetAt          Time `json:"lastSkillsResetAt"`
-	LastWorkAt                 Time `json:"lastWorkAt"`
+	CitizenSince                     Time `json:"citizenSince"`
+	LastCitizenshipChangeAt          Time `json:"lastCitizenshipChangeAt"`
+	LastConnectionAt                 Time `json:"lastConnectionAt"`
+	LastCountryMessageCheckAt        Time `json:"lastCountryMessageCheckAt"`
+	LastComebackClaimedAt            Time `json:"lastComebackClaimedAt"`
+	LastDailyRewardClaimedAt         Time `json:"lastDailyRewardClaimedAt"`
+	LastDailyCalendarClaimedAt       Time `json:"lastDailyCalendarClaimedAt"`
+	LastEventsCheckAt                Time `json:"lastEventsCheckAt"`
+	LastFiredFromGovAt               Time `json:"lastFiredFromGovAt"`
+	LastFreeTravelHomeAt             Time `json:"lastFreeTravelHomeAt"`
+	LastGlobalMessageCheckAt         Time `json:"lastGlobalMessageCheckAt"`
+	LastHelpAskedAt                  Time `json:"lastHelpAskedAt"`
+	LastManagerCareAt                Time `json:"lastManagerCareAt"`
+	LastNotificationsCheckAt         Time `json:"lastNotificationsCheckAt"`
+	LastSeenAnnouncementAt           Time `json:"lastSeenAnnouncementAt"`
+	LastSeenGovernmentAnnouncementAt Time `json:"lastSeenGovernmentAnnouncementAt"`
+	LastSkillsResetAt                Time `json:"lastSkillsResetAt"`
+	LastTakingControlAt              Time `json:"lastTakingControlAt"`
+	LastWorkAt                       Time `json:"lastWorkAt"`
+	MissionXPCompensatedAt           Time `json:"missionXpCompensatedAt"`
+	PrestigeXPCompensatedAt          Time `json:"prestigeXpCompensatedAt"`
 }
 
 // UserDiscord is a nested component of User.
@@ -1264,6 +1280,8 @@ type UserEquipment struct {
 
 // UserFinishedTours is a nested component of User.
 type UserFinishedTours struct {
+	Economic   bool `json:"economic"`
+	Military   bool `json:"military"`
 	Onboarding bool `json:"onboarding"`
 }
 
@@ -1283,21 +1301,24 @@ type UserLeveling struct {
 
 // UserLite is a compact player profile for listings and search results.
 type UserLite struct {
-	ID               string                 `json:"_id"`
-	AvatarURL        string                 `json:"avatarUrl"`
-	Buffs            *UserBuffs             `json:"buffs"`
-	CountryID        string                 `json:"country"`
-	CreatedAt        Time                   `json:"createdAt"`
-	Dates            UserDates              `json:"dates"`
-	EquippedSkinKeys json.RawMessage        `json:"equippedSkinKeys"`
-	Infos            UserInfos              `json:"infos"`
-	IsActive         bool                   `json:"isActive"`
-	Leveling         UserLeveling           `json:"leveling"`
-	MilitaryRank     int                    `json:"militaryRank"`
-	MUID             string                 `json:"mu"`
-	Rankings         map[string]RankingItem `json:"rankings"`
-	Stats            UserStats              `json:"stats"`
-	Username         string                 `json:"username"`
+	ID        string `json:"_id"`
+	AvatarURL string `json:"avatarUrl"`
+	// AnimatedAvatarURL is set when the player has an animated avatar;
+	// AvatarURL is then its still frame.
+	AnimatedAvatarURL string                 `json:"animatedAvatarUrl"`
+	Buffs             *UserBuffs             `json:"buffs"`
+	CountryID         string                 `json:"country"`
+	CreatedAt         Time                   `json:"createdAt"`
+	Dates             UserDates              `json:"dates"`
+	EquippedSkinKeys  json.RawMessage        `json:"equippedSkinKeys"`
+	Infos             UserInfos              `json:"infos"`
+	IsActive          bool                   `json:"isActive"`
+	Leveling          UserLeveling           `json:"leveling"`
+	MilitaryRank      int                    `json:"militaryRank"`
+	MUID              string                 `json:"mu"`
+	Rankings          map[string]RankingItem `json:"rankings"`
+	Stats             UserStats              `json:"stats"`
+	Username          string                 `json:"username"`
 }
 
 // UserMissions is a nested component of User.
@@ -1351,47 +1372,40 @@ type UserSkills struct {
 
 // UserStats is a nested component of User.
 type UserStats struct {
-	Case1                 UserStatsCase1      `json:"case1"`
-	Case2                 UserStatsCase2      `json:"case2"`
-	DailyRewardBestStreak int                 `json:"dailyRewardBestStreak"`
-	DailyRewardStreak     int                 `json:"dailyRewardStreak"`
-	DamagesCount          int                 `json:"damagesCount"`
-	MilestoneTiersClaimed int                 `json:"milestoneTiersClaimed"`
-	MilestoneXpClaimed    float64             `json:"milestoneXpClaimed"`
-	Toolbox               UserStatsToolbox    `json:"toolbox"`
-	Wealth                UserStatsWealth     `json:"wealth"`
-	WoodenCase            UserStatsWoodenCase `json:"woodenCase"`
-	WorksCount            int                 `json:"worksCount"`
+	Case1                 CaseStats `json:"case1"`
+	Case2                 CaseStats `json:"case2"`
+	CasesOpenedCount      int       `json:"casesOpenedCount"`
+	DailyRewardBestStreak int       `json:"dailyRewardBestStreak"`
+	DailyRewardStreak     int       `json:"dailyRewardStreak"`
+	DamagesCount          int       `json:"damagesCount"`
+	// DamagesRanking is the player's damage rank, when the API includes it.
+	DamagesRanking int `json:"damagesRanking"`
+	// The Estimated fields are the API's valuation of the player's assets,
+	// when it includes them.
+	EstimatedCompanyValues  float64         `json:"estimatedCompanyValues"`
+	EstimatedInventoryValue float64         `json:"estimatedInventoryValue"`
+	EstimatedWealth         float64         `json:"estimatedWealth"`
+	GemsPurchased           float64         `json:"gemsPurchased"`
+	MilestoneTiersClaimed   int             `json:"milestoneTiersClaimed"`
+	MilestoneXpClaimed      float64         `json:"milestoneXpClaimed"`
+	Toolbox                 CaseStats       `json:"toolbox"`
+	Wealth                  UserStatsWealth `json:"wealth"`
+	WoodenCase              WoodenCaseStats `json:"woodenCase"`
+	WorksCount              int             `json:"worksCount"`
 }
 
-// UserStatsCase1 is a nested component of UserStats.
-type UserStatsCase1 struct {
-	ByRarity    UserStatsCase1ByRarity `json:"byRarity"`
-	OpenedCount int                    `json:"openedCount"`
+// CaseStats counts the cases of one kind a player opened and what they got,
+// keyed by rarity such as "common" or "mythic".
+type CaseStats struct {
+	ByRarity    map[string]int `json:"byRarity"`
+	OpenedCount int            `json:"openedCount"`
 }
 
-// UserStatsCase1ByRarity is a nested component of UserStatsCase1.
-type UserStatsCase1ByRarity struct {
-	Common    float64 `json:"common"`
-	Epic      float64 `json:"epic"`
-	Legendary float64 `json:"legendary"`
-	Mythic    float64 `json:"mythic"`
-	Rare      float64 `json:"rare"`
-	Uncommon  float64 `json:"uncommon"`
-}
-
-// UserStatsCase2 is a nested component of UserStats.
-type UserStatsCase2 struct {
-	ByRarity    UserStatsCase2ByRarity `json:"byRarity"`
-	OpenedCount int                    `json:"openedCount"`
-}
-
-// UserStatsCase2ByRarity is a nested component of UserStatsCase2.
-type UserStatsCase2ByRarity struct {
-	Epic      float64 `json:"epic"`
-	Legendary float64 `json:"legendary"`
-	Rare      float64 `json:"rare"`
-	Uncommon  float64 `json:"uncommon"`
+// WoodenCaseStats counts the wooden cases a player opened and what they got,
+// keyed by item code.
+type WoodenCaseStats struct {
+	ByItem      map[string]int `json:"byItem"`
+	OpenedCount int            `json:"openedCount"`
 }
 
 // UserStatsWealth is a nested component of UserStats.
@@ -1402,36 +1416,6 @@ type UserStatsWealth struct {
 	Money      float64 `json:"money"`
 	Total      float64 `json:"total"`
 	Weapons    float64 `json:"weapons"`
-}
-
-// UserStatsWoodenCase is a nested component of UserStats.
-type UserStatsWoodenCase struct {
-	ByItem      UserStatsWoodenCaseByItem `json:"byItem"`
-	OpenedCount int                       `json:"openedCount"`
-}
-
-// UserStatsWoodenCaseByItem is a nested component of UserStatsWoodenCase.
-type UserStatsWoodenCaseByItem struct {
-	Ammo       float64 `json:"ammo"`
-	Bread      float64 `json:"bread"`
-	Coca       float64 `json:"coca"`
-	Cocain     float64 `json:"cocain"`
-	Concrete   float64 `json:"concrete"`
-	CookedFish float64 `json:"cookedFish"`
-	Fish       float64 `json:"fish"`
-	Grain      float64 `json:"grain"`
-	HeavyAmmo  float64 `json:"heavyAmmo"`
-	Iron       float64 `json:"iron"`
-	Lead       float64 `json:"lead"`
-	LightAmmo  float64 `json:"lightAmmo"`
-	Limestone  float64 `json:"limestone"`
-	Livestock  float64 `json:"livestock"`
-	Oil        float64 `json:"oil"`
-	Paper      float64 `json:"paper"`
-	Petroleum  float64 `json:"petroleum"`
-	Steak      float64 `json:"steak"`
-	Steel      float64 `json:"steel"`
-	Wood       float64 `json:"wood"`
 }
 
 // WeaponItem is a nested component of CurrentEquipment.
@@ -1524,10 +1508,22 @@ type GameConfigSkillPresets struct {
 	PremiumMax    int `json:"premiumMax"`
 }
 
-// UserBuffs lists a player's active debuffs.
+// UserBuffs lists a player's active boosts and their after-effects.
 type UserBuffs struct {
-	DebuffCodes []string `json:"debuffCodes"`
-	DebuffEndAt Time     `json:"debuffEndAt"`
+	// BuffCodes are the player's active boosts, such as a pill, until
+	// BuffEndAt.
+	BuffCodes []string `json:"buffCodes"`
+	BuffEndAt Time     `json:"buffEndAt"`
+	// DebuffCodes are the after-effects of a boost, until DebuffEndAt.
+	DebuffCodes             []string `json:"debuffCodes"`
+	DebuffEndAt             Time     `json:"debuffEndAt"`
+	DebuffWarningNotifiedAt Time     `json:"debuffWarningNotifiedAt"`
+}
+
+// UserMute is a chat mute on a player.
+type UserMute struct {
+	Reason     string `json:"reason"`
+	MutedUntil Time   `json:"mutedUntil"`
 }
 
 // UserEnergyGift is an energy gift granted to a player.
@@ -1539,14 +1535,20 @@ type UserEnergyGift struct {
 
 // UserInfos holds a player's profile cosmetics and government roles.
 type UserInfos struct {
+	// BannerID is the profile banner the player picked, if any.
+	BannerID                  string `json:"banner"`
 	ColorScheme               string `json:"colorScheme"`
 	CongressMemberOfCountryID string `json:"congressMemberOf"`
+	Description               string `json:"description"`
 	Font                      string `json:"font"`
-	IsPremium                 bool   `json:"isPremium"`
-	MinisterOfCountryID       string `json:"ministerOf"`
-	MinisterTitle             string `json:"ministerTitle"`
-	PremiumMonthsCount        int    `json:"premiumMonthsCount"`
-	UsernameEffect            string `json:"usernameEffect"`
+	// IsBanned is set on banned players; see [SanctionService] for the ban.
+	IsBanned            bool   `json:"isBanned"`
+	IsPremium           bool   `json:"isPremium"`
+	MinisterOfCountryID string `json:"ministerOf"`
+	MinisterTitle       string `json:"ministerTitle"`
+	PremiumGiftsCount   int    `json:"premiumGiftsCount"`
+	PremiumMonthsCount  int    `json:"premiumMonthsCount"`
+	UsernameEffect      string `json:"usernameEffect"`
 }
 
 // UserWarning is a moderation warning shown on a player's profile.
@@ -1559,12 +1561,6 @@ type UserWarning struct {
 type UserMissionsGeneratedAt struct {
 	Daily  Time `json:"daily"`
 	Weekly Time `json:"weekly"`
-}
-
-// UserStatsToolbox counts the toolboxes a player opened.
-type UserStatsToolbox struct {
-	ByRarity    map[string]int `json:"byRarity"`
-	OpenedCount int            `json:"openedCount"`
 }
 
 // GameConfigSkill holds the per-level configuration of one skill, keyed by

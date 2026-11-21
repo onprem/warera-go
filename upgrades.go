@@ -15,3 +15,15 @@ func (s *UpgradeService) GetByTypeAndEntity(ctx context.Context, filter UpgradeF
 	}
 	return &upgrade, nil
 }
+
+// GetMapUpgrades returns every region upgrade in the world, such as bunkers
+// and bases, with its level and status, in one call.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
+func (s *UpgradeService) GetMapUpgrades(ctx context.Context) ([]MapUpgrade, error) {
+	var upgrades []MapUpgrade
+	if err := s.client.trpc.Call(ctx, "upgrade.getMapUpgrades", nil, &upgrades); err != nil {
+		return nil, err
+	}
+	return upgrades, nil
+}

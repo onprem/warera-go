@@ -5,10 +5,6 @@ import (
 	"iter"
 )
 
-// The procedures in this file are served by the WarEra API but are not listed
-// in its published OpenAPI document, so they may change without notice. They
-// require an API key.
-
 // --- Alliance Service ---
 
 // AllianceService handles alliances of countries. Alliance IDs appear on
@@ -26,6 +22,8 @@ type getAlliancesInput struct {
 }
 
 // GetByID returns an alliance by ID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *AllianceService) GetByID(ctx context.Context, allianceID string) (*Alliance, error) {
 	var alliance Alliance
 	if err := s.client.trpc.Call(ctx, "alliance.getById", getAllianceInput{AllianceID: allianceID}, &alliance); err != nil {
@@ -39,6 +37,8 @@ func (s *AllianceService) GetByID(ctx context.Context, allianceID string) (*Alli
 // ignored. When some lookups fail, GetMany returns the records it found
 // together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
 // to tell missing IDs from other failures.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *AllianceService) GetMany(ctx context.Context, allianceIDs []string) (map[string]Alliance, error) {
 	ids := uniqueIDs(allianceIDs)
 	found := make(map[string]Alliance, len(ids))
@@ -71,6 +71,8 @@ func (s *AllianceService) GetMany(ctx context.Context, allianceIDs []string) (ma
 
 // GetStrategicResourceBonuses returns the strategic resources an alliance's
 // countries control and the bonuses they grant.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *AllianceService) GetStrategicResourceBonuses(ctx context.Context, allianceID string) (*StrategicResourceBonuses, error) {
 	var bonuses StrategicResourceBonuses
 	if err := s.client.trpc.Call(ctx, "alliance.getStrategicResourceBonuses", getAllianceInput{AllianceID: allianceID}, &bonuses); err != nil {
@@ -92,6 +94,8 @@ type getWarInput struct {
 }
 
 // GetByID returns a war by ID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *WarService) GetByID(ctx context.Context, warID string) (*War, error) {
 	var war War
 	if err := s.client.trpc.Call(ctx, "war.getById", getWarInput{WarID: warID}, &war); err != nil {
@@ -105,6 +109,8 @@ func (s *WarService) GetByID(ctx context.Context, warID string) (*War, error) {
 // ignored. When some lookups fail, GetMany returns the records it found
 // together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
 // to tell missing IDs from other failures.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *WarService) GetMany(ctx context.Context, warIDs []string) (map[string]War, error) {
 	return getManyByID[War](ctx, s.client, "wars", "war.getById", warIDs, func(id string) any {
 		return getWarInput{WarID: id}
@@ -124,6 +130,8 @@ type getPartyInput struct {
 }
 
 // GetByID returns a party by ID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *PartyService) GetByID(ctx context.Context, partyID string) (*Party, error) {
 	var party Party
 	if err := s.client.trpc.Call(ctx, "party.getById", getPartyInput{PartyID: partyID}, &party); err != nil {
@@ -137,6 +145,8 @@ func (s *PartyService) GetByID(ctx context.Context, partyID string) (*Party, err
 // ignored. When some lookups fail, GetMany returns the records it found
 // together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
 // to tell missing IDs from other failures.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *PartyService) GetMany(ctx context.Context, partyIDs []string) (map[string]Party, error) {
 	return getManyByID[Party](ctx, s.client, "parties", "party.getById", partyIDs, func(id string) any {
 		return getPartyInput{PartyID: id}
@@ -144,6 +154,8 @@ func (s *PartyService) GetMany(ctx context.Context, partyIDs []string) (map[stri
 }
 
 // List returns one page of parties matching the filter, newest first.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *PartyService) List(ctx context.Context, filter PartyFilter) (*CursorPage[Party], error) {
 	var page CursorPage[Party]
 	if err := s.client.trpc.Call(ctx, "party.getManyPaginated", filter, &page); err != nil {
@@ -153,6 +165,8 @@ func (s *PartyService) List(ctx context.Context, filter PartyFilter) (*CursorPag
 }
 
 // All returns an iterator over every party matching the filter.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *PartyService) All(ctx context.Context, filter PartyFilter) iter.Seq2[Party, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Party], error) {
 		f := filter
@@ -162,6 +176,8 @@ func (s *PartyService) All(ctx context.Context, filter PartyFilter) iter.Seq2[Pa
 }
 
 // GetInactiveMemberIDs returns the user IDs of a party's inactive members.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *PartyService) GetInactiveMemberIDs(ctx context.Context, partyID string) ([]string, error) {
 	var ids []string
 	if err := s.client.trpc.Call(ctx, "party.getInactiveMemberIds", getPartyInput{PartyID: partyID}, &ids); err != nil {
@@ -193,6 +209,8 @@ type getElectionInput struct {
 }
 
 // GetByID returns an election by ID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ElectionService) GetByID(ctx context.Context, electionID string) (*Election, error) {
 	var election Election
 	if err := s.client.trpc.Call(ctx, "election.getElection", getElectionInput{ElectionID: electionID}, &election); err != nil {
@@ -206,6 +224,8 @@ func (s *ElectionService) GetByID(ctx context.Context, electionID string) (*Elec
 // ignored. When some lookups fail, GetMany returns the records it found
 // together with a [BatchLookupError] naming the failed IDs; use [IsNotFound]
 // to tell missing IDs from other failures.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ElectionService) GetMany(ctx context.Context, electionIDs []string) (map[string]Election, error) {
 	return getManyByID[Election](ctx, s.client, "elections", "election.getElection", electionIDs, func(id string) any {
 		return getElectionInput{ElectionID: id}
@@ -214,6 +234,8 @@ func (s *ElectionService) GetMany(ctx context.Context, electionIDs []string) (ma
 
 // List returns one page of a country's or a party's elections, newest first.
 // The filter must set CountryID or PartyID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ElectionService) List(ctx context.Context, filter ElectionFilter) (*CursorPage[Election], error) {
 	var page CursorPage[Election]
 	if err := s.client.trpc.Call(ctx, "election.getElections", filter, &page); err != nil {
@@ -224,6 +246,8 @@ func (s *ElectionService) List(ctx context.Context, filter ElectionFilter) (*Cur
 
 // All returns an iterator over every election matching the filter. The filter
 // must set CountryID or PartyID.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *ElectionService) All(ctx context.Context, filter ElectionFilter) iter.Seq2[Election, error] {
 	return NewCursorIterator(ctx, filter.Cursor, func(c context.Context, cursor string) (*CursorPage[Election], error) {
 		f := filter
@@ -247,6 +271,8 @@ type ElectionFilter struct {
 
 // GetDiplomacy returns a country's sworn enemy and defensive pacts with the
 // bonuses they give.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *CountryService) GetDiplomacy(ctx context.Context, countryID string) (*Diplomacy, error) {
 	var diplomacy Diplomacy
 	if err := s.client.trpc.Call(ctx, "countryDiplomacy.getByCountry", getCountryByIdInput{CountryID: countryID}, &diplomacy); err != nil {
@@ -256,6 +282,8 @@ func (s *CountryService) GetDiplomacy(ctx context.Context, countryID string) (*D
 }
 
 // GetUnrest returns a country's unrest bar and revolution cooldown.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *CountryService) GetUnrest(ctx context.Context, countryID string) (*UnrestStatus, error) {
 	var unrest UnrestStatus
 	if err := s.client.trpc.Call(ctx, "country.getUnrestData", getCountryByIdInput{CountryID: countryID}, &unrest); err != nil {
@@ -267,6 +295,8 @@ func (s *CountryService) GetUnrest(ctx context.Context, countryID string) (*Unre
 // GetStrategicResourceBonuses returns the strategic resources available to a
 // country, through its alliance when it has one, and the bonuses they grant.
 // It returns nil and no error when the country has none.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *CountryService) GetStrategicResourceBonuses(ctx context.Context, countryID string) (*StrategicResourceBonuses, error) {
 	var bonuses *StrategicResourceBonuses
 	if err := s.client.trpc.Call(ctx, "country.getStrategicResourceBonuses", getCountryByIdInput{CountryID: countryID}, &bonuses); err != nil {
@@ -276,6 +306,8 @@ func (s *CountryService) GetStrategicResourceBonuses(ctx context.Context, countr
 }
 
 // GetCongressSeats returns a country's congress members and their parties.
+//
+// Unstable: not in the published OpenAPI document; may change without notice.
 func (s *GovernmentService) GetCongressSeats(ctx context.Context, countryID string) ([]CongressSeat, error) {
 	var seats []CongressSeat
 	if err := s.client.trpc.Call(ctx, "government.getCongressSeats", getGovernmentByCountryIdInput{CountryID: countryID}, &seats); err != nil {

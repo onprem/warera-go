@@ -18,10 +18,12 @@ const percentCap = 100
 // a player's current loadout from API records; change its fields to try a
 // different build or kit.
 type Loadout struct {
-	// Levels are skill levels keyed by skill name, including prestige
-	// levels. A level above the highest configured level continues the
-	// configured step per level.
-	Levels map[string]int
+	// Levels are regular skill levels keyed by skill name, and Prestige the
+	// levels bought with prestige points on top. Stats use their sum; a sum
+	// above the highest configured level continues the configured step per
+	// level.
+	Levels   map[string]int
+	Prestige map[string]int
 	// Strategic is the flat bonus per skill from strategic resources, as in
 	// [warera.UserSkill.Strategic].
 	Strategic map[string]float64
@@ -53,6 +55,7 @@ type Loadout struct {
 func LoadoutOf(skills warera.UserSkills, equipment *warera.CurrentEquipment) Loadout {
 	l := Loadout{
 		Levels:              map[string]int{},
+		Prestige:            map[string]int{},
 		Strategic:           map[string]float64{},
 		Equipment:           map[string]float64{},
 		AmmoPercent:         skills.Attack.AmmoPercent,
@@ -61,7 +64,10 @@ func LoadoutOf(skills warera.UserSkills, equipment *warera.CurrentEquipment) Loa
 		MilitaryRankPercent: skills.Attack.MilitaryRankPercent,
 	}
 	for name, s := range userSkills(skills) {
-		l.Levels[name] = s.Level + s.Prestige
+		l.Levels[name] = s.Level
+		if s.Prestige != 0 {
+			l.Prestige[name] = s.Prestige
+		}
 		if s.Strategic != 0 {
 			l.Strategic[name] = s.Strategic
 		}
@@ -142,7 +148,7 @@ var fightSkills = []string{"attack", "precision", "criticalChance", "criticalDam
 func StatsOf(cfg *warera.GameConfig, l Loadout) (Stats, error) {
 	total := map[string]float64{}
 	for _, name := range fightSkills {
-		v, err := skillValue(cfg, name, l.Levels[name])
+		v, err := skillValue(cfg, name, l.Levels[name]+l.Prestige[name])
 		if err != nil {
 			return Stats{}, err
 		}

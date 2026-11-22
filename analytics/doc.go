@@ -14,6 +14,8 @@
 //     health and food last, what a fight costs and earns, and battle bonuses.
 //   - [github.com/onprem/warera-go/analytics/battle]: loot pool sizes, the
 //     ranks that get items and the rarity to expect, and round ticks.
+//   - [github.com/onprem/warera-go/analytics/optimize]: which skill levels gain
+//     the most per point, and a skill plan for the levels ahead.
 //   - [github.com/onprem/warera-go/analytics/upgrades]: what region and
 //     company upgrades cost.
 //

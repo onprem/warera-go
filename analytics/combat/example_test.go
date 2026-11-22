@@ -2,6 +2,8 @@ package combat_test
 
 import (
 	"fmt"
+	"math/rand/v2"
+	"slices"
 
 	"github.com/onprem/warera-go"
 	"github.com/onprem/warera-go/analytics/character"
@@ -52,4 +54,21 @@ func ExampleWindow() {
 	// Output:
 	// attack 383, 491 swings, 629k damage
 	// cost 2743, cases 266, net -2477 gold (3.94 per 1k)
+}
+
+// See how much an 8-hour fight varies, over 1,000 seeded fights.
+func ExampleSimulate() {
+	cfg := must(waretest.Fixture[*warera.GameConfig]("gameConfig.getGameConfig"))                   // client.GameConfig.Get(ctx)
+	user := must(waretest.Fixture[warera.User]("user.getUserById"))                                 // client.Users.GetByID(ctx, id)
+	equipment := must(waretest.Fixture[warera.CurrentEquipment]("inventory.fetchCurrentEquipment")) // client.Inventory.GetCurrentEquipment(ctx, id)
+	stats := must(character.StatsOf(cfg, character.LoadoutOf(user.Skills, &equipment)))
+
+	var damages []float64
+	for seed := range uint64(1000) {
+		f := must(combat.Simulate(cfg, stats, "cookedFish", 8, combat.DefaultAssumptions(), rand.New(rand.NewPCG(seed, 0))))
+		damages = append(damages, f.Damage)
+	}
+	slices.Sort(damages)
+	fmt.Printf("10%%: %.0fk, median: %.0fk, 90%%: %.0fk\n", damages[100]/1000, damages[500]/1000, damages[900]/1000)
+	// Output: 10%: 534k, median: 572k, 90%: 610k
 }

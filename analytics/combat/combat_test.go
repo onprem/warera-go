@@ -3,6 +3,7 @@ package combat_test
 import (
 	"errors"
 	"math"
+	"math/rand/v2"
 	"testing"
 
 	"github.com/onprem/warera-go"
@@ -133,5 +134,45 @@ func TestCraftCost(t *testing.T) {
 	}
 	if _, err := combat.CraftCost(cfg, "shiny", nil); err == nil {
 		t.Error("unknown rarity: want an error")
+	}
+}
+
+func TestSimulate(t *testing.T) {
+	cfg := fixture[*warera.GameConfig](t, "gameConfig.getGameConfig")
+	a := combat.DefaultAssumptions()
+
+	// Every swing hits for 100 and costs 10 of 100 health: 10 swings.
+	plain := character.Stats{Attack: 100, Precision: 100, Health: 100}
+	exact := a
+	exact.DamageSpread = 0
+	f, err := combat.Simulate(cfg, plain, "", 0, exact, rand.New(rand.NewPCG(1, 0)))
+	if err != nil || f.Swings != 10 || f.Damage != 1000 || f.Hits != 10 || f.Undodged != 10 {
+		t.Errorf("Simulate = %+v, %v; want 10 swings for 1000", f, err)
+	}
+	f, _ = combat.Simulate(cfg, plain, "", 0, a, rand.New(rand.NewPCG(1, 0)))
+	if f.Damage < 950 || f.Damage > 1050 || f.Damage == 1000 {
+		t.Errorf("with a 5%% spread, damage = %v", f.Damage)
+	}
+
+	// Many simulated fights average out to the expected fight.
+	stats := recordedStats(t, cfg)
+	want, _ := combat.Window(cfg, stats, "cookedFish", 8, a)
+	var damage, food float64
+	const runs = 2000
+	for i := range runs {
+		f, err := combat.Simulate(cfg, stats, "cookedFish", 8, a, rand.New(rand.NewPCG(uint64(i), 0)))
+		if err != nil {
+			t.Fatal(err)
+		}
+		damage += f.Damage / runs
+		food += f.Food / runs
+	}
+	if math.Abs(damage/want.Damage-1) > 0.01 || math.Abs(food-want.Food) > 1e-6 {
+		t.Errorf("mean damage %v and food %v; the expected fight deals %v with %v food", damage, food, want.Damage, want.Food)
+	}
+	again, _ := combat.Simulate(cfg, stats, "cookedFish", 8, a, rand.New(rand.NewPCG(7, 0)))
+	first, _ := combat.Simulate(cfg, stats, "cookedFish", 8, a, rand.New(rand.NewPCG(7, 0)))
+	if again != first {
+		t.Error("the same seed must repeat the fight")
 	}
 }

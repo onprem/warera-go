@@ -8,7 +8,8 @@
 // LoadoutOf, which reproduces the totals the API reports. Set the
 // loadout's BattlePercent to [BattlePercent] for a battle, then
 // pass the stats to [Window] for a fight and to [CostOf] and [IncomeOf] for
-// its gold.
+// its gold. [Simulate] fights swing by swing with seeded random rolls, for
+// the spread of outcomes around the expected fight.
 //
 // The game does not publish its damage formula, so everything after the
 // stats is a Model in the sense of the analytics package: it follows the

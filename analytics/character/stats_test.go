@@ -86,7 +86,7 @@ func TestStatsWhatIf(t *testing.T) {
 	}
 	// Two prestige levels above the top level keep the step: attack 10+2
 	// is 350 + 2·25.
-	l = character.Loadout{Levels: map[string]int{"attack": 12}}
+	l = character.Loadout{Levels: map[string]int{"attack": 10}, Prestige: map[string]int{"attack": 2}}
 	if s, _ := character.StatsOf(cfg, l); s.Attack != 400 {
 		t.Errorf("attack at level 12 = %v, want 400", s.Attack)
 	}

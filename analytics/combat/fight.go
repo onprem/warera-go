@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"math/rand/v2"
 
 	"github.com/onprem/warera-go"
 	"github.com/onprem/warera-go/analytics"
@@ -19,12 +20,17 @@ type Assumptions struct {
 	// armor piece, lasts before it breaks: one durability point per use,
 	// from a MaxState of 100.
 	ItemUses float64
+	// The remaining fields apply only to [Simulate]. EatAtHealth is the
+	// health at or below which a player eats, and DamageSpread how far, in
+	// percent, the damage of a swing varies either way, in whole percents.
+	EatAtHealth  float64
+	DamageSpread int
 }
 
-// DefaultAssumptions returns a miss dealing half of attack and items lasting
-// 100 uses.
+// DefaultAssumptions returns a miss dealing half of attack, items lasting
+// 100 uses, eating at 10 health, and damage varying up to 5% either way.
 func DefaultAssumptions() Assumptions {
-	return Assumptions{MissDamage: 0.5, ItemUses: 100}
+	return Assumptions{MissDamage: 0.5, ItemUses: 100, EatAtHealth: 10, DamageSpread: 5}
 }
 
 // Swing is the expected outcome of one attack.
@@ -88,13 +94,9 @@ var ErrNoHealthCost = errors.New("combat: swings cost no health")
 // Model: the regeneration and healing rates are game config; spending all
 // of it in one window follows the Warera Simulator.
 func Window(cfg *warera.GameConfig, s character.Stats, food string, hours float64, a Assumptions) (Fight, error) {
-	var perFood float64
-	if food != "" {
-		item, ok := cfg.Items[food]
-		if !ok {
-			return Fight{}, fmt.Errorf("%w %q", analytics.ErrUnknownItem, food)
-		}
-		perFood = item.FlatStats["healthRegenPercent"] / 100 * s.Health
+	perFood, err := foodHealing(cfg, s, food)
+	if err != nil {
+		return Fight{}, err
 	}
 	swing := ExpectedSwing(cfg, s, a)
 	if swing.Health <= 0 {
@@ -111,6 +113,64 @@ func Window(cfg *warera.GameConfig, s character.Stats, food string, hours float6
 	f.Undodged = f.Swings * (1 - s.DodgeChance)
 	f.Damage = f.Swings * swing.Damage
 	return f, nil
+}
+
+// Simulate fights swing by swing with random rolls from rng, with the same
+// health and food as [Window], and returns what happened. Before each swing
+// the player eats when at or below EatAtHealth and food is left. Each swing
+// rolls a dodge, then a hit and a critical hit, and its damage varies by a
+// whole percent up to DamageSpread either way, rounded down. The fight
+// goes on while health is above zero. Pass a seeded rng, such as
+// rand.New(rand.NewPCG(seed, 0)), to repeat a fight, and run many seeds
+// for the spread of outcomes.
+//
+// Model: follows the Warera Simulator's fight simulation.
+func Simulate(cfg *warera.GameConfig, s character.Stats, food string, hours float64, a Assumptions, rng *rand.Rand) (Fight, error) {
+	w, err := Window(cfg, s, food, hours, a)
+	if err != nil {
+		return Fight{}, err
+	}
+	perFood, _ := foodHealing(cfg, s, food)
+	hitHealth := ExpectedSwing(cfg, s, a).HitHealth
+	f := Fight{Hours: hours, Health: w.Health}
+	health, foodLeft := w.Health-w.Food*perFood, w.Food
+	for health > 0 {
+		if health <= a.EatAtHealth && foodLeft >= 1 {
+			foodLeft--
+			f.Food++
+			health += perFood
+		}
+		f.Swings++
+		if rng.Float64() >= s.DodgeChance {
+			f.Undodged++
+			health = max(0, health-hitHealth)
+		}
+		spread := rng.IntN(2*a.DamageSpread+1) - a.DamageSpread
+		damage := s.Attack * (1 + float64(spread)/100)
+		switch {
+		case rng.Float64()*100 >= s.Precision:
+			damage *= a.MissDamage
+		case rng.Float64()*100 < s.CriticalChance:
+			f.Hits++
+			damage *= 1 + s.CriticalDamages/100
+		default:
+			f.Hits++
+		}
+		f.Damage += math.Floor(damage)
+	}
+	return f, nil
+}
+
+// foodHealing returns the health one food item heals, zero for no food.
+func foodHealing(cfg *warera.GameConfig, s character.Stats, food string) (float64, error) {
+	if food == "" {
+		return 0, nil
+	}
+	item, ok := cfg.Items[food]
+	if !ok {
+		return 0, fmt.Errorf("%w %q", analytics.ErrUnknownItem, food)
+	}
+	return item.FlatStats["healthRegenPercent"] / 100 * s.Health, nil
 }
 
 // Prices are the gold values a fight uses up.

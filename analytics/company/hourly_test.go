@@ -141,3 +141,10 @@ func TestHourlyOfDisabledCompany(t *testing.T) {
 	}
 }
 
+func TestWorkPerDay(t *testing.T) {
+	cfg := fixture[*warera.GameConfig](t, "gameConfig.getGameConfig")
+	// 100 energy regenerates 240 a day: 24 actions of 10, each making 33.
+	if got := company.WorkPerDay(cfg, 100, 33); got != 792 {
+		t.Errorf("WorkPerDay = %v, want 792", got)
+	}
+}

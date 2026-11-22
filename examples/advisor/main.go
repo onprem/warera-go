@@ -28,7 +28,10 @@ import (
 	"github.com/onprem/warera-go"
 	"github.com/onprem/warera-go/analytics/character"
 	"github.com/onprem/warera-go/analytics/combat"
+	"github.com/onprem/warera-go/analytics/company"
+	"github.com/onprem/warera-go/analytics/market"
 	"github.com/onprem/warera-go/analytics/optimize"
+	"github.com/onprem/warera-go/analytics/production"
 )
 
 const (
@@ -97,6 +100,16 @@ type report struct {
 	yours, best character.Loadout
 	kit         combat.Prices
 	metric      optimize.Metric
+
+	companies []companyDay
+}
+
+// companyDay is one of the player's companies and what it makes a day.
+type companyDay struct {
+	company *warera.Company
+	hourly  *company.Hourly
+	bonus   float64 // production bonus percent
+	err     error
 }
 
 func run(username string, o options) error {
@@ -162,8 +175,12 @@ func run(username string, o options) error {
 		return fmt.Errorf("plan war build: %w", err)
 	}
 
+	if r.companies, err = loadCompanies(ctx, client, r.cfg, r.user.ID, r.prices); err != nil {
+		return err
+	}
+
 	r.header(ctx, client, muName, bonus)
-	steps := []func() error{r.statsSection, r.skillsSection, r.damageSection, r.fightSection, r.gearSection, r.nextPointsSection}
+	steps := []func() error{r.statsSection, r.skillsSection, r.damageSection, r.fightSection, r.daySection, r.gearSection, r.nextPointsSection}
 	for _, step := range steps {
 		if err := step(); err != nil {
 			return err
@@ -181,10 +198,12 @@ func (r *report) kitPrices() combat.Prices {
 	eq := r.equipment
 	if eq.Weapon != nil {
 		p.Weapon = r.itemValue(eq.Weapon.Code)
+		p.WeaponScrap = r.scrapValue(eq.Weapon.Code)
 	}
 	for _, piece := range []warera.EquipmentItem{eq.Helmet, eq.Chest, eq.Pants, eq.Boots, eq.Gloves} {
 		if piece.Code != "" {
 			p.Armor += r.itemValue(piece.Code)
+			p.ArmorScrap += r.scrapValue(piece.Code)
 		}
 	}
 	if eq.Ammo != "" {
@@ -195,6 +214,11 @@ func (r *report) kitPrices() combat.Prices {
 		p.Boosts = r.prices["cocain"]
 	}
 	return p
+}
+
+// scrapValue is what dismantling a worn-out item gives back, in gold.
+func (r *report) scrapValue(code string) float64 {
+	return combat.DismantleScraps(r.cfg.Items[code].Rarity, 0) * r.prices["scraps"]
 }
 
 func (r *report) itemValue(code string) float64 {
@@ -308,8 +332,9 @@ func (r *report) header(ctx context.Context, client *warera.Client, muName strin
 	if muName != "" {
 		where += " · MU " + muName
 	}
-	fmt.Printf("  Level %d%s · military rank %d (%s attack)\n", u.Leveling.Level, where, u.MilitaryRank,
-		green(fmt.Sprintf("+%g%%", u.Skills.Attack.MilitaryRankPercent)))
+	next := character.MilitaryRankPercent(u.MilitaryRank+1) - character.MilitaryRankPercent(u.MilitaryRank)
+	fmt.Printf("  Level %d%s · military rank %d (%s attack, %s at the next rank)\n", u.Leveling.Level, where, u.MilitaryRank,
+		green(fmt.Sprintf("+%g%%", u.Skills.Attack.MilitaryRankPercent)), fmt.Sprintf("+%g%%", next))
 	if b := u.Buffs; b != nil {
 		now := time.Now()
 		switch {
@@ -523,6 +548,7 @@ func (r *report) fightSection() error {
 	}
 	line("Weapon wear", -f.Swings/r.a.ItemUses*p.Weapon, fmt.Sprintf("%.1f weapons at %s", f.Swings/r.a.ItemUses, money(p.Weapon)))
 	line("Armor wear", -f.Undodged/r.a.ItemUses*p.Armor, fmt.Sprintf("%.1f armor sets at %s (%.0f%% of swings dodged)", f.Undodged/r.a.ItemUses, money(p.Armor), mine.DodgeChance*100))
+	line("Scrap back", e.cost.Scrap, fmt.Sprintf("dismantling the worn-out gear, at %s per scrap", money(r.prices["scraps"])))
 	line("Ammo", -e.cost.Ammo, fmt.Sprintf("%.0f × %s", f.Swings, orNone(r.equipment.Ammo)))
 	line("Food", -e.cost.Food, fmt.Sprintf("%.0f × %s", f.Food, r.o.food))
 	if r.o.pill {
@@ -558,8 +584,125 @@ func (r *report) fightSection() error {
 	return nil
 }
 
+// loadCompanies returns the player's companies with what each makes an
+// hour at reference prices.
+func loadCompanies(ctx context.Context, client *warera.Client, cfg *warera.GameConfig, userID string, prices warera.ItemPrices) ([]companyDay, error) {
+	var days []companyDay
+	for id, err := range client.Companies.All(ctx, warera.CompanyFilter{UserID: userID}) {
+		if err != nil {
+			return nil, fmt.Errorf("list companies: %w", err)
+		}
+		c, err := client.Companies.GetByID(ctx, id)
+		if err != nil {
+			return nil, fmt.Errorf("load company: %w", err)
+		}
+		roster, err := client.Employees.GetCompanyRoster(ctx, id)
+		if err != nil {
+			return nil, fmt.Errorf("load roster: %w", err)
+		}
+		bonus, err := client.Companies.GetProductionBonus(ctx, id)
+		if err != nil {
+			return nil, fmt.Errorf("load production bonus: %w", err)
+		}
+		d := companyDay{company: c, bonus: bonus.Total}
+		d.hourly, d.err = company.HourlyOf(cfg, c, roster, bonus, market.Reference(prices))
+		days = append(days, d)
+	}
+	return days, nil
+}
+
+func (r *report) daySection() error {
+	section("YOUR DAY", "what you make and spend in a day: economy plus one pilled fight")
+	line := func(name string, v float64, note string) {
+		fmt.Printf("  %-26s %12s  %s\n", name, signedMoney(v), dim(note))
+	}
+
+	// Economy: companies, then working with the day's energy in the
+	// company where a production point earns the most.
+	fmt.Println("  " + bold("Economy"))
+	var economy float64
+	values := production.Values(r.cfg, r.prices)
+	bestPerPoint, bestName := 0.0, ""
+	if len(values) > 0 {
+		bestPerPoint, bestName = values[0].MoneyPerPoint, values[0].ItemCode+" (no enabled company of yours)"
+	}
+	if slices.ContainsFunc(r.companies, func(d companyDay) bool { return d.hourly != nil && !d.hourly.Disabled }) {
+		bestPerPoint = math.Inf(-1)
+	}
+	for _, d := range r.companies {
+		name := fmt.Sprintf("%s (%s)", d.company.Name, d.company.ItemCode)
+		if d.err != nil {
+			fmt.Printf("  %-26s %12s  %s\n", truncate(name, 26), dim("?"), dim(d.err.Error()))
+			continue
+		}
+		if d.hourly.Disabled {
+			fmt.Printf("  %-26s %12s  %s\n", truncate(name, 26), dim("disabled"),
+				dim(fmt.Sprintf("since %s; not counted", d.company.DisabledAt.Format("Jan 2 15:04"))))
+			continue
+		}
+		day := d.hourly.Profit * 24
+		economy += day
+		line(truncate(name, 26), day, fmt.Sprintf("%s points a day, engine %s and workers %s",
+			num(d.hourly.Production*24), num(d.hourly.EngineProduction*24), num(d.hourly.EmployeeProduction*24)))
+		i := slices.IndexFunc(values, func(v production.Value) bool { return v.ItemCode == d.company.ItemCode })
+		if i >= 0 {
+			if v := values[i].MoneyPerPoint * (1 + d.bonus/100); v > bestPerPoint {
+				bestPerPoint, bestName = v, d.company.Name
+			}
+		}
+	}
+	work := company.WorkPerDay(r.cfg, r.user.Skills.Energy.Total, r.user.Skills.Production.Total)
+	if math.IsInf(bestPerPoint, -1) {
+		bestPerPoint = 0
+	}
+	line("Working", work*bestPerPoint, fmt.Sprintf("%s points a day into %s, at %s per point", num(work), bestName, money(bestPerPoint)))
+	economy += work * bestPerPoint
+	fmt.Println("  " + strings.Repeat("─", 39))
+	fmt.Printf("  %-26s %12s\n", bold("Economy"), signedMoney(economy))
+
+	// War: the 8-hour fight's ledger from above.
+	e, err := r.economicsOf(r.stats(r.yours), r.kit)
+	if err != nil {
+		return err
+	}
+	fmt.Println("\n  " + bold("War"))
+	line("Gear wear, less scrap", -(e.cost.Wear - e.cost.Scrap), "")
+	line("Ammo, food, pill", -(e.cost.Ammo + e.cost.Food + r.kit.Boosts), "")
+	line("Cases", e.income.Cases, "")
+	if r.o.bounty > 0 {
+		line("Bounty", e.income.Bounty, "")
+	}
+	fmt.Println("  " + strings.Repeat("─", 39))
+	fmt.Printf("  %-26s %12s  %s\n", bold("War"), signedMoney(e.net), dim(fmt.Sprintf("for %s damage", num(e.fight.Damage))))
+
+	total := economy + e.net
+	fmt.Println()
+	fmt.Printf("  %-26s %12s\n", bold("A day in the war"), signedMoney(total))
+	switch {
+	case e.net >= 0:
+		fmt.Printf("  War pays %s a day on top of your economy.\n", green(money(e.net)))
+	case economy > 0:
+		fmt.Printf("  Staying in the war costs %s a day, %s of what your economy makes.\n",
+			red(money(-e.net)), bold(fmt.Sprintf("%.0f%%", -e.net/economy*100)))
+	default:
+		fmt.Printf("  Staying in the war costs %s a day.\n", red(money(-e.net)))
+	}
+	fmt.Println(dim("  Companies at reference prices, without upkeep or market fees; manager jobs are not included."))
+	if r.o.bounty == 0 {
+		fmt.Println(dim("  Pass -bounty to count what battles pay per 1k damage."))
+	}
+	return nil
+}
+
+func truncate(s string, n int) string {
+	if r := []rune(s); len(r) > n {
+		return string(r[:n-1]) + "…"
+	}
+	return s
+}
+
 func (r *report) gearSection() error {
-	section("GEAR", "swapping one rarity up or down, with wear priced at average market prices")
+	section("GEAR", "swapping one rarity up or down; wear at average market prices, less scrap")
 	changes, err := optimize.GearChanges(r.cfg, r.yours, r.equipment, r.gear, optimize.Damage(r.cfg, r.o.food, fightHours, r.a))
 	if err != nil {
 		return err
@@ -585,10 +728,13 @@ func (r *report) gearSection() error {
 	var ups, downs []swap
 	for _, c := range changes {
 		kit := r.kit
+		scrap := r.scrapValue(c.To) - r.scrapValue(c.From)
 		if c.Slot == "weapon" {
 			kit.Weapon += c.Cost
+			kit.WeaponScrap += scrap
 		} else {
 			kit.Armor += c.Cost
+			kit.ArmorScrap += scrap
 		}
 		e, err := r.economicsOf(r.stats(c.Loadout), kit)
 		if err != nil {

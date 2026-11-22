@@ -99,6 +99,22 @@ func HappinessBonusPercent(happiness float64) float64 {
 	return happiness - 50
 }
 
+// WorkPerDay returns the production points a player makes in a day by
+// working with all the energy that regenerates: maximum energy divided by
+// the game config's RegenDividedBy per hour, one work action per
+// EnergyCostPerAction energy, each making the player's production skill
+// total in points. Pass the Total of [warera.UserSkills] Energy and
+// Production. A company's production bonus applies on top.
+//
+// Model: that a work action makes the production total follows the Warera
+// Simulator; the game client confirms only that work spends energy.
+func WorkPerDay(cfg *warera.GameConfig, energy, production float64) float64 {
+	if cfg.User.EnergyCostPerAction <= 0 || cfg.User.RegenDividedBy <= 0 {
+		return 0
+	}
+	return energy * 24 / cfg.User.RegenDividedBy / cfg.User.EnergyCostPerAction * production
+}
+
 // EngineProduction returns the production points per hour of a company's
 // automated engine at a level: the level's "dailyProd" stat divided by 24,
 // times the roster's [warera.CompanyHourlyOutput.EngineMultiplier] and the

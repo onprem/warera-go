@@ -241,6 +241,10 @@ type Prices struct {
 	// Weapon is the value of the weapon, and Armor of all armor pieces
 	// together. [CraftCost] estimates them from material prices.
 	Weapon, Armor float64
+	// WeaponScrap and ArmorScrap are what dismantling the worn-out weapon,
+	// and all worn-out armor pieces together, gives back, such as
+	// [DismantleScraps] at condition 0 times the price of scraps.
+	WeaponScrap, ArmorScrap float64
 	// Ammo and Food are the price of one unit, zero when none is used.
 	Ammo, Food float64
 	// Boosts is the value of boosts taken for this fight, such as a pill.
@@ -249,25 +253,30 @@ type Prices struct {
 
 // Cost is the gold a fight uses up.
 type Cost struct {
-	// Wear is the share of the weapon and armor value the fight wears out.
+	// Wear is the share of the weapon and armor value the fight wears out,
+	// and Scrap what dismantling the worn-out share gives back.
 	Wear  float64
+	Scrap float64
 	Ammo  float64
 	Food  float64
+	// Total is Wear, Ammo, Food, and boosts, less Scrap.
 	Total float64
 }
 
 // CostOf returns what a fight uses up: one ammo per swing, its food, its
 // boosts, and wear of 1/ItemUses of the weapon per swing and of the armor
-// per undodged swing.
+// per undodged swing, less the scrap the worn-out share gives back.
 //
 // Model: wear per swing follows the Warera Simulator.
 func CostOf(f Fight, p Prices, a Assumptions) Cost {
+	weapons, armors := f.Swings/a.ItemUses, f.Undodged/a.ItemUses
 	c := Cost{
-		Wear: f.Swings/a.ItemUses*p.Weapon + f.Undodged/a.ItemUses*p.Armor,
-		Ammo: f.Swings * p.Ammo,
-		Food: f.Food * p.Food,
+		Wear:  weapons*p.Weapon + armors*p.Armor,
+		Scrap: weapons*p.WeaponScrap + armors*p.ArmorScrap,
+		Ammo:  f.Swings * p.Ammo,
+		Food:  f.Food * p.Food,
 	}
-	c.Total = c.Wear + c.Ammo + c.Food + p.Boosts
+	c.Total = c.Wear + c.Ammo + c.Food + p.Boosts - c.Scrap
 	return c
 }
 
@@ -315,6 +324,17 @@ func (f Fight) PerThousand(gold float64) float64 {
 // in the game; the game config does not publish it.
 var craftScraps = map[string]float64{
 	"common": 6, "uncommon": 18, "rare": 54, "epic": 162, "legendary": 486, "mythic": 1460,
+}
+
+// DismantleScraps returns the scraps dismantling an item of a rarity gives
+// back at a condition, its State / MaxState: all the scraps crafting it
+// takes at full condition, down to a third when worn out, rounded down. A
+// worn-out legendary item gives back 162 of its 486.
+//
+// Verified against recorded dismantles of every rarity up to legendary, at
+// full, partial, and no condition.
+func DismantleScraps(rarity string, condition float64) float64 {
+	return math.Floor(craftScraps[rarity] * (1 + 2*min(max(condition, 0), 1)) / 3)
 }
 
 // CraftCost estimates the gold value of a weapon or armor piece of a rarity

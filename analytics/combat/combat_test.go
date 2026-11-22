@@ -91,8 +91,10 @@ func TestWindowCostAndIncome(t *testing.T) {
 
 	// 277 swings wear 2.77% of a 100 weapon, 277 × 0.44 undodged swings
 	// 1.2188% of 200 armor; 277 ammo at 0.2, 8 food at 7, and a 35 pill.
-	cost := combat.CostOf(burst, combat.Prices{Weapon: 100, Armor: 200, Ammo: 0.2, Food: 7, Boosts: 35}, a)
-	if !near(cost.Wear, 277+243.76) || !near(cost.Ammo, 55.4) || cost.Food != 56 || !near(cost.Total, 520.76+55.4+56+35) {
+	// Dismantling gives 10 back per worn-out weapon and 20 per armor set.
+	cost := combat.CostOf(burst, combat.Prices{Weapon: 100, Armor: 200, WeaponScrap: 10, ArmorScrap: 20, Ammo: 0.2, Food: 7, Boosts: 35}, a)
+	if !near(cost.Wear, 277+243.76) || !near(cost.Scrap, 27.7+24.376) || !near(cost.Ammo, 55.4) || cost.Food != 56 ||
+		!near(cost.Total, 520.76+55.4+56+35-52.076) {
 		t.Errorf("cost = %+v", cost)
 	}
 	// 277 hits at 13% drop 36.01 case1 and 0.3601 case2.
@@ -201,5 +203,22 @@ func TestPillDay(t *testing.T) {
 	want := (491*1.6 + 421*0.4 + 6) * perSwing
 	if math.Abs(d.Damage/want-1) > 1e-9 {
 		t.Errorf("day damage %v, want %v", d.Damage, want)
+	}
+}
+
+func TestDismantleScraps(t *testing.T) {
+	// Recorded dismantles: common and uncommon at full condition, a gun at
+	// 55%, and worn-out rare, epic, and legendary items.
+	for _, c := range []struct {
+		rarity    string
+		condition float64
+		want      float64
+	}{
+		{"common", 1, 6}, {"uncommon", 1, 18}, {"uncommon", 0.55, 12},
+		{"rare", 0, 18}, {"epic", 0, 54}, {"legendary", 0, 162},
+	} {
+		if got := combat.DismantleScraps(c.rarity, c.condition); got != c.want {
+			t.Errorf("DismantleScraps(%s, %v) = %v, want %v", c.rarity, c.condition, got, c.want)
+		}
 	}
 }

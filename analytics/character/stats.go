@@ -41,7 +41,7 @@ type Loadout struct {
 	// the pill's "debuffDurationHours" after it ends.
 	DebuffPercent float64
 	// MilitaryRankPercent is the attack bonus of the player's military rank,
-	// as in [warera.UserSkill.MilitaryRankPercent].
+	// as in [warera.UserSkill.MilitaryRankPercent]; see [MilitaryRankPercent].
 	MilitaryRankPercent float64
 	// BattlePercent is the sum of battle bonuses and maluses, such as
 	// orders and buildings. The API reports stats without it; the combat
@@ -179,6 +179,19 @@ func StatsOf(cfg *warera.GameConfig, l Loadout) (Stats, error) {
 		Hunger:          total["hunger"],
 		LootChance:      total["lootChance"],
 	}, nil
+}
+
+// MilitaryRankPercent returns the attack bonus of a military rank, in
+// percent: half a percent per rank above 1, plus another half for every
+// fourth rank. Rank 89 gives 55% and rank 101 gives 62.5%.
+//
+// Verified: equals [warera.UserSkill.MilitaryRankPercent] for players of
+// ranks 3 to 108.
+func MilitaryRankPercent(rank int) float64 {
+	if rank < 1 {
+		return 0
+	}
+	return 0.5 * float64(rank-1+(rank-1)/4)
 }
 
 // skillValue returns a skill's value at a level, continuing the configured

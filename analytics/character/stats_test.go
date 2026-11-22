@@ -91,3 +91,16 @@ func TestStatsWhatIf(t *testing.T) {
 		t.Errorf("attack at level 12 = %v, want 400", s.Attack)
 	}
 }
+
+func TestMilitaryRankPercent(t *testing.T) {
+	// Recorded from live players.
+	for rank, want := range map[int]float64{3: 1, 4: 1.5, 9: 5, 13: 7.5, 25: 15, 40: 24, 89: 55, 92: 56.5, 93: 57.5, 101: 62.5, 108: 66.5} {
+		if got := character.MilitaryRankPercent(rank); got != want {
+			t.Errorf("MilitaryRankPercent(%d) = %v, want %v", rank, got, want)
+		}
+	}
+	user := fixture[warera.User](t, "user.getUserById")
+	if got := character.MilitaryRankPercent(user.MilitaryRank); got != user.Skills.Attack.MilitaryRankPercent {
+		t.Errorf("rank %d: %v, API %v", user.MilitaryRank, got, user.Skills.Attack.MilitaryRankPercent)
+	}
+}

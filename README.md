@@ -63,7 +63,7 @@ See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the p
 - `go run ./examples/treasurer` prompts for a country and shows its treasury, taxes, strategic-resource bonuses, state army spending, donations, and one transaction page.
 - `go run ./examples/researcher` prompts for a country and follows its event feed and pinned-article reference.
 - `go run ./examples/planner` ranks what a production point earns on each item, quotes input costs from the order book, and values your own workforce per hour (with an API key).
-- `go run ./examples/advisor [flags] <username>` prints a war report for a player: their fight stats against the best war build for their level, expected and simulated damage over a day on a pill, what fighting costs and earns, and which gear swaps pay for their extra wear. Flags set the pill, battle bonuses (the MU's headquarters is read from the API), a bounty rate, and whether to optimize for damage or cost.
+- `go run ./examples/advisor [flags] <username>` prints a war report for a player: their fight stats against the best war build for their level, expected and simulated damage over a day on a pill, what fighting costs and earns, which gear swaps pay for their extra wear, and a daily ledger of war against the player's companies and work. Flags set the pill, battle bonuses (the MU's headquarters is read from the API), a bounty rate, and whether to optimize for damage or cost.
 - `go run ./examples/collector` is a long-running collector that appends prices, new trades, and new events to JSON Lines files and resumes where it stopped.
 - `go run ./examples/basic` and `go run ./examples/batching` show basic client and batching usage.
 

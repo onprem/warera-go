@@ -12,6 +12,8 @@
 //     cost, fight stats, and equipment roll quality.
 //   - [github.com/onprem/warera-go/analytics/combat]: expected damage, how far
 //     health and food last, what a fight costs and earns, and battle bonuses.
+//   - [github.com/onprem/warera-go/analytics/battle]: loot pool sizes, the
+//     ranks that get items and the rarity to expect, and round ticks.
 //   - [github.com/onprem/warera-go/analytics/upgrades]: what region and
 //     company upgrades cost.
 //

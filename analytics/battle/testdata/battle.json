@@ -1,0 +1,267 @@
+{
+ "battleId": "6ad32f78f6dfbfc06adbb239",
+ "note": "Top 45 damage dealers of the fixture battle (both sides), with the item each got from the battle pool, and its two rounds.",
+ "rounds": [
+  {
+   "_id": "6ad32f78f6dfbfc06adbb23b",
+   "number": 1,
+   "live": {
+    "ticksCount": 194,
+    "actualTickPoints": 4,
+    "nextTickAt": "2026-10-17T14:50:00.647Z"
+   },
+   "attacker": {
+    "points": 39,
+    "damages": 2631741
+   },
+   "defender": {
+    "points": 303,
+    "damages": 4315140
+   }
+  },
+  {
+   "_id": "6ad38aa5b45be57841a8f974",
+   "number": 2,
+   "live": {
+    "ticksCount": 185,
+    "actualTickPoints": 4,
+    "nextTickAt": "2026-10-17T21:01:00.022Z"
+   },
+   "attacker": {
+    "points": 4,
+    "damages": 1954341
+   },
+   "defender": {
+    "points": 302,
+    "damages": 5652669
+   }
+  }
+ ],
+ "ranking": [
+  {
+   "rank": 1,
+   "damage": 1710151,
+   "battlePoolItem": "boots6"
+  },
+  {
+   "rank": 2,
+   "damage": 1665628,
+   "battlePoolItem": "boots5"
+  },
+  {
+   "rank": 3,
+   "damage": 1324024,
+   "battlePoolItem": "boots5"
+  },
+  {
+   "rank": 4,
+   "damage": 870062,
+   "battlePoolItem": "boots4"
+  },
+  {
+   "rank": 5,
+   "damage": 729297,
+   "battlePoolItem": "sniper"
+  },
+  {
+   "rank": 6,
+   "damage": 712486,
+   "battlePoolItem": "sniper"
+  },
+  {
+   "rank": 7,
+   "damage": 615669,
+   "battlePoolItem": "sniper"
+  },
+  {
+   "rank": 8,
+   "damage": 473471,
+   "battlePoolItem": "helmet3"
+  },
+  {
+   "rank": 9,
+   "damage": 465386,
+   "battlePoolItem": "rifle"
+  },
+  {
+   "rank": 10,
+   "damage": 420483,
+   "battlePoolItem": "pants3"
+  },
+  {
+   "rank": 11,
+   "damage": 386524,
+   "battlePoolItem": "pants3"
+  },
+  {
+   "rank": 12,
+   "damage": 347588,
+   "battlePoolItem": "pants3"
+  },
+  {
+   "rank": 13,
+   "damage": 345630,
+   "battlePoolItem": "gloves3"
+  },
+  {
+   "rank": 14,
+   "damage": 314404,
+   "battlePoolItem": "boots3"
+  },
+  {
+   "rank": 15,
+   "damage": 309662,
+   "battlePoolItem": "pants3"
+  },
+  {
+   "rank": 16,
+   "damage": 300699,
+   "battlePoolItem": "chest3"
+  },
+  {
+   "rank": 17,
+   "damage": 272916,
+   "battlePoolItem": "helmet2"
+  },
+  {
+   "rank": 18,
+   "damage": 248071,
+   "battlePoolItem": "gun"
+  },
+  {
+   "rank": 19,
+   "damage": 242419,
+   "battlePoolItem": "gun"
+  },
+  {
+   "rank": 20,
+   "damage": 214906,
+   "battlePoolItem": "gun"
+  },
+  {
+   "rank": 21,
+   "damage": 190775,
+   "battlePoolItem": "gun"
+  },
+  {
+   "rank": 22,
+   "damage": 171107,
+   "battlePoolItem": "boots2"
+  },
+  {
+   "rank": 23,
+   "damage": 168374,
+   "battlePoolItem": "chest2"
+  },
+  {
+   "rank": 24,
+   "damage": 160782,
+   "battlePoolItem": "gloves2"
+  },
+  {
+   "rank": 25,
+   "damage": 155734,
+   "battlePoolItem": "helmet2"
+  },
+  {
+   "rank": 26,
+   "damage": 151630,
+   "battlePoolItem": "boots2"
+  },
+  {
+   "rank": 27,
+   "damage": 123731,
+   "battlePoolItem": "pants2"
+  },
+  {
+   "rank": 28,
+   "damage": 106727,
+   "battlePoolItem": "pants2"
+  },
+  {
+   "rank": 29,
+   "damage": 89342,
+   "battlePoolItem": "chest2"
+  },
+  {
+   "rank": 30,
+   "damage": 88963,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 31,
+   "damage": 85769,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 32,
+   "damage": 82794,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 33,
+   "damage": 79286,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 34,
+   "damage": 68946,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 35,
+   "damage": 65783,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 36,
+   "damage": 61325,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 37,
+   "damage": 51867,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 38,
+   "damage": 46266,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 39,
+   "damage": 40201,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 40,
+   "damage": 35564,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 41,
+   "damage": 33928,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 42,
+   "damage": 32279,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 43,
+   "damage": 25163,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 44,
+   "damage": 24738,
+   "battlePoolItem": ""
+  },
+  {
+   "rank": 45,
+   "damage": 23016,
+   "battlePoolItem": ""
+  }
+ ]
+}

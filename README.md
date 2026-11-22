@@ -73,7 +73,7 @@ See the [Go Reference](https://pkg.go.dev/github.com/onprem/warera-go) for the p
 - **Polling and resuming:** `Until` stops a newest-first listing at the last record you stored; `Pages` exposes cursors so a collector can resume after a restart.
 - **Names:** `GetMany` methods resolve many IDs at once, and `Directory` caches countries, regions, game config, and user profiles.
 - **Your own account:** `Me` reads the API key owner's employees, workforce totals, and employee events; create one client per player's key.
-- **Economy and combat math:** the `analytics` packages compute production costs, money per production point, employee output and wages, manager pay, company profit, skill build costs, fight stats, expected damage and fight cost, battle bonuses, equipment roll quality, upgrade costs, and order-book fills from API records.
+- **Economy and combat math:** the `analytics` packages compute production costs, money per production point, employee output and wages, manager pay, company profit, skill build costs, fight stats, expected damage and fight cost, battle bonuses, loot pools and round timing, equipment roll quality, upgrade costs, and order-book fills from API records.
 - **Testing:** `waretest.NewServer(t)` is a fake API that answers every wrapped procedure with a recorded response; override procedures to simulate errors.
 
 Set `WARERA_API_KEY` in the environment; the persona examples use procedures that require it. They are read-only. [`CONTRIBUTING.md`](CONTRIBUTING.md) describes the development workflow.

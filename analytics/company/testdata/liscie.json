@@ -1,0 +1,448 @@
+{
+ "company": {
+  "_id": "6aa8e5d0171e88a1cfee1157",
+  "user": "6aa84e5b26c29f31986b9b6c",
+  "region": "6813b7049403bc4170a5d72f",
+  "itemCode": "coca",
+  "isFull": false,
+  "name": "Liscie",
+  "concreteInvested": 100,
+  "production": 23.514999999999688,
+  "activeUpgradeLevels": {
+   "storage": 1,
+   "automatedEngine": 7,
+   "breakRoom": 3
+  },
+  "createdAt": "2026-09-15T06:29:36.228Z",
+  "updatedAt": "2026-11-23T15:30:21.205Z",
+  "__v": 0,
+  "estimatedValue": 2497.4629254507763,
+  "movedUpAt": "2026-09-29T20:46:28.084Z",
+  "freeMoves": 0,
+  "disabledAt": "2026-11-22T10:18:19.884Z"
+ },
+ "roster": {
+  "employees": [
+   {
+    "_id": "6ae2e233cd8cc6727f678572",
+    "owner": "6aa84e5b26c29f31986b9b6c",
+    "company": "6aa8e5d0171e88a1cfee1157",
+    "name": "Tobiasz Winiarski",
+    "gender": "male",
+    "age": 47,
+    "base": {
+     "production": 10,
+     "luck": 3,
+     "responsibility": 3
+    },
+    "trained": {
+     "production": 6,
+     "luck": 0,
+     "responsibility": 2
+    },
+    "traits": [
+     {
+      "code": "patriot"
+     },
+     {
+      "code": "flightRisk"
+     },
+     {
+      "code": "wornOut"
+     }
+    ],
+    "potential": 8,
+    "potentialMax": 8,
+    "wage": 0.159104,
+    "wageExpectation": 0.704,
+    "nationality": "6813b6d446e731854c7ac7ae",
+    "createdAt": "2026-10-29T06:05:39.669Z",
+    "updatedAt": "2026-11-23T01:59:39.197Z",
+    "__v": 0,
+    "lastSpecializedDay": "2026-11-21",
+    "specializations": {
+     "oil": 3,
+     "cocain": 1,
+     "cookedFish": 2,
+     "steel": 5,
+     "lightAmmo": 5,
+     "lead": 2,
+     "fish": 6
+    },
+    "lastTrainedAt": "2026-11-05T05:32:00.857Z",
+    "trainingsToday": 1,
+    "trainingHistory": [
+     {
+      "card": "drill",
+      "rarity": "uncommon",
+      "stat": "production",
+      "delta": 2,
+      "outcome": {
+       "stat": "production",
+       "statGain": 2
+      },
+      "pickedAt": "2026-10-29T07:08:02.677Z"
+     },
+     {
+      "card": "wildCard",
+      "rarity": "uncommon",
+      "outcome": {
+       "stat": "production",
+       "statGain": 1,
+       "gained": [
+        {
+         "code": "flightRisk",
+         "revealed": true
+        }
+       ]
+      },
+      "pickedAt": "2026-10-30T05:07:09.563Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-10-31T00:04:59.550Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-01T06:03:06.002Z"
+     },
+     {
+      "card": "negotiation",
+      "rarity": "common",
+      "delta": 0.05,
+      "outcome": {
+       "wageExpectation": 0.804
+      },
+      "pickedAt": "2026-11-02T03:35:13.345Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-03T03:19:06.120Z"
+     },
+     {
+      "card": "negotiation",
+      "rarity": "uncommon",
+      "delta": 0.1,
+      "outcome": {
+       "wageExpectation": 0.704
+      },
+      "pickedAt": "2026-11-04T05:05:40.967Z"
+     },
+     {
+      "card": "wildCard",
+      "rarity": "rare",
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 2,
+       "gained": [
+        {
+         "code": "wornOut"
+        }
+       ]
+      },
+      "pickedAt": "2026-11-05T05:32:04.132Z"
+     }
+    ],
+    "lastMovedAt": "2026-11-23T01:59:39.196Z",
+    "careBoosts": [
+     "2026-11-19T05:47:03.750Z"
+    ],
+    "wageNegotiated": 0.15,
+    "retireInDays": 18,
+    "lastAgedDay": "2026-11-21",
+    "lastEventAt": "2026-11-16T11:29:22.500Z",
+    "eventModifiers": [
+     {
+      "code": "suggestionBox",
+      "kind": "happiness",
+      "delta": 10,
+      "until": "2026-11-19T05:31:48.983Z"
+     },
+     {
+      "code": "strayCat",
+      "kind": "happiness",
+      "delta": 5,
+      "until": "2026-11-23T10:19:36.769Z"
+     }
+    ],
+    "estimate": {
+     "production": 0,
+     "wage": 0,
+     "itemCode": "coca"
+    },
+    "breakdown": {
+     "production": {
+      "base": 4,
+      "trained": 6,
+      "contributions": [],
+      "total": 10
+     },
+     "luck": {
+      "base": 3,
+      "trained": 0,
+      "contributions": [],
+      "total": 3
+     },
+     "responsibility": {
+      "base": 1,
+      "trained": 2,
+      "contributions": [],
+      "total": 3
+     }
+    },
+    "happinessBreakdown": {
+     "base": 50,
+     "contributions": [
+      {
+       "reason": "responsibility",
+       "delta": 9
+      },
+      {
+       "reason": "incomeTax",
+       "delta": -7.35
+      }
+     ],
+     "mitigated": 0,
+     "value": 51.65,
+     "quitChance": 0
+    },
+    "productionBonus": {
+     "total": 5.649999999999999,
+     "contributions": [
+      {
+       "source": "management",
+       "percent": 4
+      },
+      {
+       "source": "happiness",
+       "percent": 1.6499999999999986
+      }
+     ]
+    },
+    "trainingsPerDay": 1,
+    "companyDisabled": true
+   },
+   {
+    "_id": "6afd2acead2c0f3bdce1b593",
+    "owner": "6aa84e5b26c29f31986b9b6c",
+    "company": "6aa8e5d0171e88a1cfee1157",
+    "name": "Izajasz \u015alusarczyk",
+    "gender": "male",
+    "age": 31,
+    "base": {
+     "production": 4,
+     "luck": 1,
+     "responsibility": 4
+    },
+    "trained": {
+     "production": 0,
+     "luck": 0,
+     "responsibility": 0
+    },
+    "traits": [
+     {
+      "code": "recruiter"
+     }
+    ],
+    "potential": 0,
+    "potentialMax": 9,
+    "wage": 0.099169,
+    "wageExpectation": 1.097,
+    "nationality": "6813b6d446e731854c7ac7ae",
+    "lastAgedDay": "2026-11-18",
+    "retireInDays": 34,
+    "createdAt": "2026-11-18T04:34:22.047Z",
+    "updatedAt": "2026-11-20T05:29:01.605Z",
+    "__v": 0,
+    "lastMovedAt": "2026-11-20T05:29:01.604Z",
+    "estimate": {
+     "production": 0,
+     "wage": 0,
+     "itemCode": "coca"
+    },
+    "breakdown": {
+     "production": {
+      "base": 4,
+      "trained": 0,
+      "contributions": [],
+      "total": 4
+     },
+     "luck": {
+      "base": 1,
+      "trained": 0,
+      "contributions": [],
+      "total": 1
+     },
+     "responsibility": {
+      "base": 4,
+      "trained": 0,
+      "contributions": [],
+      "total": 4
+     }
+    },
+    "happinessBreakdown": {
+     "base": 50,
+     "contributions": [
+      {
+       "reason": "responsibility",
+       "delta": 12
+      },
+      {
+       "reason": "incomeTax",
+       "delta": -7.35
+      }
+     ],
+     "mitigated": 0,
+     "value": 54.65,
+     "quitChance": 0
+    },
+    "productionBonus": {
+     "total": 8.649999999999999,
+     "contributions": [
+      {
+       "source": "management",
+       "percent": 4
+      },
+      {
+       "source": "happiness",
+       "percent": 4.649999999999999
+      }
+     ]
+    },
+    "trainingsPerDay": 1,
+    "companyDisabled": true
+   },
+   {
+    "_id": "6b039da070fa040358f6c645",
+    "owner": "6aa84e5b26c29f31986b9b6c",
+    "company": "6aa8e5d0171e88a1cfee1157",
+    "name": "Nolen Moln\u00e1r",
+    "gender": "male",
+    "age": 18,
+    "base": {
+     "production": 3,
+     "luck": 1,
+     "responsibility": 3
+    },
+    "trained": {
+     "production": 0,
+     "luck": 0,
+     "responsibility": 0
+    },
+    "traits": [
+     {
+      "code": "flightRisk"
+     }
+    ],
+    "potential": 0,
+    "potentialMax": 3,
+    "wage": 0.050375,
+    "wageExpectation": 0.743,
+    "nationality": "6813b6d446e731854c7ac7b2",
+    "lastAgedDay": "2026-11-23",
+    "retireInDays": 47,
+    "createdAt": "2026-11-23T01:57:52.842Z",
+    "updatedAt": "2026-11-23T01:59:56.118Z",
+    "__v": 0,
+    "lastMovedAt": "2026-11-23T01:59:56.117Z",
+    "estimate": {
+     "production": 0,
+     "wage": 0,
+     "itemCode": "coca"
+    },
+    "breakdown": {
+     "production": {
+      "base": 3,
+      "trained": 0,
+      "contributions": [],
+      "total": 3
+     },
+     "luck": {
+      "base": 1,
+      "trained": 0,
+      "contributions": [],
+      "total": 1
+     },
+     "responsibility": {
+      "base": 3,
+      "trained": 0,
+      "contributions": [],
+      "total": 3
+     }
+    },
+    "happinessBreakdown": {
+     "base": 50,
+     "contributions": [
+      {
+       "reason": "responsibility",
+       "delta": 9
+      },
+      {
+       "reason": "incomeTax",
+       "delta": -7.35
+      }
+     ],
+     "mitigated": 0,
+     "value": 51.65,
+     "quitChance": 0
+    },
+    "productionBonus": {
+     "total": 5.649999999999999,
+     "contributions": [
+      {
+       "source": "management",
+       "percent": 4
+      },
+      {
+       "source": "happiness",
+       "percent": 1.6499999999999986
+      }
+     ]
+    },
+    "trainingsPerDay": 1,
+    "companyDisabled": true
+   }
+  ],
+  "hourly": {
+   "itemCode": "coca",
+   "production": 0,
+   "toolboxes": 0,
+   "wageCost": 0,
+   "managerCost": 0,
+   "cap": 3,
+   "engineMultiplier": 1,
+   "ifEnabled": {
+    "production": 4.52,
+    "toolboxes": 0.005,
+    "wageCost": 0.308648,
+    "managerCost": 0
+   }
+  }
+ },
+ "productionBonus": {
+  "depositBonus": 0,
+  "total": 0,
+  "strategicResourcesBonus": 0
+ }
+}

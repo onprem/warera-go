@@ -123,15 +123,18 @@ type Company struct {
 	ActiveUpgradeLevels CompanyActiveUpgradeLevels `json:"activeUpgradeLevels"`
 	ConcreteInvested    float64                    `json:"concreteInvested"`
 	CreatedAt           Time                       `json:"createdAt"`
-	EstimatedValue      float64                    `json:"estimatedValue"`
-	FreeMoves           int                        `json:"freeMoves"`
-	IsFull              bool                       `json:"isFull"`
-	ItemCode            string                     `json:"itemCode"`
-	Name                string                     `json:"name"`
-	Production          float64                    `json:"production"`
-	RegionID            string                     `json:"region"`
-	UpdatedAt           Time                       `json:"updatedAt"`
-	UserID              string                     `json:"user"`
+	// DisabledAt is when the owner disabled the company, which stops its
+	// production and wages; zero while it is enabled.
+	DisabledAt     Time    `json:"disabledAt"`
+	EstimatedValue float64 `json:"estimatedValue"`
+	FreeMoves      int     `json:"freeMoves"`
+	IsFull         bool    `json:"isFull"`
+	ItemCode       string  `json:"itemCode"`
+	Name           string  `json:"name"`
+	Production     float64 `json:"production"`
+	RegionID       string  `json:"region"`
+	UpdatedAt      Time    `json:"updatedAt"`
+	UserID         string  `json:"user"`
 }
 
 // CompanyActiveUpgradeLevels is a nested component of Company.

@@ -2,6 +2,7 @@ package market
 
 import (
 	"cmp"
+	"maps"
 	"slices"
 
 	"github.com/onprem/warera-go"
@@ -57,8 +58,8 @@ func Spread(book *warera.TopOrders) (bid, ask float64, ok bool) {
 	if len(book.BuyOrders) == 0 || len(book.SellOrders) == 0 {
 		return 0, 0, false
 	}
-	bid = slices.MaxFunc(book.BuyOrders, func(a, b warera.TopOrder) int { return cmp.Compare(a.Price, b.Price) }).Price
-	ask = slices.MinFunc(book.SellOrders, func(a, b warera.TopOrder) int { return cmp.Compare(a.Price, b.Price) }).Price
+	bid = slices.MaxFunc(book.BuyOrders, byPrice).Price
+	ask = slices.MinFunc(book.SellOrders, byPrice).Price
 	return bid, ask, true
 }
 
@@ -106,3 +107,36 @@ func SummarizeTrading(days []warera.ItemTradingDay) PriceSummary {
 	}
 	return s
 }
+
+// Basis is the prices a tool values trade at: Sell for what it sells, such
+// as a company's output, and Buy for what it buys, such as inputs.
+type Basis struct {
+	Sell, Buy warera.ItemPrices
+}
+
+// Reference values both selling and buying at reference prices, such as
+// those from Trading.GetPrices.
+func Reference(prices warera.ItemPrices) Basis {
+	return Basis{Sell: prices, Buy: prices}
+}
+
+// BidAsk values selling at each order book's best bid and buying at its best
+// ask, what trading right now gets, with books keyed by item code as
+// returned by Trading.GetTopOrdersPerItem. An item without a book, or a
+// side without orders, falls back to its reference price.
+func BidAsk(prices warera.ItemPrices, books map[string]warera.TopOrders) Basis {
+	b := Basis{Sell: warera.ItemPrices{}, Buy: warera.ItemPrices{}}
+	maps.Copy(b.Sell, prices)
+	maps.Copy(b.Buy, prices)
+	for code, book := range books {
+		if len(book.BuyOrders) > 0 {
+			b.Sell[code] = slices.MaxFunc(book.BuyOrders, byPrice).Price
+		}
+		if len(book.SellOrders) > 0 {
+			b.Buy[code] = slices.MinFunc(book.SellOrders, byPrice).Price
+		}
+	}
+	return b
+}
+
+func byPrice(a, b warera.TopOrder) int { return cmp.Compare(a.Price, b.Price) }

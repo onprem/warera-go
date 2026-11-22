@@ -30,3 +30,25 @@ func ExampleProfitPerHour() {
 	fmt.Printf("revenue %.2f, inputs %.2f, wages %.2f: profit %.2f per hour\n", p.Revenue, p.InputCost, p.Wages, p.Profit)
 	// Output: revenue 11.08, inputs 4.30, wages 1.50: profit 5.28 per hour
 }
+
+// Decide whether hiring a manager pays: the output their bonus adds,
+// against their wage at the best offer's rate.
+func ExampleExtraProduction() {
+	cfg := must(waretest.Fixture[*warera.GameConfig]("gameConfig.getGameConfig"))                             // client.GameConfig.Get(ctx)
+	prices := must(waretest.Fixture[warera.ItemPrices]("itemTrading.getPrices"))                              // client.Trading.GetPrices(ctx)
+	roster := must(waretest.Fixture[warera.CompanyRoster]("employee.getCompanyRoster"))                       // client.Employees.GetCompanyRoster(ctx, companyID)
+	offers := must(waretest.Fixture[warera.CursorPage[warera.ManagerOffer]]("managerOffer.getManyPaginated")) // client.Managers.ListOffers(ctx, filter)
+
+	item := roster.Hourly.ItemCode
+	perPoint := prices[item] / cfg.Items[item].ProductionPoints // fish has no inputs
+	rate := offers.Items[0].RateManagement
+	for _, level := range []int{2, 6, 10} {
+		gain := company.ExtraProduction(&roster, company.ManagerBonusPercent(level)) * perPoint
+		wage := company.ManagerWage(rate, level)
+		fmt.Printf("level %2d: +%.3f output, -%.3f wage, net %+.3f per hour\n", level, gain, wage, gain-wage)
+	}
+	// Output:
+	// level  2: +0.083 output, -0.049 wage, net +0.034 per hour
+	// level  6: +0.194 output, -0.114 wage, net +0.079 per hour
+	// level 10: +0.305 output, -0.180 wage, net +0.125 per hour
+}

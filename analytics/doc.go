@@ -5,9 +5,9 @@
 //   - [github.com/onprem/warera-go/analytics/production]: what an item costs
 //     to produce and what a production point earns on it.
 //   - [github.com/onprem/warera-go/analytics/market]: order-book fills,
-//     spreads, and price history.
-//   - [github.com/onprem/warera-go/analytics/company]: what companies and a
-//     workforce make per hour.
+//     spreads, price bases, and price history.
+//   - [github.com/onprem/warera-go/analytics/company]: employee output and
+//     wages, manager pay, and what companies and a workforce make per hour.
 //   - [github.com/onprem/warera-go/analytics/character]: skill builds and their
 //     cost, fight stats, and equipment roll quality.
 //   - [github.com/onprem/warera-go/analytics/combat]: expected damage, how far

@@ -32,6 +32,20 @@ func TestOrderBook(t *testing.T) {
 	}
 }
 
+func TestBidAsk(t *testing.T) {
+	ref := warera.ItemPrices{"fish": 1, "steel": 2, "iron": 0.2}
+	b := market.BidAsk(ref, map[string]warera.TopOrders{
+		"fish":  {BuyOrders: []warera.TopOrder{{Price: 0.8}, {Price: 0.9}}, SellOrders: []warera.TopOrder{{Price: 1.2}, {Price: 1.1}}},
+		"steel": {SellOrders: []warera.TopOrder{{Price: 2.5}}}, // nobody bids: sell at reference
+	})
+	if b.Sell["fish"] != 0.9 || b.Buy["fish"] != 1.1 || b.Sell["steel"] != 2 || b.Buy["steel"] != 2.5 || b.Sell["iron"] != 0.2 || b.Buy["iron"] != 0.2 {
+		t.Errorf("BidAsk = %+v", b)
+	}
+	if ref["fish"] != 1 {
+		t.Error("BidAsk changed the reference prices")
+	}
+}
+
 func TestSummarizeTrading(t *testing.T) {
 	days := []warera.ItemTradingDay{
 		{AvgValue: 2, TotalValue: 20, TotalQuantity: 10},

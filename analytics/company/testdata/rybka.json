@@ -1,0 +1,1029 @@
+{
+ "company": {
+  "_id": "6aad76161222db3b889f596a",
+  "user": "6aa84e5b26c29f31986b9b6c",
+  "region": "6813b7049403bc4170a5d717",
+  "itemCode": "cookedFish",
+  "isFull": false,
+  "name": "Rybka",
+  "concreteInvested": 200,
+  "production": 114.60999999999996,
+  "activeUpgradeLevels": {
+   "storage": 2,
+   "automatedEngine": 7,
+   "breakRoom": 3
+  },
+  "createdAt": "2026-09-18T17:34:14.950Z",
+  "updatedAt": "2026-11-21T21:03:54.351Z",
+  "__v": 0,
+  "estimatedValue": 2670.015108535923,
+  "freeMoves": 0,
+  "movedUpAt": "2026-11-16T14:34:21.641Z"
+ },
+ "roster": {
+  "employees": [
+   {
+    "_id": "6ae3701f2981622d4984b248",
+    "owner": "6aa84e5b26c29f31986b9b6c",
+    "company": "6aad76161222db3b889f596a",
+    "name": "Milla M\u00e1t\u00e9",
+    "gender": "female",
+    "age": 42,
+    "base": {
+     "production": 6,
+     "luck": 1,
+     "responsibility": 7
+    },
+    "trained": {
+     "production": 3,
+     "luck": 0,
+     "responsibility": 4
+    },
+    "traits": [
+     {
+      "code": "veteran"
+     },
+     {
+      "code": "rival"
+     },
+     {
+      "code": "craftsman"
+     },
+     {
+      "code": "lateBloomer"
+     },
+     {
+      "code": "nemesis",
+      "arg": "6aeffb5cd4c54518ab4f2005"
+     }
+    ],
+    "potential": 11,
+    "potentialMax": 11,
+    "wage": 0.12041,
+    "wageExpectation": 0.887,
+    "nationality": "6813b6d446e731854c7ac7b2",
+    "createdAt": "2026-10-29T16:11:11.311Z",
+    "updatedAt": "2026-11-21T03:11:11.940Z",
+    "__v": 0,
+    "lastTrainedAt": "2026-11-08T01:54:06.824Z",
+    "trainingsToday": 1,
+    "trainingHistory": [
+     {
+      "card": "secondWind",
+      "rarity": "epic",
+      "delta": 3,
+      "outcome": {
+       "potentialMax": 11
+      },
+      "pickedAt": "2026-10-29T16:11:35.637Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-10-30T08:00:59.184Z"
+     },
+     {
+      "card": "negotiation",
+      "rarity": "common",
+      "delta": 0.05,
+      "outcome": {
+       "wageExpectation": 0.887
+      },
+      "pickedAt": "2026-10-31T13:11:20.405Z"
+     },
+     {
+      "card": "habit",
+      "rarity": "rare",
+      "traitTo": "rival",
+      "outcome": {
+       "gained": [
+        {
+         "code": "rival",
+         "revealed": true
+        }
+       ]
+      },
+      "pickedAt": "2026-11-01T08:01:12.725Z"
+     },
+     {
+      "card": "habit",
+      "rarity": "rare",
+      "traitTo": "craftsman",
+      "outcome": {
+       "gained": [
+        {
+         "code": "craftsman",
+         "revealed": true
+        }
+       ]
+      },
+      "pickedAt": "2026-11-02T09:27:24.252Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "responsibility",
+      "delta": 1,
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-03T07:19:44.719Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "responsibility",
+      "delta": 1,
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-04T06:07:18.809Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-05T05:33:09.464Z"
+     },
+     {
+      "card": "habit",
+      "rarity": "epic",
+      "traitTo": "lateBloomer",
+      "outcome": {
+       "gained": [
+        {
+         "code": "lateBloomer"
+        }
+       ]
+      },
+      "pickedAt": "2026-11-06T03:16:07.383Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-07T01:00:38.957Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "uncommon",
+      "stat": "responsibility",
+      "delta": 2,
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 2
+      },
+      "pickedAt": "2026-11-08T01:54:18.074Z"
+     }
+    ],
+    "lastMovedAt": "2026-11-18T04:35:16.648Z",
+    "lastSpecializedDay": "2026-11-21",
+    "specializations": {
+     "cocain": 3,
+     "oil": 1,
+     "cookedFish": 20
+    },
+    "wageNegotiated": 0.05,
+    "lastEventAt": "2026-11-20T09:55:17.434Z",
+    "retireInDays": 23,
+    "lastAgedDay": "2026-11-21",
+    "careBoosts": [
+     "2026-11-09T07:23:13.911Z"
+    ],
+    "eventModifiers": [
+     {
+      "code": "soupDebate",
+      "kind": "happiness",
+      "delta": -5,
+      "until": "2026-11-18T00:31:15.309Z"
+     },
+     {
+      "code": "onFire",
+      "kind": "production",
+      "delta": 30,
+      "until": "2026-11-18T09:31:53.950Z"
+     }
+    ],
+    "tool": "6afb26b84116e4a39f883952",
+    "estimate": {
+     "production": 5.26,
+     "wage": 0.12041,
+     "itemCode": "cookedFish"
+    },
+    "breakdown": {
+     "production": {
+      "base": 3,
+      "trained": 3,
+      "contributions": [
+       {
+        "code": "rival",
+        "delta": 3
+       },
+       {
+        "code": "craftsman",
+        "delta": 3
+       },
+       {
+        "code": "tool",
+        "delta": 4,
+        "percent": true
+       },
+       {
+        "code": "specialization",
+        "delta": 20,
+        "percent": true
+       }
+      ],
+      "total": 12
+     },
+     "luck": {
+      "base": 1,
+      "trained": 0,
+      "contributions": [],
+      "total": 1
+     },
+     "responsibility": {
+      "base": 3,
+      "trained": 4,
+      "contributions": [],
+      "total": 7
+     }
+    },
+    "happinessBreakdown": {
+     "base": 50,
+     "contributions": [
+      {
+       "reason": "responsibility",
+       "delta": 21
+      },
+      {
+       "reason": "incomeTax",
+       "delta": -6.67
+      },
+      {
+       "reason": "comicCoworker",
+       "delta": 10,
+       "code": "comic"
+      }
+     ],
+     "mitigated": 0,
+     "value": 74.33,
+     "quitChance": 0
+    },
+    "toolStatus": {
+     "rolledPercent": 4,
+     "isUsable": true,
+     "isBroken": false,
+     "bonusPercent": 4
+    },
+    "toolItem": {
+     "_id": "6afb26b84116e4a39f883952",
+     "owner": "6aa84e5b26c29f31986b9b6c",
+     "code": "skillet1",
+     "skills": {
+      "production": 4
+     },
+     "state": 80.4,
+     "maxState": 100,
+     "createdAt": "2026-11-16T15:52:24.886Z",
+     "updatedAt": "2026-11-21T21:03:56.231Z",
+     "__v": 0,
+     "employee": "6ae3701f2981622d4984b248"
+    },
+    "productionBonus": {
+     "total": 75.33,
+     "contributions": [
+      {
+       "source": "management",
+       "percent": 4
+      },
+      {
+       "source": "manager",
+       "percent": 18
+      },
+      {
+       "source": "coreRegion",
+       "percent": 5
+      },
+      {
+       "source": "happiness",
+       "percent": 24.33
+      },
+      {
+       "source": "tool",
+       "percent": 4
+      },
+      {
+       "source": "specialization",
+       "percent": 20
+      }
+     ]
+    },
+    "trainingsPerDay": 2,
+    "companyDisabled": false
+   },
+   {
+    "_id": "6ae370fabaf5f23b8c087b52",
+    "owner": "6aa84e5b26c29f31986b9b6c",
+    "company": "6aad76161222db3b889f596a",
+    "name": "Arkadiusz \u017by\u0142a",
+    "gender": "male",
+    "age": 43,
+    "base": {
+     "production": 13,
+     "luck": 2,
+     "responsibility": 7
+    },
+    "trained": {
+     "production": 9,
+     "luck": 0,
+     "responsibility": 4
+    },
+    "traits": [
+     {
+      "code": "comic"
+     },
+     {
+      "code": "craftsman"
+     },
+     {
+      "code": "taxShy"
+     }
+    ],
+    "potential": 13,
+    "potentialMax": 13,
+    "wage": 0.212946,
+    "wageExpectation": 0.724,
+    "nationality": "6813b6d446e731854c7ac7ae",
+    "createdAt": "2026-10-29T16:14:50.848Z",
+    "updatedAt": "2026-11-21T03:10:56.195Z",
+    "__v": 0,
+    "lastTrainedAt": "2026-11-10T03:00:58.562Z",
+    "trainingsToday": 1,
+    "trainingHistory": [
+     {
+      "card": "wildCard",
+      "rarity": "uncommon",
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 1,
+       "gained": [
+        {
+         "code": "comic",
+         "revealed": true
+        }
+       ]
+      },
+      "pickedAt": "2026-10-29T17:01:34.131Z"
+     },
+     {
+      "card": "habit",
+      "rarity": "rare",
+      "traitTo": "craftsman",
+      "outcome": {
+       "gained": [
+        {
+         "code": "craftsman",
+         "revealed": true
+        }
+       ]
+      },
+      "pickedAt": "2026-10-30T15:29:13.084Z"
+     },
+     {
+      "card": "wildCard",
+      "rarity": "uncommon",
+      "outcome": {
+       "stat": "production",
+       "statGain": 1,
+       "gained": [
+        {
+         "code": "taxShy",
+         "revealed": true
+        }
+       ]
+      },
+      "pickedAt": "2026-10-31T13:10:12.389Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-01T09:06:23.715Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-02T03:35:32.561Z"
+     },
+     {
+      "card": "negotiation",
+      "rarity": "rare",
+      "delta": 0.2,
+      "outcome": {
+       "wageExpectation": 0.724
+      },
+      "pickedAt": "2026-11-03T09:05:09.790Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-04T05:07:11.519Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-05T05:34:44.376Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "responsibility",
+      "delta": 1,
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-06T03:15:40.925Z"
+     },
+     {
+      "card": "secondWind",
+      "rarity": "epic",
+      "delta": 3,
+      "outcome": {
+       "potentialMax": 13
+      },
+      "pickedAt": "2026-11-07T07:23:33.205Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "uncommon",
+      "stat": "responsibility",
+      "delta": 2,
+      "outcome": {
+       "stat": "responsibility",
+       "statGain": 2
+      },
+      "pickedAt": "2026-11-08T01:54:47.246Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-09T04:52:38.748Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "epic",
+      "stat": "production",
+      "delta": 3,
+      "outcome": {
+       "stat": "production",
+       "statGain": 3
+      },
+      "pickedAt": "2026-11-10T03:01:14.197Z"
+     }
+    ],
+    "lastSpecializedDay": "2026-11-21",
+    "specializations": {
+     "petroleum": 1,
+     "iron": 1,
+     "steel": 2,
+     "oil": 1,
+     "cookedFish": 15,
+     "cocain": 4
+    },
+    "lastMovedAt": "2026-11-19T06:31:40.862Z",
+    "eventModifiers": [
+     {
+      "code": "snackFromHome",
+      "kind": "happiness",
+      "delta": 5,
+      "until": "2026-11-15T21:36:32.396Z"
+     },
+     {
+      "code": "onFire",
+      "kind": "happiness",
+      "delta": -10,
+      "until": "2026-11-15T11:01:43.317Z"
+     },
+     {
+      "code": "soupDebate",
+      "kind": "happiness",
+      "delta": -5,
+      "until": "2026-11-18T00:31:15.309Z"
+     }
+    ],
+    "lastEventAt": "2026-11-12T11:01:43.317Z",
+    "careBoosts": [
+     "2026-11-16T04:57:57.339Z"
+    ],
+    "retireInDays": 22,
+    "lastAgedDay": "2026-11-21",
+    "wageNegotiated": 0.2,
+    "tool": "6aef6407a8aedba3a5bdd507",
+    "estimate": {
+     "production": 5.97,
+     "wage": 0.212946,
+     "itemCode": "cookedFish"
+    },
+    "breakdown": {
+     "production": {
+      "base": 4,
+      "trained": 9,
+      "contributions": [
+       {
+        "code": "comic",
+        "delta": -1
+       },
+       {
+        "code": "craftsman",
+        "delta": 3
+       },
+       {
+        "code": "taxShy",
+        "delta": -20,
+        "percent": true
+       },
+       {
+        "code": "tool",
+        "delta": 23,
+        "percent": true
+       },
+       {
+        "code": "specialization",
+        "delta": 15,
+        "percent": true
+       }
+      ],
+      "total": 15
+     },
+     "luck": {
+      "base": 2,
+      "trained": 0,
+      "contributions": [],
+      "total": 2
+     },
+     "responsibility": {
+      "base": 3,
+      "trained": 4,
+      "contributions": [],
+      "total": 7
+     }
+    },
+    "happinessBreakdown": {
+     "base": 50,
+     "contributions": [
+      {
+       "reason": "responsibility",
+       "delta": 21
+      },
+      {
+       "reason": "incomeTax",
+       "delta": -6.67
+      }
+     ],
+     "mitigated": 0,
+     "value": 64.33,
+     "quitChance": 0
+    },
+    "toolStatus": {
+     "rolledPercent": 23,
+     "isUsable": true,
+     "isBroken": false,
+     "bonusPercent": 23
+    },
+    "toolItem": {
+     "_id": "6aef6407a8aedba3a5bdd507",
+     "owner": "6aa84e5b26c29f31986b9b6c",
+     "code": "skillet4",
+     "skills": {
+      "production": 23
+     },
+     "state": 32.4,
+     "maxState": 100,
+     "createdAt": "2026-11-07T17:46:47.530Z",
+     "updatedAt": "2026-11-21T21:03:56.231Z",
+     "__v": 0,
+     "employee": "6ae370fabaf5f23b8c087b52"
+    },
+    "productionBonus": {
+     "total": 59.33,
+     "contributions": [
+      {
+       "source": "management",
+       "percent": 4
+      },
+      {
+       "source": "manager",
+       "percent": 18
+      },
+      {
+       "source": "coreRegion",
+       "percent": 5
+      },
+      {
+       "source": "happiness",
+       "percent": 14.329999999999998
+      },
+      {
+       "source": "tool",
+       "percent": 23
+      },
+      {
+       "source": "specialization",
+       "percent": 15
+      },
+      {
+       "source": "taxShy",
+       "percent": -20
+      }
+     ]
+    },
+    "trainingsPerDay": 2,
+    "companyDisabled": false
+   },
+   {
+    "_id": "6af7c7783a94cc3a9e07cf41",
+    "owner": "6aa84e5b26c29f31986b9b6c",
+    "company": "6aad76161222db3b889f596a",
+    "name": "Zoe Aleksandrowicz",
+    "gender": "female",
+    "age": 33,
+    "base": {
+     "production": 12,
+     "luck": 4,
+     "responsibility": 3
+    },
+    "trained": {
+     "production": 9,
+     "luck": 0,
+     "responsibility": 0
+    },
+    "traits": [
+     {
+      "code": "craftsman"
+     },
+     {
+      "code": "modest"
+     },
+     {
+      "code": "trainer"
+     }
+    ],
+    "potential": 9,
+    "potentialMax": 9,
+    "wage": 0.171697,
+    "wageExpectation": 0.744,
+    "nationality": "6813b6d446e731854c7ac7ae",
+    "lastAgedDay": "2026-11-21",
+    "retireInDays": 32,
+    "createdAt": "2026-11-14T02:29:12.690Z",
+    "updatedAt": "2026-11-21T08:05:51.530Z",
+    "__v": 0,
+    "lastMovedAt": "2026-11-21T02:59:47.318Z",
+    "lastTrainedAt": "2026-11-16T05:47:02.740Z",
+    "trainingsToday": 1,
+    "trainingHistory": [
+     {
+      "card": "habit",
+      "rarity": "legendary",
+      "traitTo": "modest",
+      "traitTo2": "trainer",
+      "outcome": {
+       "gained": [
+        {
+         "code": "modest"
+        },
+        {
+         "code": "trainer"
+        }
+       ]
+      },
+      "pickedAt": "2026-11-14T02:30:58.812Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-14T02:35:33.536Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-14T03:04:10.560Z"
+     },
+     {
+      "card": "negotiation",
+      "rarity": "common",
+      "delta": 0.05,
+      "outcome": {
+       "wageExpectation": 0.744
+      },
+      "pickedAt": "2026-11-15T00:32:57.057Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "uncommon",
+      "stat": "production",
+      "delta": 2,
+      "outcome": {
+       "stat": "production",
+       "statGain": 2
+      },
+      "pickedAt": "2026-11-15T00:35:00.723Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-15T00:35:06.484Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "uncommon",
+      "stat": "production",
+      "delta": 2,
+      "outcome": {
+       "stat": "production",
+       "statGain": 2
+      },
+      "pickedAt": "2026-11-15T00:36:44.263Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-15T03:39:04.200Z"
+     },
+     {
+      "card": "drill",
+      "rarity": "common",
+      "stat": "production",
+      "delta": 1,
+      "outcome": {
+       "stat": "production",
+       "statGain": 1
+      },
+      "pickedAt": "2026-11-16T05:47:05.998Z"
+     }
+    ],
+    "lastSpecializedDay": "2026-11-21",
+    "specializations": {
+     "cocain": 2,
+     "cookedFish": 6
+    },
+    "wageNegotiated": 0.05,
+    "trainerSessionsUsed": 1,
+    "trainerSessionsUsedAt": "2026-11-21T02:59:22.316Z",
+    "careBoosts": [
+     "2026-11-20T02:34:41.233Z",
+     "2026-11-21T08:05:51.529Z"
+    ],
+    "lastEventAt": "2026-11-19T02:24:10.703Z",
+    "eventModifiers": [
+     {
+      "code": "poachingOffer",
+      "kind": "happiness",
+      "delta": -15,
+      "until": "2026-11-24T02:24:10.703Z"
+     }
+    ],
+    "tool": "6afbc7bd7fed62e5f8431d90",
+    "estimate": {
+     "production": 5.49,
+     "wage": 0.171697,
+     "itemCode": "cookedFish"
+    },
+    "breakdown": {
+     "production": {
+      "base": 3,
+      "trained": 9,
+      "contributions": [
+       {
+        "code": "craftsman",
+        "delta": 3
+       },
+       {
+        "code": "tool",
+        "delta": 6,
+        "percent": true
+       },
+       {
+        "code": "specialization",
+        "delta": 6,
+        "percent": true
+       }
+      ],
+      "total": 15
+     },
+     "luck": {
+      "base": 4,
+      "trained": 0,
+      "contributions": [],
+      "total": 4
+     },
+     "responsibility": {
+      "base": 3,
+      "trained": 0,
+      "contributions": [],
+      "total": 3
+     }
+    },
+    "happinessBreakdown": {
+     "base": 50,
+     "contributions": [
+      {
+       "reason": "responsibility",
+       "delta": 9
+      },
+      {
+       "reason": "incomeTax",
+       "delta": -6.67
+      },
+      {
+       "reason": "managerCare",
+       "delta": 5,
+       "until": "2026-11-22T02:34:41.233Z"
+      },
+      {
+       "reason": "managerCare",
+       "delta": 5,
+       "until": "2026-11-23T08:05:51.529Z"
+      },
+      {
+       "reason": "event",
+       "delta": -15,
+       "until": "2026-11-24T02:24:10.703Z",
+       "eventCode": "poachingOffer"
+      },
+      {
+       "reason": "comicCoworker",
+       "delta": 10,
+       "code": "comic"
+      }
+     ],
+     "mitigated": 0,
+     "value": 57.33,
+     "quitChance": 0
+    },
+    "toolStatus": {
+     "rolledPercent": 6,
+     "isUsable": true,
+     "isBroken": false,
+     "bonusPercent": 6
+    },
+    "toolItem": {
+     "_id": "6afbc7bd7fed62e5f8431d90",
+     "owner": "6aa84e5b26c29f31986b9b6c",
+     "code": "skillet1",
+     "skills": {
+      "production": 6
+     },
+     "state": 82.4,
+     "maxState": 100,
+     "createdAt": "2026-11-17T03:19:25.261Z",
+     "updatedAt": "2026-11-21T21:03:56.231Z",
+     "__v": 0,
+     "employee": "6af7c7783a94cc3a9e07cf41"
+    },
+    "productionBonus": {
+     "total": 46.33,
+     "contributions": [
+      {
+       "source": "management",
+       "percent": 4
+      },
+      {
+       "source": "manager",
+       "percent": 18
+      },
+      {
+       "source": "coreRegion",
+       "percent": 5
+      },
+      {
+       "source": "happiness",
+       "percent": 7.329999999999998
+      },
+      {
+       "source": "tool",
+       "percent": 6
+      },
+      {
+       "source": "specialization",
+       "percent": 6
+      }
+     ]
+    },
+    "trainingsPerDay": 1,
+    "companyDisabled": false
+   }
+  ],
+  "hourly": {
+   "itemCode": "cookedFish",
+   "production": 16.72,
+   "toolboxes": 0.007,
+   "wageCost": 0.505053,
+   "managerCost": 0.1467,
+   "cap": 3,
+   "engineMultiplier": 1
+  }
+ },
+ "manager": {
+  "_id": "6af02116d7fbbf5d0e1e5218",
+  "user": "687a09251406f901ee4d6155",
+  "company": "6aad76161222db3b889f596a",
+  "employer": "6aa84e5b26c29f31986b9b6c",
+  "rateManagement": 0.0163,
+  "maxHourlyWage": 0.1793,
+  "accrued": 0.4401,
+  "unpaidHours": 0,
+  "totalEarned": 42.82329999999999,
+  "hiredAt": "2026-11-08T07:13:26.565Z",
+  "lockedUntil": "2026-11-09T07:13:26.565Z",
+  "createdAt": "2026-11-08T07:13:26.567Z",
+  "updatedAt": "2026-11-21T21:03:54.163Z",
+  "__v": 0,
+  "lastAccruedAt": "2026-11-21T21:03:54.163Z",
+  "movedAt": "2026-11-21T03:10:36.986Z",
+  "managementLevel": 8,
+  "isInactive": false,
+  "hourlyWage": 0.1467,
+  "productionBonusPercent": 18,
+  "canEndAt": "2026-11-21T03:10:36.986Z",
+  "hasPendingRateReduction": false
+ },
+ "productionBonus": {
+  "depositBonus": 0,
+  "total": 0,
+  "strategicResourcesBonus": 0
+ }
+}

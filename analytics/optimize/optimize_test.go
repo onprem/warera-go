@@ -79,3 +79,41 @@ func must[T any](v T, err error) T {
 	}
 	return v
 }
+
+func TestGearChanges(t *testing.T) {
+	cfg, l := recorded(t)
+	eq := fixture[warera.CurrentEquipment](t, "inventory.fetchCurrentEquipment")
+	// Average prices recorded from the live API; the other codes have
+	// none, so their swaps are left out.
+	prices := map[string]float64{"sniper": 56.69, "tank": 157.51, "jet": 515.74, "gloves4": 51.28, "gloves5": 177.56, "gloves6": 461.08}
+	changes, err := optimize.GearChanges(cfg, l, &eq, prices, attack)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The tank's attack 163 sits 22/29 into 141-170: a jet at the same
+	// place rolls 221 + 22/29 × 79 ≈ 281, a sniper 101 + 22/29 × 29 = 123.
+	// Gloves5's precision 33 sits 2/9 into 31-40: gloves6 roll 53, gloves4
+	// 22. Precision above 100 overflows at 4 attack per point, and attack
+	// is multiplied by 0.682.
+	want := []struct {
+		to         string
+		gain, cost float64
+	}{
+		{"jet", (281 - 163) * 0.682, 515.74 - 157.51},   // 0.225 attack per gold
+		{"gloves6", 20 * 4 * 0.682, 461.08 - 177.56},    // 0.192
+		{"gloves4", -11 * 4 * 0.682, 51.28 - 177.56},    // loses 0.238 per gold saved
+		{"sniper", (123 - 163) * 0.682, 56.69 - 157.51}, // loses 0.271 per gold saved
+	}
+	if len(changes) != len(want) {
+		t.Fatalf("GearChanges = %+v", changes)
+	}
+	for i, w := range want {
+		c := changes[i]
+		if c.To != w.to || math.Abs(c.Gain-w.gain) > 1e-9 || math.Abs(c.Cost-w.cost) > 1e-9 {
+			t.Errorf("change %d = %+v, want %s gaining %v for %v", i, c, w.to, w.gain, w.cost)
+		}
+	}
+	if changes[0].Stats["attack"] != 281 || changes[0].Stats["criticalChance"] != 44 {
+		t.Errorf("jet roll = %v; want attack 281 and critical chance 41 + 3/9 × 9 = 44", changes[0].Stats)
+	}
+}

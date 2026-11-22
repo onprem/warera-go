@@ -59,3 +59,44 @@ func TestSummarizeTrading(t *testing.T) {
 		t.Errorf("SummarizeTrading = %+v", s)
 	}
 }
+
+func TestRollPrice(t *testing.T) {
+	cfg := &warera.GameConfig{Items: map[string]warera.GameConfigItem{
+		"helmet4": {DynamicStats: map[string][]float64{"criticalDamages": {71, 90}}},
+		"sniper":  {DynamicStats: map[string][]float64{"attack": {101, 130}, "criticalChance": {16, 20}}},
+	}}
+	sale := func(code string, money float64, skills warera.ItemSkills, state float64) warera.TransactionListItem {
+		return warera.TransactionListItem{
+			TransactionType: warera.TransactionTypeItemMarket, Money: money, Quantity: 1,
+			Item: &warera.Item{Code: code, Skills: skills, State: state, MaxState: 100},
+		}
+	}
+	// Recorded helmet4 sales, plus ones that must be ignored.
+	sales := []warera.TransactionListItem{
+		sale("helmet4", 47.99, warera.ItemSkills{CriticalDamages: 74}, 100),
+		sale("helmet4", 47.98, warera.ItemSkills{CriticalDamages: 74}, 100),
+		sale("helmet4", 48.10, warera.ItemSkills{CriticalDamages: 74}, 100),
+		sale("helmet4", 57.30, warera.ItemSkills{CriticalDamages: 79}, 100),
+		sale("helmet4", 64.70, warera.ItemSkills{CriticalDamages: 84}, 100),
+		sale("helmet4", 20.00, warera.ItemSkills{CriticalDamages: 80}, 40),  // worn
+		sale("helmet5", 99.00, warera.ItemSkills{CriticalDamages: 80}, 100), // other code
+		{TransactionType: warera.TransactionTypeDismantleItem, Item: &warera.Item{Code: "helmet4", Skills: warera.ItemSkills{CriticalDamages: 80}, State: 100, MaxState: 100}},
+	}
+	if p, ok := market.RollPrice(cfg, sales, "helmet4", map[string]float64{"criticalDamages": 80}); !ok || p != 57.30 {
+		t.Errorf("RollPrice(80) = %v, %v; want the nearest roll's 57.30", p, ok)
+	}
+	if p, _ := market.RollPrice(cfg, sales, "helmet4", map[string]float64{"criticalDamages": 74}); p != 47.99 {
+		t.Errorf("RollPrice(74) = %v; want the median 47.99", p)
+	}
+	if _, ok := market.RollPrice(cfg, sales, "helmet6", map[string]float64{"criticalDamages": 130}); ok {
+		t.Error("no sales must report !ok")
+	}
+	// 8 attack of a 29 range is nearer than 2 critical chance of a 4 range.
+	weapons := []warera.TransactionListItem{
+		sale("sniper", 70, warera.ItemSkills{Attack: 120, CriticalChance: 16}, 100),
+		sale("sniper", 60, warera.ItemSkills{Attack: 112, CriticalChance: 18}, 100),
+	}
+	if p, _ := market.RollPrice(cfg, weapons, "sniper", map[string]float64{"attack": 120, "criticalChance": 18}); p != 60 {
+		t.Errorf("RollPrice(sniper) = %v, want 60", p)
+	}
+}

@@ -3,6 +3,7 @@ package market
 import (
 	"cmp"
 	"maps"
+	"math"
 	"slices"
 
 	"github.com/onprem/warera-go"
@@ -140,3 +141,56 @@ func BidAsk(prices warera.ItemPrices, books map[string]warera.TopOrders) Basis {
 }
 
 func byPrice(a, b warera.TopOrder) int { return cmp.Compare(a.Price, b.Price) }
+
+// RollPrice estimates what an equipment item with given rolled stats sells
+// for, from recent sales such as Transactions.List with TransactionTypes
+// itemMarket and the item code. It uses the sales of that code at full
+// durability whose rolls are nearest to stats, each stat's difference
+// measured as a share of its range in the game config, and returns their
+// median price. ok is false when no such sale is listed.
+func RollPrice(cfg *warera.GameConfig, sales []warera.TransactionListItem, itemCode string, stats map[string]float64) (price float64, ok bool) {
+	ranges := cfg.Items[itemCode].DynamicStats
+	best := math.Inf(1)
+	var prices []float64
+	for _, s := range sales {
+		it := s.Item
+		if s.TransactionType != warera.TransactionTypeItemMarket || it == nil || it.Code != itemCode || it.State < it.MaxState || s.Quantity < 1 {
+			continue
+		}
+		rolled := itemStats(it.Skills)
+		var d float64
+		for stat, r := range ranges {
+			if len(r) == 2 && r[1] > r[0] {
+				d += math.Abs(rolled[stat]-stats[stat]) / (r[1] - r[0])
+			}
+		}
+		switch {
+		case d < best-1e-9:
+			best, prices = d, []float64{s.Money / float64(s.Quantity)}
+		case d < best+1e-9:
+			prices = append(prices, s.Money/float64(s.Quantity))
+		}
+	}
+	if len(prices) == 0 {
+		return 0, false
+	}
+	slices.Sort(prices)
+	if n := len(prices); n%2 == 0 {
+		return (prices[n/2-1] + prices[n/2]) / 2, true
+	}
+	return prices[len(prices)/2], true
+}
+
+// itemStats returns an item's rolled stats keyed by stat name.
+func itemStats(s warera.ItemSkills) map[string]float64 {
+	stats := map[string]float64{}
+	for name, v := range map[string]float64{
+		"armor": s.Armor, "attack": s.Attack, "criticalChance": s.CriticalChance,
+		"criticalDamages": s.CriticalDamages, "dodge": s.Dodge, "precision": s.Precision,
+	} {
+		if v != 0 {
+			stats[name] = v
+		}
+	}
+	return stats
+}

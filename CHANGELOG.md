@@ -16,6 +16,7 @@ All notable changes to this project are documented here. While the project is in
 - `analytics/battle`: `PoolSize` gives a battle's or round's loot pool from the damage dealt, which goes to that many top damage dealers counting both sides; `PoolRarity` and `ExpectedPoolValue` give the rarity a rank can expect, as the rank-th best of independent draws at `DefaultPoolOdds`; `TickPoints`, `RoundTicks`, and `TicksToWin` give round timing. Pool sizes, the ranks that get items, and tick counts are checked against recorded battles.
 - `market.Basis` values trade at reference prices (`Reference`) or at the order books' best bid and ask (`BidAsk`).
 - `examples/planner`: a production planner built on the `analytics` packages.
+- `examples/advisor`: a war report for a player by username, comparing their build with the best war build for their level, with damage simulations, fight economics, and gear and skill suggestions.
 - `waretest.Fixture` decodes a recorded API response, for tests and examples of code that computes from records.
 
 ### Fixed

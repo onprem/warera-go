@@ -25,6 +25,9 @@ type GearChange struct {
 	// more To costs than From; both are negative for a downgrade.
 	Gain float64
 	Cost float64
+	// Loadout is the loadout after the swap, to weigh it further, such as
+	// what a fight with it costs.
+	Loadout character.Loadout
 }
 
 // GearChanges returns, for each equipped item, what swapping it for the
@@ -78,6 +81,7 @@ func GearChanges(cfg *warera.GameConfig, l character.Loadout, equipment *warera.
 				return nil, err
 			}
 			c.Gain = s - base
+			c.Loadout = swapped
 			changes = append(changes, c)
 		}
 	}

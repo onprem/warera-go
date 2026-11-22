@@ -94,6 +94,12 @@ var ErrNoHealthCost = errors.New("combat: swings cost no health")
 // Model: the regeneration and healing rates are game config; spending all
 // of it in one window follows the Warera Simulator.
 func Window(cfg *warera.GameConfig, s character.Stats, food string, hours float64, a Assumptions) (Fight, error) {
+	return window(cfg, s, food, hours, a, true)
+}
+
+// window is [Window], starting with full bars or, when full is false,
+// with empty ones, spending only what regenerates.
+func window(cfg *warera.GameConfig, s character.Stats, food string, hours float64, a Assumptions, full bool) (Fight, error) {
 	perFood, err := foodHealing(cfg, s, food)
 	if err != nil {
 		return Fight{}, err
@@ -103,9 +109,13 @@ func Window(cfg *warera.GameConfig, s character.Stats, food string, hours float6
 		return Fight{}, ErrNoHealthCost
 	}
 	regen := hours / cfg.User.RegenDividedBy
-	f := Fight{Hours: hours, Health: s.Health * (1 + regen)}
+	bars := 0.0
+	if full {
+		bars = 1
+	}
+	f := Fight{Hours: hours, Health: s.Health * (bars + regen)}
 	if perFood > 0 {
-		f.Food = s.Hunger + math.Floor(s.Hunger*regen)
+		f.Food = math.Floor(s.Hunger * (bars + regen))
 		f.Health += f.Food * perFood
 	}
 	f.Swings = math.Ceil(f.Health / swing.Health)
@@ -113,6 +123,59 @@ func Window(cfg *warera.GameConfig, s character.Stats, food string, hours float6
 	f.Undodged = f.Swings * (1 - s.DodgeChance)
 	f.Damage = f.Swings * swing.Damage
 	return f, nil
+}
+
+// PillAfterEffectPercent is the attack a pill's after-effect takes away, as
+// the API reports in [warera.UserSkill.DebuffsPercent]; the game config
+// does not publish it.
+const PillAfterEffectPercent = 60
+
+// Day is the expected fighting of one day on a pill, in its three phases.
+type Day struct {
+	// Boosted is the fight while the pill lasts, from full health and
+	// hunger; AfterEffect the fight on what regenerates during the
+	// after-effect; and Plain the fight on what regenerates in the rest of
+	// the day.
+	Boosted, AfterEffect, Plain Fight
+	Damage                      float64
+}
+
+// PillDay returns the expected fighting of a day that starts with a pill
+// (cocain) and full health and hunger. The pill adds its "percentAttack"
+// for its "buffDurationHours"; then [PillAfterEffectPercent] is taken away
+// for its "debuffDurationHours"; the rest of 24 hours has neither. Each
+// phase spends what it has, as in [Window]. l is the loadout without boosts.
+//
+// Model: the pill's bonus and durations are game config; fighting through
+// each phase follows the Warera Simulator.
+func PillDay(cfg *warera.GameConfig, l character.Loadout, food string, a Assumptions) (Day, error) {
+	pill, ok := cfg.Items["cocain"]
+	if !ok {
+		return Day{}, fmt.Errorf("%w %q", analytics.ErrUnknownItem, "cocain")
+	}
+	boostHours, afterHours := pill.FlatStats["buffDurationHours"], pill.FlatStats["debuffDurationHours"]
+	phase := func(buff, debuff, hours float64, full bool) (Fight, error) {
+		p := l
+		p.BuffPercent, p.DebuffPercent = buff, debuff
+		s, err := character.StatsOf(cfg, p)
+		if err != nil {
+			return Fight{}, err
+		}
+		return window(cfg, s, food, hours, a, full)
+	}
+	var d Day
+	var err error
+	if d.Boosted, err = phase(pill.FlatStats["percentAttack"], 0, boostHours, true); err != nil {
+		return Day{}, err
+	}
+	if d.AfterEffect, err = phase(0, PillAfterEffectPercent, afterHours, false); err != nil {
+		return Day{}, err
+	}
+	if d.Plain, err = phase(0, 0, max(0, 24-boostHours-afterHours), false); err != nil {
+		return Day{}, err
+	}
+	d.Damage = d.Boosted.Damage + d.AfterEffect.Damage + d.Plain.Damage
+	return d, nil
 }
 
 // Simulate fights swing by swing with random rolls from rng, with the same

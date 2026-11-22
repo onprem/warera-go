@@ -176,3 +176,30 @@ func TestSimulate(t *testing.T) {
 		t.Error("the same seed must repeat the fight")
 	}
 }
+
+func TestPillDay(t *testing.T) {
+	cfg := fixture[*warera.GameConfig](t, "gameConfig.getGameConfig")
+	user := fixture[warera.User](t, "user.getUserById")
+	eq := fixture[warera.CurrentEquipment](t, "inventory.fetchCurrentEquipment")
+	l := character.LoadoutOf(user.Skills, &eq)
+	l.BuffPercent, l.DebuffPercent = 0, 0
+	d, err := combat.PillDay(cfg, l, "cookedFish", combat.DefaultAssumptions())
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Without boosts attack is 510 × 1.1 × 1.55 = 869.55, and a swing deals
+	// 3.3458 attacks and costs 1.408 health.
+	perSwing := 869.55 * 3.3458
+	// Pill, 8 hours from full: 150 × 1.8 + 14 foods × 30 = 690 health, 491
+	// swings at 1.6×.
+	// After-effect, 15.5 hours from empty: 150 × 1.55 + 12 foods × 30 =
+	// 592.5 health, 421 swings at 0.4×.
+	// The last half hour: 7.5 health and no whole food, 6 swings.
+	if d.Boosted.Swings != 491 || d.AfterEffect.Swings != 421 || d.AfterEffect.Food != 12 || d.Plain.Swings != 6 || d.Plain.Food != 0 {
+		t.Fatalf("PillDay = %+v", d)
+	}
+	want := (491*1.6 + 421*0.4 + 6) * perSwing
+	if math.Abs(d.Damage/want-1) > 1e-9 {
+		t.Errorf("day damage %v, want %v", d.Damage, want)
+	}
+}
